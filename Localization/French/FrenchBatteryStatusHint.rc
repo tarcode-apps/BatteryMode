@@ -1,0 +1,28 @@
+STRINGTABLE
+LANGUAGE LANG_FRENCH, SUBLANG_DEFAULT
+{
+600, "Ordinateur de bureau"
+
+621, "Chargement en cours"
+622, "%0:u hr %%1:.2u min pour chargement complet"
+623, "%1:u min pour chargement complet"
+624, "%2:u%% disponible (alimenté, chargement)"
+625, "%2:u%% disponible (alimenté, pas de chargement)"
+626, "Chargement complet (100%%)"
+627, "Aucune batterie détectée"
+628, "Alimenté et pas de chargement"
+
+650, "%0:u hr %1:.2u min (%2:u%%) restantes"
+651, "%1:u min (%2:u%%) restantes"
+654, "%2:u%% restantes"
+655, "Temps restant inconnu"
+
+670, "%2:u%% restantes\npensez à remplacer votre batterie."
+671, "Unknown restantes\npensez à remplacer votre batterie."
+672, "Alimenté et en chargement\npensez à remplacer votre batterie."
+673, "%2:u%% disponible (alimenté, chargement en cours)\npensez à remplacer votre batterie."
+674, "%2:u%% disponible (alimenté, pas de chargement)\npensez à remplacer votre batterie."
+675, "Chargement complet (100%%)\npensez à remplacer votre batterie."
+
+680, "Economiseur de batterie activé"
+}

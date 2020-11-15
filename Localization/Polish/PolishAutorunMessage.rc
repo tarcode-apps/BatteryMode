@@ -1,0 +1,9 @@
+STRINGTABLE
+LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
+{
+500, "Program został dodany do autostartu bez uprawnień administratora."
+501, "Program został dodany do autostartu."
+502, "Program został usunięty z autostartu."
+503, "Wystąpił błąd podczas dodawania programu do autostartu."
+504, "Wystąpił błąd podczas usuwania programu z autostartu."
+}

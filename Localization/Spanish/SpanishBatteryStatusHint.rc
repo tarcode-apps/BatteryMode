@@ -1,0 +1,28 @@
+STRINGTABLE
+LANGUAGE LANG_SPANISH, SUBLANG_SPANISH
+{
+600, "Ordenador de sobremesa"
+
+621, "Conectado y cargando"
+622, "%0:u hr %%1:.2u min para cargar completamente"
+623, "%1:u min para cargar completamente"
+624, "%2:u%% disponible (conectado, cargando)"
+625, "%2:u%% disponible (conectado, sin cargar)"
+626, "Totalmente cargado (100%%)"
+627, "Ninguna batería detectada"
+628, "Conectado y sin cargar"
+
+650, "%0:u hr %1:.2u min (%2:u%%) restante"
+651, "%1:u min (%2:u%%) restante"
+654, "%2:u%% restante"
+655, "Carga restante desconocida"
+
+670, "%2:u%% restante\nConsidere reemplazar su batería."
+671, "Carga restante desconocida\nConsidere reemplazar su batería."
+672, "Conectado y cargando\nConsidere reemplazar su batería."
+673, "%2:u%% disponible (conectado, cargando)\nConsidere reemplazar su batería."
+674, "%2:u%% disponible (conectado, sin cargar)\nConsidere reemplazar su batería."
+675, "Totalmente cargado (100%%)\nConsidere reemplazar su batería."
+
+680, "Ahorro de batería activado"
+}

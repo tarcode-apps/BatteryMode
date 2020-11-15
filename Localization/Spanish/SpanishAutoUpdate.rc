@@ -1,0 +1,16 @@
+STRINGTABLE
+LANGUAGE LANG_SPANISH, SUBLANG_SPANISH
+{
+900, "Actualización de Software"
+901, "¡Una nueva versión de %0:s está disponible!"
+902, "%0:s %1:s está ahora disponible (versión instalada %2:s). ¿Le gustaría descargarla ahora?"
+903, "Notas de lanzamiento:"
+904, "Omitir esta versión"
+905, "Recordar para luego"
+906, "Instalar actualización"
+907, "¡Estás al día!"
+908, "%0:s %1:s es actualmente la versión más nueva disponible."
+909, "Cerrar"
+910, "Un error ha ocurrrido mientras se descargaban actualizaciones"
+911, "No se puede iniciar la actualización"
+}

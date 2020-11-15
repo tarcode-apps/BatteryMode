@@ -1,0 +1,13 @@
+STRINGTABLE
+LANGUAGE LANG_FRENCH, SUBLANG_DEFAULT
+{
+300, "Raccourci clavier"
+301, "Appliquer"
+302, "Annuler"
+
+310, "Personnaliser"
+
+320, "Activer le raccourci clavier"
+
+350, "Aucun"
+}

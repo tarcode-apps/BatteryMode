@@ -1,0 +1,13 @@
+FileUpdate0 RCDATA "__temp\\BatteryMode32.gzip"
+
+STRINGTABLE
+{
+	8000, "BatteryMode32.exe" // OLD MAIN FILE
+	8001, "BatteryMode32.exe" // NEW MAIN FILE
+	
+	// UPDATE FILES
+	8002, "BatteryMode32.exe"
+
+	// MUTEX
+	8950, "BatteryModMutex"
+}

@@ -1,0 +1,13 @@
+STRINGTABLE
+LANGUAGE LANG_SPANISH, SUBLANG_SPANISH
+{
+300, "Tecla de acceso rápido"
+301, "Aplicar"
+302, "Cancelar"
+
+310, "Personalizar"
+
+320, "Activar tecla de acceso rápido"
+
+350, "Ninguna"
+}

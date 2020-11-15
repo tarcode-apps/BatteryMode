@@ -1,0 +1,13 @@
+STRINGTABLE
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+{
+300, "Hotkey"
+301, "Apply"
+302, "Cancel"
+
+310, "Custom"
+
+320, "Enable hotkey"
+
+350, "None"
+}

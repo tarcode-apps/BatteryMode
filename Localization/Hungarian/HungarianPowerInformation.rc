@@ -1,0 +1,80 @@
+STRINGTABLE
+LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT
+{
+700, "N/A"
+701, "Ismeretlen"
+
+704, "Energiaellátási rendszer"
+705, "Akkumulátor tulajdonságok"
+
+710, "Eszköz neve"
+711, "Gyártó"
+712, "Gyártás dátuma"
+713, "Sorozatszám"
+714, "Akkumulátor típusa"
+715, "Töltés/Merülés ciklusok"
+716, "Elhasználódási szint"
+717, "Energiagazdálkodás állapota"
+718, "Tervezett kapacitás"
+719, "Teljes töltöttség kapacitás"
+720, "Aktuális kapacitás"
+721, "Akkumulátor feszültség"
+722, "Töltés/Merülés arány"
+723, "Töltés arány"
+724, "Merülés arány"
+725, "Akkumulátor merülési figyelmeztetés 1"
+726, "Akkumulátor merülési figyelmeztetés 2"
+727, "Hőmérséklet"
+
+740, "Nem újratölthető %0:s"
+741, "Újratölthető %0:s"
+742, "Nem újratölthető"
+743, "Újratölthető"
+
+745, "AC hálózat"
+746, "Töltődik"
+747, "Teljesen lemerült"
+748, "Merülés"
+
+750, "&Nézet"
+751, "&Mindig látható"
+
+755, "&Fájl"
+756, "&Bezárás"
+757, "&Mentés"
+758, "Mentés má&sként..."
+759, "Minden fájl"
+760, "Szöveges fájlok"
+761, "Naplófájlok"
+
+765, "Energiagazdálkodási tulajdonságok"
+
+770, "Jelenlegi áramforrás"
+771, "Akkumulátor állapot"
+772, "Teljes akkumulátor élettartam"
+773, "Hátralévő akkumulátor élettartam"
+
+775, "%0:u óra %1:.2u perc"
+776, "%1:u perc"
+
+780, "AC hálózat"
+781, "UPS szünetmentes tápegység"
+782, "Akkumulátor"
+
+784, "Nincs akkumulátor"
+785, "%0:d%% (Magas, töltődik)"
+786, "%0:d%% (Alacsony, töltődik)"
+787, "%0:d%% (Kritikus, töltődik)"
+788, "%0:d%% (Töltődik)"
+789, "%0:d%% (Magas)"
+790, "%0:d%% (Alacsony)"
+791, "%0:d%% (Kritikus)"
+792, "%0:d%%"
+793, "Magas, töltődik"
+794, "Alacsony, töltődik"
+795, "Kritikus, töltődik"
+796, "Töltődik"
+797, "Magas"
+798, "Alacsony"
+799, "Kritikus"
+}

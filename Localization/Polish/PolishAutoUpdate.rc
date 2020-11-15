@@ -1,0 +1,17 @@
+STRINGTABLE
+LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
+{
+900, "Aktualizacja oprogramowania"
+901, "Nowa wersja %0:s jest dostępna!"
+902, "%0:s %1:s jest dostępna (posiadasz %2:s). Czy chcesz ją teraz pobrać?"
+903, "Informacje o wydaniu:"
+904, "Pomiń tą wersję"
+905, "Przypomnij mi później"
+906, "Zainstaluj aktualizację"
+907, "Jesteś na bieżąco!"
+908, "%0:s %1:s jest obecnie najnowszą dostępną wersją."
+909, "Zamknij"
+910, "Wystąpił błąd podczas pobierania aktualizacji"
+911, "Nie można zainicjować aktualizacji"
+912, "Aktualna wersja"
+}

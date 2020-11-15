@@ -1,0 +1,80 @@
+STRINGTABLE
+LANGUAGE LANG_PORTUGUESE, SUBLANG_DEFAULT
+{
+700, "N/A"
+701, "Desconhecida"
+
+704, "Sistema de energia"
+705, "Propriedades da bateria"
+
+710, "Nome do Dispositivo"
+711, "Fabricante"
+712, "Data de Fabricação"
+713, "Número de Série"
+714, "Tipo de Bateria"
+715, "Ciclos de Carga/Descarga"
+716, "Nível de Uso"
+717, "Estado de Energia"
+718, "Capacidade Projetada"
+719, "Capacidade de Carga Total"
+720, "Capacidade Atual"
+721, "Voltagem da Bateria"
+722, "Taxa de Carga/Descarga"
+723, "Taxa de Carga"
+724, "Taxa de Descarga"
+725, "Alerta de Aviso da Bateria 1"
+726, "Alerta de Aviso da Bateria 2"
+727, "Temperatura"
+
+740, "Não recarregável %0:s"
+741, "Recarregável %0:s"
+742, "Não recarregável"
+743, "Recarregável"
+
+745, "Corrente Alternada"
+746, "Carregando"
+747, "Totalmente Descarregada"
+748, "Descarregando"
+
+750, "E&xibir"
+751, "&Sempre visível"
+
+755, "&Arquivo"
+756, "&Fechar"
+757, "&Salvar"
+758, "Salvar &Como..."
+759, "Todos os Arquivos"
+760, "Arquivos de Texto"
+761, "Arquivos de Log"
+
+765, "Propriedades do Gerenciamento de Energia"
+
+770, "Fonte de Alimentação Atual"
+771, "Estado da Bateria"
+772, "Vida Útil Completa da Bateria"
+773, "Vida Útil Restante da Bateria"
+
+775, "%0:u hr %1:.2u min"
+776, "%1:u min"
+
+780, "Corrente Alternada"
+781, "UPS"
+782, "Bateria"
+
+784, "Sem bateria"
+785, "%0:d%% (Alto, Carregando)"
+786, "%0:d%% (Baixo, Carregando)"
+787, "%0:d%% (Crítico, Carregando)"
+788, "%0:d%% (Carregando)"
+789, "%0:d%% (Alto)"
+790, "%0:d%% (Baixo)"
+791, "%0:d%% (Crítico)"
+792, "%0:d%%"
+793, "Alto, Carregando"
+794, "Baixo, Carregando"
+795, "Crítico, Carregando"
+796, "Carregando"
+797, "Alto"
+798, "Baixo"
+799, "Crítico"
+}

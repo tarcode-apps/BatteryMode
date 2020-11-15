@@ -1,0 +1,28 @@
+STRINGTABLE
+LANGUAGE LANG_PORTUGUESE, SUBLANG_DEFAULT
+{
+600, "Computador desktop"
+
+621, "Plugado e carregando"
+622, "%0:u hr %%1:.2u min para carga completa"
+623, "%1:u min para carga completa"
+624, "%2:u%% disponível (plugado, carregando)"
+625, "%2:u%% disponível (plugado, não carregando)"
+626, "Totalmente carregado (100%%)"
+627, "Nenhuma bateria detectada"
+628, "Plugado e não carregando"
+
+650, "%0:u hr %1:.2u min (%2:u%%) restante"
+651, "%1:u min (%2:u%%) restante"
+654, "%2:u%% restante"
+655, "Carga restante desconhecida"
+
+670, "%2:u%% restante\nConsidere substituir sua bateria."
+671, "Carga restante desconhecida\nConsidere substituir sua bateria."
+672, "Plugado e carregando\nConsidere substituir sua bateria."
+673, "%2:u%% disponível (plugado, carregando)\nConsidere substituir sua bateria."
+674, "%2:u%% disponível (plugado, não carregando)\nConsidere substituir sua bateria."
+675, "Totalmente carregada (100%%)\nConsidere substituir sua bateria."
+
+680, "Economia de bateria ativada"
+}

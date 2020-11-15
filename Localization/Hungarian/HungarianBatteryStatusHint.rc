@@ -1,0 +1,28 @@
+STRINGTABLE
+LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT
+{
+600, "Asztali számítógép"
+
+621, "Csatlakoztatva és töltődik"
+622, "%0:u óra %%1:.2u perc múlva lesz teljesen feltöltve"
+623, "%1:u perc múlva lesz teljesen feltöltve"
+624, "%2:u%% áll rendelkezésre (csatlakoztatva, töltődik)"
+625, "%2:u%% áll rendelkezésre (csatlakoztatva, nem töltődik)"
+626, "Teljesen feltöltve (100%%)"
+627, "Nem észlelhető akkumulátor"
+628, "Csatlakoztatva és nem töltődik"
+
+650, "%0:u óra %1:.2u perc (%2:u%%) van hátra"
+651, "%1:u perc (%2:u%%) van hátra"
+654, "%2:u%% van hátra"
+655, "Ismeretlen hátralévő idő"
+
+670, "%2:u%% van hátra\nFontolja meg az akkumulátor cseréjét."
+671, "Ismeretlen hátralévő idő\nFontolja meg az akkumulátor cseréjét."
+672, "Csatlakoztatva és töltődik\nFontolja meg az akkumulátor cseréjét."
+673, "%2:u%% elérhető (csatlakoztatva, töltődik)\nFontolja meg az akkumulátor cseréjét."
+674, "%2:u%% elérhető (csatlakoztatva, nem töltődik)\nFontolja meg az akkumulátor cseréjét."
+675, "Teljesen feltöltve (100%%)\nFontolja meg az akkumulátor cseréjét."
+
+680, "Akkumulátor kímélés engedélyezve"
+}

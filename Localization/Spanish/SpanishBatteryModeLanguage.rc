@@ -1,0 +1,101 @@
+STRINGTABLE
+LANGUAGE LANG_SPANISH, SUBLANG_SPANISH
+{
+0, "Español"
+1, "Battery Mode"
+2, "Selecciona el plan de energía:"
+3, "Ajustes avanzados"
+4, "Usar iconos monocromáticos"
+5, "Ajustes de teclas de acceso rápido"
+6, "Iniciar con Windows"
+7, "Brillo de la pantalla fijo"
+
+9, "Salir"
+10, "Versión"
+11, "Sitio web de Battery Mode"
+12, "https://bmode.tarcode.ru"
+13, "Información sobre el sistema de alimentación"
+
+15, "Opciones de energía de Windows"
+16, "Activar o desactivar los iconos del sistema"
+17, "Centro de Mobilidad de Windows"
+
+20, "Mostrar icono de notificación del plan de energía"
+21, "Ocultar"
+22, "En el monitor principal"
+23, "En todos los monitores"
+
+26, "Mostrar planes de energía ocultos"
+
+30, "Activar brillo adaptivo"
+31, "Desactivar brillo adaptivo"
+
+40, "https://bmode.tarcode.ru/update.uurl"
+41, "Actualizaciones automáticas"
+42, "Activar actualizaciones automáticas"
+43, "Comprobar actualizaciones"
+44, "Nueva versión de %0:s está disponible\nPinchar aquí para más detalles"
+45, "Actualización exitosa\nLa nueva versión es %0:s"
+46, "Actualización fallida\nPinchar aquí para visitar el sitio web"
+
+50, "Control deslizante de brillo de pantalla para monitores"
+51, "Búsqueda de monitores"
+52, "Monitor interno"
+53, "Control &deslizante de brillo"
+54, "Mostrar &modelo de monitor"
+55, "Mostrar &brillo en porcentajes"
+
+60, "Ahorro de batería"
+
+70, "Estilo de los iconos"
+71, "Windows &7"
+72, "Windows &8"
+73, "Windows &10"
+74, "Windows &8 Ligero"
+75, "Windows &10 Ligero"
+76, "Windows &XP"
+77, "Windows &Vista"
+
+80, "Planificador"
+
+90, "Combinación de teclas para cambiar el plan de energía"
+91, "Desactivado"
+
+100, "Exportar ajustes a un archivo"
+101, "Importar ajustes de un archivo"
+
+105, "Ajustes de %0:s"
+106, "Exportar ajustes de %0:s"
+107, "Importar ajustes de %0:s"
+
+110, "Archivos de registro (*.reg)"
+111, "Archivos de texto (*.txt)"
+112, "Todos los archivos"
+
+120, "Color de los iconos "
+121, "Basado en planes de energía"
+122, "Basado en carga de batería"
+123, "Blanco"
+124, "Basado en planes de energía (inverté)"
+125, "Basado en carga de batería (inverté)"
+
+130, "Desactivar borde del ventana emergente"
+
+134, "Apagar o desconectar"
+135, "Enlace al pie de la ventana emergente"
+136, "Apagar pantalla"
+137, "Apagar"
+138, "Reiniciar"
+139, "Suspender"
+140, "&Hibernar"
+141, "Desconectar"
+142, "Bloquear"
+143, "Solucionar problemas"
+144, "Estado de la batería"
+145, "Desconectar"
+
+150, "Lenguaje"
+151, "Por defecto"
+
+10000, "Abrir carpeta de registro de depuración"
+}

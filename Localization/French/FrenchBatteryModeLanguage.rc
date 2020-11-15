@@ -1,0 +1,78 @@
+STRINGTABLE
+LANGUAGE LANG_FRENCH, SUBLANG_DEFAULT
+{
+0, "French"
+1, "Battery Mode"
+2, "Séléctionner le mode d'alimentation:"
+3, "Paramètres &Avancés"
+4, "Utiliser des icônes &monochromes"
+5, "Paramètres des &raccourcis clavier"
+6, "&Démarrer automatiquement avec Windows"
+7, "&Luminescence fixe de l'écran"
+
+9, "&Quitter"
+10, "Version"
+11, "Site &web de Battery Mode"
+12, "https://bmode.tarcode.ru"
+13, "&Informations sur le système d'alimentation"
+
+15, "&Marche"
+16, "&Activer ou désactiver les icônes systèmes"
+17, "Windows &Mobility Center"
+
+20, "Montrer l'&indicateur du mode d'alimentation"
+21, "&Cacher"
+22, "Sur le moniteur &principal"
+23, "Sur &tous les moniteurs"
+
+26, "Montrer les modes d'alimentation cachés"
+
+30, "Activer la luminescence adaptive"
+31, "Désactiver la luminescence adaptive"
+
+40, "https://bmode.tarcode.ru/update.uurl"
+41, "Mises à jour &automatiques"
+42, "Activer les &mises à jour automatiques"
+43, "Re&chercher des mises à jour"
+44, "Une nouvelle version de %0:s est disponible\nClicquez ici pour plus de details"
+45, "Mise à jour réussie\nLa nouvelle version est %0:s"
+46, "Mise à jour échouée\nCliquez ici pour visiter le site web"
+
+50, "Contrôler la &luminescence des moniteurs"
+51, "Sca&nner pour de nouveaux moniteurs"
+52, "Moniteur interne"
+53, "Curseur de &luminosité"
+54, "Afficher le &modèle de moniteur"
+55, "Afficher la &luminosité en pourcentages"
+
+60, "Economiseur de batterie"
+
+70, "Style d'i&cônes"
+71, "Windows &7"
+72, "Windows &8"
+73, "Windows &10"
+74, "Windows &8 Light"
+75, "Windows &10 Light"
+76, "Windows &XP"
+77, "Windows &Vista"
+
+80, "&Planificateur"
+
+90, "La combinaison des raccourcis clavier pour changer de mode"
+91, "Désactivé"
+
+100, "Exporter les paramètres vers un fichier"
+101, "Importer les paramètres depuis un fichier"
+
+105, "%0:s Paramètress"
+106, "Exporter %0:s paramètress"
+107, "Importer %0:s paramètres"
+
+110, "Fichiers du registre (*.reg)"
+111, "Fichiers Texte (*.txt)"
+112, "Tous les fichiers"
+
+150, "&Langue",
+
+10000, "Ouvrir le dossier du log de débogage"
+}

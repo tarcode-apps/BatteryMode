@@ -1,0 +1,87 @@
+STRINGTABLE
+LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT
+{
+0, "Magyar"
+1, "Battery Mode"
+2, "Energiaséma kiválasztása:"
+3, "További &beállítások"
+4, "&Egyszínű ikonok használata"
+5, "Gyorsbillentyű &beállítások"
+6, "&Indítás a Windows-zal"
+7, "Állandó képernyő &fényerő"
+
+9, "&Bezár"
+10, "Verzió"
+11, "Battery Mode &weboldal"
+12, "https://bmode.tarcode.ru"
+13, "&Információ a tápellátási rendszerről"
+
+15, "&Energiagazdálkodás"
+16, "&Rendszerikonok engedélyezése vagy letiltása"
+17, "Windows &Mobilközpont"
+
+20, "Energiaséma &mutató kijelzése"
+21, "&Elrejtve"
+22, "Az e&lsődleges képernyőn"
+23, "Az ö&sszes képernyőn"
+
+26, "Rejtett energiasémák mutatása"
+
+30, "Adaptív fényerő engedélyezése"
+31, "Adaptív fényerő letiltása"
+
+40, "https://bmode.tarcode.ru/update.uurl"
+41, "Automatikus &frissítés"
+42, "Automatikus frissítés &bekapcsolása"
+43, "Frissítések k&eresése"
+44, "%0:s új verziója érhető el\nKattintson ide a részletekért"
+45, "Sikeres frissítés\nAz új verzió: %0:s"
+46, "Frissítés sikertelen\nKattintson ide a weboldal meglátogatásához"
+
+50, "&Fényerő csúszka megjelenítése a kijelzőkhöz"
+51, "Kijelzők &keresése"
+52, "Belső monitor"
+53, "Fényerő &csúszka"
+54, "Megjeleníti a &monitor modelljét"
+55, "Mutassa a &fényerőt százalékban"
+
+60, "Akkumulátor kímélő"
+
+70, "I&kon stílus"
+71, "Windows &7"
+72, "Windows &8"
+73, "Windows &10"
+74, "Windows &8 Light"
+75, "Windows &10 Light"
+76, "Windows &XP"
+77, "Windows &Vista"
+
+80, "Üt&emező"
+
+90, "Billentyű kombináció az energiaséma megváltoztatásához"
+91, "Letiltva"
+
+100, "Beállítások exportálása fájlba"
+101, "Beállítások importálása fájlból"
+
+105, "%0:s Beállítások"
+106, "%0:s Beállítások exportálása"
+107, "%0:s Beállítások importálása"
+
+110, "Regisztrációs fájlok (*.reg)"
+111, "Szöveges fájlok (*.txt)"
+112, "Összes fájl"
+
+120, "Ikonok &színe"
+121, "Energiagazdálkodási &séma alapján"
+122, "&Akkumulátor töltöttség alapján"
+123, "&Fehér"
+124, "Energiagazdálkodási &séma alapján (átfordított)"
+125, "&Akkumulátor töltöttség alapján (átfordított)"
+
+130, "Felugró ablak ke&ret letiltása"
+
+150, "&Nyelv",
+
+10000, "Hibakeresési napló mappájának megnyitása"
+}

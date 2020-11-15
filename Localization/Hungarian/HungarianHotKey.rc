@@ -1,0 +1,13 @@
+STRINGTABLE
+LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT
+{
+300, "Gyorsbillentyű"
+301, "Alkalmaz"
+302, "Elvet"
+
+310, "Egyéni"
+
+320, "Gyorsbillentyű engedélyezése"
+
+350, "Nincs"
+}

@@ -1,0 +1,156 @@
+STRINGTABLE
+LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
+{
+1000, "Harmonogram"
+1001, "Zastosuj"
+1002, "Anuluj"
+1003, "Dodaj regułę"
+
+1005, "Pomoc"
+1006, "https://bmode.tarcode.ru/scheduler-help"
+
+1010, "Masz niezapisane zmiany. Zapisać teraz?"
+
+1020, "Włącz harmonogram"
+
+1030, "Gdy %0:s"
+1031, "i %0:s"
+1032, "lub %0:s"
+1033, "%0:s"
+1034, "i %0:s"
+1035, "Nie zdefiniowano jeszcze żadnych wyzwalaczy"
+1036, "podczas %0:s"
+1037, "i %0:s"
+1038, "lub %0:s"
+
+1040, "Włącz"
+
+1045, "Zmień"
+1046, "Usuń"
+
+1050, "Nowa reguła"
+
+1060, "Przenieś w górę"
+1061, "Przenieś w dół"
+
+1070, "Właściwości"
+1071, "Zastosuj"
+1072, "Anuluj"
+
+1075, "Reguła została zmodyfikowana. Zapisać teraz?"
+
+1080, "Nazwa"
+1081, "Nie stosuj innych reguł"
+
+1085, "Jeśli"
+1086, "spełnione są wszystkie poniższe warunki"
+1087, "spełniony jest jeden z poniższych warunków"
+1088, "Podczas"
+
+1090, "Usuń"
+1091, "Nieznany warunek"
+1092, "Wyczyść"
+
+1095, "Dodaj wyzwalacz"
+1096, "Wykonuj czynności"
+1097, "Dodaj warunek"
+
+1100, "pokaż wiadomość \"%0:s\""
+1101, "Pokaż wiadomość"
+
+1110, "ustaw schemat zasilania \"%0:s\""
+1111, "Ustaw schemat zasilania"
+
+1120, "Uruchom program"
+1121, "uruchom \"%0:s\""
+1122, "uruchom \"%0:s\" ukryty"
+
+1125, "Przeglądaj"
+1126, "Uruchom ukryty"
+
+1130, "Odtwórz dźwięk"
+1131, "odtwórz dźwięk \"%0:s\""
+1132, "odtwórz dźwięk \"%0:s\" z głośnością %1:d%%"
+
+1135, "Przeglądaj"
+1136, "Głośność"
+1137, "Pliki audio"
+1138, "Wszystkie pliki"
+
+1140, "Zasilanie"
+1141, "wyłącz PC"
+1142, "uruchom ponownie Windows"
+1143, "przejdź w tryb uspienia"
+1144, "hibernuj ten PC"
+1145, "wyłącz ekran"
+1146, "włącz ekran"
+
+1151, "Zamknij system"
+1152, "Uruchom ponownie"
+1153, "Uśpij"
+1154, "Hibernacja"
+1155, "Wyłącz ekran"
+1156, "Włącz ekran"
+
+1200, "ładowanie baterii %0:s %1:d%%"
+1201, "ładowanie baterii %0:s"
+1202, "Ładowanie baterii"
+
+1205, "spadnie poniżej"
+1206, "wzrośnie powyżej"
+1207, "zmiany"
+
+1220, "zasilacz %0:s"
+1221, "Zasilacz"
+
+1225, "jest podłączony"
+1226, "jest odłączony"
+1227, "zmienia stan"
+
+1240, "pokrywa laptopa %0:s"
+1241, "Pokrywa laptopa"
+
+1245, "jest zamykana"
+1246, "jest otwierana"
+
+1260, "ekran %0:s"
+1261, "Ekran"
+
+1265, "wyłącza się"
+1266, "włącza się"
+1267, "ściemnia się"
+
+1280, "schemat zasilania \"%0:s\" staje się aktywny"
+1281, "Schemat zasilania jest ustawiony na"
+
+1300, "ładowanie baterii %0:s %1:d%%"
+1301, "Ładowanie baterii"
+
+1305, "jest poniżej"
+1306, "jest powyżej"
+
+1320, "ładowarka %0:s"
+1321, "Ładowarka"
+
+1325, "jest podłączona"
+1326, "jest odłączona"
+
+1340, "pokrywa laptopa %0:s"
+1341, "Pokrywa laptopa"
+
+1345, "jest zamknięta"
+1346, "jest otwarta"
+
+1360, "ekran %0:s"
+1361, "Ekran"
+
+1365, "jest wyłączony"
+1366, "jest włączony"
+1367, "jest przyciemniony"
+
+1380, "aktywny schemat zasilania jest \"%0:s\""
+1381, "Aktywny schemat zasilania jest"
+
+1390, "aktywny schemat zasilania nie jest \"%0:s\""
+1391, "Aktywny schemat zasilania nie jest"
+}

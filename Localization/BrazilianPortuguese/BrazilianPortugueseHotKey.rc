@@ -1,0 +1,13 @@
+STRINGTABLE
+LANGUAGE LANG_PORTUGUESE, SUBLANG_DEFAULT
+{
+300, "Tecla de atalho"
+301, "Aplicar"
+302, "Cancelar"
+
+310, "Personalizado"
+
+320, "Ativar tecla de atalho"
+
+350, "Nenhuma"
+}

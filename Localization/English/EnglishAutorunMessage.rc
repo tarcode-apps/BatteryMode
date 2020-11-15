@@ -1,0 +1,9 @@
+STRINGTABLE
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+{
+500, "The program is added to the startup without administrative privileges."
+501, "The program is added to the startup."
+502, "The program is removed from the startup."
+503, "There was an error when adding the program to the startup."
+504, "There was an error when removing the program from the startup."
+}

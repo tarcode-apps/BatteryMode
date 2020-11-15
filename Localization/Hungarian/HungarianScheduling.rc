@@ -1,0 +1,132 @@
+STRINGTABLE
+LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT
+{
+1000, "Ütemező"
+1001, "Alkalmaz"
+1002, "Elvet"
+1003, "Szabály hozzáadása"
+
+1005, "Ütemező súgó"
+1006, "https://bmode.tarcode.ru/scheduler-help"
+
+1010, "Nem mentett módosításai vannak. Elmentsük most?"
+
+1020, "Ütemező engedélyezése"
+
+1030, "Amikor %0:s"
+1031, "és %0:s"
+1032, "vagy %0:s"
+1033, "%0:s"
+1034, "és %0:s"
+1035, "Nincs még megadva feltétel"
+1036, "miközben %0:s"
+1037, "és %0:s"
+1038, "vagy %0:s"
+
+1040, "Engedélyez"
+
+1045, "Módosít"
+1046, "Töröl"
+
+1050, "Új szabály"
+
+1060, "Mozgatás fel"
+1061, "Mozgatás le"
+
+1070, "Tulajdonságok"
+1071, "Alkalmaz"
+1072, "Elvet"
+
+1075, "A szabály módosítva lett. Elmentsük most?"
+
+1080, "Név"
+1081, "Ne alkalmazzon más szabályokat"
+
+1085, "Ha a(z)"
+1086, "az összes alábbi feltétel teljesül"
+1087, "az alábbi feltételek közül bármelyik teljesül"
+1088, "Miközben"
+
+1090, "Töröl"
+1091, "Ismeretlen állapot"
+1092, "Töröl"
+
+1095, "Feltétel hozzáadása"
+1096, "Műveletek végrehajtása"
+1097, "Feltétel hozzáadása"
+
+1100, "üzenet mutatása \"%0:s\""
+1101, "Üzenet mutatása"
+
+1110, "energiaséma beállítása \"%0:s\""
+1111, "Energiaséma beállítása"
+
+1120, "Program indítása"
+1121, "indítás \"%0:s\""
+1122, "indítás \"%0:s\" rejtve"
+
+1125, "Tallózás"
+1126, "Indítás rejtve"
+
+1200, "akkumulátor töltöttség %0:s %1:d%%"
+1201, "akkumulátor töltöttség %0:s"
+1202, "Akkumulátor töltöttség"
+
+1205, "ez alá esik"
+1206, "e fölé emelkedik"
+1207, "megváltozik"
+
+1220, "töltés %0:s"
+1221, "Töltés"
+
+1225, "csatlakoztatásra kerül"
+1226, "lecsatlakoztatásra kerül"
+1227, "állapota megváltozik"
+
+1240, "fedél %0:s"
+1241, "Fedél"
+
+1245, "lehajtásra kerül"
+1246, "felhajtásra kerül"
+
+1260, "kijelző %0:s"
+1261, "Kijelző"
+
+1265, "kikapcsol"
+1266, "bekapcsol"
+1267, "elhalványul"
+
+1280, "energiaséma \"%0:s\" aktívvá válik"
+1281, "Energiaséma beállítása"
+
+1300, "akkumulátor töltöttség %0:s %1:d%%"
+1301, "Akkumulátor töltöttség"
+
+1305, "ez alatt van"
+1306, "e felett van"
+
+1320, "töltés %0:s"
+1321, "Töltés"
+
+1325, "csatlakoztatva van"
+1326, "nincs csatlakoztatva"
+
+1340, "fedél %0:s"
+1341, "Fedél"
+
+1345, "le van hajtva"
+1346, "fel van hajtva"
+
+1360, "képernyő %0:s"
+1361, "Képernyő"
+
+1365, "ki van kapcsolva"
+1366, "be van kapcsolva"
+1367, "el van halványítva"
+
+1380, "az aktív energiaséma \"%0:s\""
+1381, "Az aktív energiaséma"
+
+1390, "az aktív energiaséma nincs \"%0:s\""
+1391, "Az aktív energiaséma nincs"
+}

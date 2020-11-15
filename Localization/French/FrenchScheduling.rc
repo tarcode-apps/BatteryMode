@@ -1,0 +1,102 @@
+STRINGTABLE
+LANGUAGE LANG_FRENCH, SUBLANG_DEFAULT
+{
+1000, "Planificateur"
+1001, "Appliquer"
+1002, "Annuler"
+1003, "Ajouter règle"
+
+1005, "Aide planificateur"
+1006, "https://bmode.tarcode.ru/scheduler-help"
+
+1010, "Vous avez des changements non sauvegardés. Sauvegarder maintenant?"
+
+1020, "Activer le planificateur"
+
+1030, "quand %0:s"
+1031, "et %0:s"
+1032, "ou %0:s"
+1033, "%0:s"
+1034, "et %0:s"
+1035, "aucun déclencheur défini"
+1036, "pendant %0:s"
+1037, "et %0:s"
+1038, "ou %0:s"
+
+1040, "Activer"
+
+1045, "Modifier"
+1046, "Supprimer"
+
+1050, "Nouvelle règle"
+
+1060, "Déplacer en haut"
+1061, "Déplacer en bas"
+
+1070, "Propriétés"
+1071, "Appliquer"
+1072, "Annuler"
+
+1075, "La règle a été modifiée. Sauvegarder maintenant?"
+
+1080, "Nom"
+1081, "Ne pas appliquer d'autres règles"
+
+1085, "Si"
+1086, "toutes les conditions suivantes sont remplies"
+1087, "n'importe quelle condition remplie"
+1088, "pendant"
+
+1090, "Supprimer"
+1091, "Condition inconnue"
+1092, "Effacer"
+
+1095, "Ajouter un déclencheur"
+1096, "Effectuer des actions"
+1097, "Ajouter une condition"
+
+1100, "Afficher le message \"%0:s\""
+1101, "Afficher le message"
+
+1110, "Activer le mode d'alimentation \"%0:s\""
+1111, "Activer le mode d'alimentation"
+
+1200, "Charge batterie %0:s %1:d%%"
+1201, "Charge batterie %0:s"
+1202, "Charge batterie"
+
+1205, "tombe en dessous de"
+1206, "monte au dessus de"
+1207, "changements"
+
+1220, "chargeur %0:s"
+1221, "Chargeur"
+
+1225, "est connecté"
+1226, "est déconnecté"
+1227, "changer l'état"
+
+1240, "Portable lid %0:s"
+1241, "Portable lid"
+
+1245, "est fermé"
+1246, "est ouvert"
+
+1300, "Charge batterie %0:s %1:d%%"
+1301, "Charge batterie"
+
+1305, "est en dessous de"
+1306, "est audessus de"
+
+1320, "chargeur %0:s"
+1321, "Chargeur"
+
+1325, "est connecté"
+1326, "est déconnecté"
+
+1340, "Portable lid %0:s"
+1341, "Portable lid"
+
+1345, "est fermé"
+1346, "est ouvert"
+}

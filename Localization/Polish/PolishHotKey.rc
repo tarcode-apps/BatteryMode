@@ -1,0 +1,13 @@
+STRINGTABLE
+LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
+{
+300, "Klawisz skrótu"
+301, "Zastosuj"
+302, "Anuluj"
+
+310, "Własny"
+
+320, "Włącz klawisz skrótu"
+
+350, "Brak"
+}

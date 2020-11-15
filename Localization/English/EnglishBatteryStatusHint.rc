@@ -1,0 +1,28 @@
+STRINGTABLE
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+{
+600, "Desktop computer"
+
+621, "Plugged in and charging"
+622, "%0:u hr %%1:.2u min to full charge"
+623, "%1:u min to full charge"
+624, "%2:u%% available (plugged in, charging)"
+625, "%2:u%% available (plugged in, not charging)"
+626, "Fully charged (100%%)"
+627, "No battery is detected"
+628, "Plugged in and not charging"
+
+650, "%0:u hr %1:.2u min (%2:u%%) remaining"
+651, "%1:u min (%2:u%%) remaining"
+654, "%2:u%% remaining"
+655, "Unknown remaining"
+
+670, "%2:u%% remaining\nConsider replacing your battery."
+671, "Unknown remaining\nConsider replacing your battery."
+672, "Plugged in and charging\nConsider replacing your battery."
+673, "%2:u%% available (plugged in, charging)\nConsider replacing your battery."
+674, "%2:u%% available (plugged in, not charging)\nConsider replacing your battery."
+675, "Fully charged (100%%)\nConsider replacing your battery."
+
+680, "Battery saver enabled"
+}

@@ -1,0 +1,9 @@
+STRINGTABLE
+LANGUAGE LANG_PORTUGUESE, SUBLANG_DEFAULT
+{
+500, "O programa foi adicionado à inicialização sem privilégios administrativos."
+501, "O programa foi adicionado à inicialização."
+502, "O programa foi removido da inicialização."
+503, "Ocorreu um erro ao adicionar o programa à inicialização."
+504, "Ocorreu um erro ao remover o programa da inicialização."
+}

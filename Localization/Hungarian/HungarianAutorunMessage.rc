@@ -1,0 +1,9 @@
+STRINGTABLE
+LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT
+{
+500, "A program rendszergazdai jogosultság nélkül kerül hozzáadásra az automatikusan induló alkalmazásokhoz."
+501, "A program hozzáadásra kerül az automatikusan induló alkalmazásokhoz."
+502, "A program eltávolításra kerül az automatikusan induló alkalmazásokból."
+503, "Hiba történt az automatikusan induló alkalmazásokhoz való hozzáadás során."
+504, "Hiba történt az automatikusan induló alkalmazásokból való eltávolítás során."
+}

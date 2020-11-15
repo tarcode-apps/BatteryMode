@@ -1,0 +1,80 @@
+STRINGTABLE
+LANGUAGE LANG_SPANISH, SUBLANG_SPANISH
+{
+700, "N/D"
+701, "Desconocido"
+
+704, "Sistema de energía"
+705, "Propiedades de la batería"
+
+710, "Nombre del dispositivo"
+711, "Fabricante"
+712, "Fecha de manufactura"
+713, "Número de serie"
+714, "Tipo de Batería"
+715, "Ciclos de carga / descarga"
+716, "Nivel de desgaste"
+717, "Estado de Energía"
+718, "Capacidad Designada"
+719, "Capacidad Totalmente Cargada"
+720, "Capacidad actual"
+721, "Voltaje de la batería"
+722, "Tasa de Carga / Descarga"
+723, "Tasa de Carga"
+724, "Tasa de Descarga"
+725, "Alerta de advertencia de la batería 1"
+726, "Alerta de advertencia de la batería 2"
+727, "Temperatura"
+
+740, "No recargable %0:s"
+741, "Recargable %0:s"
+742, "No recargable"
+743, "Recargable"
+
+745, "Línea AC"
+746, "Cargando"
+747, "Totalmente descargado"
+748, "Descargando"
+
+750, "Ver"
+751, "Siempre encima"
+
+755, "Archivo"
+756, "Cerrar"
+757, "Guardar"
+758, "Guardar como..."
+759, "Todos los archivos"
+760, "Archivos de texto"
+761, "Archivos de registro"
+
+765, "Propiedades de administración de energía"
+
+770, "Fuente de alimentación actual"
+771, "Estado de la batería"
+772, "Vida útil total de la batería"
+773, "Vida útil de la batería restante"
+
+775, "%0:u hr %1:.2u min"
+776, "%1:u min"
+
+780, "Línea AC"
+781, "UPS"
+782, "Batería"
+
+784, "Sin batería"
+785, "%0:d%% (Alto, Cargando)"
+786, "%0:d%% (Bajo, Cargando)"
+787, "%0:d%% (Crítico, v)"
+788, "%0:d%% (Cargando)"
+789, "%0:d%% (Alto)"
+790, "%0:d%% (Bajo)"
+791, "%0:d%% (Crítico)"
+792, "%0:d%%"
+793, "Alto, Cargando"
+794, "Bajo, Cargando"
+795, "Crítico, Cargando"
+796, "Cargando"
+797, "Alto"
+798, "Bajo"
+799, "Crítico"
+}

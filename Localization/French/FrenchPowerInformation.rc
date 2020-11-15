@@ -1,0 +1,80 @@
+STRINGTABLE
+LANGUAGE LANG_FRENCH, SUBLANG_DEFAULT
+{
+700, "N/A"
+701, "Inconnu"
+
+704, "Système d'alimentation"
+705, "Propriétés de la batterie"
+
+710, "Nom du dispositif"
+711, "Fabriquant"
+712, "Date de fabrication"
+713, "Numéro de série"
+714, "Type de batterie"
+715, "Cycles de charge/décharge"
+716, "Niveau d'usure"
+717, "Etat de l'alimentation"
+718, "Capacité conçue"
+719, "Capacité du chargement complet"
+720, "Capacité courante"
+721, "Voltage de la batterie"
+722, "Taux de charge / décharge"
+723, "Taux de charge"
+724, "Taux de décharge"
+725, "Avertissement Alerte Batterie 1"
+726, "Avertissement Alerte Batterie 2"
+727, "Temperature"
+
+740, "Non rechargeable %0:s"
+741, "Rechargeable %0:s"
+742, "Non rechargeable"
+743, "Rechargeable"
+
+745, "Ligne AC"
+746, "Chargement"
+747, "Complètement déchargée"
+748, "Déchargement"
+
+750, "&Affichage"
+751, "&Toujours au dessus"
+
+755, "&Fichier"
+756, "&Fermer"
+757, "&Sauvegarder"
+758, "Enregistrer &sous..."
+759, "Tous les fichiers"
+760, "Fichiers Texte"
+761, "Fichiers Log"
+
+765, "Propriétés de gestion de l'alimentation"
+
+770, "Source d'alimentation actuelle"
+771, "Etat de la batterie"
+772, "Durée de vie de la batterie pleine"
+773, "Durée de vie restante de la batterie"
+
+775, "%0:u hr %1:.2u min"
+776, "%1:u min"
+
+780, "Ligne AC"
+781, "UPS"
+782, "Batterie"
+
+784, "Aucune batterie"
+785, "%0:d%% (Elevée, Chargement)"
+786, "%0:d%% (Faible, Chargement)"
+787, "%0:d%% (Critique, Chargement)"
+788, "%0:d%% (Chargement)"
+789, "%0:d%% (Elevée)"
+790, "%0:d%% (Faible)"
+791, "%0:d%% (Critique)"
+792, "%0:d%%"
+793, "Elevée, Chargement"
+794, "Faible, Chargement"
+795, "Critique, Chargement"
+796, "Chargement"
+797, "Elevée"
+798, "Faible"
+799, "Critique"
+}

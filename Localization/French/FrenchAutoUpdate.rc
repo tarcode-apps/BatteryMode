@@ -1,0 +1,16 @@
+STRINGTABLE
+LANGUAGE LANG_FRENCH, SUBLANG_DEFAULT
+{
+900, "Mise à jour"
+901, "Une nouvelle version de %0:s est disponible!"
+902, "%0:s %1:s est maintenant disponible (votre version est %2:s). Voulez-vous le télécharger maintenant?"
+903, "Notes de version:"
+904, "Ignorer cette version"
+905, "Rappelez moi plus tard"
+906, "Installer la mise à jour"
+907, "Votre version est à jour!"
+908, "%0:s %1:s est la version courante."
+909, "Fermer"
+910, "Une erreur est survenue lors du téléchargement de la mise à jour"
+911, "Impossible d'initialiser la mise à jour"
+}

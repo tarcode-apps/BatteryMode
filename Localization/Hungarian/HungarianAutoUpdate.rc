@@ -1,0 +1,16 @@
+STRINGTABLE
+LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT
+{
+900, "Szoftver frissítése"
+901, "%0:s új verziója érhető el!"
+902, "%0:s %1:s elérhető (aktuális %2:s). Szeretné most letölteni?"
+903, "Kiadási jegyzék:"
+904, "Verzió kihagyása"
+905, "Értesítés később"
+906, "Frissítés telepítése"
+907, "Naprakész vagy!"
+908, "%0:s %1:s az aktuálisan elérhető legújabb verzió."
+909, "Bezár"
+910, "Hiba történt a frissítések letöltése közben"
+911, "Nem sikerült inicializálni a frissítést"
+}

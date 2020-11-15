@@ -1,0 +1,771 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{24136DB7-50ED-424D-ABA2-EA9107D5E7E4}</ProjectGuid>
+        <ProjectVersion>18.8</ProjectVersion>
+        <FrameworkType>VCL</FrameworkType>
+        <MainSource>BatteryMode.dpr</MainSource>
+        <Base>True</Base>
+        <Config Condition="'$(Config)'==''">Release</Config>
+        <Platform Condition="'$(Platform)'==''">Win64</Platform>
+        <TargetedPlatforms>3</TargetedPlatforms>
+        <AppType>Application</AppType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Base)'=='true') or '$(Base_Win32)'!=''">
+        <Base_Win32>true</Base_Win32>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Base)'=='true') or '$(Base_Win64)'!=''">
+        <Base_Win64>true</Base_Win64>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_1)'!=''">
+        <Cfg_1>true</Cfg_1>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win32)'!=''">
+        <Cfg_1_Win32>true</Cfg_1_Win32>
+        <CfgParent>Cfg_1</CfgParent>
+        <Cfg_1>true</Cfg_1>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win64)'!=''">
+        <Cfg_1_Win64>true</Cfg_1_Win64>
+        <CfgParent>Cfg_1</CfgParent>
+        <Cfg_1>true</Cfg_1>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
+        <Cfg_2>true</Cfg_2>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
+        <Cfg_2_Win32>true</Cfg_2_Win32>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win64)'!=''">
+        <Cfg_2_Win64>true</Cfg_2_Win64>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base)'!=''">
+        <Icon_MainIcon>Icon\Icon.ico</Icon_MainIcon>
+        <SanitizedProjectName>BatteryMode</SanitizedProjectName>
+        <VerInfo_Locale>1049</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=Tarasov Artyom;FileDescription=;FileVersion=;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=;Comments=</VerInfo_Keys>
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
+        <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
+        <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
+        <DCC_E>false</DCC_E>
+        <DCC_N>false</DCC_N>
+        <DCC_S>false</DCC_S>
+        <DCC_F>false</DCC_F>
+        <DCC_K>false</DCC_K>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <BRCC_CodePage>65001</BRCC_CodePage>
+        <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
+        <DCC_UsePackage>bindcompfmx;vcldbx;fmx;rtl;IndySystem;dbrtl;TeeDB;bindcomp;inetdbbde;DBXInterBaseDriver;Tee;DataSnapCommon;xmlrtl;svnui;DbxCommonDriver;vclimg;IndyProtocols;dbxcds;MetropolisUILiveTile;bindcompdbx;TeeUI;bindengine;vclactnband;vcldb;soaprtl;bindcompvcl;vcldsnap;FMXTee;vclie;vcltouch;CustomIPTransport;vclribbon;VclSmp;dsnap;IndyIPServer;VCLRESTComponents;IndyCore;vcl;fmxase;IndyIPCommon;FmxTeeUI;inet;fmxobj;vclx;inetdbxpress;svn;fmxdae;RESTComponents;bdertl;adortl;dbexpress;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
+        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
+        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_Win64)'!=''">
+        <BRCC_CodePage>65001</BRCC_CodePage>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
+        <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
+        <DCC_UsePackage>bindcompfmx;fmx;rtl;IndySystem;dbrtl;TeeDB;bindcomp;DBXInterBaseDriver;Tee;DataSnapCommon;xmlrtl;DbxCommonDriver;vclimg;IndyProtocols;dbxcds;MetropolisUILiveTile;bindcompdbx;TeeUI;bindengine;vclactnband;vcldb;soaprtl;bindcompvcl;vcldsnap;FMXTee;vclie;vcltouch;CustomIPTransport;vclribbon;VclSmp;dsnap;IndyIPServer;VCLRESTComponents;IndyCore;vcl;fmxase;IndyIPCommon;FmxTeeUI;inet;fmxobj;vclx;inetdbxpress;fmxdae;RESTComponents;adortl;dbexpress;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
+        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
+        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1)'!=''">
+        <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+        <DCC_DebugDCUs>true</DCC_DebugDCUs>
+        <DCC_Optimize>false</DCC_Optimize>
+        <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
+        <DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
+        <DCC_RemoteDebug>true</DCC_RemoteDebug>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <BRCC_CodePage>65001</BRCC_CodePage>
+        <BRCC_OutputDir>Win32\Debug\res\</BRCC_OutputDir>
+        <VerInfo_Debug>true</VerInfo_Debug>
+        <VerInfo_MajorVer>4</VerInfo_MajorVer>
+        <VerInfo_Keys>CompanyName=Tarasov Artyom;FileDescription=Battery Mode;FileVersion=4.0.0.0;InternalName=Battery Mode;LegalCopyright=© Tarasov Artyom, 2015 - 2020;LegalTrademarks=;OriginalFilename=BatteryMode32.exe;ProductName=Battery Mode 32-bit;ProductVersion=4.0.0.0;Comments=Debug;ProgramID=ru.tarcode.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <DCC_RemoteDebug>false</DCC_RemoteDebug>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <BT_BuildType>Debug</BT_BuildType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
+        <BRCC_CodePage>65001</BRCC_CodePage>
+        <BRCC_OutputDir>Win64\Debug\res\</BRCC_OutputDir>
+        <VerInfo_Debug>true</VerInfo_Debug>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=Tarasov Artyom;FileDescription=Battery Mode;FileVersion=4.0.0.0;InternalName=Battery Mode;LegalCopyright=© Tarasov Artyom, 2015 - 2020;LegalTrademarks=;OriginalFilename=BatteryMode64.exe;ProductName=Battery Mode 64-bit;ProductVersion=4.0.0.0;Comments=Debug;ProgramID=ru.tarcode.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_MajorVer>4</VerInfo_MajorVer>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <BT_BuildType>Debug</BT_BuildType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2)'!=''">
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+        <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+        <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+        <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+        <DCC_DebugInformation>0</DCC_DebugInformation>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <BRCC_CodePage>65001</BRCC_CodePage>
+        <BRCC_OutputDir>Win32\Release\res\</BRCC_OutputDir>
+        <VerInfo_Build>140</VerInfo_Build>
+        <PostBuildEvent><![CDATA[(If Not Exist "$(PROJECTDIR)\Build" (mkdir "$(PROJECTDIR)\Build"))
+copy "$(OUTPUTDIR)$(OUTPUTNAME)$(OUTPUTEXT)" "$(PROJECTDIR)\Build\$(OUTPUTNAME)32$(OUTPUTEXT)"
+$(PostBuildEvent)]]></PostBuildEvent>
+        <VerInfo_MajorVer>4</VerInfo_MajorVer>
+        <VerInfo_Keys>CompanyName=Tarasov Artyom;FileDescription=Battery Mode;FileVersion=4.0.0.140;InternalName=Battery Mode;LegalCopyright=© Tarasov Artyom, 2015 - 2020;LegalTrademarks=;OriginalFilename=BatteryMode32.exe;ProductName=Battery Mode 32-bit;ProductVersion=4.0.0.0;Comments=;ProgramID=ru.tarcode.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <BT_BuildType>Debug</BT_BuildType>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
+        <BRCC_CodePage>65001</BRCC_CodePage>
+        <BRCC_OutputDir>Win64\Release\res\</BRCC_OutputDir>
+        <VerInfo_Build>140</VerInfo_Build>
+        <PostBuildEvent><![CDATA[(If Not Exist "$(PROJECTDIR)\Build" (mkdir "$(PROJECTDIR)\Build"))
+copy "$(OUTPUTDIR)$(OUTPUTNAME)$(OUTPUTEXT)" "$(PROJECTDIR)\Build\$(OUTPUTNAME)64$(OUTPUTEXT)"
+$(PostBuildEvent)]]></PostBuildEvent>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_MajorVer>4</VerInfo_MajorVer>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Keys>CompanyName=Tarasov Artyom;FileDescription=Battery Mode;FileVersion=4.0.0.140;InternalName=Battery Mode;LegalCopyright=© Tarasov Artyom, 2015 - 2020;LegalTrademarks=;OriginalFilename=BatteryMode64.exe;ProductName=Battery Mode 64-bit;ProductVersion=4.0.0.0;Comments=;ProgramID=ru.tarcode.$(MSBuildProjectName)</VerInfo_Keys>
+        <BT_BuildType>Debug</BT_BuildType>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+    </PropertyGroup>
+    <ItemGroup>
+        <DelphiCompile Include="$(MainSource)">
+            <MainSource>MainSource</MainSource>
+        </DelphiCompile>
+        <RcCompile Include="Localization\BrazilianPortuguese\BrazilianPortugueseAutorunMessage.rc">
+            <Form>BrazilianPortugueseAutorunMessage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\BrazilianPortuguese\BrazilianPortugueseAutoUpdate.rc">
+            <Form>BrazilianPortugueseAutoUpdate.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\BrazilianPortuguese\BrazilianPortugueseBatteryModeLanguage.rc">
+            <Form>BrazilianPortugueseBatteryModeLanguage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\BrazilianPortuguese\BrazilianPortugueseBatteryStatusHint.rc">
+            <Form>BrazilianPortugueseBatteryStatusHint.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\BrazilianPortuguese\BrazilianPortugueseHotKey.rc">
+            <Form>BrazilianPortugueseHotKey.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\BrazilianPortuguese\BrazilianPortuguesePowerInformation.rc">
+            <Form>BrazilianPortuguesePowerInformation.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\BrazilianPortuguese\BrazilianPortugueseScheduling.rc">
+            <Form>BrazilianPortugueseScheduling.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\English\EnglishAutorunMessage.rc">
+            <Form>EnglishAutorunMessage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\English\EnglishAutoUpdate.rc">
+            <Form>EnglishAutoUpdate.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\English\EnglishBatteryModeLanguage.rc">
+            <Form>EnglishBatteryModeLanguage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\English\EnglishBatteryStatusHint.rc">
+            <Form>EnglishBatteryStatusHint.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\English\EnglishHotKey.rc">
+            <Form>EnglishHotKey.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\English\EnglishPowerInformation.rc">
+            <Form>EnglishPowerInformation.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\English\EnglishScheduling.rc">
+            <Form>EnglishScheduling.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\French\FrenchAutorunMessage.rc">
+            <Form>FrenchAutorunMessage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\French\FrenchAutoUpdate.rc">
+            <Form>FrenchAutoUpdate.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\French\FrenchBatteryModeLanguage.rc">
+            <Form>FrenchBatteryModeLanguage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\French\FrenchBatteryStatusHint.rc">
+            <Form>FrenchBatteryStatusHint.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\French\FrenchHotKey.rc">
+            <Form>FrenchHotKey.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\French\FrenchPowerInformation.rc">
+            <Form>FrenchPowerInformation.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\French\FrenchScheduling.rc">
+            <Form>FrenchScheduling.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Hungarian\HungarianAutorunMessage.rc">
+            <Form>HungarianAutorunMessage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Hungarian\HungarianAutoUpdate.rc">
+            <Form>HungarianAutoUpdate.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Hungarian\HungarianBatteryModeLanguage.rc">
+            <Form>HungarianBatteryModeLanguage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Hungarian\HungarianBatteryStatusHint.rc">
+            <Form>HungarianBatteryStatusHint.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Hungarian\HungarianHotKey.rc">
+            <Form>HungarianHotKey.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Hungarian\HungarianPowerInformation.rc">
+            <Form>HungarianPowerInformation.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Hungarian\HungarianScheduling.rc">
+            <Form>HungarianScheduling.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Polish\PolishAutorunMessage.rc">
+            <Form>PolishAutorunMessage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Polish\PolishAutoUpdate.rc">
+            <Form>PolishAutoUpdate.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Polish\PolishBatteryModeLanguage.rc">
+            <Form>PolishBatteryModeLanguage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Polish\PolishBatteryStatusHint.rc">
+            <Form>PolishBatteryStatusHint.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Polish\PolishHotKey.rc">
+            <Form>PolishHotKey.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Polish\PolishPowerInformation.rc">
+            <Form>PolishPowerInformation.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Polish\PolishScheduling.rc">
+            <Form>PolishScheduling.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Russian\RussianAutorunMessage.rc">
+            <Form>RussianAutorunMessage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Russian\RussianAutoUpdate.rc">
+            <Form>RussianAutoUpdate.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Russian\RussianBatteryModeLanguage.rc">
+            <Form>RussianBatteryModeLanguage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Russian\RussianBatteryStatusHint.rc">
+            <Form>RussianBatteryStatusHint.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Russian\RussianHotKey.rc">
+            <Form>RussianHotKey.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Russian\RussianPowerInformation.rc">
+            <Form>RussianPowerInformation.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Russian\RussianScheduling.rc">
+            <Form>RussianScheduling.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Spanish\SpanishAutorunMessage.rc">
+            <Form>SpanishAutorunMessage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Spanish\SpanishAutoUpdate.rc">
+            <Form>SpanishAutoUpdate.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Spanish\SpanishBatteryModeLanguage.rc">
+            <Form>SpanishBatteryModeLanguage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Spanish\SpanishBatteryStatusHint.rc">
+            <Form>SpanishBatteryStatusHint.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Spanish\SpanishHotKey.rc">
+            <Form>SpanishHotKey.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Spanish\SpanishPowerInformation.rc">
+            <Form>SpanishPowerInformation.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Spanish\SpanishScheduling.rc">
+            <Form>SpanishScheduling.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Ukrainian\UkrainianAutorunMessage.rc">
+            <Form>UkrainianAutorunMessage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Ukrainian\UkrainianAutoUpdate.rc">
+            <Form>UkrainianAutoUpdate.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Ukrainian\UkrainianBatteryModeLanguage.rc">
+            <Form>UkrainianBatteryModeLanguage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Ukrainian\UkrainianBatteryStatusHint.rc">
+            <Form>UkrainianBatteryStatusHint.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Ukrainian\UkrainianHotKey.rc">
+            <Form>UkrainianHotKey.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Ukrainian\UkrainianPowerInformation.rc">
+            <Form>UkrainianPowerInformation.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Ukrainian\UkrainianScheduling.rc">
+            <Form>UkrainianScheduling.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Japanese\JapaneseAutorunMessage.rc">
+            <Form>JapaneseAutorunMessage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Japanese\JapaneseAutoUpdate.rc">
+            <Form>JapaneseAutoUpdate.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Japanese\JapaneseBatteryModeLanguage.rc">
+            <Form>JapaneseBatteryModeLanguage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Japanese\JapaneseBatteryStatusHint.rc">
+            <Form>JapaneseBatteryStatusHint.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Japanese\JapaneseHotKey.rc">
+            <Form>JapaneseHotKey.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Japanese\JapanesePowerInformation.rc">
+            <Form>JapanesePowerInformation.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Japanese\JapaneseScheduling.rc">
+            <Form>JapaneseScheduling.res</Form>
+        </RcCompile>
+        <DCCReference Include="Api\Api.Message.pas"/>
+        <DCCReference Include="Api\Api.Pipe.Client.pas"/>
+        <DCCReference Include="Api\Api.Pipe.Command.pas"/>
+        <DCCReference Include="Api\Api.Pipe.Server.pas"/>
+        <DCCReference Include="Api\Api.Pipe.Server.Command.pas"/>
+        <DCCReference Include="Autorun\Autorun.pas"/>
+        <DCCReference Include="Autorun\Autorun.Providers.TaskScheduler2.pas"/>
+        <DCCReference Include="Autorun\Autorun.Providers.Registry.pas"/>
+        <DCCReference Include="Autorun\Autorun.Manager.pas"/>
+        <DCCReference Include="AutoUpdate\AutoUpdate.pas"/>
+        <DCCReference Include="AutoUpdate\AutoUpdate.Params.pas"/>
+        <DCCReference Include="AutoUpdate\AutoUpdate.Scheduler.pas"/>
+        <DCCReference Include="AutoUpdate\AutoUpdate.VersionDefinition.pas"/>
+        <DCCReference Include="AutoUpdate\AutoUpdate.Window.NotFound.pas">
+            <Form>NotFoundWindow</Form>
+        </DCCReference>
+        <DCCReference Include="AutoUpdate\AutoUpdate.Window.Notify.pas"/>
+        <DCCReference Include="AutoUpdate\AutoUpdate.Window.Update.pas">
+            <Form>AutoUpdateWnd</Form>
+        </DCCReference>
+        <DCCReference Include="Brightness\Brightness.pas"/>
+        <DCCReference Include="Brightness\Brightness.Api.pas"/>
+        <DCCReference Include="Brightness\Brightness.Controls.pas"/>
+        <DCCReference Include="Brightness\Brightness.Manager.HookHandler.pas"/>
+        <DCCReference Include="Brightness\Brightness.Manager.pas"/>
+        <DCCReference Include="Brightness\Brightness.Providers.LCD.pas"/>
+        <DCCReference Include="Brightness\Brightness.Providers.Physical.pas"/>
+        <DCCReference Include="Brightness\Brightness.Providers.WMI.pas"/>
+        <DCCReference Include="HotKey\HotKey.pas"/>
+        <DCCReference Include="HotKey\HotKey.Handler.pas"/>
+        <DCCReference Include="HotKey\HotKey.Window.Query.pas">
+            <Form>HotKeyQueryWindow</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Libs\GdiPlus.HSB.Helpers.pas"/>
+        <DCCReference Include="Libs\GdiPlus.pas"/>
+        <DCCReference Include="Libs\GdiPlusHelpers.pas"/>
+        <DCCReference Include="Libs\JwaWbemCli.pas"/>
+        <DCCReference Include="Libs\Pipes.pas"/>
+        <DCCReference Include="Libs\TaskSchd.pas"/>
+        <DCCReference Include="Libs\WinHttp_TLB.pas"/>
+        <DCCReference Include="Power\Power.Display.pas"/>
+        <DCCReference Include="Power\Power.Shutdown.pas"/>
+        <DCCReference Include="Power\Power.pas"/>
+        <DCCReference Include="Power\Power.Schemes.Providers.Default.pas"/>
+        <DCCReference Include="Power\Power.Schemes.Providers.Legacy.pas"/>
+        <DCCReference Include="Power\Power.System.pas"/>
+        <DCCReference Include="Power\Power.WinApi.Advapi32.pas"/>
+        <DCCReference Include="Power\Power.WinApi.Kernel32.pas"/>
+        <DCCReference Include="Power\Power.WinApi.PowrProf.pas"/>
+        <DCCReference Include="Power\Power.WinApi.PowrProf.Legacy.pas"/>
+        <DCCReference Include="Power\Power.WinApi.Reason.pas"/>
+        <DCCReference Include="Power\Power.WinApi.SetupApi.pas"/>
+        <DCCReference Include="Scheduler\Scheduling.pas"/>
+        <DCCReference Include="Scheduler\Scheduling.Actions.pas"/>
+        <DCCReference Include="Scheduler\Scheduling.Triggers.pas"/>
+        <DCCReference Include="Scheduler\Scheduling.Conditions.pas"/>
+        <DCCReference Include="Scheduler\Scheduling.Configurator.pas"/>
+        <DCCReference Include="Scheduler\Scheduling.Scheduler.pas"/>
+        <DCCReference Include="Scheduler\Scheduling.StateConfigurator.pas"/>
+        <DCCReference Include="Scheduler\Scheduling.UI.Actions.pas"/>
+        <DCCReference Include="Scheduler\Scheduling.UI.Conditions.pas"/>
+        <DCCReference Include="Scheduler\Scheduling.UI.Editor.pas">
+            <Form>RuleEditorWindow</Form>
+        </DCCReference>
+        <DCCReference Include="Scheduler\Scheduling.UI.Scheduler.pas">
+            <Form>SchedulingWindow</Form>
+        </DCCReference>
+        <DCCReference Include="Scheduler\Scheduling.UI.Triggers.pas"/>
+        <DCCReference Include="Battery.Mode.pas"/>
+        <DCCReference Include="Battery.Controls.pas"/>
+        <DCCReference Include="Battery.Icons.pas"/>
+        <DCCReference Include="Battery.Splash.pas"/>
+        <DCCReference Include="Core.Language.pas"/>
+        <DCCReference Include="Core.Language.Controls.pas"/>
+        <DCCReference Include="Core.Startup.pas"/>
+        <DCCReference Include="Core.Startup.Tasks.pas"/>
+        <DCCReference Include="Core.UI.pas"/>
+        <DCCReference Include="Core.UI.Controls.pas"/>
+        <DCCReference Include="Core.UI.Notifications.pas"/>
+        <DCCReference Include="Helpers.Images.Generator.pas"/>
+        <DCCReference Include="Helpers.License.pas"/>
+        <DCCReference Include="Helpers.Privileges.pas"/>
+        <DCCReference Include="Helpers.Reg.pas"/>
+        <DCCReference Include="Helpers.Services.pas"/>
+        <DCCReference Include="Helpers.Wts.pas"/>
+        <DCCReference Include="MainUnit.pas">
+            <Form>BatteryModeForm</Form>
+        </DCCReference>
+        <DCCReference Include="Media.Player.Helpers.pas"/>
+        <DCCReference Include="Media.Player.pas"/>
+        <DCCReference Include="MemoryDirector.pas"/>
+        <DCCReference Include="Mouse.Hook.pas"/>
+        <DCCReference Include="Mouse.WheelRouting.pas"/>
+        <DCCReference Include="PowerMonitorUnit.pas">
+            <Form>PowerMonitorForm</Form>
+        </DCCReference>
+        <DCCReference Include="ScreenLiteUnit.pas"/>
+        <DCCReference Include="Settings.Window.pas">
+            <Form>BatteryModeSettingsWindow</Form>
+        </DCCReference>
+        <DCCReference Include="SplashUnit.pas"/>
+        <DCCReference Include="Tray.Helpers.pas"/>
+        <DCCReference Include="Tray.Icon.pas"/>
+        <DCCReference Include="Tray.Icon.Notifications.pas"/>
+        <DCCReference Include="Tray.Notify.Controls.pas"/>
+        <DCCReference Include="Tray.Notify.Window.pas"/>
+        <DCCReference Include="Versions.pas"/>
+        <DCCReference Include="Versions.Helpers.pas"/>
+        <DCCReference Include="Versions.Info.pas"/>
+        <RcItem Include="Icon\IconList16.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>IconList16</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\IconList20.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>IconList20</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\IconList24.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>IconList24</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\IconList32.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>IconList32</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\ImageList32.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>ImageList32</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\ImageList44.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>ImageList44</ResourceId>
+        </RcItem>
+        <RcItem Include="Image\BatterySplash.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>BatterySplash</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\BrightnessIcon.ico">
+            <ResourceType>ICON</ResourceType>
+            <ResourceId>RBright</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\BrightnessNotActiveIcon.ico">
+            <ResourceType>ICON</ResourceType>
+            <ResourceId>RBrightNotActive</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\BrightnessExIcon.ico">
+            <ResourceType>ICON</ResourceType>
+            <ResourceId>RBrightEx</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\BrightnessExNotActiveIcon.ico">
+            <ResourceType>ICON</ResourceType>
+            <ResourceId>RBrightExNotActive</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\BrightnessAdaptiveIcon.ico">
+            <ResourceType>ICON</ResourceType>
+            <ResourceId>RBrightAdaptive</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\BrightnessNotActiveAdaptiveIcon.ico">
+            <ResourceType>ICON</ResourceType>
+            <ResourceId>RBrightNotActiveAdaptive</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\Win10IconList16.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Win10IconList16</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\Win10IconList20.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Win10IconList20</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\Win10IconList24.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Win10IconList24</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\Win10IconList32.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Win10IconList32</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\Win10ImageList32.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Win10ImageList32</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\Win10ImageList44.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Win10ImageList44</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\Win7IconList16.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Win7IconList16</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\Win7IconList20.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Win7IconList20</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\Win7IconList24.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Win7IconList24</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\Win7IconList32.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Win7IconList32</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\Win7ImageList32.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Win7ImageList32</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\Win7ImageList40.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Win7ImageList40</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\IconList16Light.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>IconList16Light</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\IconList20Ligth.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>IconList20Light</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\IconList24Light.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>IconList24Light</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\IconList32Light.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>IconList32Light</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\ImageList32Light.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>ImageList32Light</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\ImageList44Light.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>ImageList44Light</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\Win10IconList16Light.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Win10IconList16Light</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\Win10IconList20Light.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Win10IconList20Light</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\Win10IconList24Light.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Win10IconList24Light</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\Win10IconList32Light.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Win10IconList32Light</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\Win10ImageList32Light.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Win10ImageList32Light</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\Win10ImageList44Light.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Win10ImageList44Light</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\WinVistaIconList16.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>WinVistaIconList16</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\WinVistaIconList20.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>WinVistaIconList20</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\WinVistaIconList24.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>WinVistaIconList24</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\WinVistaIconList32.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>WinVistaIconList32</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\WinXpIconList16.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>WinXpIconList16</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\WinXpIconList20.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>WinXpIconList20</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\WinXpIconList24.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>WinXpIconList24</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\WinXpIconList32.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>WinXpIconList32</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\WinXpImageList32.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>WinXpImageList32</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\WinXpImageList40.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>WinXpImageList40</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\WinXpImageList44.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>WinXpImageList44</ResourceId>
+        </RcItem>
+        <RcItem Include="LICENSE.txt">
+            <ContainerId>ResourceItem</ContainerId>
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>LicenseFile1033</ResourceId>
+        </RcItem>
+        <RcItem Include="Localization\Russian\License.txt">
+            <ContainerId>ResourceItem</ContainerId>
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>LicenseFile1049</ResourceId>
+        </RcItem>
+        <BuildConfiguration Include="Release">
+            <Key>Cfg_2</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Base">
+            <Key>Base</Key>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Debug">
+            <Key>Cfg_1</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Delphi.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Delphi.Personality>
+                <VersionInfo>
+                    <VersionInfo Name="IncludeVerInfo">False</VersionInfo>
+                    <VersionInfo Name="AutoIncBuild">False</VersionInfo>
+                    <VersionInfo Name="MajorVer">1</VersionInfo>
+                    <VersionInfo Name="MinorVer">0</VersionInfo>
+                    <VersionInfo Name="Release">0</VersionInfo>
+                    <VersionInfo Name="Build">0</VersionInfo>
+                    <VersionInfo Name="Debug">False</VersionInfo>
+                    <VersionInfo Name="PreRelease">False</VersionInfo>
+                    <VersionInfo Name="Special">False</VersionInfo>
+                    <VersionInfo Name="Private">False</VersionInfo>
+                    <VersionInfo Name="DLL">False</VersionInfo>
+                    <VersionInfo Name="Locale">1049</VersionInfo>
+                    <VersionInfo Name="CodePage">1251</VersionInfo>
+                </VersionInfo>
+                <VersionInfoKeys>
+                    <VersionInfoKeys Name="CompanyName"/>
+                    <VersionInfoKeys Name="FileDescription"/>
+                    <VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+                    <VersionInfoKeys Name="InternalName"/>
+                    <VersionInfoKeys Name="LegalCopyright"/>
+                    <VersionInfoKeys Name="LegalTrademarks"/>
+                    <VersionInfoKeys Name="OriginalFilename"/>
+                    <VersionInfoKeys Name="ProductName"/>
+                    <VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+                    <VersionInfoKeys Name="Comments"/>
+                    <VersionInfoKeys Name="CFBundleName"/>
+                    <VersionInfoKeys Name="CFBundleDisplayName"/>
+                    <VersionInfoKeys Name="UIDeviceFamily"/>
+                    <VersionInfoKeys Name="CFBundleIdentifier"/>
+                    <VersionInfoKeys Name="CFBundleVersion"/>
+                    <VersionInfoKeys Name="CFBundlePackageType"/>
+                    <VersionInfoKeys Name="CFBundleSignature"/>
+                    <VersionInfoKeys Name="CFBundleAllowMixedLocalizations"/>
+                    <VersionInfoKeys Name="UISupportedInterfaceOrientations"/>
+                    <VersionInfoKeys Name="CFBundleExecutable"/>
+                    <VersionInfoKeys Name="CFBundleResourceSpecification"/>
+                    <VersionInfoKeys Name="LSRequiresIPhoneOS"/>
+                    <VersionInfoKeys Name="CFBundleInfoDictionaryVersion"/>
+                    <VersionInfoKeys Name="CFBundleDevelopmentRegion"/>
+                    <VersionInfoKeys Name="package"/>
+                    <VersionInfoKeys Name="label"/>
+                    <VersionInfoKeys Name="versionCode"/>
+                    <VersionInfoKeys Name="versionName"/>
+                    <VersionInfoKeys Name="persistent"/>
+                    <VersionInfoKeys Name="restoreAnyVersion"/>
+                    <VersionInfoKeys Name="installLocation"/>
+                    <VersionInfoKeys Name="largeHeap"/>
+                    <VersionInfoKeys Name="theme"/>
+                </VersionInfoKeys>
+                <Source>
+                    <Source Name="MainSource">BatteryMode.dpr</Source>
+                </Source>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k260.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp260.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                </Excluded_Packages>
+            </Delphi.Personality>
+            <Platforms>
+                <Platform value="Win32">True</Platform>
+                <Platform value="Win64">True</Platform>
+            </Platforms>
+            <ModelSupport>False</ModelSupport>
+        </BorlandProject>
+        <ProjectFileVersion>12</ProjectFileVersion>
+    </ProjectExtensions>
+    <Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
+    <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
+    <Import Project="$(MSBuildProjectName).deployproj" Condition="Exists('$(MSBuildProjectName).deployproj')"/>
+    <ItemGroup/>
+    <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win32'">
+        <PreBuildEvent/>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent>(If Not Exist &quot;$(PROJECTDIR)\Build&quot; (mkdir &quot;$(PROJECTDIR)\Build&quot;))&amp;&amp;copy &quot;$(OUTPUTDIR)$(OUTPUTNAME)$(OUTPUTEXT)&quot; &quot;$(PROJECTDIR)\Build\$(OUTPUTNAME)32$(OUTPUTEXT)&quot;</PostBuildEvent>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win64'">
+        <PreBuildEvent/>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent>(If Not Exist &quot;$(PROJECTDIR)\Build&quot; (mkdir &quot;$(PROJECTDIR)\Build&quot;))&amp;&amp;copy &quot;$(OUTPUTDIR)$(OUTPUTNAME)$(OUTPUTEXT)&quot; &quot;$(PROJECTDIR)\Build\$(OUTPUTNAME)64$(OUTPUTEXT)&quot;</PostBuildEvent>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
+</Project>

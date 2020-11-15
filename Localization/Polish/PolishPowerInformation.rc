@@ -1,0 +1,80 @@
+STRINGTABLE
+LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
+{
+700, "N/A"
+701, "Nieznany"
+
+704, "System zasilania"
+705, "Właściwości baterii"
+
+710, "Nazwa urządzenia"
+711, "Producent"
+712, "Data produkcji"
+713, "Numer seryjny"
+714, "Typ baterii"
+715, "Cykle ładowania/rozładowania"
+716, "Poziom zużycia"
+717, "Stan zasilania"
+718, "Zaprojektowana pojemność"
+719, "W pełni naładowana pojemność"
+720, "Aktualna pojemność"
+721, "Napięcie baterii"
+722, "Szybkość ładowania/rozładowania"
+723, "Szybkość ładowania"
+724, "Szybkośc rozładowania"
+725, "Ostrzeżenie o naładowaniu baterii 1"
+726, "Ostrzeżenie o naładowaniu baterii 2"
+727, "Temperatura"
+
+740, "Nieładowalne %0:s"
+741, "Naładowane %0:s"
+742, "Nieładowalne"
+743, "Naładowane"
+
+745, "Zasilanie AC"
+746, "Ładowanie"
+747, "Całkowicie rozładowana"
+748, "Rozładowywanie"
+
+750, "&Widok"
+751, "&Zawsze na wierzchu"
+
+755, "&Plik"
+756, "&Zamknij"
+757, "Zapi&sz"
+758, "Zapisz j&ako..."
+759, "Wszystkie pliki"
+760, "Pliki tekstowe"
+761, "Pliki dziennika"
+
+765, "Właściwości zarządzania energią"
+
+770, "Aktualne źródło zasilania"
+771, "Stan baterii"
+772, "Pełna żywotność baterii"
+773, "Pozostała żywotność baterii"
+
+775, "%0:u h %1:.2u min"
+776, "%1:u min"
+
+780, "Zasilanie AC"
+781, "UPS"
+782, "Bateria"
+
+784, "Brak baterii"
+785, "%0:d%% (Wysoki, Ładowanie)"
+786, "%0:d%% (Niski, Ładowanie)"
+787, "%0:d%% (Krytyczny, Ładowanie)"
+788, "%0:d%% (Ładowanie)"
+789, "%0:d%% (Wysoki)"
+790, "%0:d%% (Niski)"
+791, "%0:d%% (Krytyczny)"
+792, "%0:d%%"
+793, "Wysoki, Ładowanie"
+794, "Niski, Ładowanie"
+795, "Krytyczny, Ładowanie"
+796, "Ładowanie"
+797, "Wysoki"
+798, "Niski"
+799, "Krytyczny"
+}

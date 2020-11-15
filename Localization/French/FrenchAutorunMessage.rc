@@ -1,0 +1,9 @@
+STRINGTABLE
+LANGUAGE LANG_FRENCH, SUBLANG_DEFAULT
+{
+500, "Le programme a été ajouté au menu démarrer sans les privilèges administrateur."
+501, "Le programme a été ajouté au menu démarrer."
+502, "Le programme a été supprimé du menu démarrer."
+503, "Une erreur est survenue lors de l'ajout du programme au menu démarrer."
+504, "Une erreur est survenue lors de la suppression du programme au menu démarrer."
+}

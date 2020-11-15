@@ -1,0 +1,28 @@
+STRINGTABLE
+LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
+{
+600, "Komputer stacjonarny"
+
+621, "Podłączony i ładuje"
+622, "%0:u h %%1:.2u min do pełnego naładowania"
+623, "%1:u min do pełnego naładowania"
+624, "dostępne %2:u%% (podłączony, ładuje)"
+625, "dostępne %2:u%% (podłączony, nie ładuje)"
+626, "W pełni naładowana (100%%)"
+627, "Nie wykryto baterii"
+628, "Podłączony i nie ładuje"
+
+650, "pozostało %0:u h %1:.2u min (%2:u%%) "
+651, "pozostało %1:u min (%2:u%%) "
+654, "pozostało %2:u%% "
+655, "Pozostał nieznany czas"
+
+670, "pozostało %2:u%% \nRozważ wymianę baterii."
+671, "Pozostał nieznany czas\nRozważ wymianę baterii."
+672, "Podłączony i ładuje\nRozważ wymianę baterii."
+673, "dostępne %2:u%% (podłączony, ładuje)\nRozważ wymianę baterii."
+674, "dostępne %2:u%% (podłączony, nie ładuje)\nRozważ wymianę baterii."
+675, "W pełni naładowana (100%%)\nRozważ wymianę baterii."
+
+680, "Włączono oszczędzanie baterii"
+}

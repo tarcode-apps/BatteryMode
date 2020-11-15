@@ -1,0 +1,13 @@
+STRINGTABLE
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+{
+300, "ホットキー"
+301, "適用"
+302, "キャンセル"
+
+310, "カスタム"
+
+320, "ホットキーを有効化"
+
+350, "なし"
+}

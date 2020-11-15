@@ -1,0 +1,132 @@
+STRINGTABLE
+LANGUAGE LANG_SPANISH, SUBLANG_SPANISH
+{
+1000, "Planificador"
+1001, "Aplicar"
+1002, "Cancelar"
+1003, "Añadir regla"
+
+1005, "Ayuda del Planificador"
+1006, "https://bmode.tarcode.ru/scheduler-help"
+
+1010, "Tiene cambios sin guardar. ¿Guardar ahora?"
+
+1020, "Activar Planificador"
+
+1030, "Cuando %0:s"
+1031, "y %0:s"
+1032, "o %0:s"
+1033, "%0:s"
+1034, "y %0:s"
+1035, "No se han definido desencadenadores"
+1036, "mientras %0:s"
+1037, "y %0:s"
+1038, "o %0:s"
+
+1040, "Activar"
+
+1045, "Modificar"
+1046, "Borrar"
+
+1050, "Nueva regla"
+
+1060, "Mover arriba"
+1061, "Mover abajo"
+
+1070, "Propiedades"
+1071, "Aplicar"
+1072, "Cancelar"
+
+1075, "La regla fue modificada. ¿Guardar ahora?"
+
+1080, "Nombre"
+1081, "No aplique otras reglas"
+
+1085, "Si"
+1086, "se cumplen todas las condiciones siguientes"
+1087, "cualquiera de las siguientes condiciones se cumplen"
+1088, "Mientras"
+
+1090, "Borrar"
+1091, "Condición desconocida"
+1092, "Limpiar"
+
+1095, "Añadir desencadenador"
+1096, "PRealizar acciones"
+1097, "Agregar condición"
+
+1100, "mostrar mensaje \"%0:s\""
+1101, "mostrar mensaje"
+
+1110, "Establecer plan de energía \"%0:s\""
+1111, "Establecer plan de energía"
+
+1120, "Iniciar un programa"
+1121, "iniciar \"%0:s\""
+1122, "iniciar \"%0:s\" hidden"
+
+1125, "Examinar"
+1126, "Lanzar oculto"
+
+1200, "carga de batería %0:s %1:d%%"
+1201, "carga de batería %0:s"
+1202, "Carga de batería"
+
+1205, "por debajo de"
+1206, "por encima de"
+1207, "cambia"
+
+1220, "cargador %0:s"
+1221, "Cargador"
+
+1225, "se conecta"
+1226, "se desconecta"
+1227, "cambia de estado"
+
+1240, "tapa del portátil %0:s"
+1241, "Tapa del portátil"
+
+1245, "se cierra"
+1246, "se abre"
+
+1260, "pantalla %0:s"
+1261, "Pantalla"
+
+1265, "se apaga"
+1266, "se enciende"
+1267, "se atenúa"
+
+1280, "plan de energía \"%0:s\" se activa"
+1281, "Plan de energía es establecido a"
+
+1300, "carga de batería %0:s %1:d%%"
+1301, "Carga de batería"
+
+1305, "está por debajo"
+1306, "está por encima"
+
+1320, "cargador %0:s"
+1321, "Cargador"
+
+1325, "está conectado"
+1326, "está desconectado"
+
+1340, "tapa del portátil %0:s"
+1341, "tapa del portátil"
+
+1345, "está cerrada"
+1346, "está abierta"
+
+1360, "pantalla %0:s"
+1361, "Pantalla"
+
+1365, "está apagada"
+1366, "está encendida"
+1367, "está atenuada"
+
+1380, "plan de energía activo es \"%0:s\""
+1381, "Plan de energía activo es"
+
+1390, "plan de energía activo no es \"%0:s\""
+1391, "Plan de energía activo no es"
+}

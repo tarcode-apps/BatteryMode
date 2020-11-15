@@ -1,0 +1,9 @@
+STRINGTABLE
+LANGUAGE LANG_SPANISH, SUBLANG_SPANISH
+{
+500, "El programa se agrega al inicio sin privilegios administrativos."
+501, "El programa se agrega al inicio."
+502, "El programa se elimina del inicio."
+503, "Se produjo un error al agregar el programa al inicio."
+504, "Se produjo un error al quitar el programa del inicio."
+}
