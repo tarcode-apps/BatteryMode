@@ -1,0 +1,98 @@
+﻿End-User License Agreement ("EULA") for Battery Mode
+
+Last revised 16.11.2020
+
+Please read the conditions of this EULA carefully before start to use the Software Product which it's applied to.
+
+Installation, as well as usage the Software Product "Battery Mode" confirmed that you agree with this EULA.
+
+If you do not agree to the terms of this EULA, You mustn't install or use this Software Product.
+
+Battery Mode (Software Product) is Freeware software and provided "AS IS".
+
+1. Copyrights
+
+1.1. All title and intellectual property rights in and to the "Battery Mode" are owned by its author, Artem Tarasov.
+1.2. All title and intellectual property rights in and to the third-party software products or components in this installation distribution file(s) are owned by their right holders.
+1.3. Third-party software products or components in this installation distribution file(s) are introduced by approbation of their right holders (or by observance of their license agreements)
+1.4. Software Product contains Localization resources, developed voluntarily by Software Product users. Actual version of available translations is always available on the web-site: https://en.bmode.tarcode.ru/download . Intellectual Property Rights on all translations, except English and Russian, are owned by the users who contributed corresponding translation.
+1.5. This Software Product is protected by laws of Russian Federation and international copyright treaties.
+1.6. "Battery Mode" source code is publically available at https://github.com/tarcode-apps/BatteryMode
+
+2. Installation and Use
+
+2.1. You may to install and use Battery Mode both your home PC and organizations of any form of ownership, including government and municipal offices..
+2.2. You may to distribute this software in the form of the original installation distribution file(s) or in form of original files, obtained from installation directory as a result of original distribution installation and only for free.
+2.3. You may use software source code to understand how it works, modify it to suit your personal needs or to develop new features.
+
+3. Limitations
+
+3.1. You mustn't distribute this Software Product for material remuneration (without Right holder’s permission).
+3.2. You mustn't distribute non-original installation distribution file(s) (without Right holder’s permission)
+3.3. It's prohibited to delete copyright or any other information about authors or right holders of the Software Product.
+3.4. It's prohibited to let on lease or to rent this Software Product to someone.
+3.5. It's prohibited to distribute any modified distribution file(s) or any executable or resource file(s) of the Software Product (without Right holder's permission)
+3.6. For infringement of the intellectual rights to the Software Product the Infringer bears civil, administrative or criminal liability according to the laws.
+3.7. It's prohibited to distribute modified source codes for any purpose, except to create a Pull Request to Battery Mode repository at https://github.com/tarcode-apps/BatteryMode on GitHub.
+3.8. It's prohibited to distribute any derived products that are based on Battery Mode (without Right holder’s permission).
+
+4. Privacy Policy
+
+4.1. Data Collected and Transmitted
+On installation, the application creates a unique identifier in the form of a random generated numeric code (UID). The UID is generated in such a way that the information used to create it cannot be re-established in any way. The UID is sent to our server when requesting software updates and is used to determine the number of active users (application popularity). In addition, the name of used localization, Software Product version, Operating System version and its bitness are sent to the server. This information is necessary in order to determine if there any updates to be installed for this language and operating system. You can refuse to transmit this information by disabling the automatic update feature in Software Product settings.
+
+5. Limitation of Liability
+
+5.1. You accept that this Software Product may contain bugs, and so, that you must make backup for your files by yourself.
+5.2. Right holder doesn't give any guarantees of Software Product's operability.
+5.3. As this software is distributed like "AS IS" software, you must consider that you use it on yours own hook. Right holder doesn't bear responsibility for any losses or damages (including losses related to commercial gain, interruption of commercial activity, information loss or another one), emergent in connection with usage or impossibility to use this Software Product.
+
+6. Software Updates
+
+6.1. Software Product Author may publish (or not to publish) Software Product Updates in order to fix bugs, add new features or for any other reason.
+6.2. In order to distribute such updates, Software Product Author utilizes web-servers bmode.tarcode.ru, dl.tarcode.ru and update.tarcode.ru (Update Servers) to publish Software Updates and information about them.
+6.3. Software Product Author does not take any responsibility on any failures of Update Servers.
+6.4. Software Product Author does not give any guarantees related with publishing of Software Updates to Update Servers and with operability and quality of these Updates.
+6.5 Software Product Updates and new versions published in the Internet and/or on Update Servers may contain newer versions of this agreement. You must read an updated agreement and refrain from installing an update in case when you are not agree to an updated agreement.
+
+7. Technical Support
+
+This agreement does not guarantee you any technical support.
+At his own decision, Software Product Author may provide (or not to provide) technical support on the request sent by the following means:
+
+Feedback form: https://en.bmode.tarcode.ru/feedback
+E-mail: admin@tarcode.ru
+
+8. Contacts
+
+Battery Mode, © 2013-2020, Artem Tarasov
+Web: https://en.bmode.tarcode.ru
+E-Mail: admin@tarcode.ru
+
+9. Third Party Libraries
+
+Delphi GDI+ Library for use with Delphi 2009 or later.
+Copyright (C) 2009 by Erik van Bilsen.
+this software is based in part on the Delphi
+GDI+ library by Erik van Bilsen
+
+WBEM Client interface Unit for Object Pascal
+
+Portions created by Microsoft are Copyright (C) 1995-2001 Microsoft
+
+The original file is: wbemcli.idl, released Nov 2002. The original Pascal
+code is: WbemCli.pas, released April 2002. The initial developer of the
+Pascal code is Marcel van Brakel (brakelm att chello dott nl).
+
+Portions created by Marcel van Brakel are Copyright (C) 1999-2001
+Marcel van Brakel. All Rights Reserved.
+
+Obtained through: Joint Endeavour of Delphi Innovators (Project JEDI)
+
+You may retrieve the latest version of this file at the Project JEDI
+APILIB home page, located at http://jedi-apilib.sourceforge.net
+
+The contents of this file are used with permission, subject to the Mozilla
+Public License Version 1.1 (the "License"); you may not use this file except
+in compliance with the License. You may obtain a copy of the License at
+http://www.mozilla.org/MPL/MPL-1.1.html
