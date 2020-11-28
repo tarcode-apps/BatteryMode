@@ -8,7 +8,7 @@ To begin translation fork this repository.
 
 You can begin your translation by copying the folder with existing localization.
 
-Then you should carefully translate every string of all files in that folder to your language.
+Then you should carefully translate every string of all files, **except License.txt** in that folder to your language.
 
 You should save resulting *.rc files in **UTF-8** encoding **without BOM**.
 
