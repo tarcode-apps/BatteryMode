@@ -981,9 +981,27 @@ end;
 
 procedure TBatteryModeForm.DisplayStateHandlerDisplayStateChange(
   Sender: TObject; DisplayState: TDisplayState);
+var
+  Monitor: IBrightnessMonitor;
+  LastLevels: TDictionary<string, Integer>;
 begin
   if (DisplayState = dsOn) and Assigned(BrightnessManager) then
+  begin
+    LastLevels := TDictionary<string, Integer>.Create();
+    for Monitor in BrightnessManager do
+    begin
+      if Monitor.RequireBrightnessRefreshOnPowerUp then
+        LastLevels.AddOrSetValue(Monitor.UniqueString, Monitor.Level);
+    end;
+
     BrightnessManager.Update;
+
+    for Monitor in BrightnessManager do
+    begin
+      if Monitor.RequireBrightnessRefreshOnPowerUp and LastLevels.ContainsKey(Monitor.UniqueString) then
+        Monitor.Level := LastLevels[Monitor.UniqueString];
+    end;
+  end;
   if Assigned(Scheduler) then
     Scheduler.ChangeDisplayState(DisplayState);
 end;

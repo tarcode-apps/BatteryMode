@@ -9,7 +9,7 @@ uses
   Brightness, Brightness.Api;
 
 type
-  TPhysicalMonitor = class(TInterfacedObject, IBrightnessMonitor)
+  TPhysicalMonitor = class(TBrightnessMonitorBase)
   private const
     DelayMin    = DWORD(50);
     DelayMax    = DWORD(1000);
@@ -18,77 +18,36 @@ type
     FDescription: string;
     FLogicalIndex: Integer;
     FPhysicalIndex: Integer;
-    FAlwaysActive: Boolean;
     FActive: Boolean;
     FEnable: Boolean;
     FLevels: TBrightnessLevels;
     FLevel: Integer;
-    FManagementMethods: TBrightnessMonitorManagementMethods;
-    FConfig: TBrightnessConfig;
     FDelay: DWORD;
-
-    FOnChangeLevel: TBrightnessChangeLevelEvent;
-    FOnChangeActive: TBrightnessChangeActiveEvent;
-    FOnChangeEnable: TBrightnessChangeEnableEvent;
-    FOnChangeEnable2: TBrightnessChangeEnableEvent;
-    FOnChangeAdaptiveBrightness: TBrightnessChangeAdaptiveBrightnessEvent;
-    FOnChangeManagementMethods: TBrightnessChangeManagementMethodsEvent;
-    FOnError: TNotifyEvent;
   protected
-    function GetMonitorType: TBrightnessMonitorType;
-    function GetDescription: string;
-    function GetEnable: Boolean;
-    procedure SetEnable(const Value: Boolean);
-    function GetLevels: TBrightnessLevels;
-    function GetLevel: Integer;
-    procedure SetLevel(const Value: Integer);
-    function GetNormalizedBrightness(Level: Integer): Byte;
-    function GetUniqueString: string;
-    function GetSlowMonitor: Boolean;
-    function GetActive: Boolean;
-    procedure SetActive(const Value: Boolean);
-    function GetAdaptiveBrightness: Boolean;
-    procedure SetAdaptiveBrightness(const Value: Boolean);
-    function GetAdaptiveBrightnessAvalible: Boolean;
-    function GetManagementMethods: TBrightnessMonitorManagementMethods;
-    procedure SetManagementMethods(const Value: TBrightnessMonitorManagementMethods);
-
-    function GetOnChangeLevel: TBrightnessChangeLevelEvent;
-    procedure SetOnChangeLevel(const Value: TBrightnessChangeLevelEvent);
-    function GetOnChangeActive: TBrightnessChangeActiveEvent;
-    procedure SetOnChangeActive(const Value: TBrightnessChangeActiveEvent);
-    function GetOnChangeEnable: TBrightnessChangeEnableEvent;
-    procedure SetOnChangeEnable(const Value: TBrightnessChangeEnableEvent);
-    function GetOnChangeEnable2: TBrightnessChangeEnableEvent;
-    procedure SetOnChangeEnable2(const Value: TBrightnessChangeEnableEvent);
-    function GetOnChangeAdaptiveBrightness: TBrightnessChangeAdaptiveBrightnessEvent;
-    procedure SetOnChangeAdaptiveBrightness(const Value: TBrightnessChangeAdaptiveBrightnessEvent);
-    function GetOnChangeManagementMethods: TBrightnessChangeManagementMethodsEvent;
-    procedure SetOnChangeManagementMethods(const Value: TBrightnessChangeManagementMethodsEvent);
+    function GetMonitorType: TBrightnessMonitorType; override;
+    function GetDescription: string; override;
+    function GetEnable: Boolean; override;
+    procedure SetEnable(const Value: Boolean); override;
+    function GetLevels: TBrightnessLevels; override;
+    function GetLevel: Integer; override;
+    procedure SetLevel(const Value: Integer); override;
+    function GetNormalizedBrightness(Level: Integer): Byte; override;
+    function GetUniqueString: string; override;
+    function GetSlowMonitor: Boolean; override;
+    function GetActive: Boolean; override;
+    procedure SetActive(const Value: Boolean); override;
+    function GetAdaptiveBrightness: Boolean; override;
+    procedure SetAdaptiveBrightness(const Value: Boolean); override;
+    function GetAdaptiveBrightnessAvalible: Boolean; override;
   public
     constructor Create(hPhysicalMonitor: THandle;
       Description: string; LogicalIndex, PhysicalIndex: Integer;
       AlwaysActive: Boolean); reintroduce;
     destructor Destroy; override;
 
-    procedure LoadConfig(Config: TBrightnessConfig);
-    function GetDefaultConfig: TBrightnessConfig;
-
-    property MonitorType: TBrightnessMonitorType read GetMonitorType;
-    property Description: string read GetDescription;
-    property Enable: Boolean read GetEnable write SetEnable;
-    property Levels: TBrightnessLevels read GetLevels;
-    property Level: Integer read GetLevel write SetLevel;
-    property NormalizedBrightness[Level: Integer]: Byte read GetNormalizedBrightness;
-    property UniqueString: string read GetUniqueString;
-    property SlowMonitor: Boolean read GetSlowMonitor;
-    property Active: Boolean read GetActive write SetActive;
-    property AdaptiveBrightness: Boolean read GetAdaptiveBrightness write SetAdaptiveBrightness;
-    property AdaptiveBrightnessAvalible: Boolean read GetAdaptiveBrightnessAvalible;
-    property ManagementMethods: TBrightnessMonitorManagementMethods read GetManagementMethods write SetManagementMethods;
+    function GetDefaultConfig: TBrightnessConfig; override;
 
     property Handle: THandle read FHandle;
-    property OnError: TNotifyEvent read FOnError write FOnError;
   end;
 
   TLogicalMonitor = class(TList<IBrightnessMonitor>)
@@ -147,20 +106,18 @@ var
   Maximum: DWORD;
   I: Integer;
 begin
+  inherited Create(AlwaysActive);
+
   FEnable := True;
   FHandle := hPhysicalMonitor;
   FDescription := Description;
   FLogicalIndex := LogicalIndex;
   FPhysicalIndex := PhysicalIndex;
-  FAlwaysActive := AlwaysActive;
   FActive := True;
-  FManagementMethods := [];
   FDelay := DelayMin;
 
   if not GetMonitorBrightness(FHandle, Minimum, Current, Maximum) then
     raise TBrightnessMonitorException.Create;
-
-  inherited Create;
 
   FLevels := TBrightnessLevels.Create;
   FLevels.Capacity := Maximum - Minimum + 1;
@@ -177,17 +134,9 @@ begin
   inherited;
 end;
 
-procedure TPhysicalMonitor.LoadConfig(Config: TBrightnessConfig);
-begin
-  FConfig := Config;
-  Enable := FConfig.Enable;
-  Active := FConfig.Active or FAlwaysActive;
-  ManagementMethods := FConfig.ManagementMethods;
-end;
-
 function TPhysicalMonitor.GetDefaultConfig: TBrightnessConfig;
 begin
-  Result := TBrightnessConfig.Create(True, True, []);
+  Result := TBrightnessConfig.Create(True, True, [], False);
 end;
 
 function TPhysicalMonitor.GetMonitorType: TBrightnessMonitorType;
@@ -312,89 +261,6 @@ function TPhysicalMonitor.GetAdaptiveBrightnessAvalible: Boolean;
 begin
   Result := False;
 end;
-
-function TPhysicalMonitor.GetManagementMethods: TBrightnessMonitorManagementMethods;
-begin
-  Result := FManagementMethods;
-end;
-
-procedure TPhysicalMonitor.SetManagementMethods(
-  const Value: TBrightnessMonitorManagementMethods);
-begin
-  if FManagementMethods = Value then Exit;
-
-  FManagementMethods := Value;
-
-  if Assigned(FConfig) then
-    FConfig.ManagementMethods := FManagementMethods;
-
-  if Assigned(FOnChangeManagementMethods) then
-    FOnChangeManagementMethods(Self, FManagementMethods);
-end;
-
-{$REGION 'Event Get/Set'}
-function TPhysicalMonitor.GetOnChangeLevel: TBrightnessChangeLevelEvent;
-begin
-  Result := FOnChangeLevel;
-end;
-
-procedure TPhysicalMonitor.SetOnChangeLevel(const Value: TBrightnessChangeLevelEvent);
-begin
-  FOnChangeLevel := Value;
-end;
-
-function TPhysicalMonitor.GetOnChangeActive: TBrightnessChangeActiveEvent;
-begin
-  Result := FOnChangeActive;
-end;
-
-procedure TPhysicalMonitor.SetOnChangeActive(const Value: TBrightnessChangeActiveEvent);
-begin
-  FOnChangeActive := Value;
-end;
-
-function TPhysicalMonitor.GetOnChangeEnable: TBrightnessChangeEnableEvent;
-begin
-  Result := FOnChangeEnable;
-end;
-
-procedure TPhysicalMonitor.SetOnChangeEnable(const Value: TBrightnessChangeEnableEvent);
-begin
-  FOnChangeEnable := Value;
-end;
-
-function TPhysicalMonitor.GetOnChangeEnable2: TBrightnessChangeEnableEvent;
-begin
-  Result := FOnChangeEnable2;
-end;
-
-procedure TPhysicalMonitor.SetOnChangeEnable2(const Value: TBrightnessChangeEnableEvent);
-begin
-  FOnChangeEnable2 := Value;
-end;
-
-function TPhysicalMonitor.GetOnChangeAdaptiveBrightness: TBrightnessChangeAdaptiveBrightnessEvent;
-begin
-  Result := FOnChangeAdaptiveBrightness;
-end;
-
-procedure TPhysicalMonitor.SetOnChangeAdaptiveBrightness(
-  const Value: TBrightnessChangeAdaptiveBrightnessEvent);
-begin
-  FOnChangeAdaptiveBrightness := Value;
-end;
-
-function TPhysicalMonitor.GetOnChangeManagementMethods: TBrightnessChangeManagementMethodsEvent;
-begin
-  Result := FOnChangeManagementMethods;
-end;
-
-procedure TPhysicalMonitor.SetOnChangeManagementMethods(
-  const Value: TBrightnessChangeManagementMethodsEvent);
-begin
-  FOnChangeManagementMethods := Value;
-end;
-{$ENDREGION}
 
 { TLogicalMonitor }
 

@@ -47,6 +47,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 55, "Show &brightness in percents"
 56, "Brightness"
 57, "Adjust this monitor brightness by scrolling over tray icon"
+58, "Re-apply brightness after monitor wakes up from standby"
 
 60, "Battery saver"
 

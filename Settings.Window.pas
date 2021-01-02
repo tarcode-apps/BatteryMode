@@ -153,10 +153,12 @@ type
     FEnableLocker: ILocker;
     FEnablePanel: TPanel;
     FEnableCheckBox: TCheckBox;
-    FManagementMethodsPanel: TPanel;
+    FConfigPanel: TPanel;
     FTrayScrollCheckBox: TCheckBox;
+    FBrightnessRefreshOnPowerUpCheckBox: TCheckBox;
     procedure EnableCheckBoxClick(Sender: TObject);
     procedure TrayScrollCheckBoxClick(Sender: TObject);
+    procedure BrightnessRefreshOnPowerUpCheckBoxClick(Sender: TObject);
   protected
     procedure MonitorChangeEnable2(Sender: IBrightnessMonitor; Enable: Boolean);
   public
@@ -829,7 +831,7 @@ begin
   FEnablePanel.AlignWithMargins := True;
   FEnablePanel.Margins.SetBounds(0, 0, 0, 0);
   FEnablePanel.BevelOuter := bvNone;
-  FEnablePanel.Height := 14;
+  FEnablePanel.Height := 16;
   FEnablePanel.Parent := Self;
 
   FEnableCheckBox := TCheckBox.Create(FEnablePanel);
@@ -840,19 +842,18 @@ begin
   FEnableCheckBox.OnClick := EnableCheckBoxClick;
   FEnableCheckBox.Parent := FEnablePanel;
 
-  FManagementMethodsPanel := TPanel.Create(Self);
-  FManagementMethodsPanel.AutoSize := True;
-  FManagementMethodsPanel.Align := alTop;
-  FManagementMethodsPanel.AlignWithMargins := True;
-  FManagementMethodsPanel.Margins.SetBounds(0, 7, 0, 2);
-  FManagementMethodsPanel.BevelOuter := bvNone;
-  FManagementMethodsPanel.Parent := Self;
-  FManagementMethodsPanel.Top := FEnablePanel.Margins.ExplicitHeight;
+  FConfigPanel := TPanel.Create(Self);
+  FConfigPanel.AutoSize := True;
+  FConfigPanel.Align := alTop;
+  FConfigPanel.AlignWithMargins := True;
+  FConfigPanel.Margins.SetBounds(0, 5, 0, 2);
+  FConfigPanel.BevelOuter := bvNone;
+  FConfigPanel.Parent := Self;
+  FConfigPanel.Top := FEnablePanel.Margins.ExplicitHeight;
 
-  FTrayScrollCheckBox := TCheckBox.Create(FManagementMethodsPanel);
+  FTrayScrollCheckBox := TCheckBox.Create(FConfigPanel);
   FTrayScrollCheckBox.Align := alTop;
   FTrayScrollCheckBox.AlignWithMargins := True;
-  FTrayScrollCheckBox.AutoSize := True;
   FTrayScrollCheckBox.Margins.SetBounds(17, 0, 0, 0);
   FTrayScrollCheckBox.Caption := TLang[57];
   FTrayScrollCheckBox.AutoSize := True;
@@ -860,14 +861,27 @@ begin
   FTrayScrollCheckBox.Enabled := Monitor.Enable;
   FTrayScrollCheckBox.Checked := bmmmTrayScroll in Monitor.ManagementMethods;
   FTrayScrollCheckBox.OnClick := TrayScrollCheckBoxClick;
-  FTrayScrollCheckBox.Parent := FManagementMethodsPanel;
+  FTrayScrollCheckBox.Parent := FConfigPanel;
+
+  FBrightnessRefreshOnPowerUpCheckBox := TCheckBox.Create(FConfigPanel);
+  FBrightnessRefreshOnPowerUpCheckBox.Align := alTop;
+  FBrightnessRefreshOnPowerUpCheckBox.AlignWithMargins := True;
+  FBrightnessRefreshOnPowerUpCheckBox.Margins.SetBounds(17, 7, 0, 0);
+  FBrightnessRefreshOnPowerUpCheckBox.Caption := TLang[58];
+  FBrightnessRefreshOnPowerUpCheckBox.AutoSize := True;
+  FBrightnessRefreshOnPowerUpCheckBox.WordWrap := True;
+  FBrightnessRefreshOnPowerUpCheckBox.Enabled := Monitor.Enable;
+  FBrightnessRefreshOnPowerUpCheckBox.Checked := Monitor.RequireBrightnessRefreshOnPowerUp;
+  FBrightnessRefreshOnPowerUpCheckBox.OnClick := BrightnessRefreshOnPowerUpCheckBoxClick;
+  FBrightnessRefreshOnPowerUpCheckBox.Parent := FConfigPanel;
+  FBrightnessRefreshOnPowerUpCheckBox.Top := FTrayScrollCheckBox.Margins.ExplicitHeight;
 end;
 
 destructor TBrightnessMonitorSettingsPanel.Destroy;
 begin
   FMonitor.OnChangeEnable2 := nil;
   FTrayScrollCheckBox.Free;
-  FManagementMethodsPanel.Free;
+  FConfigPanel.Free;
   FEnableCheckBox.Free;
   FEnablePanel.Free;
   inherited;
@@ -896,6 +910,12 @@ begin
   BatteryModeForm.BrightnessManagerHookHandler.UpdateBindings;
 end;
 
+procedure TBrightnessMonitorSettingsPanel.BrightnessRefreshOnPowerUpCheckBoxClick(
+  Sender: TObject);
+begin
+  FMonitor.RequireBrightnessRefreshOnPowerUp := (Sender as TCheckBox).Checked;
+end;
+
 procedure TBrightnessMonitorSettingsPanel.MonitorChangeEnable2(
   Sender: IBrightnessMonitor; Enable: Boolean);
 begin
@@ -903,6 +923,7 @@ begin
   try
     FEnableCheckBox.Checked := Enable;
     FTrayScrollCheckBox.Enabled := Enable;
+    FBrightnessRefreshOnPowerUpCheckBox.Enabled := Enable;
   finally
     FEnableLocker.Unlock;
   end;
