@@ -982,6 +982,8 @@ end;
 procedure TBatteryModeForm.DisplayStateHandlerDisplayStateChange(
   Sender: TObject; DisplayState: TDisplayState);
 begin
+  if (DisplayState = dsOn) and Assigned(BrightnessManager) then
+    BrightnessManager.Update;
   if Assigned(Scheduler) then
     Scheduler.ChangeDisplayState(DisplayState);
 end;
