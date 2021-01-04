@@ -261,8 +261,8 @@ type
 
     procedure DisplayStateHandlerDisplayStateChange(Sender: TObject; DisplayState: TDisplayState);
 
-    procedure BrightnessManagerBeforeUpdate(Sender: TObject);
-    procedure BrightnessManagerAfterUpdate(Sender: TObject);
+    procedure BrightnessManagerBeforeUpdateDisplayStateOn(Sender: TObject);
+    procedure BrightnessManagerAfterUpdateDisplayStateOn(Sender: TObject);
 
     procedure BrightnessPanelAddMonitor(Sender: TObject; Monitor: IBrightnessMonitor);
     procedure BrightnessPanelRemoveMonitor(Sender: TObject; Monitor: IBrightnessMonitor);
@@ -423,8 +423,6 @@ begin
   FBrightnessConfigurator := TBrightnessConfigurator.Create(REG_Key);
   // Инициализация BrightnessManager
   FBrightnessManager := TBrightnessManager.Create(FBrightnessConfigurator);
-  FBrightnessManager.OnBeforeUpdate := BrightnessManagerBeforeUpdate;
-  FBrightnessManager.OnAfterUpdate := BrightnessManagerAfterUpdate;
   if IsWindowsVistaOrGreater then
   begin
     FPhysicalBrightnessProvider := TPhysicalBrightnessProvider.Create(True);
@@ -923,10 +921,11 @@ end;
 {$ENDREGION}
 
 {$REGION 'BrightnessManager Events'}
-procedure TBatteryModeForm.BrightnessManagerBeforeUpdate(Sender: TObject);
+procedure TBatteryModeForm.BrightnessManagerBeforeUpdateDisplayStateOn(Sender: TObject);
 var
   Monitor: IBrightnessMonitor;
 begin
+  FBrightnessManager.OnBeforeUpdate := nil;
   if Assigned(FBrightnessLastLevels) then FBrightnessLastLevels.Free;
 
   FBrightnessLastLevels := TDictionary<string, Integer>.Create();
@@ -937,10 +936,11 @@ begin
   end;
 end;
 
-procedure TBatteryModeForm.BrightnessManagerAfterUpdate(Sender: TObject);
+procedure TBatteryModeForm.BrightnessManagerAfterUpdateDisplayStateOn(Sender: TObject);
 var
   Monitor: IBrightnessMonitor;
 begin
+  FBrightnessManager.OnAfterUpdate := nil;
   if Assigned(FBrightnessLastLevels) then
   begin
     for Monitor in BrightnessManager do
@@ -1021,7 +1021,11 @@ procedure TBatteryModeForm.DisplayStateHandlerDisplayStateChange(
   Sender: TObject; DisplayState: TDisplayState);
 begin
   if (DisplayState = dsOn) and Assigned(BrightnessManager) then
+  begin
+    FBrightnessManager.OnBeforeUpdate := BrightnessManagerBeforeUpdateDisplayStateOn;
+    FBrightnessManager.OnAfterUpdate := BrightnessManagerAfterUpdateDisplayStateOn;
     BrightnessManager.Update(5000);
+  end;
 
   if Assigned(Scheduler) then
     Scheduler.ChangeDisplayState(DisplayState);
