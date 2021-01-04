@@ -146,5 +146,13 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 225, "Source Code"
 226, "https://github.com/tarcode-apps/BatteryMode"
 
+230, "%0:u seconds"
+231, "%0:u second"
+232, "%0:u seconds"
+
+235, "Advanced"
+236, "Monitor detection delay"
+237, "You can increase monitor detection delay if you experience issues with disappearing brightness indicators"
+
 10000, "Open debug log folder"
 }

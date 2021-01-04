@@ -25,6 +25,7 @@ type
   private
     FMsgWindow: THandle;
     FConfigurator: TBrightnessConfigurator;
+    FRescanDelayMillisecond: Cardinal;
     FOnNotify2: TCollectionNotifyEvent<IBrightnessMonitor>;
     FOnBeforeUpdate: TNotifyEvent;
     FOnAfterUpdate: TNotifyEvent;
@@ -48,6 +49,8 @@ type
     procedure ChangeLevel(Method: TBrightnessMonitorManagementMethod; LevelDiff: Integer);
 
     property InternalMonitorCount: Integer read GetInternalMonitorCount;
+
+    property RescanDelayMillisecond: Cardinal read FRescanDelayMillisecond write FRescanDelayMillisecond;
 
     property OnNotify2: TCollectionNotifyEvent<IBrightnessMonitor> read FOnNotify2 write FOnNotify2;
     property OnBeforeUpdate: TNotifyEvent read FOnBeforeUpdate write FOnBeforeUpdate;
@@ -95,11 +98,11 @@ begin
   Msg.Result := DefWindowProc(FMsgWindow, Msg.Msg, Msg.WParam, Msg.LParam);
   case Msg.Msg of
     WM_DISPLAYCHANGE:
-      SetTimer(FMsgWindow, INVALID_HANDLE_VALUE, 6000, nil);
+      SetTimer(FMsgWindow, INVALID_HANDLE_VALUE, RescanDelayMillisecond, nil);
     WM_POWERBROADCAST:
       case Msg.WParam of
         PBT_APMRESUMEAUTOMATIC:
-          SetTimer(FMsgWindow, INVALID_HANDLE_VALUE, 8000, nil);
+          SetTimer(FMsgWindow, INVALID_HANDLE_VALUE, RescanDelayMillisecond, nil);
       end;
     WM_TIMER:
       begin

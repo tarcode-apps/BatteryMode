@@ -40,6 +40,7 @@ const
   REG_FixedLocalBrightness = 'Fixed Local Brightness';
   REG_ShowMonitorName = 'Show Monitor Name';
   REG_ShowBrightnessPercent = 'Show Brightness Percent';
+  REG_BrightnessRescanDelayMillisecond = 'Brightness Rescan Delay';
   REG_DisplayIndicator = 'Display Indicator Power Schemes';
   REG_FeatureMissingScheme = 'Feature Missing Scheme';
   REG_FeatureOverlay = 'Feature Overlay';
@@ -86,6 +87,7 @@ type
     FixedLocalBrightness: Boolean;
     ShowMonitorName: Boolean;
     ShowBrightnessPercent: Boolean;
+    BrightnessRescanDelayMillisecond: Cardinal;
     DisplayIndicator: TDisplayIndicator;
     FeatureMissingScheme: Boolean;
     FeatureOverlay: Boolean;
@@ -423,6 +425,7 @@ begin
   FBrightnessConfigurator := TBrightnessConfigurator.Create(REG_Key);
   // Инициализация BrightnessManager
   FBrightnessManager := TBrightnessManager.Create(FBrightnessConfigurator);
+  FBrightnessManager.RescanDelayMillisecond := Conf.BrightnessRescanDelayMillisecond;
   if IsWindowsVistaOrGreater then
   begin
     FPhysicalBrightnessProvider := TPhysicalBrightnessProvider.Create(True);
@@ -1024,7 +1027,7 @@ begin
   begin
     FBrightnessManager.OnBeforeUpdate := BrightnessManagerBeforeUpdateDisplayStateOn;
     FBrightnessManager.OnAfterUpdate := BrightnessManagerAfterUpdateDisplayStateOn;
-    BrightnessManager.Update(5000);
+    BrightnessManager.Update(BrightnessManager.RescanDelayMillisecond);
   end;
 
   if Assigned(Scheduler) then
@@ -1348,6 +1351,7 @@ begin
   Result.FixedLocalBrightness := False;
   Result.ShowMonitorName := False;
   Result.ShowBrightnessPercent := False;
+  Result.BrightnessRescanDelayMillisecond := 5000;
   if IsWindowsVistaOrGreater then
     Result.DisplayIndicator := diPrimary
   else
@@ -1413,6 +1417,7 @@ begin
     Result.FixedLocalBrightness := ReadBoolDef(REG_FixedLocalBrightness, Default.FixedLocalBrightness);
     Result.ShowMonitorName := ReadBoolDef(REG_ShowMonitorName, Default.ShowMonitorName);
     Result.ShowBrightnessPercent := ReadBoolDef(REG_ShowBrightnessPercent, Default.ShowBrightnessPercent);
+    Result.BrightnessRescanDelayMillisecond := Cardinal(ReadIntegerDef(REG_BrightnessRescanDelayMillisecond, Integer(Default.BrightnessRescanDelayMillisecond)));
     Result.DisplayIndicator := TDisplayIndicator(ReadIntegerDef(REG_DisplayIndicator, Integer(Default.DisplayIndicator)));
     Result.FeatureMissingScheme := ReadBoolDef(REG_FeatureMissingScheme, Default.FeatureMissingScheme);
     Result.FeatureOverlay := ReadBoolDef(REG_FeatureOverlay, Default.FeatureOverlay);
@@ -1453,6 +1458,7 @@ begin
       Registry.WriteBool(REG_FixedLocalBrightness, Conf.FixedLocalBrightness);
       Registry.WriteBool(REG_ShowMonitorName, Conf.ShowMonitorName);
       Registry.WriteBool(REG_ShowBrightnessPercent, Conf.ShowBrightnessPercent);
+      Registry.WriteInteger(REG_BrightnessRescanDelayMillisecond, Integer(Conf.BrightnessRescanDelayMillisecond));
       Registry.WriteInteger(REG_DisplayIndicator, Integer(Conf.DisplayIndicator));
       Registry.WriteBool(REG_FeatureMissingScheme, Conf.FeatureMissingScheme);
       Registry.WriteBool(REG_FeatureOverlay, Conf.FeatureOverlay);
@@ -1514,6 +1520,7 @@ begin
   Conf.FixedLocalBrightness := TBatteryMode.BrightnessForAllScheme;
   Conf.ShowMonitorName := BrightnessPanel.ShowMonitorName;
   Conf.ShowBrightnessPercent := BrightnessPanel.ShowBrightnessPercent;
+  Conf.BrightnessRescanDelayMillisecond := BrightnessManager.RescanDelayMillisecond;
   Conf.DisplayIndicator := DisplayIndicator;
   Conf.FeatureMissingScheme := psfMissingScheme in TBatteryMode.PowerSchemes.SchemeFeatures;
   Conf.FeatureOverlay := psfOverlay in TBatteryMode.PowerSchemes.SchemeFeatures;
