@@ -26,6 +26,8 @@ type
     FMsgWindow: THandle;
     FConfigurator: TBrightnessConfigurator;
     FOnNotify2: TCollectionNotifyEvent<IBrightnessMonitor>;
+    FOnBeforeUpdate: TNotifyEvent;
+    FOnAfterUpdate: TNotifyEvent;
     function GetInternalMonitorCount: Integer;
   protected
     FProviders: TList<IBrightnessProvider>;
@@ -41,12 +43,15 @@ type
     procedure RemoveProvider(Provider: IBrightnessProvider);
 
     procedure Update; overload;
+    procedure Update(Delay: Cardinal); overload;
 
     procedure ChangeLevel(Method: TBrightnessMonitorManagementMethod; LevelDiff: Integer);
 
     property InternalMonitorCount: Integer read GetInternalMonitorCount;
 
     property OnNotify2: TCollectionNotifyEvent<IBrightnessMonitor> read FOnNotify2 write FOnNotify2;
+    property OnBeforeUpdate: TNotifyEvent read FOnBeforeUpdate write FOnBeforeUpdate;
+    property OnAfterUpdate: TNotifyEvent read FOnAfterUpdate write FOnAfterUpdate;
   end;
 
 implementation
@@ -138,7 +143,16 @@ procedure TBrightnessManager.Update;
 var
   Provider: IBrightnessProvider;
 begin
+  if Assigned(FOnBeforeUpdate) then FOnBeforeUpdate(Self);
+
   for Provider in FProviders do Update(Provider);
+
+  if Assigned(FOnAfterUpdate) then FOnAfterUpdate(Self);
+end;
+
+procedure TBrightnessManager.Update(Delay: Cardinal);
+begin
+  SetTimer(FMsgWindow, INVALID_HANDLE_VALUE, Delay, nil);
 end;
 
 procedure TBrightnessManager.AddProvider(Provider: IBrightnessProvider);
