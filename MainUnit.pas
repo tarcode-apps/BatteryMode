@@ -263,8 +263,8 @@ type
 
     procedure DisplayStateHandlerDisplayStateChange(Sender: TObject; DisplayState: TDisplayState);
 
-    procedure BrightnessManagerBeforeUpdateDisplayStateOn(Sender: TObject);
-    procedure BrightnessManagerAfterUpdateDisplayStateOn(Sender: TObject);
+    procedure BrightnessManagerBeforeUpdate(Sender: TObject);
+    procedure BrightnessManagerAfterUpdate(Sender: TObject);
 
     procedure BrightnessPanelAddMonitor(Sender: TObject; Monitor: IBrightnessMonitor);
     procedure BrightnessPanelRemoveMonitor(Sender: TObject; Monitor: IBrightnessMonitor);
@@ -422,10 +422,13 @@ begin
   DisplayStateHandler.DisplayStateChange := DisplayStateHandlerDisplayStateChange;
 
   // Инициализация подсветки
+  FBrightnessLastLevels := TDictionary<string, Integer>.Create();
   FBrightnessConfigurator := TBrightnessConfigurator.Create(REG_Key);
   // Инициализация BrightnessManager
   FBrightnessManager := TBrightnessManager.Create(FBrightnessConfigurator);
   FBrightnessManager.RescanDelayMillisecond := Conf.BrightnessRescanDelayMillisecond;
+  FBrightnessManager.OnBeforeUpdate := BrightnessManagerBeforeUpdate;
+  FBrightnessManager.OnAfterUpdate := BrightnessManagerAfterUpdate;
   if IsWindowsVistaOrGreater then
   begin
     FPhysicalBrightnessProvider := TPhysicalBrightnessProvider.Create(True);
@@ -506,6 +509,7 @@ begin
   FBrightnessPanel.Free;
   FBrightnessManagerHookHandler.Free;
   FBrightnessConfigurator.Free;
+  FBrightnessLastLevels.Free;
 
   ApiServer.Free;
 
@@ -924,14 +928,10 @@ end;
 {$ENDREGION}
 
 {$REGION 'BrightnessManager Events'}
-procedure TBatteryModeForm.BrightnessManagerBeforeUpdateDisplayStateOn(Sender: TObject);
+procedure TBatteryModeForm.BrightnessManagerBeforeUpdate(Sender: TObject);
 var
   Monitor: IBrightnessMonitor;
 begin
-  FBrightnessManager.OnBeforeUpdate := nil;
-  if Assigned(FBrightnessLastLevels) then FBrightnessLastLevels.Free;
-
-  FBrightnessLastLevels := TDictionary<string, Integer>.Create();
   for Monitor in BrightnessManager do
   begin
     if Monitor.RequireBrightnessRefreshOnPowerUp then
@@ -939,20 +939,17 @@ begin
   end;
 end;
 
-procedure TBatteryModeForm.BrightnessManagerAfterUpdateDisplayStateOn(Sender: TObject);
+procedure TBatteryModeForm.BrightnessManagerAfterUpdate(Sender: TObject);
 var
   Monitor: IBrightnessMonitor;
 begin
-  FBrightnessManager.OnAfterUpdate := nil;
-  if Assigned(FBrightnessLastLevels) then
+  for Monitor in BrightnessManager do
   begin
-    for Monitor in BrightnessManager do
+    if Monitor.RequireBrightnessRefreshOnPowerUp and FBrightnessLastLevels.ContainsKey(Monitor.UniqueString) then
     begin
-      if Monitor.RequireBrightnessRefreshOnPowerUp and FBrightnessLastLevels.ContainsKey(Monitor.UniqueString) then
-        Monitor.Level := FBrightnessLastLevels[Monitor.UniqueString];
+      Monitor.Level := FBrightnessLastLevels[Monitor.UniqueString];
+      FBrightnessLastLevels.Remove(Monitor.UniqueString);
     end;
-
-    FreeAndNil(FBrightnessLastLevels);
   end;
 end;
 {$ENDREGION}
@@ -1024,11 +1021,7 @@ procedure TBatteryModeForm.DisplayStateHandlerDisplayStateChange(
   Sender: TObject; DisplayState: TDisplayState);
 begin
   if (DisplayState = dsOn) and Assigned(BrightnessManager) then
-  begin
-    FBrightnessManager.OnBeforeUpdate := BrightnessManagerBeforeUpdateDisplayStateOn;
-    FBrightnessManager.OnAfterUpdate := BrightnessManagerAfterUpdateDisplayStateOn;
     BrightnessManager.Update(BrightnessManager.RescanDelayMillisecond);
-  end;
 
   if Assigned(Scheduler) then
     Scheduler.ChangeDisplayState(DisplayState);
