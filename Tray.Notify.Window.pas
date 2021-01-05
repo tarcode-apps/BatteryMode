@@ -418,7 +418,11 @@ begin
     inherited;
 
     SetActiveWindow(Handle);
-    SetForegroundWindow(Handle);
+    if not SetForegroundWindow(Handle) then
+    begin
+      // Workaround for Windows 10 Start and Notification Center
+      AttachThreadInput(GetWindowThreadProcessId(GetForegroundWindow), GetCurrentThreadId, True);
+    end;
 
     NotifyWinEvent(EVENT_SYSTEM_MENUPOPUPSTART, Handle, OBJID_CLIENT, 0);
   end else begin
