@@ -782,12 +782,12 @@ object SettingsWindow: TSettingsWindow
           Left = 8
           Top = 248
           Width = 554
-          Height = 86
+          Height = 89
           Margins.Left = 8
           Margins.Right = 10
           Align = alTop
           Caption = 'BrightnessOptions'
-          Padding.Bottom = 4
+          Padding.Bottom = 7
           TabOrder = 3
           object BrightnessRescanDelayHelpLabel: TLabel
             AlignWithMargins = True
@@ -804,7 +804,7 @@ object SettingsWindow: TSettingsWindow
             WordWrap = True
             ExplicitWidth = 146
           end
-          object BrightnessRescanDelayGrid: TGridPanel
+          object BrightnessRescanDelayPanel: TPanel
             AlignWithMargins = True
             Left = 2
             Top = 46
@@ -813,58 +813,19 @@ object SettingsWindow: TSettingsWindow
             Margins.Left = 0
             Margins.Top = 0
             Margins.Right = 0
-            Margins.Bottom = 7
             Align = alTop
-            Alignment = taLeftJustify
             BevelOuter = bvNone
-            Caption = 'IconsGrid'
-            ColumnCollection = <
-              item
-                SizeStyle = ssAuto
-                Value = 25.000000000000000000
-              end
-              item
-                Value = 100.000000000000000000
-              end
-              item
-                SizeStyle = ssAbsolute
-                Value = 80.000000000000000000
-              end>
-            ControlCollection = <
-              item
-                Column = 1
-                Control = BrightnessRescanDelayComboBox
-                Row = 0
-              end
-              item
-                Column = 0
-                Control = BrightnessRescanDelayLabel
-                Row = 0
-              end>
-            RowCollection = <
-              item
-                SizeStyle = ssAbsolute
-                Value = 32.000000000000000000
-              end>
             ShowCaption = False
             TabOrder = 0
-            object BrightnessRescanDelayComboBox: TComboBox
-              AlignWithMargins = True
-              Left = 138
-              Top = 3
-              Width = 329
-              Height = 23
-              Align = alClient
-              Style = csDropDownList
-              TabOrder = 0
-              OnChange = BrightnessRescanDelayComboBoxChange
-            end
+            ExplicitLeft = 5
+            ExplicitTop = 83
+            ExplicitWidth = 544
             object BrightnessRescanDelayLabel: TLabel
               AlignWithMargins = True
               Left = 6
               Top = 6
               Width = 121
-              Height = 23
+              Height = 18
               Margins.Left = 6
               Margins.Top = 6
               Margins.Right = 8
@@ -872,6 +833,46 @@ object SettingsWindow: TSettingsWindow
               Anchors = []
               Caption = 'BrightnessRescanDelay'
               ExplicitHeight = 15
+            end
+            object BrightnessRescanDelayUnitsLabel: TLabel
+              AlignWithMargins = True
+              Left = 213
+              Top = 6
+              Width = 44
+              Height = 18
+              Margins.Left = 20
+              Margins.Top = 6
+              Margins.Right = 8
+              Align = alLeft
+              Anchors = []
+              Caption = 'Seconds'
+              ExplicitLeft = 205
+              ExplicitHeight = 15
+            end
+            object BrightnessRescanDelayEdit: TEdit
+              AlignWithMargins = True
+              Left = 138
+              Top = 3
+              Width = 52
+              Height = 22
+              Margins.Bottom = 2
+              Align = alLeft
+              Alignment = taCenter
+              MaxLength = 3
+              NumbersOnly = True
+              TabOrder = 0
+              Text = '0'
+              OnChange = BrightnessRescanDelayEditChange
+            end
+            object BrightnessRescanDelayUpDown: TUpDown
+              Left = 190
+              Top = 3
+              Width = 17
+              Height = 22
+              Associate = BrightnessRescanDelayEdit
+              Min = 1
+              Max = 50
+              TabOrder = 1
             end
           end
         end

@@ -75,9 +75,11 @@ type
     BrightnessSliderPercentCheckPanel: TPanel;
     BrightnessOptionsGroup: TGroupBox;
     BrightnessRescanDelayHelpLabel: TLabel;
-    BrightnessRescanDelayGrid: TGridPanel;
-    BrightnessRescanDelayComboBox: TComboBox;
     BrightnessRescanDelayLabel: TLabel;
+    BrightnessRescanDelayPanel: TPanel;
+    BrightnessRescanDelayEdit: TEdit;
+    BrightnessRescanDelayUpDown: TUpDown;
+    BrightnessRescanDelayUnitsLabel: TLabel;
     AboutTab: TTabSheet;
     AboutIconPanel: TPanel;
     AppImage: TImage;
@@ -122,7 +124,7 @@ type
     procedure BrightnessSliderMonitorNameCheckBoxClick(Sender: TObject);
     procedure BrightnessSliderPercentCheckBoxClick(Sender: TObject);
     procedure BrightnessFixedCheckBoxClick(Sender: TObject);
-    procedure BrightnessRescanDelayComboBoxChange(Sender: TObject);
+    procedure BrightnessRescanDelayEditChange(Sender: TObject);
     procedure SchemeHotKeyButtonClick(Sender: TObject);
     procedure AutoUpdateEnabledCheckBoxClick(Sender: TObject);
     procedure AutoUpdateCheckButtonClick(Sender: TObject);
@@ -134,7 +136,6 @@ type
     procedure AppChangelogClick(Sender: TObject);
     procedure AppLicenseClick(Sender: TObject);
     procedure AppSourceCodeLinkClick(Sender: TObject);
-    function PluralizeSeconds(Seconds: Integer): string;
   strict private
     class var FLastWindowHandle: THandle;
   public
@@ -233,7 +234,6 @@ const
   VerFmt = '%0:s: %1:s %2:s';
 var
   Features, SupportedFeatures: TPowerSchemeFeatures;
-  RescanDelaySecond: Cardinal;
 begin
   if IsWindows10OrGreater then Color := clWindow;
 
@@ -322,19 +322,7 @@ begin
   BrightnessFixedCheckBox.Checked   := TBatteryMode.BrightnessForAllScheme;
 
   BrightnessOptionsGroup.AutoSize := True;
-  for RescanDelaySecond in [1, 2, 5, 8, 10, 15, 20, 30] do
-  begin
-    BrightnessRescanDelayComboBox.AddItem(PluralizeSeconds(RescanDelaySecond), TObject(RescanDelaySecond * 1000));
-  end;
-  BrightnessRescanDelayComboBox.ItemIndex :=
-    BrightnessRescanDelayComboBox.Items.IndexOfObject(TObject(BatteryModeForm.BrightnessManager.RescanDelayMillisecond));
-  if BrightnessRescanDelayComboBox.ItemIndex < 0 then
-  begin
-    BrightnessRescanDelayComboBox.AddItem(
-      PluralizeSeconds(BatteryModeForm.BrightnessManager.RescanDelayMillisecond div 1000),
-      TObject(BatteryModeForm.BrightnessManager.RescanDelayMillisecond));
-    BrightnessRescanDelayComboBox.ItemIndex := BrightnessRescanDelayComboBox.Items.Count - 1;
-  end;
+  BrightnessRescanDelayUpDown.Position := BatteryModeForm.BrightnessManager.RescanDelayMillisecond div 1000;
 
   LoadBrightnessMonitors;
   BatteryModeForm.BrightnessManager.OnNotify2 := BrightnessManagerNotify;
@@ -395,9 +383,6 @@ begin
   MainWindowGroup.Realign;
   MainWindowGrid.ColumnCollection[0].SizeStyle := ssPercent;
   MainWindowGrid.ColumnCollection[0].SizeStyle := ssAuto;
-  BrightnessRescanDelayGrid.Realign;
-  BrightnessRescanDelayGrid.ColumnCollection[0].SizeStyle := ssPercent;
-  BrightnessRescanDelayGrid.ColumnCollection[0].SizeStyle := ssAuto;
   LinksGrid.Realign;
 end;
 
@@ -709,12 +694,19 @@ begin
   LoadBrightnessMonitors;
 end;
 
-procedure TSettingsWindow.BrightnessRescanDelayComboBoxChange(Sender: TObject);
+procedure TSettingsWindow.BrightnessRescanDelayEditChange(Sender: TObject);
 var
-  CB: TComboBox;
+  Seconds: Integer;
 begin
-  CB := Sender as TComboBox;
-  BatteryModeForm.BrightnessManager.RescanDelayMillisecond := Cardinal(CB.Items.Objects[CB.ItemIndex])
+  if not Integer.TryParse(TEdit(Sender).Text, Seconds) then Exit;
+
+  if Seconds < BrightnessRescanDelayUpDown.Min then
+    Seconds := BrightnessRescanDelayUpDown.Min;
+
+  if Seconds > BrightnessRescanDelayUpDown.Max then
+    Seconds := BrightnessRescanDelayUpDown.Max;
+
+  BatteryModeForm.BrightnessManager.RescanDelayMillisecond := Cardinal(Seconds) * 1000;
 end;
 
 procedure TSettingsWindow.SchemeHotKeyButtonClick(Sender: TObject);
@@ -836,21 +828,6 @@ begin
   AppImage.Picture.Icon.Handle := hIco;
 end;
 
-function TSettingsWindow.PluralizeSeconds(Seconds: Integer): string;
-var
-  LastDigit: Integer;
-  Key: Integer;
-begin
-  LastDigit := Seconds;
-  while LastDigit > 10 do LastDigit := LastDigit mod 10;
-  case LastDigit of
-    1: Key := 231;
-    2, 3, 4: Key := 232;
-    else Key := 230;
-  end;
-  Result := string.Format(TLang[Key], [Seconds]);
-end;
-
 procedure TSettingsWindow.Loadlocalization;
 const
   KeyValFmt = '%0:s: %1:s';
@@ -927,9 +904,10 @@ begin
 
   BrightnessMonitorGroup.Caption  := DropAccel(TLang[50]); // Управлять яркостью мониторов
 
-  BrightnessOptionsGroup.Caption := DropAccel(TLang[235]); // Дополнительно
-  BrightnessRescanDelayLabel.Caption := DropAccel(TLang[236]); // Задержка перед сканированием мониторов
-  BrightnessRescanDelayHelpLabel.Caption := DropAccel(TLang[237]); // Увеличте задержку перед сканированием ...
+  BrightnessOptionsGroup.Caption := DropAccel(TLang[230]); // Дополнительно
+  BrightnessRescanDelayLabel.Caption := DropAccel(TLang[231]); // Задержка перед сканированием мониторов
+  BrightnessRescanDelayHelpLabel.Caption := DropAccel(TLang[232]); // Увеличте задержку перед сканированием ...
+  BrightnessRescanDelayUnitsLabel.Caption := DropAccel(TLang[233]); // секунд(ы)
 
   AutoUpdateTab.Caption               := DropAccel(TLang[41]); // Автоматическое обновление
   AutoUpdateEnabledCheckBox.Caption   := DropAccel(TLang[42]); // Автоматическая проверка обновлений
