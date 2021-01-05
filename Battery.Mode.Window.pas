@@ -1,4 +1,4 @@
-﻿unit MainUnit;
+﻿unit Battery.Mode.Window;
 
 interface
 

@@ -191,9 +191,8 @@ implementation
 uses
   Core.Language,
   Helpers.License,
-  MainUnit,
   Brightness.Controls,
-  Battery.Mode, Battery.Icons, Battery.Splash,
+  Battery.Mode, Battery.Mode.Window, Battery.Icons, Battery.Splash,
   Power, Power.Shutdown,
   HotKey.Window.Query,
   Tray.Notify.Window,

@@ -422,6 +422,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
         </DCCReference>
         <DCCReference Include="Scheduler\Scheduling.UI.Triggers.pas"/>
         <DCCReference Include="Battery.Mode.pas"/>
+        <DCCReference Include="Battery.Mode.Window.pas">
+            <Form>BatteryModeForm</Form>
+        </DCCReference>
         <DCCReference Include="Battery.Controls.pas"/>
         <DCCReference Include="Battery.Icons.pas"/>
         <DCCReference Include="Battery.Splash.pas"/>
@@ -438,9 +441,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <DCCReference Include="Helpers.Reg.pas"/>
         <DCCReference Include="Helpers.Services.pas"/>
         <DCCReference Include="Helpers.Wts.pas"/>
-        <DCCReference Include="MainUnit.pas">
-            <Form>BatteryModeForm</Form>
-        </DCCReference>
         <DCCReference Include="Media.Player.Helpers.pas"/>
         <DCCReference Include="Media.Player.pas"/>
         <DCCReference Include="MemoryDirector.pas"/>
