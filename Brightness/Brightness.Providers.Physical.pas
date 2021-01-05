@@ -326,9 +326,20 @@ class function TLogicalMonitors.EnumMonitorsProc(hm: HMONITOR; dc: HDC;
   r: PRect; Data: LPARAM): BOOL;
 var
   Self: TLogicalMonitors;
+  LogicalMonitor: TLogicalMonitor;
 begin
   Self := TLogicalMonitors(Data);
-  Self.Add(TLogicalMonitor.Create(hm, Self.Count, Self.FAlwaysActiveMonitors));
+  LogicalMonitor := TLogicalMonitor.Create(hm, Self.Count, Self.FAlwaysActiveMonitors);
+  if LogicalMonitor.Count = 0 then
+  begin
+    LogicalMonitor.Free;
+    LogicalMonitor := TLogicalMonitor.Create(hm, Self.Count, Self.FAlwaysActiveMonitors);
+  end;
+  if LogicalMonitor.Count = 0 then
+    LogicalMonitor.Free
+  else
+    Self.Add(LogicalMonitor);
+
   Result := True;
 end;
 
