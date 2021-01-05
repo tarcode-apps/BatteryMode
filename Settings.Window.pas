@@ -7,12 +7,18 @@ uses
   System.Generics.Collections, System.RegularExpressions,
   System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls,
-  Vcl.StdCtrls, Vcl.ComCtrls,
+  Vcl.StdCtrls, Vcl.ComCtrls, Vcl.Menus,
   Brightness,
-  Core.UI, Core.UI.Controls;
+  Core.UI, Core.UI.Controls, Core.Startup,
+  Helpers.Reg;
 
 type
   TSettingsWindow = class(TCompatibleForm)
+    MainMenu: TMainMenu;
+    MainMenuFile: TMenuItem;
+    MainMenuExportConfigToFile: TMenuItem;
+    MainMenuImportConfigFromFile: TMenuItem;
+    MainMenuClose: TMenuItem;
     SettingTabs: TPageControl;
     InterfaceTab: TTabSheet;
     SchemesTab: TTabSheet;
@@ -91,12 +97,16 @@ type
     BrightnessFixedGroup: TGroupBox;
     SchemeHotKeyGroup: TGroupBox;
     AppSourceCodeLink: TStaticText;
+    ExportConfigDialog: TSaveDialog;
+    ImportConfigDialog: TOpenDialog;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormAfterMonitorDpiChanged(Sender: TObject; OldDPI, NewDPI: Integer);
     procedure FormShow(Sender: TObject);
+    procedure MainMenuExportConfigToFileClick(Sender: TObject);
+    procedure MainMenuImportConfigFromFileClick(Sender: TObject);
+    procedure MainMenuCloseClick(Sender: TObject);
     procedure IconColorComboBoxChange(Sender: TObject);
     procedure IconStyleComboBoxChange(Sender: TObject);
     procedure IconStyleExplicitMissingBatteryCheckBoxClick(Sender: TObject);
@@ -434,12 +444,6 @@ begin
   LoadMainWindowLinkType;
 end;
 
-procedure TSettingsWindow.FormKeyPress(Sender: TObject;
-  var Key: Char);
-begin
-  if Key = Char(VK_ESCAPE) then Close;
-end;
-
 procedure TSettingsWindow.LoadMainWindowLinkType;
 begin
   MainWindowLinkTypeComboBox.Clear;
@@ -507,6 +511,64 @@ begin
     Control.Free;
   end;
   FBrightnessMonitorControls.Clear;
+end;
+
+procedure TSettingsWindow.MainMenuCloseClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TSettingsWindow.MainMenuExportConfigToFileClick(Sender: TObject);
+begin
+  if not ExportConfigDialog.Execute(Handle) then
+    Exit;
+
+  BatteryModeForm.SaveCurrentConfig;
+  BatteryModeForm.ClearConfig;
+  TReg.Export(HKEY_CURRENT_USER, REG_Key, ExportConfigDialog.FileName);
+  BatteryModeForm.Scheduler.SaveState;
+end;
+
+procedure TSettingsWindow.MainMenuImportConfigFromFileClick(Sender: TObject);
+var
+  StartUpInfo : TStartUpInfo;
+  ProcessInfo : TProcessInformation;
+begin
+  if not ImportConfigDialog.Execute(Handle) then
+    Exit;
+
+  BatteryModeForm.DeleteConfig;
+  if not TReg.Import(ImportConfigDialog.FileName) then
+  begin
+    BatteryModeForm.SaveCurrentConfig;
+    Exit;
+  end;
+
+  BatteryModeForm.Scheduler.SaveState;
+
+  TMutexLocker.Unlock;
+  BatteryModeForm.TrayIcon.Visible := False;
+
+  ZeroMemory(@StartUpInfo, SizeOf(StartUpInfo));
+  StartUpInfo.cb := SizeOf(StartUpInfo);
+
+  if not CreateProcess(LPCTSTR(Application.ExeName), nil, nil, nil, True,
+    GetPriorityClass(GetCurrentProcess), nil, nil, StartUpInfo, ProcessInfo) then
+  begin
+    TMutexLocker.Lock;
+    BatteryModeForm.TrayIcon.Visible := True;
+    Exit;
+  end;
+
+  BatteryModeForm.PrepareRestart;
+  try
+    Application.Terminate;
+  finally
+    CloseHandle(ProcessInfo.hProcess);
+    CloseHandle(ProcessInfo.hThread);
+
+    ExitProcess(0);
+  end;
 end;
 
 procedure TSettingsWindow.IconColorComboBoxChange(Sender: TObject);
@@ -795,6 +857,24 @@ const
   KeyValFmt = '%0:s: %1:s';
 begin
   Caption := DropAccel(TLang[3]); // Дополнительные параметры
+
+  MainMenuFile.Caption                  := TLang[755]; // Файл
+  MainMenuClose.Caption                 := TLang[756]; // Закрыть
+  MainMenuExportConfigToFile.Caption    := TLang[100]; // Экспортировать настройки в файл
+  MainMenuImportConfigFromFile.Caption  := TLang[101]; // Импортировать настройки из файла
+
+  ExportConfigDialog.Filter := Format('%0:s|*.reg|%1:s|*.txt|%2:s|*.*',
+    [TLang[110],    // Файлы реестра (*.reg)
+     TLang[111],    // Текстовые файлы (*.txt)
+     TLang[112]]);  // Все файлы
+  ExportConfigDialog.FileName := Format(TLang[105], [TLang[1]]); // Настройки %0:s
+  ExportConfigDialog.Title    := Format(TLang[106], [TLang[1]]); // Экспорт файла настроек %0:s
+
+  ImportConfigDialog.Filter := Format('%0:s|*.reg|%1:s|*.txt|%2:s|*.*',
+    [TLang[110],    // Файлы реестра (*.reg)
+     TLang[111],    // Текстовые файлы (*.txt)
+     TLang[112]]);  // Все файлы
+  ImportConfigDialog.Title    := Format(TLang[107], [TLang[1]]); // Импорт файла настроек %0:s
 
   InterfaceTab.Caption := DropAccel(TLang[81]);  // Интерфейс
 

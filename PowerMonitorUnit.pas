@@ -76,7 +76,6 @@ type
     procedure TabControlChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormAfterMonitorDpiChanged(Sender: TObject; OldDPI,
       NewDPI: Integer);
     procedure FormBeforeMonitorDpiChanged(Sender: TObject; OldDPI,
@@ -192,11 +191,6 @@ procedure TPowerMonitorForm.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   Action := caFree;
-end;
-
-procedure TPowerMonitorForm.FormKeyPress(Sender: TObject; var Key: Char);
-begin
-  if Key = #27 then Close;
 end;
 
 procedure TPowerMonitorForm.FormAfterMonitorDpiChanged(Sender: TObject; OldDPI,

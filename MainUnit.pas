@@ -22,7 +22,6 @@ uses
   Scheduling.StateConfigurator, Scheduling.Configurator,
   Tray.Notify.Window, Tray.Notify.Controls,
   Versions, Versions.Info, Versions.Helpers,
-  Helpers.Reg,
   HotKey, HotKey.Handler,
   PowerMonitorUnit,
   Settings.Window;
@@ -140,8 +139,6 @@ type
     TrayMenuScheduler: TMenuItem;
     TrayMenuBrightnessUpdate: TMenuItem;
     TrayMenuSeparator6: TMenuItem;
-    TrayMenuExportConfigToFile: TMenuItem;
-    TrayMenuImportConfigFromFile: TMenuItem;
     TrayMenuMonitorsOff: TMenuItem;
     TrayMenuSeparator7: TMenuItem;
     TrayMenuLanguage: TMenuItem;
@@ -149,8 +146,6 @@ type
     TrayMenuSeparator8: TMenuItem;
     TrayMenuSettings: TMenuItem;
     CheckBoxBatterySaver: TCheckBox;
-    ExportConfigDialog: TSaveDialog;
-    ImportConfigDialog: TOpenDialog;
 
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -180,8 +175,6 @@ type
     procedure TrayMenuPowerActionLockClick(Sender: TObject);
     procedure TrayMenuPowerMonitorClick(Sender: TObject);
     procedure TrayMenuBrightnessUpdateClick(Sender: TObject);
-    procedure TrayMenuExportConfigToFileClick(Sender: TObject);
-    procedure TrayMenuImportConfigFromFileClick(Sender: TObject);
     procedure TrayMenuMonitorsOffClick(Sender: TObject);
     procedure TrayMenuLanguageItemClick(Sender: TObject);
     procedure TrayMenuSettingsClick(Sender: TObject);
@@ -200,9 +193,6 @@ type
     function DefaultConfig: TConfig;
     function LoadConfig: TConfig;
     procedure SaveConfig(Conf: TConfig);
-    procedure SaveCurrentConfig;
-    procedure ClearConfig;
-    procedure DeleteConfig;
   private
     LockerPowerScheme: ILocker;
     LockerAutorun: ILocker;
@@ -232,7 +222,7 @@ type
 
     FHotKeyHandler: THotKeyHendler;
     
-    Scheduler: TScheduler;
+    FScheduler: TScheduler;
 
     DisplayStateHandler: TDisplayStateHandler;
 
@@ -284,6 +274,11 @@ type
     function DefaultUiLabel: TUiLabel;
     function DefaultUiLabelRdp: TUiLabel;
 
+    procedure SaveCurrentConfig;
+    procedure ClearConfig;
+    procedure DeleteConfig;
+    procedure PrepareRestart;
+
     property UIInfo: TUIInfo read FUIInfo write SetUIInfo;
     property UiLabel: TUiLabel read GetUiLabel write SetUiLabel;
     property DisplayIndicator: TDisplayIndicator read GetDisplayIndicator write SetDisplayIndicator;
@@ -296,6 +291,8 @@ type
     property WMIBrightnessProvider: TWMIBrightnessProvider read FWMIBrightnessProvider;
 
     property HotKeyHandler: THotKeyHendler read FHotKeyHandler;
+
+    property Scheduler: TScheduler read FScheduler;
 
     property AutoUpdateScheduler: TAutoUpdateScheduler read FAutoUpdateScheduler;
   end;
@@ -475,7 +472,7 @@ begin
   ApiServer := TApiServer.Create(BrightnessManager);
 
   // Инициализация планировщика
-  Scheduler := TScheduler.Create(
+  FScheduler := TScheduler.Create(
     TStateConfigurator.Create(string.Join(PathDelim, [REG_Key, REG_Current])),
     TRuleConfigurator.Create(REG_Key));
 
@@ -488,7 +485,7 @@ begin
   TrayIcon.Visible := True;
 
   // Запуск планировщика
-  Scheduler.Enabled := Conf.SchedulerEnabled;
+  FScheduler.Enabled := Conf.SchedulerEnabled;
 
   case FAutoUpdateScheduler.StartupUpdateStatus of
     susComplete: TrayNotification.Notify(Format(TLang[45], [TVersionInfo.FileVersion.ToString]));
@@ -501,7 +498,7 @@ begin
   if WindowCreated and not LockerSaveConfig.IsLocked then
     SaveCurrentConfig;
 
-  Scheduler.Free;
+  FScheduler.Free;
 
   FAutoUpdateScheduler.Free;
 
@@ -674,73 +671,6 @@ begin
   TSettingsWindow.Open(GetKeyState(VK_SHIFT) < 0);
 end;
 
-procedure TBatteryModeForm.TrayMenuExportConfigToFileClick(Sender: TObject);
-begin
-  TrayMenuExportConfigToFile.Enabled := False;
-  TrayMenuImportConfigFromFile.Enabled := False;
-  try
-    if not ExportConfigDialog.Execute then
-      Exit;
-
-    SaveCurrentConfig;
-    ClearConfig;
-    TReg.Export(HKEY_CURRENT_USER, REG_Key, ExportConfigDialog.FileName);
-    Scheduler.SaveState;
-  finally
-    TrayMenuExportConfigToFile.Enabled := True;
-    TrayMenuImportConfigFromFile.Enabled := True;
-  end;
-end;
-
-procedure TBatteryModeForm.TrayMenuImportConfigFromFileClick(Sender: TObject);
-var
-  StartUpInfo : TStartUpInfo;
-  ProcessInfo : TProcessInformation;
-begin
-  TrayMenuExportConfigToFile.Enabled := False;
-  TrayMenuImportConfigFromFile.Enabled := False;
-  try
-    if not ImportConfigDialog.Execute then
-      Exit;
-
-    DeleteConfig;
-    if not TReg.Import(ImportConfigDialog.FileName) then
-    begin
-      SaveCurrentConfig;
-      Exit;
-    end;
-
-    Scheduler.SaveState;
-
-    TMutexLocker.Unlock;
-    TrayIcon.Visible := False;
-
-    ZeroMemory(@StartUpInfo, SizeOf(StartUpInfo));
-    StartUpInfo.cb := SizeOf(StartUpInfo);
-
-    if not CreateProcess(LPCTSTR(Application.ExeName), nil, nil, nil, True,
-      GetPriorityClass(GetCurrentProcess), nil, nil, StartUpInfo, ProcessInfo) then
-    begin
-      TMutexLocker.Lock;
-      TrayIcon.Visible := True;
-      Exit;
-    end;
-
-    LockerSaveConfig.Lock;
-    try
-      Application.Terminate;
-    finally
-      CloseHandle(ProcessInfo.hProcess);
-      CloseHandle(ProcessInfo.hThread);
-
-      ExitProcess(0);
-    end;
-  finally
-    TrayMenuExportConfigToFile.Enabled := True;
-    TrayMenuImportConfigFromFile.Enabled := True;
-  end;
-end;
-
 procedure TBatteryModeForm.TrayMenuAutoUpdateEnableClick(Sender: TObject);
 begin
   AutoUpdateScheduler.Enable := (Sender as TMenuItem).Checked;
@@ -753,7 +683,7 @@ end;
 
 procedure TBatteryModeForm.TrayMenuSchedulerClick(Sender: TObject);
 begin
-  TSchedulingWindow.Configure(Scheduler);
+  TSchedulingWindow.Configure(FScheduler);
 end;
 
 procedure TBatteryModeForm.TrayMenuWebsiteClick(Sender: TObject);
@@ -794,15 +724,8 @@ end;
 
 procedure TBatteryModeForm.TrayIconPopupMenu(Sender: TObject;
   Shift: TShiftState);
-var
-  SupportedFeatures: TPowerSchemeFeatures;
 begin
-  SupportedFeatures := TBatteryMode.PowerSchemes.SupportedSchemeFeatures;
-
   TrayMenuBrightnessUpdate.Visible      := ssShift in Shift;
-
-  TrayMenuExportConfigToFile.Visible    := ssShift in Shift;
-  TrayMenuImportConfigFromFile.Visible  := ssShift in Shift;
 
   TrayMenuSeparator6.Visible            := ssShift in Shift;
 
@@ -866,13 +789,13 @@ begin
     LockerBatterySaver.Unlock;
   end;
 
-  if Assigned(Scheduler) then
+  if Assigned(FScheduler) then
   begin
-    Scheduler.ChangePercentage(State.Percentage);
-    Scheduler.ChangePowerScheme(State.PowerScheme);
-    Scheduler.ChangePowerCondition(State.PowerCondition);
-    Scheduler.ChangeBatterySaver(State.BatterySaver);
-    Scheduler.ChangeLidSwitchState(State.LidSwitchOpen);
+    FScheduler.ChangePercentage(State.Percentage);
+    FScheduler.ChangePowerScheme(State.PowerScheme);
+    FScheduler.ChangePowerCondition(State.PowerCondition);
+    FScheduler.ChangeBatterySaver(State.BatterySaver);
+    FScheduler.ChangeLidSwitchState(State.LidSwitchOpen);
   end;
 end;
 
@@ -1023,8 +946,8 @@ begin
   if (DisplayState = dsOn) and Assigned(BrightnessManager) then
     BrightnessManager.Update(BrightnessManager.RescanDelayMillisecond);
 
-  if Assigned(Scheduler) then
-    Scheduler.ChangeDisplayState(DisplayState);
+  if Assigned(FScheduler) then
+    FScheduler.ChangeDisplayState(DisplayState);
 end;
 
 procedure TBatteryModeForm.AutorunManagerAutorun(Sender: TObject; Enable: Boolean);
@@ -1125,22 +1048,6 @@ begin
   TrayMenuLanguageSystem.Caption      := GetInternationalization(151);
 
   TrayMenuScheduler.Caption         := TLang[80]; // Планировщик
-
-  TrayMenuExportConfigToFile.Caption    := TLang[100]; // Экспортировать настройки в файл
-  TrayMenuImportConfigFromFile.Caption  := TLang[101]; // Импортировать настройки из файла
-
-  ExportConfigDialog.Filter := Format('%0:s|*.reg|%1:s|*.txt|%2:s|*.*',
-    [TLang[110],    // Файлы реестра (*.reg)
-     TLang[111],    // Текстовые файлы (*.txt)
-     TLang[112]]);  // Все файлы
-  ExportConfigDialog.FileName := Format(TLang[105], [TLang[1]]); // Настройки %0:s
-  ExportConfigDialog.Title    := Format(TLang[106], [TLang[1]]); // Экспорт файла настроек %0:s
-
-  ImportConfigDialog.Filter := Format('%0:s|*.reg|%1:s|*.txt|%2:s|*.*',
-    [TLang[110],    // Файлы реестра (*.reg)
-     TLang[111],    // Текстовые файлы (*.txt)
-     TLang[112]]);  // Все файлы
-  ImportConfigDialog.Title    := Format(TLang[107], [TLang[1]]); // Импорт файла настроек %0:s
 
   TrayIcon.BalloonTitle := TLang[1]; // Battery Mode
   TrayNotification.Title            := TLang[1]; // Battery Mode
@@ -1257,7 +1164,7 @@ begin
   Loadlocalization;
 
   SaveCurrentConfig;
-  Scheduler.SaveState;
+  FScheduler.SaveState;
 
   TMutexLocker.Unlock;
   TrayIcon.Visible := False;
@@ -1522,13 +1429,18 @@ begin
   Conf.AutoUpdateLastCheck := AutoUpdateScheduler.LastCheck;
   Conf.AutoUpdateSkipVersion := AutoUpdateScheduler.SkipVersion;
   Conf.HotKeyNextScheme := HotKeyHandler.HotKey[HotKeyNextScheme].ToString;
-  Conf.SchedulerEnabled := Scheduler.Enabled;
+  Conf.SchedulerEnabled := FScheduler.Enabled;
   Conf.LinkType := FLinkType;
   Conf.LinkTypeRdp := FLinkTypeRdp;
   Conf.Language := Language;
   Conf.ID := AutoUpdateScheduler.ID;
 
   SaveConfig(Conf);
+end;
+
+procedure TBatteryModeForm.PrepareRestart;
+begin
+  LockerSaveConfig.Lock;
 end;
 {$ENDREGION}
 

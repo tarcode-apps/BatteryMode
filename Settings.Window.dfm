@@ -17,14 +17,13 @@ object SettingsWindow: TSettingsWindow
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  KeyPreview = True
+  Menu = MainMenu
   OldCreateOrder = False
   Position = poScreenCenter
   OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  OnKeyPress = FormKeyPress
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 15
@@ -367,10 +366,6 @@ object SettingsWindow: TSettingsWindow
     object SchemesTab: TTabSheet
       Caption = 'Schemes'
       ImageIndex = 3
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 386
       object SchemeFeaturesGroup: TGroupBox
         AlignWithMargins = True
         Left = 8
@@ -400,7 +395,7 @@ object SettingsWindow: TSettingsWindow
             AlignWithMargins = True
             Left = 7
             Top = 3
-            Width = 108
+            Width = 536
             Height = 15
             Margins.Left = 7
             Margins.Right = 7
@@ -408,6 +403,7 @@ object SettingsWindow: TSettingsWindow
             Align = alTop
             Caption = 'MissingSchemeHelp'
             WordWrap = True
+            ExplicitWidth = 108
           end
           object SchemeFeatureMissingSchemeCheckPanel: TPanel
             AlignWithMargins = True
@@ -453,7 +449,7 @@ object SettingsWindow: TSettingsWindow
             AlignWithMargins = True
             Left = 7
             Top = 3
-            Width = 65
+            Width = 536
             Height = 15
             Margins.Left = 7
             Margins.Right = 7
@@ -461,6 +457,7 @@ object SettingsWindow: TSettingsWindow
             Align = alTop
             Caption = 'OverlayHelp'
             WordWrap = True
+            ExplicitWidth = 65
           end
           object SchemeFeatureOverlayCheckPanel: TPanel
             AlignWithMargins = True
@@ -504,7 +501,7 @@ object SettingsWindow: TSettingsWindow
             AlignWithMargins = True
             Left = 7
             Top = 3
-            Width = 106
+            Width = 536
             Height = 15
             Margins.Left = 7
             Margins.Right = 7
@@ -512,6 +509,7 @@ object SettingsWindow: TSettingsWindow
             Align = alTop
             Caption = 'HiddenSchemeHelp'
             WordWrap = True
+            ExplicitWidth = 106
           end
           object SchemeFeatureHiddenSchemeCheckPanel: TPanel
             AlignWithMargins = True
@@ -572,13 +570,14 @@ object SettingsWindow: TSettingsWindow
             AlignWithMargins = True
             Left = 0
             Top = 3
-            Width = 134
+            Width = 529
             Height = 15
             Margins.Left = 0
             Margins.Right = 7
             Align = alTop
             Caption = 'SchemeHotKeyHelpLabel'
             WordWrap = True
+            ExplicitWidth = 134
           end
           object SchemeHotKeyActionPanel: TPanel
             AlignWithMargins = True
@@ -598,12 +597,13 @@ object SettingsWindow: TSettingsWindow
               Left = 0
               Top = 5
               Width = 39
-              Height = 15
+              Height = 17
               Margins.Left = 0
               Margins.Top = 5
               Align = alLeft
               Caption = 'HotKey'
               Layout = tlCenter
+              ExplicitHeight = 15
             end
             object SchemeHotKeyButton: TButton
               AlignWithMargins = True
@@ -880,10 +880,6 @@ object SettingsWindow: TSettingsWindow
     object AutoUpdateTab: TTabSheet
       Caption = 'AutoUpdate'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 386
       object AppCurrentVersionLabel: TLabel
         Left = 8
         Top = 71
@@ -919,16 +915,12 @@ object SettingsWindow: TSettingsWindow
     object AboutTab: TTabSheet
       Caption = 'About'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 386
       object AboutIconPanel: TPanel
         AlignWithMargins = True
         Left = 3
         Top = 3
         Width = 62
-        Height = 1455
+        Height = 455
         Align = alLeft
         AutoSize = True
         BevelOuter = bvNone
@@ -939,12 +931,11 @@ object SettingsWindow: TSettingsWindow
         Padding.Bottom = 20
         ShowCaption = False
         TabOrder = 0
-        ExplicitHeight = 380
         object AppImage: TImage
           Left = 15
           Top = 12
           Width = 32
-          Height = 1423
+          Height = 423
           Align = alLeft
           AutoSize = True
           ExplicitLeft = 0
@@ -956,7 +947,7 @@ object SettingsWindow: TSettingsWindow
         Left = 68
         Top = 0
         Width = 504
-        Height = 1461
+        Height = 461
         Align = alClient
         BevelOuter = bvNone
         Caption = 'AppImagePanel'
@@ -964,11 +955,10 @@ object SettingsWindow: TSettingsWindow
         Padding.Right = 16
         ShowCaption = False
         TabOrder = 1
-        ExplicitHeight = 386
         object AppNameLabel: TLabel
           Left = 0
           Top = 16
-          Width = 68
+          Width = 488
           Height = 20
           Align = alTop
           Caption = 'AppName'
@@ -978,42 +968,46 @@ object SettingsWindow: TSettingsWindow
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
+          ExplicitWidth = 68
         end
         object AppVersionLabel: TLabel
           AlignWithMargins = True
           Left = 0
           Top = 42
-          Width = 60
+          Width = 488
           Height = 15
           Margins.Left = 0
           Margins.Top = 6
           Margins.Right = 0
           Align = alTop
           Caption = 'AppVersion'
+          ExplicitWidth = 60
         end
         object AppAuthorLabel: TLabel
           AlignWithMargins = True
           Left = 0
           Top = 64
-          Width = 59
+          Width = 488
           Height = 15
           Margins.Left = 0
           Margins.Top = 4
           Margins.Right = 0
           Align = alTop
           Caption = 'AppAuthor'
+          ExplicitWidth = 59
         end
         object AppCopyrightLabel: TLabel
           AlignWithMargins = True
           Left = 0
           Top = 86
-          Width = 75
+          Width = 488
           Height = 15
           Margins.Left = 0
           Margins.Top = 4
           Margins.Right = 0
           Align = alTop
           Caption = 'AppCopyright'
+          ExplicitWidth = 75
         end
         object LinksGrid: TGridPanel
           AlignWithMargins = True
@@ -1237,5 +1231,39 @@ object SettingsWindow: TSettingsWindow
         end
       end
     end
+  end
+  object MainMenu: TMainMenu
+    Left = 24
+    Top = 432
+    object MainMenuFile: TMenuItem
+      Caption = 'File'
+      object MainMenuExportConfigToFile: TMenuItem
+        Caption = 'ExportConfigToFile'
+        OnClick = MainMenuExportConfigToFileClick
+      end
+      object MainMenuImportConfigFromFile: TMenuItem
+        Caption = 'ImportConfigToFile'
+        OnClick = MainMenuImportConfigFromFileClick
+      end
+      object MainMenuClose: TMenuItem
+        Caption = 'Close'
+        ShortCut = 27
+        OnClick = MainMenuCloseClick
+      end
+    end
+  end
+  object ExportConfigDialog: TSaveDialog
+    DefaultExt = 'reg'
+    Filter = 'REG|*.reg|Text|*.txt|All files|*.*'
+    Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
+    Left = 104
+    Top = 433
+  end
+  object ImportConfigDialog: TOpenDialog
+    DefaultExt = 'reg'
+    Filter = 'REG|*.reg|Text|*.txt|All files|*.*'
+    Options = [ofEnableSizing]
+    Left = 200
+    Top = 433
   end
 end

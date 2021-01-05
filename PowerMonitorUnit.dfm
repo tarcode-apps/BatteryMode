@@ -17,7 +17,6 @@ object PowerMonitorForm: TPowerMonitorForm
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  KeyPreview = True
   Menu = MainMenu
   OldCreateOrder = False
   Position = poScreenCenter
@@ -27,7 +26,6 @@ object PowerMonitorForm: TPowerMonitorForm
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  OnKeyPress = FormKeyPress
   PixelsPerInch = 96
   TextHeight = 15
   object TabControl: TTabControl
@@ -113,7 +111,7 @@ object PowerMonitorForm: TPowerMonitorForm
         Top = 214
         Width = 200
         Height = 23
-        EditLabel.Width = 25
+        EditLabel.Width = 24
         EditLabel.Height = 15
         EditLabel.Caption = 'Type'
         ReadOnly = True
@@ -230,7 +228,7 @@ object PowerMonitorForm: TPowerMonitorForm
         Width = 200
         Height = 23
         Anchors = [akTop, akRight]
-        EditLabel.Width = 67
+        EditLabel.Width = 66
         EditLabel.Height = 15
         EditLabel.Caption = 'Temperature'
         ReadOnly = True

@@ -325,14 +325,6 @@ object BatteryModeForm: TBatteryModeForm
       Caption = 'BrightnessUpdate'
       OnClick = TrayMenuBrightnessUpdateClick
     end
-    object TrayMenuExportConfigToFile: TMenuItem
-      Caption = 'ExportConfigToFile'
-      OnClick = TrayMenuExportConfigToFileClick
-    end
-    object TrayMenuImportConfigFromFile: TMenuItem
-      Caption = 'ImportConfigFromFile'
-      OnClick = TrayMenuImportConfigFromFileClick
-    end
     object TrayMenuSeparator6: TMenuItem
       Caption = '-'
     end
@@ -340,19 +332,5 @@ object BatteryModeForm: TBatteryModeForm
       Caption = 'Close'
       OnClick = TrayMenuCloseClick
     end
-  end
-  object ExportConfigDialog: TSaveDialog
-    DefaultExt = 'reg'
-    Filter = 'REG|*.reg|Text|*.txt|All files|*.*'
-    Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
-    Left = 40
-    Top = 121
-  end
-  object ImportConfigDialog: TOpenDialog
-    DefaultExt = 'reg'
-    Filter = 'REG|*.reg|Text|*.txt|All files|*.*'
-    Options = [ofEnableSizing]
-    Left = 184
-    Top = 121
   end
 end
