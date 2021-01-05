@@ -446,8 +446,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <DCCReference Include="MemoryDirector.pas"/>
         <DCCReference Include="Mouse.Hook.pas"/>
         <DCCReference Include="Mouse.WheelRouting.pas"/>
-        <DCCReference Include="PowerMonitorUnit.pas">
-            <Form>PowerMonitorForm</Form>
+        <DCCReference Include="PowerMonitor.Window.pas">
+            <Form>PowerMonitorWindow</Form>
         </DCCReference>
         <DCCReference Include="ScreenLiteUnit.pas"/>
         <DCCReference Include="Settings.Window.pas">

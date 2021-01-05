@@ -1,4 +1,4 @@
-﻿unit PowerMonitorUnit;
+﻿unit PowerMonitor.Window;
 
 interface
 
@@ -41,7 +41,7 @@ type
 
   TPowerInfo = TDictionary<TPowerInfoKey, string>;
 
-  TPowerMonitorForm = class(TCompatibleForm)
+  TPowerMonitorWindow = class(TCompatibleForm)
     TabControl: TTabControl;
     GroupBoxBattery: TGroupBox;
     LabelName: TLabeledEdit;
@@ -121,11 +121,11 @@ implementation
 procedure ShowPowerMonitor;
 var
   Wnd: HWND;
-  PowerMonitor: TPowerMonitorForm;
+  PowerMonitor: TPowerMonitorWindow;
 begin
-  Wnd := FindWindow('TPowerMonitorForm', nil);
+  Wnd := FindWindow('TPowerMonitorWindow', nil);
   if Wnd = 0 then begin
-    Application.CreateForm(TPowerMonitorForm, PowerMonitor);
+    Application.CreateForm(TPowerMonitorWindow, PowerMonitor);
     PowerMonitor.Show;
   end else begin
     ShowWindow(Wnd, SW_RESTORE);
@@ -157,7 +157,7 @@ end;
 
 { TPowerMonitorForm }
 
-procedure TPowerMonitorForm.FormCreate(Sender: TObject);
+procedure TPowerMonitorWindow.FormCreate(Sender: TObject);
 begin
   // Инициализация блокировщиков событий
   LockerInfo := TLocker.Create;
@@ -175,39 +175,39 @@ begin
   if IsWindows10OrGreater then Color := clWindow;
 end;
 
-procedure TPowerMonitorForm.FormDestroy(Sender: TObject);
+procedure TPowerMonitorWindow.FormDestroy(Sender: TObject);
 begin
   TimerAutoupdate.Enabled := False;
 end;
 
-procedure TPowerMonitorForm.CreateParams(var Params: TCreateParams);
+procedure TPowerMonitorWindow.CreateParams(var Params: TCreateParams);
 begin
   inherited;
   Params.WndParent := 0;
   Params.ExStyle := Params.ExStyle or WS_EX_APPWINDOW;
 end;
 
-procedure TPowerMonitorForm.FormClose(Sender: TObject;
+procedure TPowerMonitorWindow.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   Action := caFree;
 end;
 
-procedure TPowerMonitorForm.FormAfterMonitorDpiChanged(Sender: TObject; OldDPI,
+procedure TPowerMonitorWindow.FormAfterMonitorDpiChanged(Sender: TObject; OldDPI,
   NewDPI: Integer);
 begin
   TabControl.AutoSize := True;
   AutoSize := True;
 end;
 
-procedure TPowerMonitorForm.FormBeforeMonitorDpiChanged(Sender: TObject; OldDPI,
+procedure TPowerMonitorWindow.FormBeforeMonitorDpiChanged(Sender: TObject; OldDPI,
   NewDPI: Integer);
 begin
   AutoSize := False;
   TabControl.AutoSize := False;
 end;
 
-procedure TPowerMonitorForm.SetLogFile(const Value: string);
+procedure TPowerMonitorWindow.SetLogFile(const Value: string);
 var
   CaptionProp: string;
 begin
@@ -220,7 +220,7 @@ begin
   Caption := Format(CaptionProp, [TLang[704], ExtractFileName(FLogFile)]); // Система электропитания
 end;
 
-function TPowerMonitorForm.GetBatteryInfo(Battery: TBattery): TPowerInfo;
+function TPowerMonitorWindow.GetBatteryInfo(Battery: TBattery): TPowerInfo;
 const
   TypeTechChemProp = '%0:s %1:s';
   TypeTechProp = '%0:s';
@@ -357,7 +357,7 @@ begin
   end;
 end;
 
-function TPowerMonitorForm.GetSystemInfo(Status: TSystemPowerStatus): TPowerInfo;
+function TPowerMonitorWindow.GetSystemInfo(Status: TSystemPowerStatus): TPowerInfo;
 var
   RawMsg: string;
 
@@ -466,7 +466,7 @@ begin
   end;
 end;
 
-procedure TPowerMonitorForm.LoadBatteryInfo(Info: TPowerInfo);
+procedure TPowerMonitorWindow.LoadBatteryInfo(Info: TPowerInfo);
 begin
   LabelName.Text                := Info[ikName];
   LabelManufacture.Text         := Info[ikManufacture];
@@ -487,7 +487,7 @@ begin
   LabelTemperature.Text         := Info[ikTemperature];
 end;
 
-procedure TPowerMonitorForm.Loadlocalization;
+procedure TPowerMonitorWindow.Loadlocalization;
 begin
   MainMenuFile.Caption                        := TLang[755]; // Файл
   MainMenuClose.Caption                       := TLang[756]; // Закрыть
@@ -525,7 +525,7 @@ begin
   LabelLifetime.EditLabel.Caption             := TLang[773]; // Оставшееся время работы от батарей
 end;
 
-procedure TPowerMonitorForm.LoadSystemInfo(Info: TPowerInfo);
+procedure TPowerMonitorWindow.LoadSystemInfo(Info: TPowerInfo);
 begin
   LabelPowerSource.Text   := Info[ikPowerSource];
   LabelBatteryStatus.Text := Info[ikBatteryStatus];
@@ -533,7 +533,7 @@ begin
   LabelFullLifetime.Text  := Info[ikFullLifetime];
 end;
 
-procedure TPowerMonitorForm.MainMenuAlwaysOnTopClick(Sender: TObject);
+procedure TPowerMonitorWindow.MainMenuAlwaysOnTopClick(Sender: TObject);
 begin
   if (Sender as TMenuItem).Checked then
     FormStyle := fsStayOnTop
@@ -541,12 +541,12 @@ begin
     FormStyle := fsNormal;
 end;
 
-procedure TPowerMonitorForm.MainMenuCloseClick(Sender: TObject);
+procedure TPowerMonitorWindow.MainMenuCloseClick(Sender: TObject);
 begin
   Close;
 end;
 
-function TPowerMonitorForm.SaveLogAs: string;
+function TPowerMonitorWindow.SaveLogAs: string;
 const
   FilterProp = '%0:s (%1:s)|%1:s';
 var
@@ -580,12 +580,12 @@ begin
   end;
 end;
 
-procedure TPowerMonitorForm.MainMenuSaveAsClick(Sender: TObject);
+procedure TPowerMonitorWindow.MainMenuSaveAsClick(Sender: TObject);
 begin
   LogFile := SaveLogAs;
 end;
 
-procedure TPowerMonitorForm.MainMenuSaveClick(Sender: TObject);
+procedure TPowerMonitorWindow.MainMenuSaveClick(Sender: TObject);
 begin
   if LogFile <> '' then
     SaveLog(LogFile, FBatterys, FSystemPowerStatus)
@@ -593,13 +593,13 @@ begin
     LogFile := SaveLogAs;
 end;
 
-procedure TPowerMonitorForm.TabControlChange(Sender: TObject);
+procedure TPowerMonitorWindow.TabControlChange(Sender: TObject);
 begin
   if LockerInfo.IsLocked then Exit;
   UpdateInfo(FBatterys, FSystemPowerStatus);
 end;
 
-procedure TPowerMonitorForm.TimerAutoupdateTimer(Sender: TObject);
+procedure TPowerMonitorWindow.TimerAutoupdateTimer(Sender: TObject);
 var
   PowerSystem: TPowerSystem;
 begin
@@ -610,7 +610,7 @@ begin
   PowerSystem.GetInformationAsync;
 end;
 
-procedure TPowerMonitorForm.PowerSystemInformation(Sender: TObject;
+procedure TPowerMonitorWindow.PowerSystemInformation(Sender: TObject;
   Batterys: TBatteryList; SystemPowerStatus: TSystemPowerStatus);
 begin
   FBatterys.Free;
@@ -621,7 +621,7 @@ begin
   TimerAutoupdate.Enabled := True;
 end;
 
-function TPowerMonitorForm.SaveLog(FileName: string; Batterys: TBatteryList;
+function TPowerMonitorWindow.SaveLog(FileName: string; Batterys: TBatteryList;
   Status: TSystemPowerStatus): Boolean;
 const
   TabIndexedProp = '%0:s %1:u';
@@ -698,7 +698,7 @@ begin
   end;
 end;
 
-procedure TPowerMonitorForm.UpdateInfo(Batterys: TBatteryList; Status: TSystemPowerStatus);
+procedure TPowerMonitorWindow.UpdateInfo(Batterys: TBatteryList; Status: TSystemPowerStatus);
 const
   TabIndexedProp = '%0:s %1:u';
   TabOneProp = '%0:s';

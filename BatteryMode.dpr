@@ -154,7 +154,7 @@ uses
   MemoryDirector in 'MemoryDirector.pas',
   Mouse.Hook in 'Mouse.Hook.pas',
   Mouse.WheelRouting in 'Mouse.WheelRouting.pas',
-  PowerMonitorUnit in 'PowerMonitorUnit.pas' {PowerMonitorForm},
+  PowerMonitor.Window in 'PowerMonitor.Window.pas' {PowerMonitorWindow},
   ScreenLiteUnit in 'ScreenLiteUnit.pas',
   Settings.Window in 'Settings.Window.pas' {BatteryModeSettingsWindow},
   SplashUnit in 'SplashUnit.pas',

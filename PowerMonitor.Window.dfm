@@ -1,11 +1,11 @@
-object PowerMonitorForm: TPowerMonitorForm
+object PowerMonitorWindow: TPowerMonitorWindow
   AlignWithMargins = True
   Left = 0
   Top = 0
   AutoSize = True
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  Caption = 'PowerMonitorForm'
+  Caption = 'PowerMonitor'
   ClientHeight = 563
   ClientWidth = 456
   Color = clBtnFace

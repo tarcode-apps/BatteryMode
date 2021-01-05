@@ -23,7 +23,7 @@ uses
   Tray.Notify.Window, Tray.Notify.Controls,
   Versions, Versions.Info, Versions.Helpers,
   HotKey, HotKey.Handler,
-  PowerMonitorUnit,
+  PowerMonitor.Window,
   Settings.Window;
 
 const
