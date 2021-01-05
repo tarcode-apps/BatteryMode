@@ -120,8 +120,11 @@ var
   FontSize: Single;
   Rect: TGPRectF;
   Format: IGPStringFormat;
-  Brush: IGPBrush;
+  Color: TGPColor;
+  IsOverlayAsScheme: Boolean;
 begin
+  IsOverlayAsScheme := not (psfMissingScheme in TBatteryMode.PowerSchemes.SchemeFeatures);
+
   if IsWindows10Update1607OrGreater then
     Icon := TGPBitmap.Create(GetSystemMetricsForDpi(SM_CXSMICON, Dpi), GetSystemMetricsForDpi(SM_CYSMICON, Dpi))
   else
@@ -140,16 +143,28 @@ begin
   Format.LineAlignment := TGPStringAlignment.StringAlignmentCenter;
   Format.Trimming := TGPStringTrimming.StringTrimmingNone;
 
-  case State.PowerScheme.PowerSchemeType of
-    pstMaxPowerSavings: Brush := TGPSolidBrush.Create(FMaxPowerSavingsColor);
-    pstTypicalPowerSavings: Brush := TGPSolidBrush.Create(FTypicalPowerSavingsColor);
-    pstMinPowerSavings: Brush := TGPSolidBrush.Create(FMinPowerSavingsColor);
-    else Brush := TGPSolidBrush.Create(FCustomPowerSavingsColor);
+  if IsOverlayAsScheme then
+  begin
+    case State.PowerScheme.OverlaySchemeType of
+      ostOverlayMin: Color := FMaxPowerSavingsColor;
+      ostOverlayMax: Color := FMinPowerSavingsColor;
+      ostOverlayHigh: Color := FCustomPowerSavingsColor;
+      else Color := FTypicalPowerSavingsColor;
+    end;
+  end
+  else
+  begin
+    case State.PowerScheme.PowerSchemeType of
+      pstMaxPowerSavings: Color := FMaxPowerSavingsColor;
+      pstTypicalPowerSavings: Color := FTypicalPowerSavingsColor;
+      pstMinPowerSavings: Color := FMinPowerSavingsColor;
+      else Color := FCustomPowerSavingsColor;
+    end;
   end;
 
   Graphic := TGPGraphics.Create(Icon);
   Graphic.TextRenderingHint := TextRenderingHintSingleBitPerPixelGridFit;
-  Graphic.DrawString(State.Percentage.ToString, Font, Rect, Format, Brush);
+  Graphic.DrawString(State.Percentage.ToString, Font, Rect, Format, TGPSolidBrush.Create(Color));
 
   Result := Icon.GetHIcon;
 end;
