@@ -8,7 +8,7 @@ uses
   System.Generics.Collections,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls,
   Vcl.ExtCtrls,
-  Api.Message, Api.Pipe.Server,
+  Api.Pipe.Server,
   Autorun.Manager,
   AutoUpdate, AutoUpdate.Scheduler,
   Battery.Mode, Battery.Controls, Battery.Splash, Battery.Icons,
@@ -268,7 +268,6 @@ type
     procedure AutoUpdateSchedulerSkip(Sender: TObject; Version: TVersion);
     procedure AutoUpdateSchedulerAvalible(Sender: TObject; Version: TVersion);
 
-    procedure WMNextScheme(var Msg: TMessage); message WM_NEXT_SCHEME;
     procedure WMWtsSessionChange(var Msg: TMessage); message WM_WTSSESSION_CHANGE;
   public
     function DefaultUiLabel: TUiLabel;
@@ -307,23 +306,11 @@ implementation
 procedure TBatteryModeForm.FormCreate(Sender: TObject);
 var
   Conf: TConfig;
-  Lib: HMODULE;
-  ChangeWindowMessageFilterEx: TChangeWindowMessageFilterEx;
   Monitor: IBrightnessMonitor;
   SchemeFeatures: TPowerSchemeFeatures;
 begin
   FIsRemoteSession := GetSystemMetrics(SM_REMOTESESSION) <> 0;
   try WTSRegisterSessionNotification(Handle, NOTIFY_FOR_THIS_SESSION); except end;
-  
-  // Разрешаем событие WM_NEXT_SCHEME
-  Lib := LoadLibrary(user32);
-  if Lib <> 0 then
-  begin
-    ChangeWindowMessageFilterEx := GetProcAddress(Lib, 'ChangeWindowMessageFilterEx');
-    if Assigned(ChangeWindowMessageFilterEx) then
-      ChangeWindowMessageFilterEx(Handle, WM_NEXT_SCHEME, MSGFLT_ALLOW, nil);
-    FreeLibrary(Lib);
-  end;
 
   // Инициализация блокировщиков событий
   LockerPowerScheme   := TLocker.Create;
@@ -530,17 +517,6 @@ end;
 procedure TBatteryModeForm.FormShow(Sender: TObject);
 begin
   PanelConfig.Realign;
-end;
-
-procedure TBatteryModeForm.WMNextScheme(var Msg: TMessage);
-begin
-  case TNextSchemeType(Msg.WParam) of
-    nstMaxPowerSavings: TBatteryMode.MaxPowerSavings;
-    nstTypicalPowerSavings: TBatteryMode.TypicalPowerSavings;
-    nstMinPowerSavings: TBatteryMode.MinPowerSavings;
-    else TBatteryMode.NextScheme;
-  end;
-  Msg.Result := NextSchemeConfirm;
 end;
 
 procedure TBatteryModeForm.WMWtsSessionChange(var Msg: TMessage);

@@ -353,7 +353,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <RcCompile Include="Localization\Japanese\JapaneseScheduling.rc">
             <Form>JapaneseScheduling.res</Form>
         </RcCompile>
-        <DCCReference Include="Api\Api.Message.pas"/>
         <DCCReference Include="Api\Api.Pipe.Client.pas"/>
         <DCCReference Include="Api\Api.Pipe.Command.pas"/>
         <DCCReference Include="Api\Api.Pipe.Server.pas"/>

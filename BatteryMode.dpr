@@ -74,7 +74,6 @@ uses
   Winapi.Messages,
   System.Win.Registry,
   Vcl.Forms,
-  Api.Message in 'Api\Api.Message.pas',
   Api.Pipe.Client in 'Api\Api.Pipe.Client.pas',
   Api.Pipe.Command in 'Api\Api.Pipe.Command.pas',
   Api.Pipe.Server in 'Api\Api.Pipe.Server.pas',
