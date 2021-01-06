@@ -992,6 +992,7 @@ begin
   FBrightnessRefreshOnPowerUpCheckBox.Caption := TLang[58];
   FBrightnessRefreshOnPowerUpCheckBox.AutoSize := True;
   FBrightnessRefreshOnPowerUpCheckBox.WordWrap := True;
+  FBrightnessRefreshOnPowerUpCheckBox.Visible := Monitor.MonitorType = bmtExternal;
   FBrightnessRefreshOnPowerUpCheckBox.Enabled := Monitor.Enable;
   FBrightnessRefreshOnPowerUpCheckBox.Checked := Monitor.RequireBrightnessRefreshOnPowerUp;
   FBrightnessRefreshOnPowerUpCheckBox.OnClick := BrightnessRefreshOnPowerUpCheckBoxClick;
@@ -1002,6 +1003,7 @@ end;
 destructor TBrightnessMonitorSettingsPanel.Destroy;
 begin
   FMonitor.OnChangeEnable2 := nil;
+  FBrightnessRefreshOnPowerUpCheckBox.Free;
   FTrayScrollCheckBox.Free;
   FConfigPanel.Free;
   FEnableCheckBox.Free;

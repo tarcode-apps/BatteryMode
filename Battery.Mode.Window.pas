@@ -432,6 +432,13 @@ begin
   begin
     if (Monitor.MonitorType = bmtInternal) and (Monitor.Enable or TBatteryMode.BrightnessForAllScheme) then
       TBatteryMode.Brightness := Monitor.NormalizedBrightness[Monitor.Level];
+
+    if Monitor.Enable and Monitor.RequireBrightnessRefreshOnPowerUp then
+    try
+      Monitor.Level := Monitor.Level;
+    except
+      // ignore
+    end;
   end;
 
   // Инициализация BrightnessPanel
@@ -835,7 +842,7 @@ begin
     for Monitor in BrightnessManager do
     begin
       if Monitor.RequireBrightnessRefreshOnPowerUp then
-        FBrightnessLastLevels.AddOrSetValue(Monitor.UniqueString, Monitor.Level);
+        FBrightnessLastLevels[Monitor.UniqueString] := Monitor.Level;
     end;
   except
     // ignore
@@ -850,7 +857,10 @@ begin
   try
     for Monitor in BrightnessManager do
     begin
-      if Monitor.RequireBrightnessRefreshOnPowerUp and FBrightnessLastLevels.TryGetValue(Monitor.UniqueString, Level) then
+      if not Monitor.Enable then Continue;
+      if not Monitor.RequireBrightnessRefreshOnPowerUp then Continue;
+
+      if FBrightnessLastLevels.TryGetValue(Monitor.UniqueString, Level) then
       begin
         Monitor.Level := Level;
         FBrightnessLastLevels.Remove(Monitor.UniqueString);

@@ -71,7 +71,7 @@ begin
   FMsgWindow := AllocateHWnd(MsgWindowProc);
 
   if GetTickCount < 1000*60 then
-    SetTimer(FMsgWindow, INVALID_HANDLE_VALUE, 8000, nil);
+    SetTimer(FMsgWindow, INVALID_HANDLE_VALUE, RescanDelayMillisecond, nil);
 end;
 
 destructor TBrightnessManager.Destroy;
@@ -167,7 +167,7 @@ begin
 
   for Monitor in Provider.Load do
   begin
-    FConfigurator.ConfigureMonitor(Monitor); 
+    FConfigurator.ConfigureMonitor(Monitor);
     Add(Monitor);
   end;
 end;
