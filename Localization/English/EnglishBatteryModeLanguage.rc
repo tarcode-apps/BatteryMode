@@ -149,7 +149,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 230, "Advanced"
 231, "Monitor detection delay"
 232, "You can increase monitor detection delay if you experience issues with disappearing brightness indicators"
-233, "second(s)"
+233, "seconds"
 
 10000, "Open debug log folder"
 }
