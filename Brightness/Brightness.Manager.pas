@@ -135,14 +135,10 @@ begin
   for Monitor in Provider.Monitors do
     Remove(Monitor);
 
-  try
-    for Monitor in Provider.Load do
-    begin
-      FConfigurator.ConfigureMonitor(Monitor);
-      Add(Monitor);
-    end;
-  except
-    // ignore
+  for Monitor in Provider.Load do
+  begin
+    FConfigurator.ConfigureMonitor(Monitor);
+    Add(Monitor);
   end;
 end;
 
