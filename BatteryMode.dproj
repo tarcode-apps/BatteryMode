@@ -384,7 +384,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <DCCReference Include="HotKey\HotKey.Handler.pas"/>
         <DCCReference Include="HotKey\HotKey.Window.Query.pas">
             <Form>HotKeyQueryWindow</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Libs\GdiPlus.HSB.Helpers.pas"/>
         <DCCReference Include="Libs\GdiPlus.pas"/>
