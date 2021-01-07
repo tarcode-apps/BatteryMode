@@ -841,7 +841,7 @@ begin
   for Monitor in BrightnessManager do
   begin
     if Monitor.RequireBrightnessRefreshOnPowerUp then
-      FBrightnessLastLevels[Monitor.UniqueString] := Monitor.Level;
+      FBrightnessLastLevels.AddOrSetValue(Monitor.UniqueString, Monitor.Level);
   end;
 end;
 
