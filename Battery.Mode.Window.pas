@@ -838,14 +838,10 @@ procedure TBatteryModeForm.BrightnessManagerBeforeUpdate(Sender: TObject);
 var
   Monitor: IBrightnessMonitor;
 begin
-  try
-    for Monitor in BrightnessManager do
-    begin
-      if Monitor.RequireBrightnessRefreshOnPowerUp then
-        FBrightnessLastLevels[Monitor.UniqueString] := Monitor.Level;
-    end;
-  except
-    // ignore
+  for Monitor in BrightnessManager do
+  begin
+    if Monitor.RequireBrightnessRefreshOnPowerUp then
+      FBrightnessLastLevels[Monitor.UniqueString] := Monitor.Level;
   end;
 end;
 
@@ -854,20 +850,16 @@ var
   Monitor: IBrightnessMonitor;
   Level: Integer;
 begin
-  try
-    for Monitor in BrightnessManager do
-    begin
-      if not Monitor.Enable then Continue;
-      if not Monitor.RequireBrightnessRefreshOnPowerUp then Continue;
+  for Monitor in BrightnessManager do
+  begin
+    if not Monitor.Enable then Continue;
+    if not Monitor.RequireBrightnessRefreshOnPowerUp then Continue;
 
-      if FBrightnessLastLevels.TryGetValue(Monitor.UniqueString, Level) then
-      begin
-        Monitor.Level := Level;
-        FBrightnessLastLevels.Remove(Monitor.UniqueString);
-      end;
+    if FBrightnessLastLevels.TryGetValue(Monitor.UniqueString, Level) then
+    begin
+      Monitor.Level := Level;
+      FBrightnessLastLevels.Remove(Monitor.UniqueString);
     end;
-  except
-    // ignore
   end;
 end;
 {$ENDREGION}
