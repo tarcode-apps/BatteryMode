@@ -269,6 +269,7 @@ begin
 
   TypicalPowerSavingsMonochromeCheckBox.AutoSize := True;
   TypicalPowerSavingsMonochromeCheckBox.Checked := TIconHelper.TypicalPowerSavingsMonochrome;
+  TypicalPowerSavingsMonochromeCheckBox.Enabled := IsWindowsVistaOrGreater;
   IconStyleExplicitMissingBatteryCheckBox.AutoSize := True;
   IconStyleExplicitMissingBatteryCheckBox.Checked := TIconHelper.ExplicitMissingBattery;
   IconStyleExplicitMissingBatteryCheckBox.Enabled := TBatteryMode.State.Mobile or TBatteryMode.State.BatteryPresent;
