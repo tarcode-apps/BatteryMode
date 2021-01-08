@@ -17,14 +17,11 @@ type
   TSinkIndicateEvent = procedure(Sender: TObject; objWbemObject: IWbemClassObject) of object;
 
   TWmiEventListener = class(TThread)
-  private
-    FLocator: IWbemLocator;
-    FServices: IWbemServices;
+  strict private
     FEventObject: IWbemClassObject;
     FOnIndicate: TSinkIndicateEvent;
   protected
     procedure Execute; override;
-    procedure TerminatedSet; override;
     procedure CallOnIndicate;
   public
     constructor Create; overload;
@@ -781,53 +778,51 @@ begin
 end;
 
 procedure TWmiEventListener.Execute;
+const
+  EnumTimeout: Longint = 1000 * 60 * 60; // 1 Hour
+  DelayOnError = 10 * 1000;
 var
   hr: HRESULT;
+  Locator: IWbemLocator;
+  Services: IWbemServices;
   ppEnum: IEnumWbemClassObject;
   WmiEvent: IWbemClassObject;
   Returned: ULONG;
 begin
   hr := CoInitializeEx(nil, COINIT_APARTMENTTHREADED);
   if Failed(hr) then Exit;
+
   try
-    hr := CoCreateInstance(CLSID_WbemLocator, nil, CLSCTX_INPROC_SERVER, IID_IWbemLocator, FLocator);
+    hr := CoCreateInstance(CLSID_WbemLocator, nil, CLSCTX_INPROC_SERVER, IID_IWbemLocator, Locator);
     if Failed(hr) then Exit;
 
-    hr := FLocator.ConnectServer(strNamespace, strUser, strPassword, '',
-      WBEM_FLAG_CONNECT_USE_MAX_WAIT, '', nil, FServices);
+    hr := Locator.ConnectServer(strNamespace, strUser, strPassword, '',
+      WBEM_FLAG_CONNECT_USE_MAX_WAIT, '', nil, Services);
     if Failed(hr) then Exit;
 
-    hr := FServices.ExecNotificationQuery('WQL', WQLBrightnessEvent, WBEM_FLAG_FORWARD_ONLY or WBEM_FLAG_RETURN_IMMEDIATELY, nil, ppEnum);
+    hr := Services.ExecNotificationQuery('WQL', WQLBrightnessEvent, WBEM_FLAG_FORWARD_ONLY or WBEM_FLAG_RETURN_IMMEDIATELY, nil, ppEnum);
     if not Succeeded(hr) then Exit;
 
     while not Terminated do
     begin
-      if ppEnum.Next(Longint(WBEM_INFINITE), 1, WmiEvent, Returned) = Winapi.Windows.ERROR_SUCCESS then
-      begin
-        FEventObject := WmiEvent;
-        if not Terminated then Synchronize(CallOnIndicate);
-        FEventObject := nil;
-        WmiEvent := nil;
-      end
-      else
-      begin
-        Sleep(5000);
+      case ppEnum.Next(EnumTimeout, 1, WmiEvent, Returned) of
+        WBEM_S_NO_ERROR:
+        begin
+          FEventObject := WmiEvent;
+          if not Terminated then Synchronize(CallOnIndicate);
+          FEventObject := nil;
+          WmiEvent := nil;
+        end;
+        WBEM_S_TIMEDOUT:
+          Continue;
+        else
+          Sleep(DelayOnError);
       end;
     end;
   finally
-    Terminate;
-  end;
-end;
-
-procedure TWmiEventListener.TerminatedSet;
-begin
-  if not Finished then
-  begin
-    FServices := nil;
-    FLocator  := nil;
-    if GetCurrentThread = Handle then
-      CoUninitialize;
-    TerminateThread(Handle, 0);
+    Services := nil;
+    Locator  := nil;
+    CoUninitialize;
   end;
 end;
 
