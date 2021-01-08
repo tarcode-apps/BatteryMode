@@ -3,9 +3,10 @@
 interface
 
 uses
-  Winapi.Windows, Winapi.ActiveX,
+  Winapi.Windows, Winapi.ActiveX, Winapi.UxTheme,
   System.SysUtils, System.Classes,
   Battery.Mode,
+  Core.Language,
   Power,
   Power.WinApi.PowrProf,
   Versions.Helpers,
@@ -648,22 +649,54 @@ var
     Saturation := Saturation + DS;
     Result := HSVToRGB(Hue, Saturation, Brightness);
   end;
+
+  function IsTextDark: Boolean;
+  var
+    HighContract: THighContrast;
+    HighContractEnabled: Boolean;
+    HighContractWhite: Boolean;
+    HighContractWhiteThemes: TAvailableLocalizations;
+    Theme: TAvailableLocalization;
+  begin
+    if FIconTheme = ithDark then
+      Exit(True);
+
+    HighContract.cbSize := SizeOf(HighContract);
+    SystemParametersInfo(SPI_GETHIGHCONTRAST, SizeOf(HighContract), @HighContract, 0);
+    HighContractEnabled := HighContract.dwFlags and HCF_HIGHCONTRASTON = HCF_HIGHCONTRASTON;
+    HighContractWhite := False;
+    HighContractWhiteThemes := TLang.GetAvailableLocalizations(152);
+    for Theme in HighContractWhiteThemes do
+    begin
+      if HighContract.lpszDefaultScheme = Theme.Value then
+      begin
+        HighContractWhite := True;
+        Break;
+      end;
+    end;
+
+    if HighContractEnabled then
+      Exit(HighContractWhite);
+
+    if not Assigned(IsThemeActive) then
+      Exit(False);
+
+    Exit(not IsThemeActive);
+  end;
 begin
-  case FIconTheme of
-    ithLight:
-    begin
-      FCustomPowerSavingsColor := OriginWhiteColor;
-      GreenColor  := ChangeSaturation(OriginGreenColor,  -0.5);
-      YellowColor := ChangeSaturation(OriginYellowColor, -0.5);
-      RedColor    := ChangeSaturation(OriginRedColor,    -0.5);
-    end;
-    else
-    begin
-      FCustomPowerSavingsColor := OriginBlackColor;
-      GreenColor  := ChangeBrightness(OriginGreenColor,  -0.3);
-      YellowColor := ChangeBrightness(OriginYellowColor, -0.5);
-      RedColor    := ChangeBrightness(OriginRedColor,    -0.3);
-    end;
+  if IsTextDark then
+  begin
+    FCustomPowerSavingsColor := OriginBlackColor;
+    GreenColor  := ChangeBrightness(OriginGreenColor,  -0.3);
+    YellowColor := ChangeBrightness(OriginYellowColor, -0.5);
+    RedColor    := ChangeBrightness(OriginRedColor,    -0.3);
+  end
+  else
+  begin
+    FCustomPowerSavingsColor := OriginWhiteColor;
+    GreenColor  := ChangeSaturation(OriginGreenColor,  -0.5);
+    YellowColor := ChangeSaturation(OriginYellowColor, -0.5);
+    RedColor    := ChangeSaturation(OriginRedColor,    -0.5);
   end;
 
   case FIconColorType of

@@ -269,6 +269,7 @@ type
     procedure AutoUpdateSchedulerAvalible(Sender: TObject; Version: TVersion);
 
     procedure WMWtsSessionChange(var Msg: TMessage); message WM_WTSSESSION_CHANGE;
+    procedure WMThemeChanged(var Message: TMessage); message WM_THEMECHANGED;
   public
     function DefaultUiLabel: TUiLabel;
     function DefaultUiLabelRdp: TUiLabel;
@@ -535,6 +536,11 @@ begin
 
   FIsRemoteSession := RemoteSession;
   UiLabel := GetUiLabel;
+end;
+
+procedure TBatteryModeForm.WMThemeChanged(var Message: TMessage);
+begin
+  TIconHelper.IconTheme := TIconHelper.IconTheme;
 end;
 
 {$REGION 'Form Events'}
