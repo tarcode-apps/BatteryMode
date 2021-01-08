@@ -47,7 +47,7 @@ object SettingsWindow: TSettingsWindow
         Left = 8
         Top = 3
         Width = 554
-        Height = 142
+        Height = 170
         Margins.Left = 8
         Margins.Right = 10
         Align = alTop
@@ -57,7 +57,7 @@ object SettingsWindow: TSettingsWindow
           Left = 2
           Top = 17
           Width = 550
-          Height = 123
+          Height = 151
           Align = alClient
           Alignment = taLeftJustify
           BevelOuter = bvNone
@@ -97,13 +97,18 @@ object SettingsWindow: TSettingsWindow
             end
             item
               Column = 1
-              Control = IconStyleExplicitMissingBatteryCheckBox
+              Control = TypicalPowerSavingsMonochromeCheckBox
               Row = 2
             end
             item
               Column = 1
-              Control = IconBehaviorPercentCheckBox
+              Control = IconStyleExplicitMissingBatteryCheckBox
               Row = 3
+            end
+            item
+              Column = 1
+              Control = IconBehaviorPercentCheckBox
+              Row = 4
             end>
           RowCollection = <
             item
@@ -117,6 +122,10 @@ object SettingsWindow: TSettingsWindow
             item
               SizeStyle = ssAbsolute
               Value = 28.000000000000000000
+            end
+            item
+              SizeStyle = ssAbsolute
+              Value = 26.000000000000000000
             end
             item
               SizeStyle = ssAbsolute
@@ -174,26 +183,37 @@ object SettingsWindow: TSettingsWindow
             Caption = 'IconColor'
             ExplicitHeight = 15
           end
-          object IconStyleExplicitMissingBatteryCheckBox: TCheckBox
+          object TypicalPowerSavingsMonochromeCheckBox: TCheckBox
             AlignWithMargins = True
             Left = 69
             Top = 70
-            Width = 137
+            Width = 204
             Height = 19
             Margins.Top = 6
-            Caption = 'ExplicitMissingBattery'
+            Caption = 'TypicalPowerSavingsMonochrome'
             TabOrder = 2
+            OnClick = TypicalPowerSavingsMonochromeCheckBoxClick
+          end
+          object IconStyleExplicitMissingBatteryCheckBox: TCheckBox
+            AlignWithMargins = True
+            Left = 69
+            Top = 96
+            Width = 137
+            Height = 19
+            Margins.Top = 4
+            Caption = 'ExplicitMissingBattery'
+            TabOrder = 3
             OnClick = IconStyleExplicitMissingBatteryCheckBoxClick
           end
           object IconBehaviorPercentCheckBox: TCheckBox
             AlignWithMargins = True
             Left = 69
-            Top = 96
+            Top = 122
             Width = 65
             Height = 19
             Margins.Top = 4
             Caption = 'Percent'
-            TabOrder = 3
+            TabOrder = 4
             OnClick = IconBehaviorPercentCheckBoxClick
           end
         end
@@ -201,7 +221,7 @@ object SettingsWindow: TSettingsWindow
       object IndicatorGroup: TGroupBox
         AlignWithMargins = True
         Left = 8
-        Top = 151
+        Top = 179
         Width = 554
         Height = 130
         Margins.Left = 8
@@ -268,7 +288,7 @@ object SettingsWindow: TSettingsWindow
       object MainWindowGroup: TGroupBox
         AlignWithMargins = True
         Left = 8
-        Top = 287
+        Top = 315
         Width = 554
         Height = 81
         Margins.Left = 8
@@ -328,7 +348,7 @@ object SettingsWindow: TSettingsWindow
             AlignWithMargins = True
             Left = 6
             Top = 6
-            Width = 46
+            Width = 48
             Height = 23
             Margins.Left = 6
             Margins.Top = 6
@@ -339,9 +359,9 @@ object SettingsWindow: TSettingsWindow
           end
           object MainWindowLinkTypeComboBox: TComboBox
             AlignWithMargins = True
-            Left = 63
+            Left = 65
             Top = 3
-            Width = 404
+            Width = 402
             Height = 23
             Align = alClient
             Style = csDropDownList
@@ -351,7 +371,7 @@ object SettingsWindow: TSettingsWindow
           end
           object MainWindowDisableSystemBorderCheckBox: TCheckBox
             AlignWithMargins = True
-            Left = 63
+            Left = 65
             Top = 34
             Width = 133
             Height = 23
@@ -746,7 +766,7 @@ object SettingsWindow: TSettingsWindow
             Align = alTop
             Caption = 'BrightnessFixedHelpLabel'
             WordWrap = True
-            ExplicitWidth = 136
+            ExplicitWidth = 135
           end
           object BrightnessFixedCheckPanel: TPanel
             AlignWithMargins = True
@@ -817,9 +837,6 @@ object SettingsWindow: TSettingsWindow
             BevelOuter = bvNone
             ShowCaption = False
             TabOrder = 0
-            ExplicitLeft = 5
-            ExplicitTop = 83
-            ExplicitWidth = 544
             object BrightnessRescanDelayLabel: TLabel
               AlignWithMargins = True
               Left = 6
@@ -846,7 +863,6 @@ object SettingsWindow: TSettingsWindow
               Align = alLeft
               Anchors = []
               Caption = 'Seconds'
-              ExplicitLeft = 205
               ExplicitHeight = 15
             end
             object BrightnessRescanDelayEdit: TEdit
@@ -861,7 +877,7 @@ object SettingsWindow: TSettingsWindow
               MaxLength = 3
               NumbersOnly = True
               TabOrder = 0
-              Text = '0'
+              Text = '1'
               OnChange = BrightnessRescanDelayEditChange
             end
             object BrightnessRescanDelayUpDown: TUpDown
@@ -872,6 +888,7 @@ object SettingsWindow: TSettingsWindow
               Associate = BrightnessRescanDelayEdit
               Min = 1
               Max = 50
+              Position = 1
               TabOrder = 1
             end
           end
@@ -884,7 +901,7 @@ object SettingsWindow: TSettingsWindow
       object AppCurrentVersionLabel: TLabel
         Left = 8
         Top = 71
-        Width = 100
+        Width = 101
         Height = 15
         Caption = 'AppCurrentVersion'
         Font.Charset = RUSSIAN_CHARSET
@@ -982,7 +999,7 @@ object SettingsWindow: TSettingsWindow
           Margins.Right = 0
           Align = alTop
           Caption = 'AppVersion'
-          ExplicitWidth = 60
+          ExplicitWidth = 61
         end
         object AppAuthorLabel: TLabel
           AlignWithMargins = True

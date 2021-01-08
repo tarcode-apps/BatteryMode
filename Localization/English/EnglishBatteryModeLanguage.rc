@@ -91,7 +91,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 130, "Disable popup window's bo&rder"
 131, "Use &crossed icon when the battery is missing"
 132, "Display charge &percentage in tray"
-
+133, "White icon for a balanced power scheme"
 134, "Sh&ut down or sign out"
 135, "Popup footer &link"
 136, "Turn &off screen"
@@ -128,6 +128,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 187, "Configure global hotkey to switch through Power Schemes"
 188, "Prevent internal screen brightness from being changed when you switch a Power Scheme or (dis)connect the charger"
 189, "Automatically check for updates (once a day) and ask to update"
+190, "Use the white icon for a balanced power scheme instead of the yellow one"
 
 210, "About"
 211, "Author"

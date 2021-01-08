@@ -30,6 +30,7 @@ type
     class var FIconStyle: TIconStyle;
     class var FIconColorType: TIconColorType;
     class var FExplicitMissingBattery: Boolean;
+    class var FTypicalPowerSavingsMonochrome: Boolean;
     class var FIconBehavior: TIconBehavior;
     class var FIconTheme: TIconTheme;
     class var FOnChange: TNotifyEvent;
@@ -55,6 +56,7 @@ type
     class procedure SetIconBehavior(const Value: TIconBehavior); static;
     class procedure SetIconTheme(const Value: TIconTheme); static;
     class procedure SetExplicitMissingBattery(const Value: Boolean); static;
+    class procedure SetTypicalPowerSavingsMonochrome(const Value: Boolean); static;
     class procedure SetOnChange(const Value: TNotifyEvent); static;
   public
     class function GetIcon(Dpi: Integer): HICON;
@@ -70,6 +72,7 @@ type
     class property IconBehavior: TIconBehavior read FIconBehavior write SetIconBehavior;
     class property IconTheme: TIconTheme read FIconTheme write SetIconTheme;
     class property ExplicitMissingBattery: Boolean read FExplicitMissingBattery write SetExplicitMissingBattery;
+    class property TypicalPowerSavingsMonochrome: Boolean read FTypicalPowerSavingsMonochrome write SetTypicalPowerSavingsMonochrome;
 
     class property OnChange: TNotifyEvent read FOnChange write SetOnChange;
   end;
@@ -253,7 +256,11 @@ var
                 ostOverlayMin:  Exit(DesktopSchemeOffset + DesktopGreenShift);
                 ostOverlayMax:  Exit(DesktopSchemeOffset + DesktopRedShift);
                 ostOverlayHigh: Exit(DesktopSchemeOffset + DesktopWhiteShift);
-                else            Exit(DesktopSchemeOffset + DesktopYellowShift);
+                else
+                  if FTypicalPowerSavingsMonochrome then
+                    Exit(DesktopSchemeOffset + DesktopWhiteShift)
+                  else
+                    Exit(DesktopSchemeOffset + DesktopYellowShift);
               end;
             end
             else
@@ -262,7 +269,11 @@ var
                 ostOverlayMin:  Exit(DesktopOverlayOffset + DesktopOverlayMinShift);
                 ostOverlayMax:  Exit(DesktopOverlayOffset + DesktopOverlayMaxShift);
                 ostOverlayHigh: Exit(DesktopOverlayOffset + DesktopOverlayHighShift);
-                else            Exit(DesktopSchemeOffset + DesktopYellowShift);
+                else
+                  if FTypicalPowerSavingsMonochrome then
+                    Exit(DesktopSchemeOffset + DesktopWhiteShift)
+                  else
+                    Exit(DesktopSchemeOffset + DesktopYellowShift);
               end;
             end;
           pstMinPowerSavings:   Exit(DesktopSchemeOffset + DesktopRedShift);
@@ -278,7 +289,11 @@ var
                 ostOverlayMin:  Exit(DesktopSchemeOffset + DesktopRedShift);
                 ostOverlayMax:  Exit(DesktopSchemeOffset + DesktopGreenShift);
                 ostOverlayHigh: Exit(DesktopSchemeOffset + DesktopWhiteShift);
-                else            Exit(DesktopSchemeOffset + DesktopYellowShift);
+                else
+                  if FTypicalPowerSavingsMonochrome then
+                    Exit(DesktopSchemeOffset + DesktopWhiteShift)
+                  else
+                    Exit(DesktopSchemeOffset + DesktopYellowShift);
               end;
             end
             else
@@ -287,7 +302,11 @@ var
                 ostOverlayMin:  Exit(DesktopOverlayOffset + DesktopOverlayMaxShift);
                 ostOverlayMax:  Exit(DesktopOverlayOffset + DesktopOverlayMinShift);
                 ostOverlayHigh: Exit(DesktopOverlayOffset + DesktopOverlayHighShift);
-                else            Exit(DesktopSchemeOffset + DesktopYellowShift);
+                else
+                  if FTypicalPowerSavingsMonochrome then
+                    Exit(DesktopSchemeOffset + DesktopWhiteShift)
+                  else
+                    Exit(DesktopSchemeOffset + DesktopYellowShift);
               end;
             end;
           pstMinPowerSavings:   Exit(DesktopSchemeOffset + DesktopGreenShift);
@@ -313,7 +332,7 @@ begin
 
     // Ноутбуки
 
-    // Значёк
+    // Значок
     case PowerCondition of
       PoAc: begin
         if IsFlag(Status.BatteryFlag, BATTERY_FLAG_NO_BATTERY) then begin
@@ -359,7 +378,11 @@ begin
                 ostOverlayMin:  Inc(Offset, GreenShift);
                 ostOverlayHigh: Inc(Offset, WhiteShift);
                 ostOverlayMax:  Inc(Offset, RedShift);
-                else            Inc(Offset, YellowShift);
+                else
+                  if FTypicalPowerSavingsMonochrome then
+                    Inc(Offset, WhiteShift)
+                  else
+                    Inc(Offset, YellowShift);
               end;
             end
             else
@@ -368,7 +391,11 @@ begin
                 ostOverlayMin:  Inc(Offset, OverlayMinShift);
                 ostOverlayHigh: Inc(Offset, OverlayHighShift);
                 ostOverlayMax:  Inc(Offset, OverlayMaxShift);
-                else            Inc(Offset, YellowShift);
+                else
+                  if FTypicalPowerSavingsMonochrome then
+                    Inc(Offset, WhiteShift)
+                  else
+                    Inc(Offset, YellowShift);
               end;
             end;
           end;
@@ -386,7 +413,11 @@ begin
                 ostOverlayMin:  Inc(Offset, RedShift);
                 ostOverlayHigh: Inc(Offset, WhiteShift);
                 ostOverlayMax:  Inc(Offset, GreenShift);
-                else            Inc(Offset, YellowShift);
+                else
+                  if FTypicalPowerSavingsMonochrome then
+                    Inc(Offset, WhiteShift)
+                  else
+                    Inc(Offset, YellowShift);
               end;
             end
             else
@@ -395,7 +426,11 @@ begin
                 ostOverlayMin:  Inc(Offset, OverlayMaxShift);
                 ostOverlayHigh: Inc(Offset, OverlayHighShift);
                 ostOverlayMax:  Inc(Offset, OverlayMinShift);
-                else            Inc(Offset, YellowShift);
+                else
+                  if FTypicalPowerSavingsMonochrome then
+                    Inc(Offset, WhiteShift)
+                  else
+                    Inc(Offset, YellowShift);
               end;
             end;
           end;
@@ -451,8 +486,7 @@ begin
 
   AssignColors;
 
-  if Assigned(FOnChange) then
-    FOnChange(nil);
+  if Assigned(FOnChange) then FOnChange(nil);
 end;
 
 class procedure TIconHelper.SetIconColorType(const Value: TIconColorType);
@@ -467,8 +501,7 @@ begin
 
   AssignColors;
 
-  if Assigned(FOnChange) then
-    FOnChange(nil);
+  if Assigned(FOnChange) then FOnChange(nil);
 end;
 
 class procedure TIconHelper.SetIconBehavior(const Value: TIconBehavior);
@@ -478,8 +511,7 @@ begin
   else
     FIconBehavior := DefaultIconBehavior;
 
-  if Assigned(FOnChange) then
-    FOnChange(nil);
+  if Assigned(FOnChange) then FOnChange(nil);
 end;
 
 class procedure TIconHelper.SetIconTheme(const Value: TIconTheme);
@@ -491,23 +523,31 @@ begin
 
   AssignColors;
 
-  if Assigned(FOnChange) then
-    FOnChange(nil);
+  if Assigned(FOnChange) then FOnChange(nil);
 end;
 
 class procedure TIconHelper.SetExplicitMissingBattery(const Value: Boolean);
 begin
   FExplicitMissingBattery := Value;
 
-  if Assigned(FOnChange) then
-    FOnChange(nil);
+  if Assigned(FOnChange) then FOnChange(nil);
+end;
+
+class procedure TIconHelper.SetTypicalPowerSavingsMonochrome(
+  const Value: Boolean);
+begin
+  FTypicalPowerSavingsMonochrome := Value;
+
+  AssignColors;
+
+  if Assigned(FOnChange) then FOnChange(nil);
 end;
 
 class procedure TIconHelper.SetOnChange(const Value: TNotifyEvent);
 begin
   FOnChange := Value;
-  if Assigned(FOnChange) then
-    FOnChange(nil);
+
+  if Assigned(FOnChange) then FOnChange(nil);
 end;
 
 class function TIconHelper.GetIconListName(Dpi: Integer): string;
@@ -703,22 +743,24 @@ begin
     ictScheme, ictLevel:
     begin
       FMaxPowerSavingsColor := GreenColor;
-      FTypicalPowerSavingsColor := YellowColor;
       FMinPowerSavingsColor := RedColor;
     end;
     ictSchemeInvert, ictLevelInvert:
     begin
       FMaxPowerSavingsColor := RedColor;
-      FTypicalPowerSavingsColor := YellowColor;
       FMinPowerSavingsColor := GreenColor;
     end;
     else
     begin
       FMaxPowerSavingsColor := FCustomPowerSavingsColor;
-      FTypicalPowerSavingsColor := FCustomPowerSavingsColor;
       FMinPowerSavingsColor := FCustomPowerSavingsColor;
     end;
   end;
+
+  if (FIconColorType = ictMonochrome) or FTypicalPowerSavingsMonochrome then
+    FTypicalPowerSavingsColor := FCustomPowerSavingsColor
+  else
+    FTypicalPowerSavingsColor := YellowColor;
 end;
 
 class function TIconHelper.DefaultIconStyle: TIconStyle;

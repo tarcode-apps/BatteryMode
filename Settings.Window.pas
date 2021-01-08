@@ -30,6 +30,7 @@ type
     IconsGrid: TGridPanel;
     IconStyleComboBox: TComboBox;
     IconColorLabel: TLabel;
+    TypicalPowerSavingsMonochromeCheckBox: TCheckBox;
     IconStyleExplicitMissingBatteryCheckBox: TCheckBox;
     IconBehaviorPercentCheckBox: TCheckBox;
     IndicatorGroup: TGroupBox;
@@ -111,6 +112,7 @@ type
     procedure MainMenuCloseClick(Sender: TObject);
     procedure IconColorComboBoxChange(Sender: TObject);
     procedure IconStyleComboBoxChange(Sender: TObject);
+    procedure TypicalPowerSavingsMonochromeCheckBoxClick(Sender: TObject);
     procedure IconStyleExplicitMissingBatteryCheckBoxClick(Sender: TObject);
     procedure IconBehaviorPercentCheckBoxClick(Sender: TObject);
     procedure IndicatorNotDisplayRadioButtonClick(Sender: TObject);
@@ -265,6 +267,8 @@ begin
   IconStyleComboBox.AddItem(DropAccel(TLang[75]), TObject(isWin10Light)); // Windows 10 светлый
   IconStyleComboBox.ItemIndex := IconStyleComboBox.Items.IndexOfObject(TObject(TIconHelper.IconStyle));
 
+  TypicalPowerSavingsMonochromeCheckBox.AutoSize := True;
+  TypicalPowerSavingsMonochromeCheckBox.Checked := TIconHelper.TypicalPowerSavingsMonochrome;
   IconStyleExplicitMissingBatteryCheckBox.AutoSize := True;
   IconStyleExplicitMissingBatteryCheckBox.Checked := TIconHelper.ExplicitMissingBattery;
   IconStyleExplicitMissingBatteryCheckBox.Enabled := TBatteryMode.State.Mobile or TBatteryMode.State.BatteryPresent;
@@ -571,6 +575,12 @@ begin
   TIconHelper.IconStyle := TIconStyle(CB.Items.Objects[CB.ItemIndex]);
 end;
 
+procedure TSettingsWindow.TypicalPowerSavingsMonochromeCheckBoxClick(
+  Sender: TObject);
+begin
+  TIconHelper.TypicalPowerSavingsMonochrome := (Sender as TCheckBox).Checked;
+end;
+
 procedure TSettingsWindow.IconStyleExplicitMissingBatteryCheckBoxClick(
   Sender: TObject);
 begin
@@ -858,6 +868,10 @@ begin
 
   IconStyleLabel.Caption     := DropAccel(TLang[70]);  // Стиль значков
   IconColorLabel.Caption     := DropAccel(TLang[120]); // Цвет значков
+
+  TypicalPowerSavingsMonochromeCheckBox.Caption   := DropAccel(TLang[133]); // Белый значок для сбалансированной ...
+  TypicalPowerSavingsMonochromeCheckBox.Hint      := DropAccel(TLang[190]); // Использовать белый значок для сбалансированной ...
+  TypicalPowerSavingsMonochromeCheckBox.ShowHint  := True;
 
   IconStyleExplicitMissingBatteryCheckBox.Caption   := DropAccel(TLang[131]); // Перечёркнутый значок отсутствующей батареи
   IconStyleExplicitMissingBatteryCheckBox.Hint      := DropAccel(TLang[181]); // Перечеркивать значок батареи в случае ...

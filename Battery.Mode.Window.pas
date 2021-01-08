@@ -33,6 +33,7 @@ const
   REG_IconStyle = 'Icon Style';
   REG_IconBehavior = 'Icon Behavior';
   REG_IconColorType = 'White Icon'; // Legacy
+  REG_TypicalPowerSavingsMonochrome = 'Typical Power Savings Monochrome';
   REG_ExplicitMissingBattery = 'Explicit Missing Battery';
   REG_HotKeyEnable = 'HotKey Enable';
   REG_SystemBorder = 'System Border';
@@ -80,6 +81,7 @@ type
     IconStyle: TIconStyle;
     IconColorType: TIconColorType;
     IconBehavior: TIconBehavior;
+    TypicalPowerSavingsMonochrome: Boolean;
     ExplicitMissingBattery: Boolean;
     HotKeyEnable: Boolean;
     SystemBorder: TSystemBorder;
@@ -372,6 +374,7 @@ begin
     TIconHelper.IconTheme := ithDark
   else
     TIconHelper.IconTheme := ithLight;
+  TIconHelper.TypicalPowerSavingsMonochrome := Conf.TypicalPowerSavingsMonochrome;
   TIconHelper.ExplicitMissingBattery := Conf.ExplicitMissingBattery;
   TIconHelper.OnChange := IconHelperChange;
 
@@ -1239,6 +1242,7 @@ begin
   Result.IconStyle := TIconHelper.DefaultIconStyle;
   Result.IconColorType := TIconHelper.DefaultIconColorType;
   Result.IconBehavior := TIconHelper.DefaultIconBehavior;
+  Result.TypicalPowerSavingsMonochrome := False;
   Result.ExplicitMissingBattery := False;
   Result.HotKeyEnable := True;
   Result.FixedLocalBrightness := False;
@@ -1304,6 +1308,7 @@ begin
     Result.IconStyle := TIconStyle(ReadIntegerDef(REG_IconStyle, Integer(Default.IconStyle)));
     Result.IconColorType := TIconColorType(ReadIntegerDef(REG_IconColorType, Integer(Default.IconColorType)));
     Result.IconBehavior := TIconBehavior(ReadIntegerDef(REG_IconBehavior, Integer(Default.IconBehavior)));
+    Result.TypicalPowerSavingsMonochrome := ReadBoolDef(REG_TypicalPowerSavingsMonochrome, Default.TypicalPowerSavingsMonochrome);
     Result.ExplicitMissingBattery := ReadBoolDef(REG_ExplicitMissingBattery, Default.ExplicitMissingBattery);
     Result.HotKeyEnable := ReadBoolDef(REG_HotKeyEnable, Default.HotKeyEnable);
     Result.SystemBorder := TSystemBorder(ReadIntegerDef(REG_SystemBorder, Integer(Default.SystemBorder)));
@@ -1345,6 +1350,7 @@ begin
       Registry.WriteInteger(REG_IconStyle, Integer(Conf.IconStyle));
       Registry.WriteInteger(REG_IconColorType, Integer(Conf.IconColorType));
       Registry.WriteInteger(REG_IconBehavior, Integer(Conf.IconBehavior));
+      Registry.WriteBool(REG_TypicalPowerSavingsMonochrome, Conf.TypicalPowerSavingsMonochrome);
       Registry.WriteBool(REG_ExplicitMissingBattery, Conf.ExplicitMissingBattery);
       Registry.WriteBool(REG_HotKeyEnable, Conf.HotKeyEnable);
       Registry.WriteInteger(REG_SystemBorder, Integer(Conf.SystemBorder));
@@ -1407,6 +1413,7 @@ begin
   Conf.IconStyle := TIconHelper.IconStyle;
   Conf.IconColorType := TIconHelper.IconColorType;
   Conf.IconBehavior := TIconHelper.IconBehavior;
+  Conf.TypicalPowerSavingsMonochrome := TIconHelper.TypicalPowerSavingsMonochrome;
   Conf.ExplicitMissingBattery := TIconHelper.ExplicitMissingBattery;
   Conf.HotKeyEnable := HotKeyHandler.Enabled;
   Conf.SystemBorder := SystemBorder;
