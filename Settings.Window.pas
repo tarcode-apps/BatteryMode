@@ -456,6 +456,7 @@ begin
   MainWindowLinkTypeComboBox.AddItem(DropAccel(TLang[144]), TObject(uilPowerMonitor)); // Информация о системе электропитания
   if IsRemoteSession then
     MainWindowLinkTypeComboBox.AddItem(DropAccel(TLang[145]), TObject(uilDisconnect)); // Отключиться
+  MainWindowLinkTypeComboBox.AddItem(DropAccel(TLang[51]), TObject(uilDetectMonitors)); // Обновить конфигурацию мониторов
 
   MainWindowLinkTypeComboBox.ItemIndex := MainWindowLinkTypeComboBox.Items.IndexOfObject(TObject(BatteryModeForm.UiLabel));
 end;

@@ -75,7 +75,8 @@ type
     uilLock,
     uilDiagnostic,
     uilPowerMonitor,
-    uilDisconnect);
+    uilDisconnect,
+    uilDetectMonitors);
 
   TConfig = record
     IconStyle: TIconStyle;
@@ -583,6 +584,7 @@ begin
     uilDiagnostic: PerformPowerAction(TPowerDiagnosticAction.Create);
     uilPowerMonitor: ShowPowerMonitor;
     uilDisconnect: PerformPowerAction(TPowerDisconnectAction.Create);
+    uilDetectMonitors: BrightnessManager.Update;
   end;
 end;
 
@@ -1130,17 +1132,18 @@ begin
     FLinkType := NormalizedValue;
 
   case UiLabel of
-    uilPower:         Link.Caption := TLang[15];  // Электропитание
-    uilMonitorOff:    Link.Caption := TLang[136]; // Отключить экран
-    uilShutdown:      Link.Caption := TLang[137]; // Завершение работы
-    uilReboot:        Link.Caption := TLang[138]; // Перезагрузка
-    uilSleep:         Link.Caption := TLang[139]; // Спящий режим
-    uilHibernate:     Link.Caption := TLang[140]; // Гибернация
-    uilLogOut:        Link.Caption := TLang[141]; // Выход
-    uilLock:          Link.Caption := TLang[142]; // Блокировать
-    uilDiagnostic:    Link.Caption := TLang[143]; // Особые варианты загрузки
-    uilDisconnect:    Link.Caption := TLang[145]; // Отключиться
-    uilPowerMonitor:  Link.Caption := TLang[144]; // Информация о системе электропитания
+    uilPower:          Link.Caption := TLang[15];  // Электропитание
+    uilMonitorOff:     Link.Caption := TLang[136]; // Отключить экран
+    uilShutdown:       Link.Caption := TLang[137]; // Завершение работы
+    uilReboot:         Link.Caption := TLang[138]; // Перезагрузка
+    uilSleep:          Link.Caption := TLang[139]; // Спящий режим
+    uilHibernate:      Link.Caption := TLang[140]; // Гибернация
+    uilLogOut:         Link.Caption := TLang[141]; // Выход
+    uilLock:           Link.Caption := TLang[142]; // Блокировать
+    uilDiagnostic:     Link.Caption := TLang[143]; // Особые варианты загрузки
+    uilDisconnect:     Link.Caption := TLang[145]; // Отключиться
+    uilPowerMonitor:   Link.Caption := TLang[144]; // Информация о системе электропитания
+    uilDetectMonitors: Link.Caption := TLang[51];  // Обновить &конфигурацию мониторов
   end;
 end;
 
