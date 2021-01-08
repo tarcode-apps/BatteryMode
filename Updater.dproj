@@ -128,26 +128,26 @@
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <BRCC_CodePage>65001</BRCC_CodePage>
         <BRCC_OutputDir>Win32\Release\res\</BRCC_OutputDir>
-        <VerInfo_Build>151</VerInfo_Build>
+        <VerInfo_Build>153</VerInfo_Build>
         <VerInfo_MajorVer>4</VerInfo_MajorVer>
         <PostBuildEvent><![CDATA[(If Not Exist "$(PROJECTDIR)\Build" (mkdir "$(PROJECTDIR)\Build"))
 copy "$(OUTPUTDIR)$(OUTPUTNAME)$(OUTPUTEXT)" "$(PROJECTDIR)\Build\BatteryMode$(OUTPUTNAME)32$(OUTPUTEXT)"
 $(PostBuildEvent)]]></PostBuildEvent>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Keys>CompanyName=Tarasov Artyom;FileDescription=Updater;FileVersion=4.0.0.151;InternalName=Updater;LegalCopyright=© Tarasov Artyom, 2015 - 2021;LegalTrademarks=;OriginalFilename=Updater32.exe;ProductName=Battery Mode 32-bit;ProductVersion=4.0.0.0;Comments=;ProgramID=ru.tarcode.BatteryMode.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Tarasov Artyom;FileDescription=Updater;FileVersion=4.0.0.153;InternalName=Updater;LegalCopyright=© Tarasov Artyom, 2015 - 2021;LegalTrademarks=;OriginalFilename=Updater32.exe;ProductName=Battery Mode 32-bit;ProductVersion=4.0.0.0;Comments=;ProgramID=ru.tarcode.BatteryMode.$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <BRCC_CodePage>65001</BRCC_CodePage>
         <BRCC_OutputDir>Win64\Release\res\</BRCC_OutputDir>
-        <VerInfo_Build>151</VerInfo_Build>
+        <VerInfo_Build>153</VerInfo_Build>
         <VerInfo_MajorVer>4</VerInfo_MajorVer>
         <PostBuildEvent><![CDATA[(If Not Exist "$(PROJECTDIR)\Build" (mkdir "$(PROJECTDIR)\Build"))
 copy "$(OUTPUTDIR)$(OUTPUTNAME)$(OUTPUTEXT)" "$(PROJECTDIR)\Build\BatteryMode$(OUTPUTNAME)64$(OUTPUTEXT)"
 $(PostBuildEvent)]]></PostBuildEvent>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Keys>CompanyName=Tarasov Artyom;FileDescription=Updater;FileVersion=4.0.0.151;InternalName=Updater;LegalCopyright=© Tarasov Artyom, 2015 - 2021;LegalTrademarks=;OriginalFilename=Updater64.exe;ProductName=Battery Mode 64-bit;ProductVersion=4.0.0.0;Comments=;ProgramID=ru.tarcode.BatteryMode.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Tarasov Artyom;FileDescription=Updater;FileVersion=4.0.0.153;InternalName=Updater;LegalCopyright=© Tarasov Artyom, 2015 - 2021;LegalTrademarks=;OriginalFilename=Updater64.exe;ProductName=Battery Mode 64-bit;ProductVersion=4.0.0.0;Comments=;ProgramID=ru.tarcode.BatteryMode.$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
     </PropertyGroup>
