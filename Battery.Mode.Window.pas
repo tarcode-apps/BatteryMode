@@ -190,7 +190,7 @@ type
   protected
     procedure LoadIcon; override;
     procedure Loadlocalization;
-    procedure LoadAvailableLocalizetions;
+    procedure LoadAvailableLocalizations;
     procedure DoSystemUsesLightThemeChange(LightTheme: Boolean); override;
 
     function DefaultConfig: TConfig;
@@ -477,7 +477,7 @@ begin
 
   // Загрузка локализации
   FLanguage := TLang.ResolveLocaleName(Conf.Language);
-  LoadAvailableLocalizetions;
+  LoadAvailableLocalizations;
   Loadlocalization;
 
   // Отображение иконки в трее
@@ -1051,7 +1051,7 @@ begin
   TrayNotification.Title            := TLang[1]; // Battery Mode
 end;
 
-procedure TBatteryModeForm.LoadAvailableLocalizetions;
+procedure TBatteryModeForm.LoadAvailableLocalizations;
 var
   AvailableLocalizations: TAvailableLocalizations;
   Localization: TAvailableLocalization;
