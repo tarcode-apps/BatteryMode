@@ -50,6 +50,8 @@ type
     BrightnessSliderGroup: TGroupBox;
     BrightnessSliderMonitorNameCheckBox: TCheckBox;
     BrightnessSliderPercentCheckBox: TCheckBox;
+    ShowBrightnessInTrayHintPanel: TPanel;
+    ShowBrightnessInTrayHintCheckBox: TCheckBox;
     BrightnessFixedCheckBox: TCheckBox;
     SchemeHotKeyPanel: TPanel;
     SchemeHotKeyButton: TButton;
@@ -125,6 +127,7 @@ type
     procedure SchemeFeatureHiddenSchemeCheckBoxClick(Sender: TObject);
     procedure BrightnessSliderMonitorNameCheckBoxClick(Sender: TObject);
     procedure BrightnessSliderPercentCheckBoxClick(Sender: TObject);
+    procedure ShowBrightnessInTrayHintCheckBoxClick(Sender: TObject);
     procedure BrightnessFixedCheckBoxClick(Sender: TObject);
     procedure BrightnessRescanDelayEditChange(Sender: TObject);
     procedure SchemeHotKeyButtonClick(Sender: TObject);
@@ -321,6 +324,9 @@ begin
   BrightnessSliderMonitorNameCheckBox.Checked   := BatteryModeForm.BrightnessPanel.ShowMonitorName;
   BrightnessSliderPercentCheckBox.AutoSize      := True;
   BrightnessSliderPercentCheckBox.Checked       := BatteryModeForm.BrightnessPanel.ShowBrightnessPercent;
+
+  ShowBrightnessInTrayHintCheckBox.AutoSize  := True;
+  ShowBrightnessInTrayHintCheckBox.Checked   := BatteryModeForm.ShowBrightnessInTrayHint;
 
   BrightnessFixedGroup.AutoSize := True;
   BrightnessFixedCheckBox.AutoSize  := True;
@@ -743,6 +749,12 @@ begin
   end;
 end;
 
+procedure TSettingsWindow.ShowBrightnessInTrayHintCheckBoxClick(
+  Sender: TObject);
+begin
+  BatteryModeForm.ShowBrightnessInTrayHint := (Sender as TCheckBox).Checked;
+end;
+
 procedure TSettingsWindow.AutoUpdateEnabledCheckBoxClick(Sender: TObject);
 begin
   BatteryModeForm.AutoUpdateScheduler.Enable := (Sender as TCheckBox).Checked;
@@ -924,6 +936,8 @@ begin
   BrightnessRescanDelayLabel.Caption := DropAccel(TLang[231]); // Задержка перед сканированием мониторов
   BrightnessRescanDelayHelpLabel.Caption := DropAccel(TLang[232]); // Увеличте задержку перед сканированием ...
   BrightnessRescanDelayUnitsLabel.Caption := DropAccel(TLang[233]); // секунд(ы)
+
+  ShowBrightnessInTrayHintCheckBox.Caption := DropAccel(TLang[235]); // Отображать яркость во всплывающей подсказке значка в трее
 
   AutoUpdateTab.Caption               := DropAccel(TLang[41]); // Автоматическое обновление
   AutoUpdateEnabledCheckBox.Caption   := DropAccel(TLang[42]); // Автоматическая проверка обновлений

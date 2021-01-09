@@ -41,6 +41,7 @@ const
   REG_ShowMonitorName = 'Show Monitor Name';
   REG_ShowBrightnessPercent = 'Show Brightness Percent';
   REG_BrightnessRescanDelayMillisecond = 'Brightness Rescan Delay';
+  REG_ShowBrightnessInTrayHint = 'Show Brightness In Tray Hint';
   REG_DisplayIndicator = 'Display Indicator Power Schemes';
   REG_FeatureMissingScheme = 'Feature Missing Scheme';
   REG_FeatureOverlay = 'Feature Overlay';
@@ -90,6 +91,7 @@ type
     ShowMonitorName: Boolean;
     ShowBrightnessPercent: Boolean;
     BrightnessRescanDelayMillisecond: Cardinal;
+    ShowBrightnessInTrayHint: Boolean;
     DisplayIndicator: TDisplayIndicator;
     FeatureMissingScheme: Boolean;
     FeatureOverlay: Boolean;
@@ -191,6 +193,7 @@ type
     procedure LoadIcon; override;
     procedure Loadlocalization;
     procedure LoadAvailableLocalizations;
+    procedure UpdateTrayHint;
     procedure DoSystemUsesLightThemeChange(LightTheme: Boolean); override;
 
     function DefaultConfig: TConfig;
@@ -222,6 +225,7 @@ type
     FLCDBrightnessProvider: TLCDBrightnessProvider;
     FBrightnessPanel: TBrightnessListPanel;
     FBrightnessLastLevels: TDictionary<string, Integer>;
+    FShowBrightnessInTrayHint: Boolean;
 
     FHotKeyHandler: THotKeyHendler;
     
@@ -242,6 +246,7 @@ type
     function GetUiLabel: TUiLabel;
     procedure SetUiLabel(const Value: TUiLabel);
     procedure SetLanguage(const Value: string);
+    procedure SetShowBrightnessInTrayHint(const Value: Boolean);
 
     procedure AutorunManagerAutorun(Sender: TObject; Enable: Boolean);
 
@@ -292,6 +297,7 @@ type
     property BrightnessManager: TBrightnessManager read FBrightnessManager;
     property BrightnessManagerHookHandler: TBrightnessManagerHookHandler read FBrightnessManagerHookHandler;
     property WMIBrightnessProvider: TWMIBrightnessProvider read FWMIBrightnessProvider;
+    property ShowBrightnessInTrayHint: Boolean read FShowBrightnessInTrayHint write SetShowBrightnessInTrayHint;
 
     property HotKeyHandler: THotKeyHendler read FHotKeyHandler;
 
@@ -479,6 +485,7 @@ begin
   FLanguage := TLang.ResolveLocaleName(Conf.Language);
   LoadAvailableLocalizations;
   Loadlocalization;
+  ShowBrightnessInTrayHint := Conf.ShowBrightnessInTrayHint;
 
   // Отображение иконки в трее
   TrayIcon.Visible := True;
@@ -765,11 +772,7 @@ begin
     end;
 
     LabelStatus.Caption := State.Hint;
-    if State.BatterySaver then
-      TrayIcon.Hint := State.Hint + sLineBreak + TLang[680]
-    else
-      TrayIcon.Hint := State.Hint;
-
+    UpdateTrayHint;
     LoadIcon;
   finally
     LockerPowerScheme.Unlock;
@@ -883,6 +886,7 @@ begin
     TBatteryMode.Brightness := Monitor.NormalizedBrightness[Monitor.Level];
 
   FBrightnessManagerHookHandler.UpdateBindings;
+  UpdateTrayHint;
 end;
 
 procedure TBatteryModeForm.BrightnessPanelRemoveMonitor(Sender: TObject;
@@ -892,6 +896,7 @@ begin
     TBatteryMode.Brightness := UnknownBrightness;
 
   FBrightnessManagerHookHandler.UpdateBindings;
+  UpdateTrayHint;
 end;
 
 procedure TBatteryModeForm.BrightnessPanelChangeLevel(Sender: IBrightnessMonitor;
@@ -899,6 +904,8 @@ procedure TBatteryModeForm.BrightnessPanelChangeLevel(Sender: IBrightnessMonitor
 begin
   if (Sender.MonitorType = bmtInternal) and (Sender.Enable or TBatteryMode.BrightnessForAllScheme) then
     TBatteryMode.Brightness := Sender.NormalizedBrightness[Sender.Level];
+
+  UpdateTrayHint;
 end;
 {$ENDREGION}
 
@@ -1075,6 +1082,46 @@ begin
   end;
 end;
 
+procedure TBatteryModeForm.UpdateTrayHint;
+var
+  Hint: string;
+  Monitors: TList<IBrightnessMonitor>;
+  Monitor: IBrightnessMonitor;
+  Brightness: Byte;
+begin
+  if not Assigned(BrightnessManager) then Exit;
+
+  if TBatteryMode.State.BatterySaver then
+    Hint := TBatteryMode.State.Hint + sLineBreak + TLang[680]
+  else
+    Hint := TBatteryMode.State.Hint;
+
+  if ShowBrightnessInTrayHint and (BrightnessManager.Count > 0) then
+  begin
+    Hint := Hint + sLineBreak;
+
+    Monitors := TList<IBrightnessMonitor>.Create;
+    try
+      for Monitor in BrightnessManager do
+      begin
+        if Monitor.Enable then Monitors.Add(Monitor);
+      end;
+
+      Monitors.Sort(TBrightnessMonitorComparer.Create);
+      for Monitor in Monitors do
+      begin
+        Brightness := Monitor.NormalizedBrightness[Monitor.Level];
+        if Brightness > 100 then Continue;
+        Hint := Hint + sLineBreak + Monitor.Description + ': ' + Brightness.ToString + '%';
+      end;
+    finally
+      Monitors.Free;
+    end;
+  end;
+
+  TrayIcon.Hint := Hint;
+end;
+
 procedure TBatteryModeForm.DoSystemUsesLightThemeChange(LightTheme: Boolean);
 begin
   inherited;
@@ -1190,6 +1237,12 @@ begin
   end;
 end;
 
+procedure TBatteryModeForm.SetShowBrightnessInTrayHint(const Value: Boolean);
+begin
+  FShowBrightnessInTrayHint := Value;
+  UpdateTrayHint;
+end;
+
 function TBatteryModeForm.DefaultUiLabel: TUiLabel;
 begin
   Result := uilMonitorOff;
@@ -1252,6 +1305,7 @@ begin
   Result.ShowMonitorName := False;
   Result.ShowBrightnessPercent := False;
   Result.BrightnessRescanDelayMillisecond := 5000;
+  Result.ShowBrightnessInTrayHint := False;
   if IsWindowsVistaOrGreater then
     Result.DisplayIndicator := diPrimary
   else
@@ -1319,6 +1373,7 @@ begin
     Result.ShowMonitorName := ReadBoolDef(REG_ShowMonitorName, Default.ShowMonitorName);
     Result.ShowBrightnessPercent := ReadBoolDef(REG_ShowBrightnessPercent, Default.ShowBrightnessPercent);
     Result.BrightnessRescanDelayMillisecond := Cardinal(ReadIntegerDef(REG_BrightnessRescanDelayMillisecond, Integer(Default.BrightnessRescanDelayMillisecond)));
+    Result.ShowBrightnessInTrayHint := ReadBoolDef(REG_ShowBrightnessInTrayHint, Default.ShowBrightnessInTrayHint);
     Result.DisplayIndicator := TDisplayIndicator(ReadIntegerDef(REG_DisplayIndicator, Integer(Default.DisplayIndicator)));
     Result.FeatureMissingScheme := ReadBoolDef(REG_FeatureMissingScheme, Default.FeatureMissingScheme);
     Result.FeatureOverlay := ReadBoolDef(REG_FeatureOverlay, Default.FeatureOverlay);
@@ -1361,6 +1416,7 @@ begin
       Registry.WriteBool(REG_ShowMonitorName, Conf.ShowMonitorName);
       Registry.WriteBool(REG_ShowBrightnessPercent, Conf.ShowBrightnessPercent);
       Registry.WriteInteger(REG_BrightnessRescanDelayMillisecond, Integer(Conf.BrightnessRescanDelayMillisecond));
+      Registry.WriteBool(REG_ShowBrightnessInTrayHint, Conf.ShowBrightnessInTrayHint);
       Registry.WriteInteger(REG_DisplayIndicator, Integer(Conf.DisplayIndicator));
       Registry.WriteBool(REG_FeatureMissingScheme, Conf.FeatureMissingScheme);
       Registry.WriteBool(REG_FeatureOverlay, Conf.FeatureOverlay);
@@ -1424,6 +1480,7 @@ begin
   Conf.ShowMonitorName := BrightnessPanel.ShowMonitorName;
   Conf.ShowBrightnessPercent := BrightnessPanel.ShowBrightnessPercent;
   Conf.BrightnessRescanDelayMillisecond := BrightnessManager.RescanDelayMillisecond;
+  Conf.ShowBrightnessInTrayHint := ShowBrightnessInTrayHint;
   Conf.DisplayIndicator := DisplayIndicator;
   Conf.FeatureMissingScheme := psfMissingScheme in TBatteryMode.PowerSchemes.SchemeFeatures;
   Conf.FeatureOverlay := psfOverlay in TBatteryMode.PowerSchemes.SchemeFeatures;
