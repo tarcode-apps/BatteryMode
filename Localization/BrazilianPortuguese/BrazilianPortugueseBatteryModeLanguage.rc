@@ -46,6 +46,8 @@ LANGUAGE LANG_PORTUGUESE, SUBLANG_DEFAULT
 54, "Mostrar &modelo de monitor"
 55, "Mostrar &brilho em porcentagens"
 56, "Brilho"
+57, "Ajustar brilho deste monitor rolando sobre o ícone da área de notificação"
+58, "Reaplicar brilho após monitor voltar do standby"
 
 60, "Economizar bateria"
 
@@ -89,7 +91,7 @@ LANGUAGE LANG_PORTUGUESE, SUBLANG_DEFAULT
 130, "Desativar bo&rda da janela popup"
 131, "Usar ícone &cruzado quando a bateria está ausente"
 132, "Exibir &porcentagem de carga na Área de Notificação"
-
+133, "Ícone branco para Esquema de Energia Equilibrado"
 134, "&Desligar ou sair"
 135, "&Link de rodapé do popup"
 136, "Desli&gar tela"
@@ -105,6 +107,7 @@ LANGUAGE LANG_PORTUGUESE, SUBLANG_DEFAULT
 
 150, "&Idioma"
 151, "Pa&drão"
+152, "Branco de Alto Contraste"
 
 160, "Máximo desempenho"
 161, "Melhor desempenho"
@@ -125,6 +128,7 @@ LANGUAGE LANG_PORTUGUESE, SUBLANG_DEFAULT
 187, "Configura a tecla de atalho global para alternar entre os Esquemas de Energia"
 188, "Previne que o brilho interno da tela seja alterado quando você mudar um Esquema de Energia ou (des)conecta o carregador"
 189, "Automaticamente verifica por atualizações (uma vez ao dia) e pergunta para atualizar"
+190, "Use o ícone branco em vez de amarelo para o Esquema de Energia Equilibrado"
 
 210, "Sobre"
 211, "Autor"
@@ -143,6 +147,13 @@ LANGUAGE LANG_PORTUGUESE, SUBLANG_DEFAULT
 224, "Licença"
 225, "GitHub"
 226, "https://github.com/tarcode-apps/BatteryMode"
+
+230, "Avançado"
+231, "Atraso na detecção do monitor"
+232, "Você pode aumentar o tempo de detecção do monitor se tiver problemas com o desaparecimento dos indicadores de brilho"
+233, "segundos"
+
+235, "Mostrar nível de brilho no popup do ícone da área de notificação"
 
 10000, "Abrir pasta do registro de depuração"
 }
