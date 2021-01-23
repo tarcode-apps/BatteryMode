@@ -46,8 +46,6 @@ type
     class function GetLanguageName: string; static;
     class function GetValues(Index: DWORD): string; static;
     class function GetWindowsLanguageId: LANGID; static;
-  protected
-    class function GetStringRes(idx: DWORD; wLang: LANGID): string;
   public
     class function LanguageIdToName(LanguageId: LANGID): string;
     class function LCIDToLocaleName(ALcID: LCID; dwFlags: DWORD = LOCALE_ALLOW_NEUTRAL_NAMES): string;
@@ -57,6 +55,7 @@ type
     class function GetAvailableLocalizations(Index: DWORD): TAvailableLocalizations;
     class function GetString(Index: DWORD): string; overload;
     class function GetString(Index: DWORD; LanguageId: LANGID): string; overload;
+    class function GetStringRes(Instance: HINST; Index: DWORD; LanguageId: LANGID): string; overload;
     class function ShouldAvoidBoldFonts : boolean;
 
     class property LanguageId: LANGID read FLanguageId write SetLanguageId;
@@ -83,7 +82,7 @@ begin
   while True do
   begin
     try
-      Exit(GetStringRes(Index, Lang));
+      Exit(GetStringRes(HInstance, Index, Lang));
     except
       if not Fallback.ContainsKey(Lang) then Break;
       Lang := Fallback[Lang];
@@ -91,7 +90,7 @@ begin
   end;
 
   try
-    Exit(GetStringRes(Index, FDefaultLang));
+    Exit(GetStringRes(HInstance, Index, FDefaultLang));
   except
     Exit('');
   end;
@@ -100,7 +99,7 @@ end;
 class function TLang.GetString(Index: DWORD; LanguageId: LANGID): string;
 begin
   try
-    Result := GetStringRes(Index, LanguageId);
+    Result := GetStringRes(HInstance, Index, LanguageId);
   except
     Result := '';
   end;
@@ -113,7 +112,7 @@ begin
   Result := FLanguageId = 1041;
 end;
 
-class function TLang.GetStringRes(idx: DWORD; wLang: LANGID): string;
+class function TLang.GetStringRes(Instance: HINST; Index: DWORD; LanguageId: LANGID): string;
 var
   hFindRes: HRSRC;
   hLoadRes: HGLOBAL;
@@ -125,27 +124,27 @@ var
 const
   NO_OF_STRINGS_PER_BLOCK = 16;
 begin
-  Result:= '';
+  Result := '';
 
-  nBlockID:= (idx shr 4) + 1;
-  nItemID:= 16 - (nBlockID shl 4 - idx);
+  nBlockID := (Index shr 4) + 1;
+  nItemID := 16 - (nBlockID shl 4 - Index);
 
-  hFindRes:= FindResourceEx(HInstance, RT_STRING, MakeIntResource(nBlockID), wLang);
+  hFindRes := FindResourceEx(Instance, RT_STRING, MakeIntResource(nBlockID), LanguageId);
   if hFindRes = 0 then raise EResNotFound.Create('Resource not found');
 
-  hLoadRes:= LoadResource(HInstance, hFindRes);
+  hLoadRes := LoadResource(Instance, hFindRes);
   if hLoadRes = 0 then raise EResNotFound.Create('Resource not load');
 
-  pRes:= LockResource(hLoadRes);
+  pRes := LockResource(hLoadRes);
   if pRes = nil then raise EResNotFound.Create('Resource not lock');
 
   try
-    dwSize:= SizeofResource(HInstance, hFindRes);
+    dwSize := SizeofResource(Instance, hFindRes);
     if dwSize = 0 then raise EResNotFound.Create('Zero resource size');
 
-    for i:= 0 to NO_OF_STRINGS_PER_BLOCK - 1 do begin
-      nLen:= PWORD(pRes)^;
-      pRes:= LPVOID(DWORD_PTR(pRes) + SizeOf(Char));
+    for i := 0 to NO_OF_STRINGS_PER_BLOCK - 1 do begin
+      nLen := PWORD(pRes)^;
+      pRes := LPVOID(DWORD_PTR(pRes) + SizeOf(Char));
       if pRes = nil then raise EResNotFound.Create('Resource is null');
 
       if nItemID = i then
@@ -154,7 +153,7 @@ begin
         SetString(Result, PChar(pRes), nLen);
         Exit;
       end else
-        pRes:= LPVOID(DWORD_PTR(pRes) + nLen*SizeOf(Char));
+        pRes := LPVOID(DWORD_PTR(pRes) + nLen*SizeOf(Char));
     end;
   finally
     UnlockResource(hLoadRes);
@@ -173,7 +172,7 @@ var
 begin
   EnumParam := TEnumResLangParam(lParam);
   try
-    AvailableLocalization.Value := TLang.GetStringRes(EnumParam.Index, wIDLanguage);
+    AvailableLocalization.Value := TLang.GetStringRes(HInstance, EnumParam.Index, wIDLanguage);
     AvailableLocalization.LanguageId := LANGID(wIDLanguage);
     EnumParam.ResArray.Add(AvailableLocalization);  
   except

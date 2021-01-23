@@ -38,6 +38,7 @@ type
     class var FTypicalPowerSavingsColor: TGPColor;
     class var FMinPowerSavingsColor: TGPColor;
     class var FCustomPowerSavingsColor: TGPColor;
+    class var FTrayIconDark: Boolean;
 
     class constructor Create;
 
@@ -85,7 +86,8 @@ class function TIconHelper.GetIcon(Dpi: Integer): HICON;
 var
   PowerStatus: TSystemPowerStatus;
   State: TBatteryState;
-  Index1, Index2, OverlayIndex, Line: Integer;
+  Index1, Index2, OverlayIndex: Integer;
+  Line: Byte;
 begin
   if not GetSystemPowerStatus(PowerStatus) then
     ZeroMemory(@PowerStatus, SizeOf(PowerStatus));
@@ -104,9 +106,14 @@ begin
     PowerStatusToIndexes(TBatteryMode.State, PowerStatus, -1,
       Index1, Index2, OverlayIndex);
 
-    case FIconTheme of
-      ithDark: Line := 1;
-      else Line := 0;
+    Line := 0;
+    if IsWindows8OrGreater then
+    begin
+      if FTrayIconDark then Line := 1;
+    end
+    else
+    begin
+      if FIconTheme = ithDark then Line := 1;
     end;
 
     Result := GenerateGPBitmapFromRes(GetIconListName(Dpi),
@@ -496,6 +503,11 @@ begin
   else
     FIconColorType := DefaultIconColorType;
 
+  if (FIconColorType = ictLevel) and
+     not IsWindowsVistaOrGreater and
+     not (TBatteryMode.State.Mobile or TBatteryMode.State.BatteryPresent) then
+    FIconColorType := ictScheme;
+
   if (FIconColorType = ictScheme) and not IsWindowsVistaOrGreater then
     FIconColorType := ictMonochrome;
 
@@ -690,13 +702,14 @@ var
     Result := HSVToRGB(Hue, Saturation, Brightness);
   end;
 
-  function IsTextDark: Boolean;
+  function IsTrayIconDark: Boolean;
   var
     HighContract: THighContrast;
     HighContractEnabled: Boolean;
     HighContractWhite: Boolean;
-    HighContractWhiteThemes: TAvailableLocalizations;
-    Theme: TAvailableLocalization;
+    HighContractWhiteThemeLegacyName: string;
+    ThemeUiHandle: THandle;
+    UILanguage: LANGID;
   begin
     if FIconTheme = ithDark then
       Exit(True);
@@ -704,19 +717,24 @@ var
     HighContract.cbSize := SizeOf(HighContract);
     SystemParametersInfo(SPI_GETHIGHCONTRAST, SizeOf(HighContract), @HighContract, 0);
     HighContractEnabled := HighContract.dwFlags and HCF_HIGHCONTRASTON = HCF_HIGHCONTRASTON;
-    HighContractWhite := False;
-    HighContractWhiteThemes := TLang.GetAvailableLocalizations(152);
-    for Theme in HighContractWhiteThemes do
-    begin
-      if HighContract.lpszDefaultScheme = Theme.Value then
-      begin
-        HighContractWhite := True;
-        Break;
-      end;
-    end;
-
     if HighContractEnabled then
+    begin
+      HighContractWhite := False;
+      UILanguage := TLang.WindowsLanguageId;
+      ThemeUiHandle := LoadLibrary('themeui.dll');
+      if ThemeUiHandle <> 0 then
+      begin
+        try
+          HighContractWhiteThemeLegacyName := TLang.GetStringRes(ThemeUiHandle, 853, UILanguage);
+          HighContractWhite := HighContract.lpszDefaultScheme = HighContractWhiteThemeLegacyName;
+        except
+          // ignore
+        end;
+        FreeLibrary(ThemeUiHandle);
+      end;
+
       Exit(HighContractWhite);
+    end;
 
     if not Assigned(IsThemeActive) then
       Exit(False);
@@ -724,7 +742,8 @@ var
     Exit(not IsThemeActive);
   end;
 begin
-  if IsTextDark then
+  FTrayIconDark := IsTrayIconDark;
+  if FTrayIconDark then
   begin
     FCustomPowerSavingsColor := OriginBlackColor;
     GreenColor  := ChangeBrightness(OriginGreenColor,  -0.3);
