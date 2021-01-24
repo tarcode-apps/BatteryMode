@@ -107,13 +107,11 @@ begin
       Index1, Index2, OverlayIndex);
 
     Line := 0;
-    if IsWindows8OrGreater then
-    begin
-      if FTrayIconDark then Line := 1;
-    end
-    else
-    begin
-      if FIconTheme = ithDark then Line := 1;
+    case FIconStyle of
+      isWin10, isWin10Light:
+        if FTrayIconDark then Line := 1;
+      else
+        if FIconTheme = ithDark then Line := 1;
     end;
 
     Result := GenerateGPBitmapFromRes(GetIconListName(Dpi),
