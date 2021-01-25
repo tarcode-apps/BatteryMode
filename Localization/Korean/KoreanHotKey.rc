@@ -1,0 +1,13 @@
+STRINGTABLE
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+{
+300, "단축키"
+301, "적용"
+302, "취소"
+
+310, "사용자 지정"
+
+320, "단축키 사용"
+
+350, "안함"
+}

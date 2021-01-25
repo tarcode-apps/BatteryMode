@@ -271,6 +271,27 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <RcCompile Include="Localization\Italian\ItalianScheduling.rc">
             <Form>ItalianScheduling.res</Form>
         </RcCompile>
+        <RcCompile Include="Localization\Korean\KoreanAutorunMessage.rc">
+            <Form>KoreanAutorunMessage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Korean\KoreanAutoUpdate.rc">
+            <Form>KoreanAutoUpdate.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Korean\KoreanBatteryModeLanguage.rc">
+            <Form>KoreanBatteryModeLanguage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Korean\KoreanBatteryStatusHint.rc">
+            <Form>KoreanBatteryStatusHint.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Korean\KoreanHotKey.rc">
+            <Form>KoreanHotKey.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Korean\KoreanPowerInformation.rc">
+            <Form>KoreanPowerInformation.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Korean\KoreanScheduling.rc">
+            <Form>KoreanScheduling.res</Form>
+        </RcCompile>
         <RcCompile Include="Localization\Polish\PolishAutorunMessage.rc">
             <Form>PolishAutorunMessage.res</Form>
         </RcCompile>
