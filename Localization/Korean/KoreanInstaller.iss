@@ -1,4 +1,4 @@
-[CustomMessages]
+﻿[CustomMessages]
 ; InstallType
 korean.InstallType=설치 유형 선택
 ; InstallTypeDescription
