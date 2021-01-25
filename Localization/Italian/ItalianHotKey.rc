@@ -1,0 +1,13 @@
+STRINGTABLE
+LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
+{
+300, "Tasto rapido"
+301, "Applica"
+302, "Annulla"
+
+310, "Personale"
+
+320, "Abilita tasto rapido"
+
+350, "Nessuno"
+}

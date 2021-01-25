@@ -1,0 +1,9 @@
+STRINGTABLE
+LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
+{
+500, "Questo programma è stato aggiunto all'esecuzione automatica senza privilegi amministratore."
+501, "Questo programma è stato aggiunto all'esecuzione automatica."
+502, "Questo programma è stato rimosso dall'esecuzione automatica."
+503, "Si è verificato un errore durante l'aggiunta del programma all'esecuzione automatica."
+504, "Si è verificato un errore durante la rimozione del programma dall'esecuzione automatica."
+}

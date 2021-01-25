@@ -1,0 +1,29 @@
+STRINGTABLE
+LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
+{
+600, "Computer desktop"
+
+621, "Collegato e in carica"
+622, "%0:u ore %%1:.2u min alla carica completa"
+623, "%1:u min per la carica completa"
+624, "%2:u%% disponibile (collegata, in carica)"
+625, "%2:u%% disponibile (collegata, non in carica)"
+626, "Completamente carica (100%%)"
+627, "Nessuna batteria rilevata"
+628, "Collegata e non in carica"
+
+650, "%0:u ore %1:.2u min (%2:u%%) rimanenti"
+651, "%1:u min (%2:u%%) rimanenti"
+654, "%2:u%% rimanente"
+655, "Rimanente sconosciuto"
+
+670, "%2:u%% rimanente.\nConsidera di sostituire la batteria."
+671, "Rimanente sconosciuto.\nConsidera di sostituire la batteria."
+672, "Collegata e in carica.\nConsidera di sostituire la batteria."
+673, "%2:u%% disponibile (collegata, in carica).\nConsidera di sostituire la batteria."
+674, "%2:u%% disponibile (collegata, non in carica).\nConsidera di sostituire la batteria."
+675, "Completamente carica (100%%).\nConsidera di sostituire la batteria."
+
+680, "Risparmio energetico attivato"
+
+}
