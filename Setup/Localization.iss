@@ -7,6 +7,7 @@
 
 #include "..\Localization\English\EnglishInstaller.iss"
 #include "..\Localization\Hungarian\HungarianInstaller.iss"
+#include "..\Localization\Italian\ItalianInstaller.iss"
 #include "..\Localization\Polish\PolishInstaller.iss"
 #include "..\Localization\Russian\RussianInstaller.iss"
 #include "..\Localization\Ukrainian\UkrainianInstaller.iss"
@@ -17,6 +18,7 @@
 Name: "english"; MessagesFile: "compiler:Default.isl"; LicenseFile: "..\LICENSE.txt"
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"; LicenseFile: "..\LICENSE.txt"
 Name: "hungarian"; MessagesFile: "compiler:Languages\Hungarian.isl"; LicenseFile: "..\LICENSE.txt"
+Name: "italian"; MessagesFile: "compiler:Languages\Italian.isl"; LicenseFile: "..\LICENSE.txt"
 Name: "polish"; MessagesFile: "compiler:Languages\Polish.isl"; LicenseFile: "..\LICENSE.txt"
 Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"; LicenseFile: "..\Localization\Russian\License.txt"
 Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"; LicenseFile: "..\Localization\Russian\License.txt"

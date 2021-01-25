@@ -250,6 +250,27 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <RcCompile Include="Localization\Hungarian\HungarianScheduling.rc">
             <Form>HungarianScheduling.res</Form>
         </RcCompile>
+        <RcCompile Include="Localization\Italian\ItalianAutorunMessage.rc">
+            <Form>ItalianAutorunMessage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Italian\ItalianAutoUpdate.rc">
+            <Form>ItalianAutoUpdate.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Italian\ItalianBatteryModeLanguage.rc">
+            <Form>ItalianBatteryModeLanguage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Italian\ItalianBatteryStatusHint.rc">
+            <Form>ItalianBatteryStatusHint.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Italian\ItalianHotKey.rc">
+            <Form>ItalianHotKey.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Italian\ItalianPowerInformation.rc">
+            <Form>ItalianPowerInformation.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Italian\ItalianScheduling.rc">
+            <Form>ItalianScheduling.res</Form>
+        </RcCompile>
         <RcCompile Include="Localization\Polish\PolishAutorunMessage.rc">
             <Form>PolishAutorunMessage.res</Form>
         </RcCompile>
