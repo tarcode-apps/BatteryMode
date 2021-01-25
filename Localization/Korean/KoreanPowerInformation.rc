@@ -1,7 +1,7 @@
 STRINGTABLE
 LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 {
-700, '해당 없음'
+700, "해당 없음"
 701, "알 수 없음"
 
 704, "전원 시스템"
@@ -20,7 +20,7 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 720, "현재 용량"
 721, "배터리 전압"
 722, "충 방전율"
-723, '충전율'
+723, "충전율"
 724, "방전율"
 725, "경고 배터리 경고 1"
 726, "경고 배터리 경고 2"
