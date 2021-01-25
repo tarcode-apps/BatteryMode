@@ -2,7 +2,7 @@ STRINGTABLE
 LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 {
 0, "한국어"
-1, "배터리 모드"
+1, "Battery Mode"
 2, "전원 구성표 선택:"
 3, "설정(&S)"
 4, "단색 아이콘 사용(&M)"
