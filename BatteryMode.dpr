@@ -32,6 +32,13 @@
 {$R 'HungarianHotKey.res' 'Localization\Hungarian\HungarianHotKey.rc'}
 {$R 'HungarianPowerInformation.res' 'Localization\Hungarian\HungarianPowerInformation.rc'}
 {$R 'HungarianScheduling.res' 'Localization\Hungarian\HungarianScheduling.rc'}
+{$R 'ItalianAutorunMessage.res' 'Localization\Italian\ItalianAutorunMessage.rc'}
+{$R 'ItalianAutoUpdate.res' 'Localization\Italian\ItalianAutoUpdate.rc'}
+{$R 'ItalianBatteryModeLanguage.res' 'Localization\Italian\ItalianBatteryModeLanguage.rc'}
+{$R 'ItalianBatteryStatusHint.res' 'Localization\Italian\ItalianBatteryStatusHint.rc'}
+{$R 'ItalianHotKey.res' 'Localization\Italian\ItalianHotKey.rc'}
+{$R 'ItalianPowerInformation.res' 'Localization\Italian\ItalianPowerInformation.rc'}
+{$R 'ItalianScheduling.res' 'Localization\Italian\ItalianScheduling.rc'}
 {$R 'PolishAutorunMessage.res' 'Localization\Polish\PolishAutorunMessage.rc'}
 {$R 'PolishAutoUpdate.res' 'Localization\Polish\PolishAutoUpdate.rc'}
 {$R 'PolishBatteryModeLanguage.res' 'Localization\Polish\PolishBatteryModeLanguage.rc'}
@@ -209,6 +216,7 @@ begin
   //TLang.LocaleName := 'uk-UA';
   //TLang.LocaleName := 'fr-FR';
   //TLang.LocaleName := 'hu-HU';
+  //TLang.LocaleName := 'it-IT';
   //TLang.LocaleName := 'pl-PL';
   //TLang.LocaleName := 'pt-BR';
   //TLang.LocaleName := 'es-ES_tradnl';
@@ -219,6 +227,7 @@ begin
   //TLang.LanguageId := MAKELANGID(LANG_UKRAINIAN, SUBLANG_DEFAULT);        // 1058 (0x0422)
   //TLang.LanguageId := MAKELANGID(LANG_FRENCH, SUBLANG_DEFAULT);           // 1036 (0x040C)
   //TLang.LanguageId := MAKELANGID(LANG_HUNGARIAN, SUBLANG_DEFAULT);        // 1038 (0x040E)
+  //TLang.LanguageId := MAKELANGID(LANG_ITALIAN, SUBLANG_ITALIAN);          // 1040 (0x0410)
   //TLang.LanguageId := MAKELANGID(LANG_POLISH, SUBLANG_POLISH_POLAND);     // 1045 (0x0415)
   //TLang.LanguageId := MAKELANGID(LANG_PORTUGUESE, SUBLANG_DEFAULT);       // 1046 (0x0416)
   //TLang.LanguageId := MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH);          // 1034 (0x040A)
