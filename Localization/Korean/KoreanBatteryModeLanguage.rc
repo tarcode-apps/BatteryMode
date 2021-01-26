@@ -148,7 +148,7 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 226, "https://github.com/tarcode-apps/BatteryMode"
 
 230, "고급"
-231, "모니터링 감지 지연"
+231, "모니터 감지 지연"
 232, "밝기 표시기가 사라지는 문제가 발생하면 모니터 감지 지연을 늘릴 수 있습니다"
 233, "초"
 
