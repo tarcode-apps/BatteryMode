@@ -15,15 +15,15 @@ italian.JustForMeRadioButton=Installa in AppData
 italian.JustForMeDescLabel=Non è richiesto l'accesso con diritti amministratore.%nIl programma verrà installato solo per l'utente attuale.
 
 ; PortableRadioButton
-italian.PortableRadioButton=Instalalzione portatile
+italian.PortableRadioButton=Installazione portatile
 ; PortableDescLabel
 italian.PortableDescLabel=Copia il programma nella cartella selezionata
 
 ; SysIcons
 italian.SysIcons=Disabilita icona alimentazione di sistema
 ; SysIconsDescription
-italian.SysIconsDescription=Puoi nascondere l'icona di alimentazione di sistema per rendere {#AppName} l'unica icona di alimentazione di sistema 
+italian.SysIconsDescription=Puoi nascondere l'icona alimentazione di sistema per rendere {#AppName} l'unica icona alimentazione di sistema 
 ; SysIconsDescLabel
-italian.SysIconsDescLabel=Fai clic su "Impostazioni icone di sistema" e disabilita "Alimentazione" per nascodnere l'icona di alimentazione di sistema.%n%nPuoi sempre accedere a questa finestra usando il menu di {#AppName}.
+italian.SysIconsDescLabel=Fai clic su "Impostazioni icone di sistema" e disabilita "Alimentazione" per nascodnere l'icona alimentazione di sistema.%n%nPuoi sempre accedere a questa finestra usando il menu di {#AppName}.
 ; SysIconButton
 italian.SysIconButton=Impostazioni icone di sistema
