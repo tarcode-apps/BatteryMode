@@ -8,7 +8,7 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 4, "단색 아이콘 사용(&M)"
 5, "구성"
 6, "Windows에서 자동 시작(&A)"
-7, "고정 화면 및 밝기((&B)"
+7, "화면 밝기 고정(&B)"
 
 9, "종료(&X)"
 10, "버전"
@@ -65,8 +65,8 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 82, "기본창"
 83, "아이콘"
 
-90, "전원 구성을 변경하기 위한 단축키 조합"
-91, "사용 안함"
+90, "전원 관리 변경을 위한 단축키 조합"
+91, "사용 안 함"
 92, "단축키"
 93, "선택된 단축키"
 
@@ -148,7 +148,7 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 226, "https://github.com/tarcode-apps/BatteryMode"
 
 230, "고급"
-231, "감지 지연 모니터링"
+231, "모니터링 감지 지연"
 232, "밝기 표시기가 사라지는 문제가 발생하면 모니터 감지 지연을 늘릴 수 있습니다"
 233, "초"
 
