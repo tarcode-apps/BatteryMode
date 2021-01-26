@@ -7,7 +7,7 @@ italian.InstallTypeDescription=Puoi installare la versione standard o portatile 
 ; AllUserRadioButton
 italian.AllUserRadioButton=Installa nella cartella Programmi
 ; AllUserDescLabel
-italian.AllUserDescLabel=È richiesta l'accesso con diritti amministratore.%nIl programma verrà installato per tutti gli utenti.
+italian.AllUserDescLabel=È richiesto l'accesso con diritti amministratore.%nIl programma verrà installato per tutti gli utenti.
 
 ; JustForMeRadioButton
 italian.JustForMeRadioButton=Installa in AppData
