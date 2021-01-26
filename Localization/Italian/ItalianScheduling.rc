@@ -148,10 +148,10 @@ LANGUAGE LANG_ITALIAN, SUBLANG_DEFAULT
 1366, "è acceso"
 1367, "è disattivato"
 
-1380, "La combinazione risparmio energia attiva è \"%0:s\""
-1381, "Combinazione risparmio energia attiva è"
+1380, "Lo schema di alimentazione attivo è \"%0:s\""
+1381, "Lo schema di alimentazione attivo è"
 
-1390, "La combinazione risparmio energia attiva non è \"%0:s\""
-1391, "Combinazione risparmio energia attiva non è"
+1390, "Lo schema di alimentazione attivo non è \"%0:s\""
+1391, "Lo schema di alimentazione attivo non è"
 
 }
