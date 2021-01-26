@@ -58,8 +58,8 @@ LANGUAGE LANG_ITALIAN, SUBLANG_DEFAULT
 1100, "visualizza messaggio \"%0:s\""
 1101, "Visualizza messaggio"
 
-1110, "imposta combinazione risparmio energia \"%0:s\""
-1111, "Imposta combinazione risparmio energia"
+1110, "imposta schema alimentazione \"%0:s\""
+1111, "Imposta schema alimentazione"
 
 1120, "Avvia un programma"
 1121, "avvia \"%0:s\""
