@@ -273,7 +273,7 @@ begin
     Parent := Self;
     Margins.SetBounds(0, 3, 0, 3);
     Tag := 1; // Заполнение данными на CreateWnd
-    Width := 175;
+    Width := 190;
     OnChange := ComboBoxConditionSelect;
   end;
 
@@ -1199,7 +1199,7 @@ begin
       Parent := Self;
       Margins.SetBounds(4, 3, 0, 3);
       Tag := 1; // Заполнение данными на CreateWnd
-      Width := 213;
+      Width := 225;
       OnChange := ComboBoxClauseSelect;
     end;
   finally
