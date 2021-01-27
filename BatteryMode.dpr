@@ -191,14 +191,12 @@ var
   ExitRequired: Boolean;
   ExitCode: UINT;
   Registry: TRegistry;
-  Lang: string;
 
 begin
   TLang.Fallback.Add(MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_MODERN),  MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH));
   TLang.Fallback.Add(MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_MEXICAN), MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH));
   TLang.Fallback.Add(MAKELANGID(LANG_UKRAINIAN, SUBLANG_DEFAULT),       MAKELANGID(LANG_RUSSIAN, SUBLANG_DEFAULT));
 
-  Lang := '';
   Registry := TRegistry.Create;
   try
     try
@@ -206,30 +204,21 @@ begin
       if Registry.KeyExists(REG_Key) then
         if Registry.OpenKeyReadOnly(REG_Key) then
         try
-          if Registry.ValueExists(REG_Language) then
-            Lang := Registry.ReadString(REG_Language);
+          if Registry.ValueExists(REG_LanguageId) then
+            TLang.LanguageId := Registry.ReadInteger(REG_LanguageId)
+          else if Registry.ValueExists(REG_Language) then
+            TLang.LanguageId := TLang.LocaleNameToLCID(Registry.ReadString(REG_Language));
         finally
           Registry.CloseKey;
         end;
     finally
       Registry.Free;
     end;
-  except
-    // ignore
-  end;
-  if Lang <> '' then TLang.LocaleName := Lang;
 
-  //TLang.LocaleName := 'en-US';
-  //TLang.LocaleName := 'uk-UA';
-  //TLang.LocaleName := 'fr-FR';
-  //TLang.LocaleName := 'hu-HU';
-  //TLang.LocaleName := 'it-IT';
-  //TLang.LocaleName := 'ko-KR';
-  //TLang.LocaleName := 'pl-PL';
-  //TLang.LocaleName := 'pt-BR';
-  //TLang.LocaleName := 'es-ES_tradnl';
-  //TLang.LocaleName := 'es-ES';
-  //TLang.LocaleName := 'es-MX';
+    TLang.GetStringRes(HInstance, 0, TLang.EffectiveLanguageId); 
+  except
+    TLang.LanguageId := 0;
+  end;
 
   //TLang.LanguageId := MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US);       // 1033 (0x0409)
   //TLang.LanguageId := MAKELANGID(LANG_UKRAINIAN, SUBLANG_DEFAULT);        // 1058 (0x0422)

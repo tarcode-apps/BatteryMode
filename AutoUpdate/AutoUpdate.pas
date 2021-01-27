@@ -171,7 +171,7 @@ begin
         [TLang[1],
         TVersionInfo.FileVersion.ToString,
         TVersionInfo.BinaryTypeAsShortString,
-        TLang.LanguageId,
+        TLang.EffectiveLanguageId,
         WinType,
         WinVer.dwMajorVersion,
         WinVer.dwMinorVersion,

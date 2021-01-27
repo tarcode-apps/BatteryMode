@@ -55,6 +55,7 @@ const
   REG_LinkTypeRdp = 'Link Type RDP';
   REG_ID = 'ID';
   REG_Language = 'Language';
+  REG_LanguageId = 'LanguageId';
 
   MSGFLT_ALLOW = 1;
   MSGFLT_DISALLOW = 2;
@@ -103,7 +104,6 @@ type
     SchedulerEnabled: Boolean;
     LinkType: TUiLabel;
     LinkTypeRdp: TUiLabel;
-    Language: string;
     ID: TAppID;
   end;
 
@@ -204,12 +204,10 @@ type
     LockerAutorun: ILocker;
     LockerBatterySaver: ILocker;
     LockerSaveConfig: ILocker;
-    LockerLanguage: ILocker;
 
     FUIInfo: TUIInfo;
     FLinkType: TUiLabel;
     FLinkTypeRdp: TUiLabel;
-    FLanguage: string;
 
     FIsRemoteSession: Boolean;
 
@@ -245,7 +243,6 @@ type
     procedure SetUIInfo(const Value: TUIInfo);
     function GetUiLabel: TUiLabel;
     procedure SetUiLabel(const Value: TUiLabel);
-    procedure SetLanguage(const Value: string);
     procedure SetShowBrightnessInTrayHint(const Value: Boolean);
 
     procedure AutorunManagerAutorun(Sender: TObject; Enable: Boolean);
@@ -291,7 +288,6 @@ type
     property UiLabel: TUiLabel read GetUiLabel write SetUiLabel;
     property DisplayIndicator: TDisplayIndicator read GetDisplayIndicator write SetDisplayIndicator;
     property IsRemoteSession: Boolean read FIsRemoteSession;
-    property Language: string read FLanguage write SetLanguage;
 
     property BrightnessPanel: TBrightnessListPanel read FBrightnessPanel;
     property BrightnessManager: TBrightnessManager read FBrightnessManager;
@@ -327,7 +323,6 @@ begin
   LockerAutorun       := TLocker.Create;
   LockerBatterySaver  := TLocker.Create;
   LockerSaveConfig    := TLocker.Create;
-  LockerLanguage      := TLocker.Create;
 
   // Загрузка конфигурации
   Conf := LoadConfig;
@@ -482,7 +477,6 @@ begin
     TRuleConfigurator.Create(REG_Key));
 
   // Загрузка локализации
-  FLanguage := TLang.ResolveLocaleName(Conf.Language);
   LoadAvailableLocalizations;
   Loadlocalization;
   ShowBrightnessInTrayHint := Conf.ShowBrightnessInTrayHint;
@@ -698,13 +692,50 @@ begin
 end;
 
 procedure TBatteryModeForm.TrayMenuLanguageItemClick(Sender: TObject);
+var
+  NewLanguageId, LastEffectiveLanguageId: LANGID;
+  StartUpInfo : TStartUpInfo;
+  ProcessInfo : TProcessInformation;
 begin
-  if LockerLanguage.IsLocked then Exit;
-
   if (Sender is TLanguageMenuItem) then
-    Language := TLang.LCIDToLocaleName((Sender as TLanguageMenuItem).Localization.LanguageId)
+    NewLanguageId := (Sender as TLanguageMenuItem).Localization.LanguageId
   else
-    Language := '';
+    NewLanguageId := 0;
+
+  if TLang.LanguageId = NewLanguageId then Exit;
+
+  LastEffectiveLanguageId := TLang.EffectiveLanguageId;
+  TLang.LanguageId := NewLanguageId;
+  if LastEffectiveLanguageId = TLang.EffectiveLanguageId then Exit;
+
+  Loadlocalization;
+
+  SaveCurrentConfig;
+  FScheduler.SaveState;
+
+  TMutexLocker.Unlock;
+  TrayIcon.Visible := False;
+
+  ZeroMemory(@StartUpInfo, SizeOf(StartUpInfo));
+  StartUpInfo.cb := SizeOf(StartUpInfo);
+
+  if not CreateProcess(LPCTSTR(Application.ExeName), nil, nil, nil, True,
+    GetPriorityClass(GetCurrentProcess), nil, nil, StartUpInfo, ProcessInfo) then
+  begin
+    TMutexLocker.Lock;
+    TrayIcon.Visible := True;
+    Exit;
+  end;
+
+  LockerSaveConfig.Lock;
+  try
+    Application.Terminate;
+  finally
+    CloseHandle(ProcessInfo.hProcess);
+    CloseHandle(ProcessInfo.hThread);
+
+    ExitProcess(0);
+  end;
 end;
 
 procedure TBatteryModeForm.TrayMenuCloseClick(Sender: TObject);
@@ -1070,13 +1101,12 @@ begin
     begin
       MenuItem := TLanguageMenuItem.Create(PopupMenuTray, Localization);
       MenuItem.OnClick := TrayMenuLanguageItemClick;
-      if Language <> '' then
-        MenuItem.Checked := TLang.LCIDToLocaleName(Localization.LanguageId) = Language;
+      MenuItem.Checked := Localization.LanguageId = TLang.LanguageId;
       
       TrayMenuLanguage.Add(MenuItem);
     end;
     
-    TrayMenuLanguageSystem.Checked := Language = '';
+    TrayMenuLanguageSystem.Checked := TLang.LanguageId = 0;
   finally
     AvailableLocalizations.Free;
   end;
@@ -1194,49 +1224,6 @@ begin
   end;
 end;
 
-procedure TBatteryModeForm.SetLanguage(const Value: string);
-var
-  CurrentLanguageId: LANGID;
-  StartUpInfo : TStartUpInfo;
-  ProcessInfo : TProcessInformation;
-begin
-  if FLanguage = Value then Exit;
-
-  FLanguage := Value;
-  CurrentLanguageId := TLang.LanguageId;
-  TLang.LocaleName := FLanguage;
-  if CurrentLanguageId = TLang.LanguageId then Exit;
-
-  Loadlocalization;
-
-  SaveCurrentConfig;
-  FScheduler.SaveState;
-
-  TMutexLocker.Unlock;
-  TrayIcon.Visible := False;
-
-  ZeroMemory(@StartUpInfo, SizeOf(StartUpInfo));
-  StartUpInfo.cb := SizeOf(StartUpInfo);
-
-  if not CreateProcess(LPCTSTR(Application.ExeName), nil, nil, nil, True,
-    GetPriorityClass(GetCurrentProcess), nil, nil, StartUpInfo, ProcessInfo) then
-  begin
-    TMutexLocker.Lock;
-    TrayIcon.Visible := True;
-    Exit;
-  end;
-
-  LockerSaveConfig.Lock;
-  try
-    Application.Terminate;
-  finally
-    CloseHandle(ProcessInfo.hProcess);
-    CloseHandle(ProcessInfo.hThread);
-
-    ExitProcess(0);
-  end;
-end;
-
 procedure TBatteryModeForm.SetShowBrightnessInTrayHint(const Value: Boolean);
 begin
   FShowBrightnessInTrayHint := Value;
@@ -1321,7 +1308,6 @@ begin
   Result.SchedulerEnabled := True;
   Result.LinkType := DefaultUiLabel;
   Result.LinkTypeRdp := DefaultUiLabelRdp;
-  Result.Language := '';
   Result.ID := TAutoUpdateScheduler.NewID;
 end;
 
@@ -1385,7 +1371,6 @@ begin
     Result.SchedulerEnabled := ReadBoolDef(REG_SchedulerEnabled, Default.SchedulerEnabled);
     Result.LinkType := TUiLabel(ReadIntegerDef(REG_LinkType, Integer(Default.LinkType)));
     Result.LinkTypeRdp := TUiLabel(ReadIntegerDef(REG_LinkTypeRdp, Integer(Default.LinkTypeRdp)));
-    Result.Language := ReadStringDef(REG_Language, Default.Language);
     Result.ID := ReadIntegerDef(REG_ID, Default.ID);
     // end read config
 
@@ -1405,6 +1390,8 @@ begin
     if Registry.OpenKey(REG_Key, True) then begin
       // Write config
       Registry.WriteString(REG_Version, TVersionInfo.FileVersion); // Last version
+      Registry.WriteInteger(REG_LanguageId, TLang.LanguageId);
+
       Registry.WriteInteger(REG_IconStyle, Integer(Conf.IconStyle));
       Registry.WriteInteger(REG_IconColorType, Integer(Conf.IconColorType));
       Registry.WriteInteger(REG_IconBehavior, Integer(Conf.IconBehavior));
@@ -1428,7 +1415,6 @@ begin
       Registry.WriteBool(REG_SchedulerEnabled, Conf.SchedulerEnabled);
       Registry.WriteInteger(REG_LinkType, Integer(Conf.LinkType));
       Registry.WriteInteger(REG_LinkTypeRdp, Integer(Conf.LinkTypeRdp));
-      Registry.WriteString(REG_Language, Conf.Language);
       Registry.WriteInteger(REG_ID, Conf.ID);
       // end write config
 
@@ -1492,7 +1478,6 @@ begin
   Conf.SchedulerEnabled := FScheduler.Enabled;
   Conf.LinkType := FLinkType;
   Conf.LinkTypeRdp := FLinkTypeRdp;
-  Conf.Language := Language;
   Conf.ID := AutoUpdateScheduler.ID;
 
   SaveConfig(Conf);
