@@ -32,6 +32,20 @@
 {$R 'HungarianHotKey.res' 'Localization\Hungarian\HungarianHotKey.rc'}
 {$R 'HungarianPowerInformation.res' 'Localization\Hungarian\HungarianPowerInformation.rc'}
 {$R 'HungarianScheduling.res' 'Localization\Hungarian\HungarianScheduling.rc'}
+{$R 'ItalianAutorunMessage.res' 'Localization\Italian\ItalianAutorunMessage.rc'}
+{$R 'ItalianAutoUpdate.res' 'Localization\Italian\ItalianAutoUpdate.rc'}
+{$R 'ItalianBatteryModeLanguage.res' 'Localization\Italian\ItalianBatteryModeLanguage.rc'}
+{$R 'ItalianBatteryStatusHint.res' 'Localization\Italian\ItalianBatteryStatusHint.rc'}
+{$R 'ItalianHotKey.res' 'Localization\Italian\ItalianHotKey.rc'}
+{$R 'ItalianPowerInformation.res' 'Localization\Italian\ItalianPowerInformation.rc'}
+{$R 'ItalianScheduling.res' 'Localization\Italian\ItalianScheduling.rc'}
+{$R 'KoreanAutorunMessage.res' 'Localization\Korean\KoreanAutorunMessage.rc'}
+{$R 'KoreanAutoUpdate.res' 'Localization\Korean\KoreanAutoUpdate.rc'}
+{$R 'KoreanBatteryModeLanguage.res' 'Localization\Korean\KoreanBatteryModeLanguage.rc'}
+{$R 'KoreanBatteryStatusHint.res' 'Localization\Korean\KoreanBatteryStatusHint.rc'}
+{$R 'KoreanHotKey.res' 'Localization\Korean\KoreanHotKey.rc'}
+{$R 'KoreanPowerInformation.res' 'Localization\Korean\KoreanPowerInformation.rc'}
+{$R 'KoreanScheduling.res' 'Localization\Korean\KoreanScheduling.rc'}
 {$R 'PolishAutorunMessage.res' 'Localization\Polish\PolishAutorunMessage.rc'}
 {$R 'PolishAutoUpdate.res' 'Localization\Polish\PolishAutoUpdate.rc'}
 {$R 'PolishBatteryModeLanguage.res' 'Localization\Polish\PolishBatteryModeLanguage.rc'}
@@ -177,14 +191,12 @@ var
   ExitRequired: Boolean;
   ExitCode: UINT;
   Registry: TRegistry;
-  Lang: string;
 
 begin
   TLang.Fallback.Add(MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_MODERN),  MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH));
   TLang.Fallback.Add(MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_MEXICAN), MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH));
   TLang.Fallback.Add(MAKELANGID(LANG_UKRAINIAN, SUBLANG_DEFAULT),       MAKELANGID(LANG_RUSSIAN, SUBLANG_DEFAULT));
 
-  Lang := '';
   Registry := TRegistry.Create;
   try
     try
@@ -192,33 +204,28 @@ begin
       if Registry.KeyExists(REG_Key) then
         if Registry.OpenKeyReadOnly(REG_Key) then
         try
-          if Registry.ValueExists(REG_Language) then
-            Lang := Registry.ReadString(REG_Language);
+          if Registry.ValueExists(REG_LanguageId) then
+            TLang.LanguageId := Registry.ReadInteger(REG_LanguageId)
+          else if Registry.ValueExists(REG_Language) then
+            TLang.LanguageId := TLang.LocaleNameToLCID(Registry.ReadString(REG_Language));
         finally
           Registry.CloseKey;
         end;
     finally
       Registry.Free;
     end;
-  except
-    // ignore
-  end;
-  if Lang <> '' then TLang.LocaleName := Lang;
 
-  //TLang.LocaleName := 'en-US';
-  //TLang.LocaleName := 'uk-UA';
-  //TLang.LocaleName := 'fr-FR';
-  //TLang.LocaleName := 'hu-HU';
-  //TLang.LocaleName := 'pl-PL';
-  //TLang.LocaleName := 'pt-BR';
-  //TLang.LocaleName := 'es-ES_tradnl';
-  //TLang.LocaleName := 'es-ES';
-  //TLang.LocaleName := 'es-MX';
+    TLang.GetStringRes(HInstance, 0, TLang.EffectiveLanguageId); 
+  except
+    TLang.LanguageId := 0;
+  end;
 
   //TLang.LanguageId := MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US);       // 1033 (0x0409)
   //TLang.LanguageId := MAKELANGID(LANG_UKRAINIAN, SUBLANG_DEFAULT);        // 1058 (0x0422)
   //TLang.LanguageId := MAKELANGID(LANG_FRENCH, SUBLANG_DEFAULT);           // 1036 (0x040C)
   //TLang.LanguageId := MAKELANGID(LANG_HUNGARIAN, SUBLANG_DEFAULT);        // 1038 (0x040E)
+  //TLang.LanguageId := MAKELANGID(LANG_ITALIAN, SUBLANG_ITALIAN);          // 1040 (0x0410)
+  //TLang.LanguageId := MAKELANGID(LANG_KOREAN, SUBLANG_DEFAULT);           // 1042 (0x0412)
   //TLang.LanguageId := MAKELANGID(LANG_POLISH, SUBLANG_POLISH_POLAND);     // 1045 (0x0415)
   //TLang.LanguageId := MAKELANGID(LANG_PORTUGUESE, SUBLANG_DEFAULT);       // 1046 (0x0416)
   //TLang.LanguageId := MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH);          // 1034 (0x040A)

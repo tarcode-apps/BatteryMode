@@ -53,7 +53,7 @@ end;
 
 class function TLicense.GetLicenseLangId: LANGID;
 begin
-  Result := TLang.LanguageId;
+  Result := TLang.EffectiveLanguageId;
   if IsLocaleSupported(Result) then Exit;
 
   if TLang.Fallback.ContainsKey(Result) then

@@ -27,6 +27,7 @@ type
     end;
   strict private
     class var FLanguageId: LANGID;
+    class var FEffectiveLanguageId: LANGID;
     class var FDefaultLang: LANGID;
     class var FFallback: TDictionary<LANGID, LANGID>;
     
@@ -41,14 +42,9 @@ type
     
     class procedure SetLanguageId(const Value: LANGID); static;
     class procedure SetDefaultLang(const Value: LANGID); static;
-    class function GetLocaleName: string; static;
-    class procedure SetLocaleName(const Value: string); static;
-    class function GetLanguageName: string; static;
     class function GetValues(Index: DWORD): string; static;
     class function GetWindowsLanguageId: LANGID; static;
   public
-    class function LanguageIdToName(LanguageId: LANGID): string;
-    class function LCIDToLocaleName(ALcID: LCID; dwFlags: DWORD = LOCALE_ALLOW_NEUTRAL_NAMES): string;
     class function LocaleNameToLCID(Name: string; dwFlags: DWORD = LOCALE_ALLOW_NEUTRAL_NAMES): LCID;
     class function ResolveLocaleName(NameToResolve: string): string;
 
@@ -56,11 +52,10 @@ type
     class function GetString(Index: DWORD): string; overload;
     class function GetString(Index: DWORD; LanguageId: LANGID): string; overload;
     class function GetStringRes(Instance: HINST; Index: DWORD; LanguageId: LANGID): string; overload;
-    class function ShouldAvoidBoldFonts : boolean;
+    class function ShouldAvoidBoldFonts : Boolean;
 
     class property LanguageId: LANGID read FLanguageId write SetLanguageId;
-    class property LocaleName: string read GetLocaleName write SetLocaleName;
-    class property LanguageName: string read GetLanguageName;
+    class property EffectiveLanguageId: LANGID read FEffectiveLanguageId;
     class property WindowsLanguageId: LANGID read GetWindowsLanguageId;
     class property DefaultLang: LANGID read FDefaultLang write SetDefaultLang;
     class property Fallback: TDictionary<LANGID, LANGID> read FFallback;
@@ -78,7 +73,7 @@ class function TLang.GetString(Index: DWORD): string;
 var
   Lang: LANGID;
 begin
-  Lang := FLanguageId;
+  Lang := EffectiveLanguageId;
   while True do
   begin
     try
@@ -109,7 +104,7 @@ class function TLang.ShouldAvoidBoldFonts;
 begin
   // Japanese user asked us not to use bold fonts since it makes "kanji"
   // difficult to read.
-  Result := FLanguageId = 1041;
+  Result := EffectiveLanguageId = 1041;
 end;
 
 class function TLang.GetStringRes(Instance: HINST; Index: DWORD; LanguageId: LANGID): string;
@@ -207,76 +202,19 @@ end;
 
 class procedure TLang.SetDefaultLang(const Value: LANGID);
 begin
-  if FDefaultLang = Value then Exit;
   FDefaultLang := Value;
-end;
-
-class function TLang.GetLanguageName: string;
-begin
-  Result := LanguageIdToName(FLanguageId);
-end;
-
-class function TLang.GetLocaleName: string;
-begin
-  Result := LCIDToLocaleName(FLanguageId);
-end;
-
-class procedure TLang.SetLocaleName(const Value: string);
-begin
-  FLanguageId := LocaleNameToLCID(Value);
-  if FLanguageId = 0 then
-    FLanguageId := WindowsLanguageId;
 end;
 
 class procedure TLang.SetLanguageId(const Value: LANGID);
 begin
-  if FLanguageId = Value then Exit;
-  FLanguageId:= Value;
+  FLanguageId := Value;
+  FEffectiveLanguageId := Value;
+  if FEffectiveLanguageId = 0 then FEffectiveLanguageId := WindowsLanguageId;
 end;
 
 class function TLang.GetWindowsLanguageId: LANGID;
 begin
   Result := GetUserDefaultUILanguage;
-end;
-
-class function TLang.LanguageIdToName(LanguageId: LANGID): string;
-var
-  Len: DWORD;
-begin
-  SetLength(Result, MAX_PATH);
-  Len := VerLanguageName(LanguageId, LPTSTR(Result), MAX_PATH);
-  if Len > 0 then
-    SetLength(Result, Len)
-  else
-    Result := '';
-end;
-
-class function TLang.LCIDToLocaleName(ALcID: LCID; dwFlags: DWORD): string;
-var
-  Lenght: Integer;
-  pbstrRfc1766: WideString;
-begin
-  Result := '';
-
-  if not IsWindowsVistaOrGreater then
-  begin
-    SetLength(pbstrRfc1766, LOCALE_NAME_MAX_LENGTH);
-    if LcidToRfc1766(ALcID, LPTSTR(pbstrRfc1766), LOCALE_NAME_MAX_LENGTH) = S_OK then
-    begin
-      Result := WideCharToString(LPTSTR(pbstrRfc1766));
-      SetLength(pbstrRfc1766, 0);
-    end;
-    Exit;
-  end;
-
-  if not IsWindows7OrGreater then dwFlags := 0;
-
-  SetLength(Result, LOCALE_NAME_MAX_LENGTH);
-  Lenght := Winapi.Windows.LCIDToLocaleName(ALcID, LPTSTR(Result), LOCALE_NAME_MAX_LENGTH, dwFlags);
-  if Lenght > 0 then
-    SetLength(Result, Lenght - 1)
-  else
-    Result := '';
 end;
 
 class function TLang.LocaleNameToLCID(Name: string; dwFlags: DWORD): LCID;
@@ -317,7 +255,8 @@ end;
 class constructor TLang.Create;
 begin
   FDefaultLang := MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US);
-  FLanguageId := WindowsLanguageId;
+  FLanguageId := 0;
+  FEffectiveLanguageId := WindowsLanguageId;
   FFallback := TDictionary<LANGID, LANGID>.Create;
 end;
 

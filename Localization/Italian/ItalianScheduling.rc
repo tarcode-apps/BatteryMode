@@ -1,0 +1,157 @@
+STRINGTABLE
+LANGUAGE LANG_ITALIAN, SUBLANG_DEFAULT
+{
+1000, "Pianificazione"
+1001, "Applica"
+1002, "Annulla"
+1003, "Aggiungi regola"
+
+1005, "Guida pianificazione"
+1006, "https://bmode.tarcode.ru/scheduler-help"
+
+1010, "Sono presenti modifiche non salvate.\nVuoi salvare le modifiche?"
+
+1020, "Abilita pianificazione"
+
+1030, "Quando %0:s"
+1031, "e %0:s"
+1032, "o %0:s"
+1033, "%0:s"
+1034, "e %0:s"
+1035, "Nessuna soglia ancora definite"
+1036, "mentre %0:s"
+1037, "e %0:s"
+1038, "o %0:s"
+
+1040, "Abilita"
+
+1045, "Modifica"
+1046, "Elimina"
+
+1050, "Nuova regola"
+
+1060, "Sposta su"
+1061, "Sposta giù"
+
+1070, "Proprietà"
+1071, "Applica"
+1072, "Annulla"
+
+1075, "La regola è stata modificata.\nVuoi salvare la regola?"
+
+1080, "Nome"
+1081, "Non applicare altre regole"
+
+1085, "Se"
+1086, "tutte le condizioni seguenti sono soddisfatte"
+1087, "una delle condizioni seguenti è soddisfatta"
+1088, "Mentre"
+
+1090, "Elimina"
+1091, "Condizione sconosciuta"
+1092, "Azzera"
+
+1095, "Aggiungi soglia"
+1096, "Esegui azioni"
+1097, "Aggiungi condizione"
+
+1100, "visualizza messaggio \"%0:s\""
+1101, "Visualizza messaggio"
+
+1110, "imposta schema alimentazione \"%0:s\""
+1111, "Imposta schema alimentazione"
+
+1120, "Avvia un programma"
+1121, "avvia \"%0:s\""
+1122, "avvia \"%0:s\" nascosto"
+
+1125, "Sfoglia"
+1126, "Avvia nascosto"
+
+1130, "Riproduci suono"
+1131, "riproduci suono \"%0:s\""
+1132, "riproduci suono \"%0:s\"con volume %1:d%%"
+
+1135, "Sfoglia"
+1136, "Volume"
+1137, "File audio"
+1138, "Tutti i file"
+
+1140, "Alimentazione"
+1141, "spegni questo PC"
+1142, "riavvia Windows"
+1143, "metti questo PC in stato di stop"
+1144, "ibernare questo PC"
+1145, "spegni schermo"
+1146, "attiva schermo"
+
+1151, "Spegni"
+1152, "Riavvia"
+1153, "Sleep"
+1154, "Iberna"
+1155, "Disattiva schermo"
+1156, "Attiva schermo"
+
+1200, "carica batteria %0:s %1:d%%"
+1201, "carica batteria %0:s"
+1202, "Carica batteria"
+
+1205, "scende al di sotto"
+1206, "sale sopra"
+1207, "modifiche"
+
+1220, "Caricabatteria %0:s"
+1221, "Caricabatteria"
+
+1225, "viene connesso"
+1226, "viene disconnesso"
+1227, "cambia stato"
+
+1240, "coperchio del laptop %0:s"
+1241, "Coperchio per laptop"
+
+1245, "viene chiuso"
+1246, "viene aperto"
+
+1260, "display %0:s"
+1261, "Display"
+
+1265, "si spegne"
+1266, "si accende"
+1267, "viene oscurato"
+
+1280, "schema alimentazione impostato a \"%0:s\""
+1281, "Schema alimentazione impostato a"
+
+1300, "carica batteria %0:s %1:d%%"
+1301, "Carica batteria"
+
+1305, "è sotto"
+1306, "è sopra"
+
+1320, "caricabatteria %0:s"
+1321, "Caricabatteria"
+
+1325, "è connesso"
+1326, "non è connesso"
+
+1340, "coperchio del laptop %0:s"
+1341, "Coperchio del laptop"
+
+1345, "è chiuso"
+1346, "è aperto"
+
+1360, "display %0:s"
+1361, "Display"
+
+1365, "è spento"
+1366, "è acceso"
+1367, "è disattivato"
+
+1380, "Lo schema alimentazione attivo è : \"%0:s\""
+1381, "Schema alimentazione attivo è"
+
+1390, "Lo schema alimentazione attivo non è \"%0:s\""
+1391, "Schema alimentazione attivo non è"
+
+}
