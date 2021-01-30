@@ -135,32 +135,34 @@
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <BRCC_CodePage>65001</BRCC_CodePage>
         <BRCC_OutputDir>Win32\Release\res\</BRCC_OutputDir>
-        <VerInfo_Build>165</VerInfo_Build>
+        <VerInfo_Build>166</VerInfo_Build>
         <PostBuildEvent><![CDATA[(If Not Exist "$(PROJECTDIR)\Build" (mkdir "$(PROJECTDIR)\Build"))
 copy "$(OUTPUTDIR)$(OUTPUTNAME)$(OUTPUTEXT)" "$(PROJECTDIR)\Build\$(OUTPUTNAME)32$(OUTPUTEXT)"
 $(PostBuildEvent)]]></PostBuildEvent>
         <VerInfo_MajorVer>4</VerInfo_MajorVer>
-        <VerInfo_Keys>CompanyName=Tarasov Artyom;FileDescription=Battery Mode;FileVersion=4.1.0.165;InternalName=Battery Mode;LegalCopyright=© Tarasov Artyom, 2015 - 2021;LegalTrademarks=;OriginalFilename=BatteryMode32.exe;ProductName=Battery Mode 32-bit;ProductVersion=4.0.0.0;Comments=;ProgramID=ru.tarcode.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Tarasov Artyom;FileDescription=Battery Mode;FileVersion=4.1.1.166;InternalName=Battery Mode;LegalCopyright=© Tarasov Artyom, 2015 - 2021;LegalTrademarks=;OriginalFilename=BatteryMode32.exe;ProductName=Battery Mode 32-bit;ProductVersion=4.0.0.0;Comments=;ProgramID=ru.tarcode.$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <BT_BuildType>Debug</BT_BuildType>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <VerInfo_MinorVer>1</VerInfo_MinorVer>
+        <VerInfo_Release>1</VerInfo_Release>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <BRCC_CodePage>65001</BRCC_CodePage>
         <BRCC_OutputDir>Win64\Release\res\</BRCC_OutputDir>
-        <VerInfo_Build>165</VerInfo_Build>
+        <VerInfo_Build>166</VerInfo_Build>
         <PostBuildEvent><![CDATA[(If Not Exist "$(PROJECTDIR)\Build" (mkdir "$(PROJECTDIR)\Build"))
 copy "$(OUTPUTDIR)$(OUTPUTNAME)$(OUTPUTEXT)" "$(PROJECTDIR)\Build\$(OUTPUTNAME)64$(OUTPUTEXT)"
 $(PostBuildEvent)]]></PostBuildEvent>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_MajorVer>4</VerInfo_MajorVer>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Keys>CompanyName=Tarasov Artyom;FileDescription=Battery Mode;FileVersion=4.1.0.165;InternalName=Battery Mode;LegalCopyright=© Tarasov Artyom, 2015 - 2021;LegalTrademarks=;OriginalFilename=BatteryMode64.exe;ProductName=Battery Mode 64-bit;ProductVersion=4.0.0.0;Comments=;ProgramID=ru.tarcode.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Tarasov Artyom;FileDescription=Battery Mode;FileVersion=4.1.1.166;InternalName=Battery Mode;LegalCopyright=© Tarasov Artyom, 2015 - 2021;LegalTrademarks=;OriginalFilename=BatteryMode64.exe;ProductName=Battery Mode 64-bit;ProductVersion=4.0.0.0;Comments=;ProgramID=ru.tarcode.$(MSBuildProjectName)</VerInfo_Keys>
         <BT_BuildType>Debug</BT_BuildType>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <VerInfo_MinorVer>1</VerInfo_MinorVer>
+        <VerInfo_Release>1</VerInfo_Release>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
