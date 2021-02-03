@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, Winapi.ShellAPI,
   System.SysUtils, System.Variants, System.Classes, System.Win.Registry,
-  System.Generics.Collections,
+  System.Generics.Collections, System.Generics.Defaults,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls,
   Vcl.ExtCtrls,
   Api.Pipe.Server,
@@ -1096,6 +1096,16 @@ var
   MenuItem: TMenuItem;
 begin
   AvailableLocalizations := TLang.GetAvailableLocalizations(0);
+  AvailableLocalizations.Sort(TComparer<TAvailableLocalization>.Construct(
+    function(const Left, Right: TAvailableLocalization): Integer
+    begin
+      Result := string.Compare(
+        Left.Value,
+        Right.Value,
+        [coLingIgnoreCase],
+        MAKELCID(TLang.LanguageId, SORT_DEFAULT));
+    end
+  ));
   try  
     for Localization in AvailableLocalizations do
     begin
