@@ -12,7 +12,7 @@ english.AllUserDescLabel=Administrator access required.%nThe program will be ins
 ; JustForMeRadioButton
 english.JustForMeRadioButton=Install to AppData
 ; JustForMeDescLabel
-english.JustForMeDescLabel=No Administrator acces required.%nThe program will be installed to current user only
+english.JustForMeDescLabel=No Administrator access required.%nThe program will be installed to current user only
 
 ; PortableRadioButton
 english.PortableRadioButton=Portable Installation
