@@ -24,6 +24,8 @@ english.SysIcons=Disable System Power Icon
 ; SysIconsDescription
 english.SysIconsDescription=You can hide system power icon to make {#AppName} the only power icon in your tray 
 ; SysIconsDescLabel
-english.SysIconsDescLabel=Click "System Icons Settings" button and turn off "Power" to hide system power icon.%n%nYou can always access this window using {#AppName} menu
+english.SysIconsDescLabel=Click "System Icons Settings" button and turn off "Power" to hide system power icon.%n%nYou can always access this window using {#AppName} menu.
+; SysIconsDescLabelWin10
+english.SysIconsDescLabelWin10=Click "System Icons Settings" button, click "Turn system icons on or off" and turn off "Power" to hide system power icon.%n%nYou can always access this window using {#AppName} menu.
 ; SysIconButton
 english.SysIconButton=System Icons Settings

@@ -96,6 +96,11 @@ Root: "HKLM"; Subkey: "Software\Microsoft\Windows\CurrentVersion\Run"; ValueType
 
 [Code]
 
+var
+	WpInstallType: TWizardPage;
+	WpSysIcons: TWizardPage;
+	SysIconButton: TNewButton;
+
 function OpenSystemIcon: Boolean;
 var
 	ResultCode: Integer;
@@ -136,6 +141,38 @@ begin
 	end;
 end;
 
+procedure OnInitializeWizard();
+var
+	SysIconsDescLabel: TNewStaticText;
+begin
+	WpSysIcons := CreateCustomPage(wpInfoAfter, CustomMessage('SysIcons'), CustomMessage('SysIconsDescription'));
+	
+	SysIconsDescLabel := TNewStaticText.Create(WizardForm);
+	with SysIconsDescLabel do begin
+		Parent := WpSysIcons.Surface;
+		AutoSize := False;
+		Top := ScaleY(8);
+		Width := WpSysIcons.SurfaceWidth - Left*2;
+		Wordwrap := True;
+	end;
+  if IsWindows10OrGreater then
+  	SysIconsDescLabel.Caption := CustomMessage('SysIconsDescLabelWin10')
+  else 
+  	SysIconsDescLabel.Caption := CustomMessage('SysIconsDescLabel');
+  SysIconsDescLabel.AdjustHeight;
+	
+	SysIconButton := TNewButton.Create(WizardForm);
+	with SysIconButton do begin
+		Parent := WpSysIcons.Surface;
+		Enabled := not IsPortableOnly;
+		Top := SysIconsDescLabel.Top + SysIconsDescLabel.Height + ScaleY(6);
+		Height := ScaleY(25);
+		Width := ScaleX(230);
+		Caption := CustomMessage('SysIconButton');
+		OnClick := @SysIconButtonClick;
+	end;
+end;
+
 function InitializeSetup(): Boolean;
 begin
 	if ParamExists('/h') then
@@ -145,7 +182,8 @@ begin
 		Result := False;
 		Exit;
 	end;
-	InstallTypeGuiInit();  
+	InstallTypeGuiInit();
+	ConnectOnInitializeWizard(@OnInitializeWizard);  
 	Result := True;
 end;
 
