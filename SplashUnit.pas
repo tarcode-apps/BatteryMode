@@ -28,6 +28,7 @@ type
   private
     class var FEnable: Boolean;
     class var FInterval: Integer;
+    class var FTransparency: Byte;
     class var FScaleByScreen: Cardinal;
     class var uIDEvent: UINT_PTR;
     class var FShowing: Boolean;
@@ -63,6 +64,9 @@ type
 
     class constructor Create;
     class destructor Destroy;
+  public
+    class procedure ShowSplash;
+    class procedure HideSplash;
   protected
     class var EnablingFunc: TSplashEnabling;
     class var DisablingFunc: TSplashDisabling;
@@ -70,12 +74,10 @@ type
     class var GetRealImageSizeFunc: TGetRealImageSize;
     class var GeneratePictureFunc: TGeneratePicture;
 
-    class procedure ShowSplash;
-    class procedure HideSplash;
-
     class property Enable: Boolean read FEnable write SetEnable;
     class property MonitorConfig: TSplashMonitorConfig read FMonitorConfig write SetMonitorConfig;
     class property Interval: Integer read FInterval write FInterval;
+    class property Transparency: Byte read FTransparency write FTransparency;
     class property Showing: Boolean read FShowing;
     class property ScaleByScreen: Cardinal read FScaleByScreen write FScaleByScreen;
   end;
@@ -363,7 +365,7 @@ begin
 
   BlendFunction.BlendOp := AC_SRC_OVER;
   BlendFunction.BlendFlags := 0;
-  BlendFunction.SourceConstantAlpha := $FF;
+  BlendFunction.SourceConstantAlpha := $FF - FTransparency;
   BlendFunction.AlphaFormat := AC_SRC_ALPHA;
 
   SetWindowPos(wnd, HWND_TOPMOST, 0, 0, Width, Height,
@@ -384,6 +386,7 @@ begin
   FEnable := False;
   FMonitorConfig.Create(smtPrimary);
   FInterval := 1500;
+  FTransparency := 0;
   FScaleByScreen := 5;
   FShowing := False;
   Screen := TScreenLite.Create;

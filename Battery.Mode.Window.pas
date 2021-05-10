@@ -43,6 +43,7 @@ const
   REG_BrightnessRescanDelayMillisecond = 'Brightness Rescan Delay';
   REG_ShowBrightnessInTrayHint = 'Show Brightness In Tray Hint';
   REG_DisplayIndicator = 'Display Indicator Power Schemes';
+  REG_IndicatorTransparency = 'Indicator Power Schemes Transparency';
   REG_FeatureMissingScheme = 'Feature Missing Scheme';
   REG_FeatureOverlay = 'Feature Overlay';
   REG_FeatureHiddedScheme = 'Show Hidded Scheme'; // Legacy
@@ -94,6 +95,7 @@ type
     BrightnessRescanDelayMillisecond: Cardinal;
     ShowBrightnessInTrayHint: Boolean;
     DisplayIndicator: TDisplayIndicator;
+    IndicatorTransparency: Byte;
     FeatureMissingScheme: Boolean;
     FeatureOverlay: Boolean;
     FeatureHiddedScheme: Boolean;
@@ -364,8 +366,9 @@ begin
   // Инициализация автозагрузки
   AutorunManager.OnAutorun := AutorunManagerAutorun;
 
-  // Инициализация заставки
+  // Initialize Power Scheme Splash
   TBatterySplash.ScaleByScreen := 8;
+  TBatterySplash.Transparency := Conf.IndicatorTransparency;
   DisplayIndicator := Conf.DisplayIndicator;
 
   // Инициализация значков
@@ -1307,6 +1310,7 @@ begin
     Result.DisplayIndicator := diPrimary
   else
     Result.DisplayIndicator := diNone;
+  Result.IndicatorTransparency := 0;
   Result.FeatureMissingScheme := True;
   Result.FeatureOverlay := True;
   Result.FeatureHiddedScheme := False;
@@ -1371,6 +1375,7 @@ begin
     Result.BrightnessRescanDelayMillisecond := Cardinal(ReadIntegerDef(REG_BrightnessRescanDelayMillisecond, Integer(Default.BrightnessRescanDelayMillisecond)));
     Result.ShowBrightnessInTrayHint := ReadBoolDef(REG_ShowBrightnessInTrayHint, Default.ShowBrightnessInTrayHint);
     Result.DisplayIndicator := TDisplayIndicator(ReadIntegerDef(REG_DisplayIndicator, Integer(Default.DisplayIndicator)));
+    Result.IndicatorTransparency := Byte(ReadIntegerDef(REG_IndicatorTransparency, Default.IndicatorTransparency));
     Result.FeatureMissingScheme := ReadBoolDef(REG_FeatureMissingScheme, Default.FeatureMissingScheme);
     Result.FeatureOverlay := ReadBoolDef(REG_FeatureOverlay, Default.FeatureOverlay);
     Result.FeatureHiddedScheme := ReadBoolDef(REG_FeatureHiddedScheme, Default.FeatureHiddedScheme);
@@ -1415,6 +1420,7 @@ begin
       Registry.WriteInteger(REG_BrightnessRescanDelayMillisecond, Integer(Conf.BrightnessRescanDelayMillisecond));
       Registry.WriteBool(REG_ShowBrightnessInTrayHint, Conf.ShowBrightnessInTrayHint);
       Registry.WriteInteger(REG_DisplayIndicator, Integer(Conf.DisplayIndicator));
+      Registry.WriteInteger(REG_IndicatorTransparency, Conf.IndicatorTransparency);
       Registry.WriteBool(REG_FeatureMissingScheme, Conf.FeatureMissingScheme);
       Registry.WriteBool(REG_FeatureOverlay, Conf.FeatureOverlay);
       Registry.WriteBool(REG_FeatureHiddedScheme, Conf.FeatureHiddedScheme);
@@ -1478,6 +1484,7 @@ begin
   Conf.BrightnessRescanDelayMillisecond := BrightnessManager.RescanDelayMillisecond;
   Conf.ShowBrightnessInTrayHint := ShowBrightnessInTrayHint;
   Conf.DisplayIndicator := DisplayIndicator;
+  Conf.IndicatorTransparency := TBatterySplash.Transparency;
   Conf.FeatureMissingScheme := psfMissingScheme in TBatteryMode.PowerSchemes.SchemeFeatures;
   Conf.FeatureOverlay := psfOverlay in TBatteryMode.PowerSchemes.SchemeFeatures;
   Conf.FeatureHiddedScheme := psfHiddenScheme in TBatteryMode.PowerSchemes.SchemeFeatures;

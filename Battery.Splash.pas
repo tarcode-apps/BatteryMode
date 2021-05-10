@@ -37,11 +37,12 @@ type
     class function GetRealImageSize: TSize;
     class function GeneratePicture(Width, Height: Integer; Monitor: TMonitorLite): IGPBitmap;
   public
-    class procedure ShowSplash(DisplayType: TSplashDisplayType; const State: TBatteryState; InverColor: Boolean);
+    class procedure ShowSplash(DisplayType: TSplashDisplayType; const State: TBatteryState; InverColor: Boolean); overload;
 
     class property SplashDisplayType: TSplashDisplayType read FSplashDisplayType write SetSplashDisplayType;
     class property MonitorConfig;
     class property Interval;
+    class property Transparency;
     class property Showing;
     class property ScaleByScreen;
   end;

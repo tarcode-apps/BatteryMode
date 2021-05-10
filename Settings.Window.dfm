@@ -40,10 +40,8 @@ object SettingsWindow: TSettingsWindow
     ActivePage = InterfaceTab
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 491
     object InterfaceTab: TTabSheet
       Caption = 'Interface'
-      ExplicitHeight = 461
       object IconsGroup: TGroupBox
         AlignWithMargins = True
         Left = 8
@@ -225,7 +223,7 @@ object SettingsWindow: TSettingsWindow
         Left = 8
         Top = 179
         Width = 554
-        Height = 130
+        Height = 150
         Margins.Left = 8
         Margins.Right = 10
         Align = alTop
@@ -286,11 +284,72 @@ object SettingsWindow: TSettingsWindow
           TabOrder = 2
           OnClick = IndicatorAllMonitorRadioButtonClick
         end
+        object IndicatorTransparencyPanel: TPanel
+          AlignWithMargins = True
+          Left = 9
+          Top = 116
+          Width = 536
+          Height = 27
+          Margins.Left = 7
+          Margins.Top = 5
+          Margins.Right = 7
+          Margins.Bottom = 0
+          Align = alTop
+          BevelOuter = bvNone
+          Caption = 'IndicatorTransparencyPanel'
+          ShowCaption = False
+          TabOrder = 3
+          ExplicitLeft = 2
+          ExplicitTop = 111
+          ExplicitWidth = 550
+          object IndicatorTransparencyLabel: TLabel
+            AlignWithMargins = True
+            Left = 0
+            Top = 3
+            Width = 162
+            Height = 21
+            Margins.Left = 0
+            Align = alLeft
+            Caption = 'IndicatorTransparencyLabel'
+            ExplicitLeft = 7
+            ExplicitTop = 5
+            ExplicitHeight = 26
+          end
+          object IndicatorTransparencyValueLabel: TLabel
+            AlignWithMargins = True
+            Left = 356
+            Top = 3
+            Width = 28
+            Height = 21
+            Align = alLeft
+            Caption = 'Value'
+            ExplicitLeft = 392
+            ExplicitTop = 12
+            ExplicitHeight = 15
+          end
+          object IndicatorTransparencyTrackBar: TTrackBar
+            AlignWithMargins = True
+            Left = 168
+            Top = 0
+            Width = 182
+            Height = 24
+            Margins.Top = 0
+            Align = alLeft
+            Max = 16
+            ShowSelRange = False
+            TabOrder = 0
+            TickStyle = tsNone
+            OnChange = IndicatorTransparencyTrackBarChange
+            ExplicitLeft = 165
+            ExplicitTop = 3
+            ExplicitHeight = 27
+          end
+        end
       end
       object MainWindowGroup: TGroupBox
         AlignWithMargins = True
         Left = 8
-        Top = 315
+        Top = 335
         Width = 554
         Height = 81
         Margins.Left = 8
@@ -298,6 +357,7 @@ object SettingsWindow: TSettingsWindow
         Align = alTop
         Caption = 'MainWindow'
         TabOrder = 2
+        ExplicitTop = 315
         object MainWindowGrid: TGridPanel
           Left = 2
           Top = 17
@@ -388,7 +448,6 @@ object SettingsWindow: TSettingsWindow
     object SchemesTab: TTabSheet
       Caption = 'Schemes'
       ImageIndex = 3
-      ExplicitHeight = 461
       object SchemeFeaturesGroup: TGroupBox
         AlignWithMargins = True
         Left = 8
@@ -649,7 +708,6 @@ object SettingsWindow: TSettingsWindow
       Margins.Right = 5
       Caption = 'Brightness'
       ImageIndex = 1
-      ExplicitHeight = 461
       object BrightnessScrollBox: TScrollBox
         Left = 0
         Top = 0
@@ -663,7 +721,6 @@ object SettingsWindow: TSettingsWindow
         BorderStyle = bsNone
         ParentBackground = True
         TabOrder = 0
-        ExplicitHeight = 461
         object BrightnessSliderGroup: TGroupBox
           AlignWithMargins = True
           Left = 8
@@ -746,7 +803,6 @@ object SettingsWindow: TSettingsWindow
             BevelOuter = bvNone
             ShowCaption = False
             TabOrder = 2
-            ExplicitTop = 100
             object ShowBrightnessInTrayHintCheckBox: TCheckBox
               Left = 0
               Top = 0
@@ -773,7 +829,6 @@ object SettingsWindow: TSettingsWindow
           Caption = 'Monitor'
           Padding.Bottom = 7
           TabOrder = 1
-          ExplicitTop = 87
         end
         object BrightnessFixedGroup: TGroupBox
           AlignWithMargins = True
@@ -787,7 +842,6 @@ object SettingsWindow: TSettingsWindow
           Caption = 'BrightnessFixed'
           Padding.Bottom = 6
           TabOrder = 2
-          ExplicitTop = 137
           object BrightnessFixedHelpLabel: TLabel
             AlignWithMargins = True
             Left = 9
@@ -844,7 +898,6 @@ object SettingsWindow: TSettingsWindow
           Caption = 'BrightnessOptions'
           Padding.Bottom = 7
           TabOrder = 3
-          ExplicitTop = 248
           object BrightnessRescanDelayHelpLabel: TLabel
             AlignWithMargins = True
             Left = 8
@@ -934,7 +987,6 @@ object SettingsWindow: TSettingsWindow
     object AutoUpdateTab: TTabSheet
       Caption = 'AutoUpdate'
       ImageIndex = 2
-      ExplicitHeight = 461
       object AppCurrentVersionLabel: TLabel
         Left = 8
         Top = 71
@@ -970,7 +1022,6 @@ object SettingsWindow: TSettingsWindow
     object AboutTab: TTabSheet
       Caption = 'About'
       ImageIndex = 4
-      ExplicitHeight = 461
       object AboutIconPanel: TPanel
         AlignWithMargins = True
         Left = 3
@@ -987,7 +1038,6 @@ object SettingsWindow: TSettingsWindow
         Padding.Bottom = 20
         ShowCaption = False
         TabOrder = 0
-        ExplicitHeight = 455
         object AppImage: TImage
           Left = 15
           Top = 12
@@ -1012,7 +1062,6 @@ object SettingsWindow: TSettingsWindow
         Padding.Right = 16
         ShowCaption = False
         TabOrder = 1
-        ExplicitHeight = 461
         object AppNameLabel: TLabel
           Left = 0
           Top = 16
@@ -1292,7 +1341,7 @@ object SettingsWindow: TSettingsWindow
   end
   object MainMenu: TMainMenu
     Left = 24
-    Top = 432
+    Top = 472
     object MainMenuFile: TMenuItem
       Caption = 'File'
       object MainMenuExportConfigToFile: TMenuItem
@@ -1315,13 +1364,13 @@ object SettingsWindow: TSettingsWindow
     Filter = 'REG|*.reg|Text|*.txt|All files|*.*'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     Left = 104
-    Top = 433
+    Top = 473
   end
   object ImportConfigDialog: TOpenDialog
     DefaultExt = 'reg'
     Filter = 'REG|*.reg|Text|*.txt|All files|*.*'
     Options = [ofEnableSizing]
     Left = 200
-    Top = 433
+    Top = 473
   end
 end

@@ -37,6 +37,10 @@ type
     IndicatorNotDisplayRadioButton: TRadioButton;
     IndicatorPrimaryMonitorRadioButton: TRadioButton;
     IndicatorAllMonitorRadioButton: TRadioButton;
+    IndicatorTransparencyPanel: TPanel;
+    IndicatorTransparencyLabel: TLabel;
+    IndicatorTransparencyTrackBar: TTrackBar;
+    IndicatorTransparencyValueLabel: TLabel;
     MainWindowGroup: TGroupBox;
     MainWindowGrid: TGridPanel;
     MainWindowLinkTypeLabel: TLabel;
@@ -120,6 +124,7 @@ type
     procedure IndicatorNotDisplayRadioButtonClick(Sender: TObject);
     procedure IndicatorPrimaryMonitorRadioButtonClick(Sender: TObject);
     procedure IndicatorAllMonitorRadioButtonClick(Sender: TObject);
+    procedure IndicatorTransparencyTrackBarChange(Sender: TObject);
     procedure MainWindowLinkTypeComboBoxChange(Sender: TObject);
     procedure MainWindowDisableSystemBorderCheckBoxClick(Sender: TObject);
     procedure SchemeFeatureMissingSchemeCheckBoxClick(Sender: TObject);
@@ -146,16 +151,20 @@ type
   public
     class procedure Open(AllSettings: Boolean);
   strict private
+    const IndicatorTransparencyScale = 5;
+  strict private
     FAllSettings: Boolean;
     FIsRemoteSession: Boolean;
     FBrightnessMonitorControls: TList<TControl>;
     FLastHintHidePause: Integer;
+    LockerIndicator: ILocker;
     procedure LoadIcon;
     procedure Loadlocalization;
     procedure LoadMainWindowLinkType;
     procedure LoadBrightnessMonitors;
     procedure ClearBrightnessMonitors;
     procedure UpdateHotKey;
+    procedure UpdateIndicatorTransparency;
     procedure FixGrids;
     procedure FixWindowHeight;
     function DropAccel(Text: string): string;
@@ -227,6 +236,8 @@ end;
 constructor TSettingsWindow.Create(AllSettings: Boolean);
 begin
   inherited Create(nil);
+  LockerIndicator := TLocker.Create;
+
   FLastWindowHandle := WindowHandle;
   FBrightnessMonitorControls := TList<TControl>.Create;
 
@@ -280,6 +291,7 @@ begin
   IconBehaviorPercentCheckBox.Checked := TIconHelper.IconBehavior = ibPercent;
   IconBehaviorPercentCheckBox.Enabled := TBatteryMode.State.Mobile or TBatteryMode.State.BatteryPresent;
 
+  LockerIndicator.Lock;
   IndicatorGroup.AutoSize := True;
   if TBatterySplash.SplashDisplayType = sdtNone then
     IndicatorNotDisplayRadioButton.Checked := True
@@ -287,6 +299,13 @@ begin
     IndicatorPrimaryMonitorRadioButton.Checked := True
   else if TBatterySplash.MonitorConfig.MonitorType = TBatterySplash.TSplashMonitorType.smtAll then
     IndicatorAllMonitorRadioButton.Checked := True;
+
+  IndicatorTransparencyTrackBar.DirectDrag := True;
+  IndicatorTransparencyTrackBar.Position := TBatterySplash.Transparency * 100 div 255 div IndicatorTransparencyScale;
+  IndicatorTransparencyValueLabel.Caption :=
+    string.Format('%0u%%', [IndicatorTransparencyTrackBar.Position * IndicatorTransparencyScale]);
+  UpdateIndicatorTransparency;
+  LockerIndicator.Unlock;
 
   LoadMainWindowLinkType;
 
@@ -606,28 +625,47 @@ end;
 
 procedure TSettingsWindow.IndicatorAllMonitorRadioButtonClick(Sender: TObject);
 begin
+  if LockerIndicator.IsLocked then Exit;
   if not (Sender as TRadioButton).Checked then Exit;
 
   TBatterySplash.MonitorConfig :=
     TBatterySplash.TSplashMonitorConfig.Create(TBatterySplash.TSplashMonitorType.smtAll);
   TBatterySplash.SplashDisplayType := sdtSelf;
+  UpdateIndicatorTransparency;
+  TBatterySplash.ShowSplash;
 end;
 
 procedure TSettingsWindow.IndicatorNotDisplayRadioButtonClick(Sender: TObject);
 begin
+  if LockerIndicator.IsLocked then Exit;
   if not (Sender as TRadioButton).Checked then Exit;
 
   TBatterySplash.SplashDisplayType := sdtNone;
+  UpdateIndicatorTransparency;
 end;
 
 procedure TSettingsWindow.IndicatorPrimaryMonitorRadioButtonClick(
   Sender: TObject);
 begin
+  if LockerIndicator.IsLocked then Exit;
   if not (Sender as TRadioButton).Checked then Exit;
 
   TBatterySplash.MonitorConfig :=
     TBatterySplash.TSplashMonitorConfig.Create(TBatterySplash.TSplashMonitorType.smtPrimary);
   TBatterySplash.SplashDisplayType := sdtSelf;
+  UpdateIndicatorTransparency;
+  TBatterySplash.ShowSplash;
+end;
+
+procedure TSettingsWindow.IndicatorTransparencyTrackBarChange(Sender: TObject);
+begin
+  if LockerIndicator.IsLocked then Exit;
+
+  TBatterySplash.Transparency := TTrackBar(Sender).Position * 255 div 100 * IndicatorTransparencyScale;
+  IndicatorTransparencyValueLabel.Caption :=
+    string.Format('%0u%%', [TTrackBar(Sender).Position * IndicatorTransparencyScale]);
+
+  TBatterySplash.ShowSplash;
 end;
 
 procedure TSettingsWindow.MainWindowLinkTypeComboBoxChange(Sender: TObject);
@@ -837,6 +875,16 @@ begin
   SchemeHotKeyLabel.Caption :=  string.Format(KeyValFmt, [TLang[93], HotKeyText]);;
 end;
 
+procedure TSettingsWindow.UpdateIndicatorTransparency;
+var
+  IsIndicatorTransparencyAvailable: Boolean;
+begin
+  IsIndicatorTransparencyAvailable := TBatterySplash.SplashDisplayType <> sdtNone;
+  IndicatorTransparencyLabel.Enabled := IsIndicatorTransparencyAvailable;
+  IndicatorTransparencyTrackBar.Enabled := IsIndicatorTransparencyAvailable;
+  IndicatorTransparencyValueLabel.Enabled := IsIndicatorTransparencyAvailable;
+end;
+
 procedure TSettingsWindow.LoadIcon;
 var
   hIco: HICON;
@@ -900,6 +948,7 @@ begin
   IndicatorNotDisplayRadioButton.Caption      := DropAccel(TLang[21]); // Не отображать
   IndicatorPrimaryMonitorRadioButton.Caption  := DropAccel(TLang[22]); // На основном мониторе
   IndicatorAllMonitorRadioButton.Caption      := DropAccel(TLang[23]); // На всех мониторах
+  IndicatorTransparencyLabel.Caption          := DropAccel(TLang[24]); // Transparency
 
   MainWindowGroup.Caption         := DropAccel(TLang[82]);  // Главное окно
   MainWindowLinkTypeLabel.Caption := DropAccel(TLang[135]); // Ссылка в нижней части окна

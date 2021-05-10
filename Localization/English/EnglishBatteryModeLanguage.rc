@@ -24,6 +24,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 21, "&Don't show"
 22, "Show on the &primary monitor"
 23, "Show on &all monitors"
+24, "Transparency"
 
 26, "&Hidden power schemes"
 27, "Hidden scheme"
