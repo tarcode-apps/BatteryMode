@@ -101,9 +101,9 @@ begin
   end else begin
     FEnable := False;
     HideAllForm;
-    UnregistegSplashClass(SplashWndClass);
     ReleaseAllForm;
     DisablingFunc;
+    UnregistegSplashClass(SplashWndClass);
   end;
 end;
 
