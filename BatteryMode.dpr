@@ -145,6 +145,7 @@ uses
   Scheduling.UI.Editor in 'Scheduler\Scheduling.UI.Editor.pas' {RuleEditorWindow},
   Scheduling.UI.Scheduler in 'Scheduler\Scheduling.UI.Scheduler.pas' {SchedulingWindow},
   Scheduling.UI.Triggers in 'Scheduler\Scheduling.UI.Triggers.pas',
+  Sensors.AmbientLightSensor in 'Sensors\Sensors.AmbientLightSensor.pas',
   Battery.Mode in 'Battery.Mode.pas',
   Battery.Mode.Window in 'Battery.Mode.Window.pas' {BatteryModeForm},
   Battery.Controls in 'Battery.Controls.pas',

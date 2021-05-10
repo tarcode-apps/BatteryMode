@@ -466,6 +466,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <Form>SchedulingWindow</Form>
         </DCCReference>
         <DCCReference Include="Scheduler\Scheduling.UI.Triggers.pas"/>
+        <DCCReference Include="Sensors\Sensors.AmbientLightSensor.pas"/>
         <DCCReference Include="Battery.Mode.pas"/>
         <DCCReference Include="Battery.Mode.Window.pas">
             <Form>BatteryModeForm</Form>

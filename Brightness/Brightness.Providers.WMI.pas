@@ -9,6 +9,7 @@ uses
   Core.Language,
   Brightness,
   Power.WinApi.PowrProf,
+  Sensors.AmbientLightSensor,
   JwaWbemCli;
 
 type
@@ -74,6 +75,7 @@ type
     FDescription: string;
     FAdaptiveBrightness: Boolean;
 
+    FAmbientLightSensor: TAmbientLightSensor;
     FWmiSetBrightnessThread: TWmiSetBrightnessThread;
   private
     class constructor Create;
@@ -95,6 +97,7 @@ type
     function GetAdaptiveBrightnessAvalible: Boolean; override;
 
     function DisplayNameFromInstanceName(InstanceName: TInstanceName): string;
+    function AdjustAmbientLight(Brightness: Byte): Byte;
   public
     constructor Create(Services: IWbemServices;
       WmiMonitorBrightness: IWbemClassObject;
@@ -234,10 +237,18 @@ begin
   FDescription := DisplayNameFromInstanceName(FInstanceName);
 
   FWmiSetBrightnessThread := TWmiSetBrightnessThread.Create(FInstanceName);
+
+  try
+    FAmbientLightSensor := TAmbientLightSensor.Create;
+  except
+    FAmbientLightSensor := nil;
+  end;
 end;
 
 destructor TWMIMonitor.Destroy;
 begin
+  FAmbientLightSensor.Free;
+
   FWmiSetBrightnessThread.Free;
 
   FLevels.Free;
@@ -373,6 +384,28 @@ begin
       AdaptorDevice.cb := SizeOf(AdaptorDevice);
       Inc(AdapNum);
     end;
+end;
+
+function TWMIMonitor.AdjustAmbientLight(Brightness: Byte): Byte;
+var
+  I: Integer;
+  FromLux, ToLux: TAmbientLightSensor.TLuxPair;
+  Percent: Integer;
+begin
+  if (FAmbientLightSensor = nil) or not AdaptiveBrightnessAvalible or not AdaptiveBrightness then Exit(Brightness);
+
+  I := 0;
+  FromLux := FAmbientLightSensor.Curve.First;
+  ToLux   := FAmbientLightSensor.Curve.First;
+  
+  while I < FAmbientLightSensor.Curve.Count - 1 do
+  begin
+    if FAmbientLightSensor.Lux < FAmbientLightSensor.Curve[I].Offset then
+    begin
+      FromLux := FAmbientLightSensor.Curve.First;
+      ToLux := FAmbientLightSensor.Curve.First;  
+    end;
+  end;
 end;
 
 function TWMIMonitor.GetDefaultConfig: TBrightnessConfig;
