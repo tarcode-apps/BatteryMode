@@ -96,6 +96,8 @@ type
     procedure LoadSystemInfo(Info: TPowerInfo);
     procedure Loadlocalization;
 
+    constructor Create; reintroduce;
+
     function GetBatteryInfo(Battery: TBattery): TPowerInfo;
     function GetSystemInfo(Status: TSystemPowerStatus): TPowerInfo;
 
@@ -110,26 +112,30 @@ type
   protected
     procedure CreateParams(var Params: TCreateParams); override;
     procedure UpdateInfo(Batterys: TBatteryList; Status: TSystemPowerStatus);
+  strict private
+    class var FLastWindowHandle: THandle;
+  public
+    class var StayOnTop: Boolean;
+    class procedure Open;
   end;
-
-procedure ShowPowerMonitor;
 
 implementation
 
 {$R *.dfm}
 
-procedure ShowPowerMonitor;
+class procedure TPowerMonitorWindow.Open;
 var
-  Wnd: HWND;
-  PowerMonitor: TPowerMonitorWindow;
+  PowerMonitorWindow: TPowerMonitorWindow;
 begin
-  Wnd := FindWindow('TPowerMonitorWindow', nil);
-  if Wnd = 0 then begin
-    Application.CreateForm(TPowerMonitorWindow, PowerMonitor);
-    PowerMonitor.Show;
-  end else begin
-    ShowWindow(Wnd, SW_RESTORE);
-    SetForegroundWindow(Wnd);
+  if FLastWindowHandle = 0 then
+  begin
+    PowerMonitorWindow := TPowerMonitorWindow.Create;
+    PowerMonitorWindow.Show;
+  end
+  else
+  begin
+    ShowWindow(FLastWindowHandle, SW_RESTORE);
+    SetForegroundWindow(FLastWindowHandle);
   end;
 end;
 
@@ -157,12 +163,23 @@ end;
 
 { TPowerMonitorForm }
 
-procedure TPowerMonitorWindow.FormCreate(Sender: TObject);
+constructor TPowerMonitorWindow.Create;
 begin
-  // Инициализация блокировщиков событий
+  inherited Create(nil);
   LockerInfo := TLocker.Create;
 
+  FLastWindowHandle := WindowHandle;
+
   TPowerSystem.GetInformation(FBatterys, FSystemPowerStatus);
+end;
+
+procedure TPowerMonitorWindow.FormCreate(Sender: TObject);
+begin
+  if StayOnTop then
+  begin
+    MainMenuAlwaysOnTop.Checked := True;
+    FormStyle := fsStayOnTop;
+  end;
 
   Loadlocalization;
 
@@ -177,6 +194,7 @@ end;
 
 procedure TPowerMonitorWindow.FormDestroy(Sender: TObject);
 begin
+  FLastWindowHandle := 0;
   TimerAutoupdate.Enabled := False;
 end;
 
@@ -535,7 +553,8 @@ end;
 
 procedure TPowerMonitorWindow.MainMenuAlwaysOnTopClick(Sender: TObject);
 begin
-  if (Sender as TMenuItem).Checked then
+  StayOnTop := (Sender as TMenuItem).Checked;
+  if StayOnTop then
     FormStyle := fsStayOnTop
   else
     FormStyle := fsNormal;

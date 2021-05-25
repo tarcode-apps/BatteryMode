@@ -54,6 +54,7 @@ const
   REG_SchedulerEnabled = 'Scheduler Enabled';
   REG_LinkType = 'Link Type';
   REG_LinkTypeRdp = 'Link Type RDP';
+  REG_PowerMonitorStayOnTop = 'PowerMonitor Always On Top';
   REG_ID = 'ID';
   REG_Language = 'Language';
   REG_LanguageId = 'LanguageId';
@@ -106,6 +107,7 @@ type
     SchedulerEnabled: Boolean;
     LinkType: TUiLabel;
     LinkTypeRdp: TUiLabel;
+    PowerMonitorStayOnTop: Boolean;
     ID: TAppID;
   end;
 
@@ -371,6 +373,9 @@ begin
   TBatterySplash.Transparency := Conf.IndicatorTransparency;
   DisplayIndicator := Conf.DisplayIndicator;
 
+  // Initialize Power Monitor
+  TPowerMonitorWindow.StayOnTop := Conf.PowerMonitorStayOnTop;
+
   // Инициализация значков
   TIconHelper.IconStyle := Conf.IconStyle;
   TIconHelper.IconColorType := Conf.IconColorType;
@@ -586,7 +591,7 @@ begin
     uilLogOut: PerformPowerAction(TPowerLogOutAction.Create);
     uilLock: PerformPowerAction(TPowerLockAction.Create);
     uilDiagnostic: PerformPowerAction(TPowerDiagnosticAction.Create);
-    uilPowerMonitor: ShowPowerMonitor;
+    uilPowerMonitor: TPowerMonitorWindow.Open;
     uilDisconnect: PerformPowerAction(TPowerDisconnectAction.Create);
     uilDetectMonitors: BrightnessManager.Update;
   end;
@@ -691,7 +696,7 @@ end;
 
 procedure TBatteryModeForm.TrayMenuPowerMonitorClick(Sender: TObject);
 begin
-  ShowPowerMonitor;
+  TPowerMonitorWindow.Open;
 end;
 
 procedure TBatteryModeForm.TrayMenuLanguageItemClick(Sender: TObject);
@@ -1322,6 +1327,7 @@ begin
   Result.SchedulerEnabled := True;
   Result.LinkType := DefaultUiLabel;
   Result.LinkTypeRdp := DefaultUiLabelRdp;
+  Result.PowerMonitorStayOnTop := False;
   Result.ID := TAutoUpdateScheduler.NewID;
 end;
 
@@ -1386,6 +1392,7 @@ begin
     Result.SchedulerEnabled := ReadBoolDef(REG_SchedulerEnabled, Default.SchedulerEnabled);
     Result.LinkType := TUiLabel(ReadIntegerDef(REG_LinkType, Integer(Default.LinkType)));
     Result.LinkTypeRdp := TUiLabel(ReadIntegerDef(REG_LinkTypeRdp, Integer(Default.LinkTypeRdp)));
+    Result.PowerMonitorStayOnTop := ReadBoolDef(REG_PowerMonitorStayOnTop, Default.PowerMonitorStayOnTop);
     Result.ID := ReadIntegerDef(REG_ID, Default.ID);
     // end read config
 
@@ -1431,6 +1438,7 @@ begin
       Registry.WriteBool(REG_SchedulerEnabled, Conf.SchedulerEnabled);
       Registry.WriteInteger(REG_LinkType, Integer(Conf.LinkType));
       Registry.WriteInteger(REG_LinkTypeRdp, Integer(Conf.LinkTypeRdp));
+      Registry.WriteBool(REG_PowerMonitorStayOnTop, Conf.PowerMonitorStayOnTop);
       Registry.WriteInteger(REG_ID, Conf.ID);
       // end write config
 
@@ -1495,6 +1503,7 @@ begin
   Conf.SchedulerEnabled := FScheduler.Enabled;
   Conf.LinkType := FLinkType;
   Conf.LinkTypeRdp := FLinkTypeRdp;
+  Conf.PowerMonitorStayOnTop := TPowerMonitorWindow.StayOnTop;
   Conf.ID := AutoUpdateScheduler.ID;
 
   SaveConfig(Conf);
