@@ -36,11 +36,23 @@ type
     BatterySaver: Boolean;
     LidSwitchOpen: Boolean;
     DisplayState: TDisplayState;
+    Started: Boolean;
+    Sleep: Boolean;
 
     class function Current: TState; static;
   end;
 
-  TTriggerType = (ttUnknown, ttPercent, ttAc, ttLidSwitch, ttDisplayState, ttScheme);
+  TTriggerType = (
+    ttUnknown,
+    ttPercent,
+    ttAc,
+    ttLidSwitch,
+    ttDisplayState,
+    ttScheme,
+    ttStartup,
+    ttSleep,
+    ttWakeup
+  );
   TConditionType = (ctUnknown, ctPercent, ctAc, ctLidSwitch, ctDisplayState, ctScheme, ctNotScheme);
   TActionType = (atUnknown, atMessage, atScheme, atRun, atSound, atPower);
 
@@ -575,6 +587,8 @@ begin
   Result.BatterySaver := TBatteryMode.State.BatterySaver;
   Result.LidSwitchOpen := TBatteryMode.State.LidSwitchOpen;
   Result.DisplayState := dsOn;
+  Result.Started := False;
+  Result.Sleep := False;
 end;
 
 end.

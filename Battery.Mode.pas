@@ -28,6 +28,7 @@ type
 
   TEventBatteryStateChange = procedure(Sender: TObject; const State: TBatteryState) of object;
   TEventUpdatePowerScheme = procedure(Sender: TObject; const PowerSchemeList: TPowerSchemeList) of object;
+  TEventPowerChange = procedure(Sender: TObject; Sleep: Boolean) of object;
 
   TBatteryMode = class
   strict private const
@@ -40,6 +41,7 @@ type
     class var FOnGlobalPowerSchemeChange: TEventBatteryStateChange;
     class var FOnLocalPowerSchemeChanges: TEventBatteryStateChange;
     class var FOnLocalPowerSchemeChanged: TEventBatteryStateChange;
+    class var FOnPowerChange: TEventPowerChange;
 
     class var HBatteryMsgForm: HWND;
 
@@ -84,9 +86,6 @@ type
     class procedure SetBatterySaver(const Value: Boolean); static;
     class procedure SetOnStateChange(const Value: TEventBatteryStateChange); static;
     class procedure SetOnUpdatePowerScheme(const Value: TEventUpdatePowerScheme); static;
-    class procedure SetOnLocalPowerSchemeChanges(const Value: TEventBatteryStateChange); static;
-    class procedure SetOnLocalPowerSchemeChanged(const Value: TEventBatteryStateChange); static;
-    class procedure SetOnGlobalPowerSchemeChange(const Value: TEventBatteryStateChange); static;
 
     class procedure Init;
     class procedure Done;
@@ -107,9 +106,10 @@ type
     class property BatterySaver: Boolean read GetBatterySaver write SetBatterySaver;
     class property OnStateChange: TEventBatteryStateChange read FOnStateChange write SetOnStateChange;
     class property OnUpdatePowerScheme: TEventUpdatePowerScheme read FOnUpdatePowerScheme write SetOnUpdatePowerScheme;
-    class property OnLocalPowerSchemeChanges: TEventBatteryStateChange read FOnLocalPowerSchemeChanges write SetOnLocalPowerSchemeChanges;
-    class property OnLocalPowerSchemeChanged: TEventBatteryStateChange read FOnLocalPowerSchemeChanged write SetOnLocalPowerSchemeChanged;
-    class property OnGlobalPowerSchemeChange: TEventBatteryStateChange read FOnGlobalPowerSchemeChange write SetOnGlobalPowerSchemeChange;
+    class property OnLocalPowerSchemeChanges: TEventBatteryStateChange read FOnLocalPowerSchemeChanges write FOnLocalPowerSchemeChanges;
+    class property OnLocalPowerSchemeChanged: TEventBatteryStateChange read FOnLocalPowerSchemeChanged write FOnLocalPowerSchemeChanged;
+    class property OnGlobalPowerSchemeChange: TEventBatteryStateChange read FOnGlobalPowerSchemeChange write FOnGlobalPowerSchemeChange;
+    class property OnPowerChange: TEventPowerChange read FOnPowerChange write FOnPowerChange;
   end;
 
 implementation
@@ -158,24 +158,6 @@ begin
   FOnUpdatePowerScheme := Value;
   if Assigned(FOnUpdatePowerScheme) then
     FOnUpdatePowerScheme(nil, FPowerSchemeProvider.Schemes);
-end;
-
-class procedure TBatteryMode.SetOnLocalPowerSchemeChanges(
-  const Value: TEventBatteryStateChange);
-begin
-  FOnLocalPowerSchemeChanges := Value;
-end;
-
-class procedure TBatteryMode.SetOnLocalPowerSchemeChanged(
-  const Value: TEventBatteryStateChange);
-begin
-  FOnLocalPowerSchemeChanged := Value;
-end;
-
-class procedure TBatteryMode.SetOnGlobalPowerSchemeChange(
-  const Value: TEventBatteryStateChange);
-begin
-  FOnGlobalPowerSchemeChange := Value;
 end;
 {$ENDREGION}
 
@@ -453,6 +435,12 @@ begin
           GetSystemPowerStatus(SystemPowerStatus);
           UpdateSystemPowerStatus(SystemPowerStatus);
         end;
+
+      PBT_APMSUSPEND:
+        if Assigned(FOnPowerChange) then FOnPowerChange(nil, True);
+
+      PBT_APMRESUMEAUTOMATIC:
+        if Assigned(FOnPowerChange) then FOnPowerChange(nil, False);
     end;
 
     Exit;

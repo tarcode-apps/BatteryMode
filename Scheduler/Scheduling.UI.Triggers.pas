@@ -184,6 +184,21 @@ type
     destructor Destroy; override;
   end;
 
+  TStartupTriggerPanel = class(TBaseTriggerPanel)
+  protected
+    function GetTrigger: ITrigger; override;
+  end;
+
+  TSleepTriggerPanel = class(TBaseTriggerPanel)
+  protected
+    function GetTrigger: ITrigger; override;
+  end;
+
+  TWakeupTriggerPanel = class(TBaseTriggerPanel)
+  protected
+    function GetTrigger: ITrigger; override;
+  end;
+
   TTriggersCountChange = procedure(Sender: TObject; Count: Integer) of object;
   TTriggerController = class(TPanel)
   private
@@ -230,6 +245,9 @@ begin
   if IsWindowsVistaOrGreater then
     FTriggersInfo.Add(TTiggerInfo.Create(ttDisplayState));
   FTriggersInfo.Add(TTiggerInfo.Create(ttScheme));
+  FTriggersInfo.Add(TTiggerInfo.Create(ttSleep));
+  FTriggersInfo.Add(TTiggerInfo.Create(ttWakeup));
+  FTriggersInfo.Add(TTiggerInfo.Create(ttStartup));
 
   FIndex := -1;
   if Assigned(FTrigger) then
@@ -356,6 +374,9 @@ begin
       ttLidSwitch:    FTriggerPanel := TLidSwitchTriggerPanel.Create(Self, Trigger, FModifyCollector);
       ttDisplayState: FTriggerPanel := TDisplayStateTriggerPanel.Create(Self, Trigger, FModifyCollector);
       ttScheme:       FTriggerPanel := TSchemeTriggerPanel.Create(Self, Trigger, FModifyCollector);
+      ttStartup:      FTriggerPanel := TStartupTriggerPanel.Create(Self, Trigger, FModifyCollector);
+      ttSleep:        FTriggerPanel := TSleepTriggerPanel.Create(Self, Trigger, FModifyCollector);
+      ttWakeup:       FTriggerPanel := TWakeupTriggerPanel.Create(Self, Trigger, FModifyCollector);
       else FTriggerPanel := TPreviewTriggerPanel.Create(Self, Trigger, FModifyCollector);
     end;
     FTriggerPanel.Parent := Self;
@@ -376,6 +397,9 @@ begin
     ttLidSwitch:    Name := TLang[1241]; // Крышка ноутбука
     ttDisplayState: Name := TLang[1261]; // Экран
     ttScheme:       Name := TLang[1281]; // Схема электропитания
+    ttStartup:      Name := TLang[1291]; // Battery Mode запустился
+    ttSleep:        Name := TLang[1251]; // Переход в сон/гибернацию
+    ttWakeup:       Name := TLang[1256]; // Выход из сна/гибернации
     else Name := TLang[1091]; // неизвестное условие
   end;
 end;
@@ -1211,6 +1235,27 @@ begin
 
   Result := TTriggerScheme.Create(
     FConditionsInfo[FComboBoxCondition.ItemIndex]);
+end;
+
+{ TStartupTriggerPanel }
+
+function TStartupTriggerPanel.GetTrigger: ITrigger;
+begin
+  Result := TTriggerStartup.Create;
+end;
+
+{ TSleepTriggerPanel }
+
+function TSleepTriggerPanel.GetTrigger: ITrigger;
+begin
+  Result := TTriggerSleep.Create;
+end;
+
+{ TWakeupTriggerPanel }
+
+function TWakeupTriggerPanel.GetTrigger: ITrigger;
+begin
+  Result := TTriggerWakeup.Create;
 end;
 
 end.

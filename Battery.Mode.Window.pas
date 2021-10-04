@@ -255,6 +255,7 @@ type
     procedure BatteryModeStateChange(Sender: TObject; const State: TBatteryState);
     procedure BatteryModeLocalPowerSchemeChanged(Sender: TObject; const State: TBatteryState);
     procedure BatteryModeGlobalPowerSchemeChange(Sender: TObject; const State: TBatteryState);
+    procedure BatteryModePowerChange(Sender: TObject; Sleep: Boolean);
 
     procedure IconHelperChange(Sender: TObject);
 
@@ -409,6 +410,7 @@ begin
   TBatteryMode.OnStateChange := BatteryModeStateChange;
   TBatteryMode.OnLocalPowerSchemeChanged := BatteryModeLocalPowerSchemeChanged;
   TBatteryMode.OnGlobalPowerSchemeChange := BatteryModeGlobalPowerSchemeChange;
+  TBatteryMode.OnPowerChange := BatteryModePowerChange;
 
   // Инициализация горячих клавиш
   FHotKeyHandler := THotKeyHendler.Create;
@@ -499,6 +501,8 @@ begin
     susComplete: TrayNotification.Notify(Format(TLang[45], [TVersionInfo.FileVersion.ToString]));
     susFail: TrayNotification.Notify(Format(TLang[46], [TVersionInfo.FileVersion.ToString]), [nfError], TrayNotifyUpdateFail);
   end;
+
+  FScheduler.ChangeStarted;
 end;
 
 procedure TBatteryModeForm.FormDestroy(Sender: TObject);
@@ -883,6 +887,12 @@ procedure TBatteryModeForm.BatteryModeGlobalPowerSchemeChange(Sender: TObject;
 begin
   TBatterySplash.ShowSplash(sdtAlways, State,
     (TIconHelper.IconColorType = ictSchemeInvert) or (TIconHelper.IconColorType = ictSchemeInvert));
+end;
+
+procedure TBatteryModeForm.BatteryModePowerChange(Sender: TObject;
+  Sleep: Boolean);
+begin
+  FScheduler.ChangeSleep(Sleep);
 end;
 {$ENDREGION}
 

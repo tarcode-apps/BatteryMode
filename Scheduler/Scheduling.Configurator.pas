@@ -136,6 +136,9 @@ var
       ttLidSwitch:    Result := TTriggerLidSwitch.Create;
       ttDisplayState: Result := TTriggerDisplayState.Create;
       ttScheme:       Result := TTriggerScheme.Create;
+      ttStartup:      Result := TTriggerStartup.Create;
+      ttSleep:        Result := TTriggerSleep.Create;
+      ttWakeup:       Result := TTriggerWakeup.Create;
       else Exit(nil);
     end;
 

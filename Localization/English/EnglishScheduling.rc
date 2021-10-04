@@ -113,6 +113,12 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 1245, "gets closed"
 1246, "gets opened"
 
+1250, "the computer went to sleep/hibernation"
+1251, "Sleep/Hibernation"
+
+1255, "the computer woke up from sleep/hibernation"
+1256, "Waking up from Sleep/Hibernation"
+
 1260, "display %0:s"
 1261, "Display"
 
@@ -122,6 +128,9 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 1280, "power scheme \"%0:s\" becomes active"
 1281, "Power scheme is set to"
+
+1290, "Battery Mode started"
+1291, "Battery Mode started"
 
 1300, "battery charge %0:s %1:d%%"
 1301, "Battery charge"

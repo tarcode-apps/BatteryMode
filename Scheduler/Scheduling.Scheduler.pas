@@ -36,6 +36,8 @@ type
     procedure ChangeBatterySaver(Value: Boolean);
     procedure ChangeLidSwitchState(Value: Boolean);
     procedure ChangeDisplayState(Value: TDisplayState);
+    procedure ChangeStarted;
+    procedure ChangeSleep(Value: Boolean);
 
     property Enabled: Boolean read FEnabled write SetEnabled;
     property Rules: TRuleList read FRules;
@@ -164,6 +166,24 @@ begin
   if FCurrent.DisplayState = Value then Exit;
 
   FCurrent.DisplayState := Value;
+  Run;
+end;
+
+procedure TScheduler.ChangeStarted;
+begin
+  FPrevious := FCurrent;
+  if FCurrent.Started then Exit;
+
+  FCurrent.Started := True;
+  Run;
+end;
+
+procedure TScheduler.ChangeSleep(Value: Boolean);
+begin
+  FPrevious := FCurrent;
+  if FCurrent.Sleep = Value then Exit;
+
+  FCurrent.Sleep := Value;
   Run;
 end;
 

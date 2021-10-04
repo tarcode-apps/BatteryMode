@@ -172,6 +172,66 @@ type
     property Clause: IPowerScheme read FClause;
   end;
 
+  TTriggerStartup = class(TInterfacedObject, ITrigger)
+  strict private
+    FID: Integer;
+  strict protected
+    function GetTriggerType: TTriggerType;
+    function GetID: Integer;
+    procedure SetID(const Value: Integer);
+    function GetCfgStr: string;
+    function GetDescription: string;
+  public
+    function Check(const Previous, Current: TState): Boolean;
+    function Parse(CfgStr: string): Boolean;
+    function Copy: ITrigger;
+
+    property TriggerType: TTriggerType read GetTriggerType;
+    property ID: Integer read GetID write SetID;
+    property CfgStr: string read GetCfgStr;
+    property Description: string read GetDescription;
+  end;
+
+  TTriggerSleep = class(TInterfacedObject, ITrigger)
+  strict private
+    FID: Integer;
+  strict protected
+    function GetTriggerType: TTriggerType;
+    function GetID: Integer;
+    procedure SetID(const Value: Integer);
+    function GetCfgStr: string;
+    function GetDescription: string;
+  public
+    function Check(const Previous, Current: TState): Boolean;
+    function Parse(CfgStr: string): Boolean;
+    function Copy: ITrigger;
+
+    property TriggerType: TTriggerType read GetTriggerType;
+    property ID: Integer read GetID write SetID;
+    property CfgStr: string read GetCfgStr;
+    property Description: string read GetDescription;
+  end;
+
+  TTriggerWakeup = class(TInterfacedObject, ITrigger)
+  strict private
+    FID: Integer;
+  strict protected
+    function GetTriggerType: TTriggerType;
+    function GetID: Integer;
+    procedure SetID(const Value: Integer);
+    function GetCfgStr: string;
+    function GetDescription: string;
+  public
+    function Check(const Previous, Current: TState): Boolean;
+    function Parse(CfgStr: string): Boolean;
+    function Copy: ITrigger;
+
+    property TriggerType: TTriggerType read GetTriggerType;
+    property ID: Integer read GetID write SetID;
+    property CfgStr: string read GetCfgStr;
+    property Description: string read GetDescription;
+  end;
+
 implementation
 
 { TTriggerPercentage }
@@ -617,6 +677,138 @@ begin
   except
     Result := False;
   end;
+end;
+
+{ TTriggerStartup }
+
+function TTriggerStartup.Check(const Previous, Current: TState): Boolean;
+begin
+  Result := not Previous.Started and Current.Started;
+end;
+
+function TTriggerStartup.GetID: Integer;
+begin
+  Result := FID;
+end;
+
+procedure TTriggerStartup.SetID(const Value: Integer);
+begin
+  FID := Value;
+end;
+
+function TTriggerStartup.GetTriggerType: TTriggerType;
+begin
+  Result := ttStartup;
+end;
+
+function TTriggerStartup.GetCfgStr: string;
+begin
+  Result := '';
+end;
+
+function TTriggerStartup.GetDescription: string;
+begin
+  Result := Format(TLang[1290], []);
+end;
+
+function TTriggerStartup.Parse(CfgStr: string): Boolean;
+begin
+  Result := True;
+end;
+
+function TTriggerStartup.Copy: ITrigger;
+begin
+  Result := TTriggerStartup.Create;
+  with Result as TTriggerStartup do
+    FID := Self.FID;
+end;
+
+{ TTriggerSleep }
+
+function TTriggerSleep.Check(const Previous, Current: TState): Boolean;
+begin
+  Result := not Previous.Sleep and Current.Sleep;
+end;
+
+function TTriggerSleep.GetID: Integer;
+begin
+  Result := FID;
+end;
+
+procedure TTriggerSleep.SetID(const Value: Integer);
+begin
+  FID := Value;
+end;
+
+function TTriggerSleep.GetTriggerType: TTriggerType;
+begin
+  Result := ttSleep;
+end;
+
+function TTriggerSleep.GetCfgStr: string;
+begin
+  Result := '';
+end;
+
+function TTriggerSleep.GetDescription: string;
+begin
+  Result := Format(TLang[1250], []);
+end;
+
+function TTriggerSleep.Parse(CfgStr: string): Boolean;
+begin
+  Result := True;
+end;
+
+function TTriggerSleep.Copy: ITrigger;
+begin
+  Result := TTriggerSleep.Create;
+  with Result as TTriggerSleep do
+    FID := Self.FID;
+end;
+
+{ TTriggerWakeup }
+
+function TTriggerWakeup.Check(const Previous, Current: TState): Boolean;
+begin
+  Result := Previous.Sleep and not Current.Sleep;
+end;
+
+function TTriggerWakeup.GetID: Integer;
+begin
+  Result := FID;
+end;
+
+procedure TTriggerWakeup.SetID(const Value: Integer);
+begin
+  FID := Value;
+end;
+
+function TTriggerWakeup.GetTriggerType: TTriggerType;
+begin
+  Result := ttWakeup;
+end;
+
+function TTriggerWakeup.GetCfgStr: string;
+begin
+  Result := '';
+end;
+
+function TTriggerWakeup.GetDescription: string;
+begin
+  Result := Format(TLang[1255], []);
+end;
+
+function TTriggerWakeup.Parse(CfgStr: string): Boolean;
+begin
+  Result := True;
+end;
+
+function TTriggerWakeup.Copy: ITrigger;
+begin
+  Result := TTriggerWakeup.Create;
+  with Result as TTriggerWakeup do
+    FID := Self.FID;
 end;
 
 end.
