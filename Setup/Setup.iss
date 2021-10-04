@@ -97,7 +97,6 @@ Root: "HKLM"; Subkey: "Software\Microsoft\Windows\CurrentVersion\Run"; ValueType
 [Code]
 
 var
-	WpInstallType: TWizardPage;
 	WpSysIcons: TWizardPage;
 	SysIconButton: TNewButton;
 
