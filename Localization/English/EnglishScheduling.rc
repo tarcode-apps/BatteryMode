@@ -78,10 +78,10 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 1138, "All files"
 
 1140, "Power"
-1141, "shut down this PC"
+1141, "shut down this computer"
 1142, "restart Windows"
-1143, "put this PC into sleep"
-1144, "hibernate this PC"
+1143, "put this computer into sleep"
+1144, "hibernate this computer"
 1145, "turn off screen"
 1146, "turn on screen"
 
@@ -113,10 +113,10 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 1245, "gets closed"
 1246, "gets opened"
 
-1250, "the computer went to sleep/hibernation"
+1250, "the computer goes to sleep/hibernation"
 1251, "Sleep/Hibernation"
 
-1255, "the computer woke up from sleep/hibernation"
+1255, "the computer wakes up from sleep/hibernation"
 1256, "Waking up from Sleep/Hibernation"
 
 1260, "display %0:s"
@@ -129,8 +129,8 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 1280, "power scheme \"%0:s\" becomes active"
 1281, "Power scheme is set to"
 
-1290, "Battery Mode started"
-1291, "Battery Mode started"
+1290, "Battery Mode starts"
+1291, "Battery Mode is just started"
 
 1300, "battery charge %0:s %1:d%%"
 1301, "Battery charge"
