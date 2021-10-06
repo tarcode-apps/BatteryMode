@@ -815,6 +815,7 @@ var
   PowerBroadcastSetting: TPowerBroadcastSetting;
   ActiveGUID: TGUID;
   OverlayGUID: TGUID;
+  Scheme: IPowerScheme;
 begin
   Msg.Result := DefWindowProc(FMsgWnd, Msg.Msg, Msg.WParam, Msg.LParam);
 
@@ -860,6 +861,26 @@ begin
             if Assigned(FOnEnegrySaverBrightnessWeightChange) then
               FOnEnegrySaverBrightnessWeightChange(Self, FEnegrySaverBrightnessWeight);
             Exit;
+          end;
+        end;
+      PBT_APMRESUMEAUTOMATIC:
+        begin
+          ActiveGUID := TPowerScheme.ReadActiveScheme;
+          OverlayGUID := GUID_POWER_POLICY_OVERLAY_SCHEME_NONE;
+          if (psfOverlay in SupportedSchemeFeatures) and (psfOverlay in SchemeFeatures) then
+            OverlayGUID := TPowerScheme.ReadActiveOverlay;
+
+          Scheme := FSchemes.Find(TPowerScheme.MakeUniqueString(ActiveGUID, OverlayGUID));
+          if Scheme = nil then
+          begin
+            if CheckForUpdates then Exit;
+            Scheme := TPowerScheme.Create(ActiveGUID, OverlayGUID, Self);
+          end;
+
+          if Scheme <> FActive then
+          begin
+            FActive := Scheme;
+            DoActivate(FActive);
           end;
         end;
     end;
