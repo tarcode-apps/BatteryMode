@@ -1,6 +1,6 @@
 ﻿End-User License Agreement ("EULA") for Battery Mode
 
-Last revised 16.11.2020
+Last revised 06.10.2021
 
 Please read the conditions of this EULA carefully before start to use the Software Product which it's applied to.
 
@@ -65,7 +65,7 @@ E-mail: admin@tarcode.ru
 
 8. Contacts
 
-Battery Mode, © 2013-2020, Artem Tarasov
+Battery Mode, © 2013-2021, Artem Tarasov
 Web: https://en.bmode.tarcode.ru
 E-Mail: admin@tarcode.ru
 
