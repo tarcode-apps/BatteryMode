@@ -59,6 +59,8 @@ type
     function GetFriendlyName: string;
     procedure SetFriendlyName(const Value: string);
     function GetEffectiveName: string;
+    function GetSortNumber: Integer;
+    procedure SetSortNumber(const Value: Integer);
 
     function GetOnChangeLevel: TBrightnessChangeLevelEvent;
     procedure SetOnChangeLevel(const Value: TBrightnessChangeLevelEvent);
@@ -95,6 +97,7 @@ type
     property RequireBrightnessRefreshOnPowerUp: Boolean read GetRequireBrightnessRefreshOnPowerUp write SetRequireBrightnessRefreshOnPowerUp;
     property FriendlyName: string read GetFriendlyName write SetFriendlyName;
     property EffectiveName: string read GetEffectiveName;
+    property SortNumber: Integer read GetSortNumber write SetSortNumber;
 
     property OnChangeLevel: TBrightnessChangeLevelEvent read GetOnChangeLevel write SetOnChangeLevel;
     property OnChangeActive: TBrightnessChangeActiveEvent read GetOnChangeActive write SetOnChangeActive;
@@ -114,6 +117,7 @@ type
     FManagementMethods: TBrightnessMonitorManagementMethods;
     FRequireBrightnessRefreshOnPowerUp: Boolean;
     FFriendlyName: string;
+    FSortNumber: Integer;
 
     FOnError: TNotifyEvent;
     FOnChangeLevel: TBrightnessChangeLevelEvent;
@@ -149,6 +153,8 @@ type
     function GetFriendlyName: string; virtual;
     procedure SetFriendlyName(const Value: string); virtual;
     function GetEffectiveName: string;
+    function GetSortNumber: Integer;
+    procedure SetSortNumber(const Value: Integer);
 
     function GetOnChangeLevel: TBrightnessChangeLevelEvent;
     procedure SetOnChangeLevel(const Value: TBrightnessChangeLevelEvent);
@@ -185,6 +191,7 @@ type
     property RequireBrightnessRefreshOnPowerUp: Boolean read GetRequireBrightnessRefreshOnPowerUp write SetRequireBrightnessRefreshOnPowerUp;
     property FriendlyName: string read GetFriendlyName write SetFriendlyName;
     property EffectiveName: string read GetEffectiveName;
+    property SortNumber: Integer read GetSortNumber write SetSortNumber;
 
     property OnError: TNotifyEvent read FOnError write FOnError;
     property OnChangeLevel: TBrightnessChangeLevelEvent read GetOnChangeLevel write SetOnChangeLevel;
@@ -228,6 +235,7 @@ type
     REG_ManagementMethods = 'ManagementMethods';
     REG_RequireBrightnessRefreshOnPowerUp = 'RequireBrightnessRefreshOnPowerUp';
     REG_FriendlyName = 'FriendlyName';
+    REG_SortNumber = 'SortNumber';
   private
     FRootRegKey: string;
     FRegKey: string;
@@ -237,12 +245,14 @@ type
     FManagementMethods: TBrightnessMonitorManagementMethods;
     FRequireBrightnessRefreshOnPowerUp: Boolean;
     FFriendlyName: string;
+    FSortNumber: Integer;
 
     procedure SetEnable(const Value: Boolean);
     procedure SetActive(const Value: Boolean);
     procedure SetManagementMethods(const Value: TBrightnessMonitorManagementMethods);
     procedure SetRequireBrightnessRefreshOnPowerUp(const Value: Boolean);
     procedure SetFriendlyName(const Value: string);
+    procedure SetSortNumber(const Value: Integer);
 
     procedure LoadDefault(DefConfig: TBrightnessConfig);
     procedure SaveConfig;
@@ -259,6 +269,7 @@ type
     property ManagementMethods: TBrightnessMonitorManagementMethods read FManagementMethods write SetManagementMethods;
     property RequireBrightnessRefreshOnPowerUp: Boolean read FRequireBrightnessRefreshOnPowerUp write SetRequireBrightnessRefreshOnPowerUp;
     property FriendlyName: string read FFriendlyName write SetFriendlyName;
+    property SortNumber: Integer read FSortNumber write SetSortNumber;
   end;
 
   function NormalizeBrightness(Levels: TBrightnessLevels; Level: Integer): Byte;
@@ -288,6 +299,7 @@ begin
   FManagementMethods := [];
   FRequireBrightnessRefreshOnPowerUp := False;
   FFriendlyName := '';
+  FSortNumber := UnsortedMonitorNumber;
 end;
 
 procedure TBrightnessMonitorBase.LoadConfig(Config: TBrightnessConfig);
@@ -298,6 +310,7 @@ begin
   ManagementMethods := FConfig.ManagementMethods;
   RequireBrightnessRefreshOnPowerUp := FConfig.RequireBrightnessRefreshOnPowerUp;
   FriendlyName := FConfig.FriendlyName;
+  SortNumber := FConfig.SortNumber;
 end;
 
 function TBrightnessMonitorBase.GetEnable: Boolean;
@@ -376,6 +389,21 @@ function TBrightnessMonitorBase.GetEffectiveName: string;
 begin
   Result := FriendlyName;
   if string.IsNullOrEmpty(Result) then Result := Description;
+end;
+
+function TBrightnessMonitorBase.GetSortNumber: Integer;
+begin
+  Result := FSortNumber;
+end;
+
+procedure TBrightnessMonitorBase.SetSortNumber(const Value: Integer);
+begin
+  if FSortNumber = Value then Exit;
+
+  FSortNumber := Value;
+
+  if Assigned(FConfig) then
+    FConfig.SortNumber := FSortNumber;
 end;
 
 function TBrightnessMonitorBase.GetOnChangeLevel: TBrightnessChangeLevelEvent;
@@ -572,6 +600,7 @@ begin
         SizeOf(FManagementMethods));
       FRequireBrightnessRefreshOnPowerUp := ReadBoolDef(REG_RequireBrightnessRefreshOnPowerUp, DefConfig.RequireBrightnessRefreshOnPowerUp);
       FFriendlyName := ReadStringDef(REG_FriendlyName, DefConfig.FriendlyName);
+      FSortNumber := ReadIntegerDef(REG_SortNumber, DefConfig.SortNumber);
       // end read config
 
       Registry.CloseKey;
@@ -595,6 +624,7 @@ begin
   FManagementMethods := aManagementMethods;
   FRequireBrightnessRefreshOnPowerUp := aRequireBrightnessRefreshOnPowerUp;
   FFriendlyName := '';
+  FSortNumber := UnsortedMonitorNumber;
 end;
 
 procedure TBrightnessConfig.SetEnable(const Value: Boolean);
@@ -637,6 +667,14 @@ begin
   SaveConfig;
 end;
 
+procedure TBrightnessConfig.SetSortNumber(const Value: Integer);
+begin
+  if FSortNumber = Value then Exit;
+
+  FSortNumber := Value;
+  SaveConfig;
+end;
+
 procedure TBrightnessConfig.SaveConfig;
 var
   Registry: TRegistry;
@@ -658,6 +696,7 @@ begin
       Registry.WriteInteger(REG_ManagementMethods, SetToInt(FManagementMethods, SizeOf(FManagementMethods)));
       Registry.WriteBool(REG_RequireBrightnessRefreshOnPowerUp, FRequireBrightnessRefreshOnPowerUp);
       Registry.WriteString(REG_FriendlyName, FFriendlyName);
+      Registry.WriteInteger(REG_SortNumber, FSortNumber);
       // end write config
 
       Registry.CloseKey;
@@ -674,6 +713,7 @@ begin
   FManagementMethods := DefConfig.ManagementMethods;
   FRequireBrightnessRefreshOnPowerUp := DefConfig.RequireBrightnessRefreshOnPowerUp;
   FFriendlyName := DefConfig.FriendlyName;
+  FSortNumber := DefConfig.SortNumber;
 end;
 
 end.
