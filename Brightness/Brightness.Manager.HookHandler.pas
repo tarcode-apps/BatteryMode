@@ -102,7 +102,7 @@ procedure TBrightnessManagerHookHandler.UpdateBindings;
     end;
   end;
 begin
-  if IsNeedTracking then
+  if IsNeedTracking and not IsDebuggerPresent then
     FTrayIcon.OnMouseWheel := TrayIconMouseWheel
   else
     FTrayIcon.OnMouseWheel := nil;
