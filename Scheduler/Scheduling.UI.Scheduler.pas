@@ -82,6 +82,8 @@ type
     function AddDefault: IRule;
     procedure Delete(Rule: IRule); overload;
     procedure Delete(RulePanel: TRulePreviewPanel); overload;
+    procedure MoveUp(RulePanel: TRulePreviewPanel);
+    procedure MoveDown(RulePanel: TRulePreviewPanel);
     procedure Sort;
 
     property Rules: TRuleList read FRules;
@@ -504,24 +506,14 @@ procedure TRulePreviewPanel.ButtonUpClick(Sender: TObject);
 begin
   if FFirst then Exit;
 
-  FRule.ID := FRule.ID - 1;
-  FModifyCollector.Modify;
-  FController.Sort;
-
-  if Parent is TScrollBox then    
-    (Parent as TScrollBox).ScrollInView(Self);
+  FController.MoveUp(Self);
 end;
 
 procedure TRulePreviewPanel.ButtonDownClick(Sender: TObject);
 begin
   if FLast then Exit;
-  
-  FRule.ID := FRule.ID + 1;
-  FModifyCollector.Modify;
-  FController.Sort;
 
-  if Parent is TScrollBox then
-    (Parent as TScrollBox).ScrollInView(Self);
+  FController.MoveDown(Self);
 end;
 
 procedure TRulePreviewPanel.ChildDblClick(Sender: TObject);
@@ -820,6 +812,36 @@ begin
   RulePanel.Free;
 
   Sort;
+end;
+
+procedure TRuleController.MoveUp(RulePanel: TRulePreviewPanel);
+var
+  Index: Integer;
+begin
+  Index := FRulePanels.IndexOf(RulePanel);
+
+  RulePanel.Rule.ID := RulePanel.Rule.ID - 1;
+  if Index > 0 then
+    FRulePanels[Index - 1].Rule.ID := FRulePanels[Index - 1].Rule.ID + 1;
+
+  FModifyCollector.Modify;
+  Sort;
+  ScrollInView(RulePanel);
+end;
+
+procedure TRuleController.MoveDown(RulePanel: TRulePreviewPanel);
+var
+  Index: Integer;
+begin
+  Index := FRulePanels.IndexOf(RulePanel);
+
+  RulePanel.Rule.ID := RulePanel.Rule.ID + 1;
+  if Index < FRulePanels.Count - 1 then
+    FRulePanels[Index + 1].Rule.ID := FRulePanels[Index + 1].Rule.ID - 1;
+
+  FModifyCollector.Modify;
+  Sort;
+  ScrollInView(RulePanel);
 end;
 
 procedure TRuleController.Sort;
