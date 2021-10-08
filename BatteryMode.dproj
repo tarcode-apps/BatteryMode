@@ -210,6 +210,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <RcCompile Include="Localization\English\EnglishScheduling.rc">
             <Form>EnglishScheduling.res</Form>
         </RcCompile>
+        <RcCompile Include="Localization\English\EnglishSettings.rc">
+            <Form>EnglishSettings.res</Form>
+        </RcCompile>
         <RcCompile Include="Localization\French\FrenchAutorunMessage.rc">
             <Form>FrenchAutorunMessage.res</Form>
         </RcCompile>
@@ -335,6 +338,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
         </RcCompile>
         <RcCompile Include="Localization\Russian\RussianScheduling.rc">
             <Form>RussianScheduling.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\Russian\RussianSettings.rc">
+            <Form>RussianSettings.res</Form>
         </RcCompile>
         <RcCompile Include="Localization\Spanish\SpanishAutorunMessage.rc">
             <Form>SpanishAutorunMessage.res</Form>
@@ -495,7 +501,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <Form>PowerMonitorWindow</Form>
         </DCCReference>
         <DCCReference Include="ScreenLiteUnit.pas"/>
-        <DCCReference Include="Settings.Window.pas">
+        <DCCReference Include="Settings\RenameMonitor.Window.pas">
+            <Form>RenameMonitorWindow</Form>
+        </DCCReference>
+        <DCCReference Include="Settings\Settings.Window.pas">
             <Form>BatteryModeSettingsWindow</Form>
         </DCCReference>
         <DCCReference Include="SplashUnit.pas"/>

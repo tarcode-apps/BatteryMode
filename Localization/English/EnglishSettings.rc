@@ -1,0 +1,11 @@
+STRINGTABLE
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+{
+2000, "Apply"
+2001, "Cancel"
+2002, "Rename"
+
+2100, "ename monitor"
+2101, "New name for %0:s"
+2102, "Revert original name"
+}

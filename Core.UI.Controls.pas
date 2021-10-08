@@ -156,6 +156,7 @@ type
     procedure LinkFontChange(Sender: TObject);
   protected
     procedure KeyPress(var Key: Char); override;
+    procedure CreateWnd; override;
     function GetLinkStyleColor(Style: TLinkStyle): TColor; virtual;
     procedure ApplyLinkStyle(Style: TLinkStyle);
     procedure UpdateLinkStyle;
@@ -771,6 +772,13 @@ begin
   FHideFocus := False;
   FLinkMode := False;
   ParentBackground := True;
+end;
+
+procedure TStaticText.CreateWnd;
+begin
+  inherited;
+  AutoSize := False;
+  AutoSize := True;
 end;
 
 destructor TStaticText.Destroy;

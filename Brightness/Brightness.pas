@@ -7,6 +7,9 @@ uses
   System.SysUtils, System.Classes, System.Win.Registry,
   System.Generics.Collections, System.Generics.Defaults;
 
+const
+  UnsortedMonitorNumber = Integer.MaxValue;
+
 type
   TBrightnessMonitorType = (bmtInternal, bmtExternal);
   TBrightnessMonitorManagementMethod = (
@@ -31,6 +34,7 @@ type
   TBrightnessChangeEnableEvent = procedure(Sender: IBrightnessMonitor; Enable: Boolean) of object;
   TBrightnessChangeAdaptiveBrightnessEvent = procedure(Sender: IBrightnessMonitor; AdaptiveBrightness: Boolean) of object;
   TBrightnessChangeManagementMethodsEvent = procedure(Sender: IBrightnessMonitor; ManagementMethods: TBrightnessMonitorManagementMethods) of object;
+  TBrightnessChangeNameEvent = procedure(Sender: IBrightnessMonitor; EffectiveName: string) of object;
 
   IBrightnessMonitor = interface
     function GetMonitorType: TBrightnessMonitorType;
@@ -52,6 +56,9 @@ type
     procedure SetManagementMethods(const Value: TBrightnessMonitorManagementMethods);
     function GetRequireBrightnessRefreshOnPowerUp: Boolean;
     procedure SetRequireBrightnessRefreshOnPowerUp(const Value: Boolean);
+    function GetFriendlyName: string;
+    procedure SetFriendlyName(const Value: string);
+    function GetEffectiveName: string;
 
     function GetOnChangeLevel: TBrightnessChangeLevelEvent;
     procedure SetOnChangeLevel(const Value: TBrightnessChangeLevelEvent);
@@ -65,6 +72,10 @@ type
     procedure SetOnChangeAdaptiveBrightness(const Value: TBrightnessChangeAdaptiveBrightnessEvent);
     function GetOnChangeManagementMethods: TBrightnessChangeManagementMethodsEvent;
     procedure SetOnChangeManagementMethods(const Value: TBrightnessChangeManagementMethodsEvent);
+    function GetOnChangeName: TBrightnessChangeNameEvent;
+    procedure SetOnChangeName(const Value: TBrightnessChangeNameEvent);
+    function GetOnChangeName2: TBrightnessChangeNameEvent;
+    procedure SetOnChangeName2(const Value: TBrightnessChangeNameEvent);
 
     procedure LoadConfig(Config: TBrightnessConfig);
     function GetDefaultConfig: TBrightnessConfig;
@@ -82,6 +93,8 @@ type
     property AdaptiveBrightnessAvalible: Boolean read GetAdaptiveBrightnessAvalible;
     property ManagementMethods: TBrightnessMonitorManagementMethods read GetManagementMethods write SetManagementMethods;
     property RequireBrightnessRefreshOnPowerUp: Boolean read GetRequireBrightnessRefreshOnPowerUp write SetRequireBrightnessRefreshOnPowerUp;
+    property FriendlyName: string read GetFriendlyName write SetFriendlyName;
+    property EffectiveName: string read GetEffectiveName;
 
     property OnChangeLevel: TBrightnessChangeLevelEvent read GetOnChangeLevel write SetOnChangeLevel;
     property OnChangeActive: TBrightnessChangeActiveEvent read GetOnChangeActive write SetOnChangeActive;
@@ -89,14 +102,18 @@ type
     property OnChangeEnable2: TBrightnessChangeEnableEvent read GetOnChangeEnable2 write SetOnChangeEnable2;
     property OnChangeAdaptiveBrightness: TBrightnessChangeAdaptiveBrightnessEvent read GetOnChangeAdaptiveBrightness write SetOnChangeAdaptiveBrightness;
     property OnChangeManagementMethods: TBrightnessChangeManagementMethodsEvent read GetOnChangeManagementMethods write SetOnChangeManagementMethods;
+    property OnChangeName: TBrightnessChangeNameEvent read GetOnChangeName write SetOnChangeName;
+    property OnChangeName2: TBrightnessChangeNameEvent read GetOnChangeName2 write SetOnChangeName2;
   end;
 
   TBrightnessMonitorBase = class abstract(TInterfacedObject, IBrightnessMonitor)
   protected
+    FEnable: Boolean;
     FConfig: TBrightnessConfig;
     FAlwaysActive: Boolean;
     FManagementMethods: TBrightnessMonitorManagementMethods;
     FRequireBrightnessRefreshOnPowerUp: Boolean;
+    FFriendlyName: string;
 
     FOnError: TNotifyEvent;
     FOnChangeLevel: TBrightnessChangeLevelEvent;
@@ -105,13 +122,15 @@ type
     FOnChangeEnable2: TBrightnessChangeEnableEvent;
     FOnChangeAdaptiveBrightness: TBrightnessChangeAdaptiveBrightnessEvent;
     FOnChangeManagementMethods: TBrightnessChangeManagementMethodsEvent;
+    FOnChangeName: TBrightnessChangeNameEvent;
+    FOnChangeName2: TBrightnessChangeNameEvent;
 
     constructor Create(AlwaysActive: Boolean);
 
     function GetMonitorType: TBrightnessMonitorType; virtual; abstract;
     function GetDescription: string; virtual; abstract;
-    function GetEnable: Boolean; virtual; abstract;
-    procedure SetEnable(const Value: Boolean); virtual; abstract;
+    function GetEnable: Boolean; virtual;
+    procedure SetEnable(const Value: Boolean); virtual;
     function GetLevels: TBrightnessLevels; virtual; abstract;
     function GetLevel: Integer; virtual; abstract;
     procedure SetLevel(const Value: Integer); virtual; abstract;
@@ -127,6 +146,9 @@ type
     procedure SetManagementMethods(const Value: TBrightnessMonitorManagementMethods); virtual;
     function GetRequireBrightnessRefreshOnPowerUp: Boolean; virtual;
     procedure SetRequireBrightnessRefreshOnPowerUp(const Value: Boolean); virtual;
+    function GetFriendlyName: string; virtual;
+    procedure SetFriendlyName(const Value: string); virtual;
+    function GetEffectiveName: string;
 
     function GetOnChangeLevel: TBrightnessChangeLevelEvent;
     procedure SetOnChangeLevel(const Value: TBrightnessChangeLevelEvent);
@@ -140,6 +162,10 @@ type
     procedure SetOnChangeAdaptiveBrightness(const Value: TBrightnessChangeAdaptiveBrightnessEvent);
     function GetOnChangeManagementMethods: TBrightnessChangeManagementMethodsEvent;
     procedure SetOnChangeManagementMethods(const Value: TBrightnessChangeManagementMethodsEvent);
+    function GetOnChangeName: TBrightnessChangeNameEvent;
+    procedure SetOnChangeName(const Value: TBrightnessChangeNameEvent);
+    function GetOnChangeName2: TBrightnessChangeNameEvent;
+    procedure SetOnChangeName2(const Value: TBrightnessChangeNameEvent);
   public
     procedure LoadConfig(Config: TBrightnessConfig); virtual;
     function GetDefaultConfig: TBrightnessConfig; virtual; abstract;
@@ -157,6 +183,8 @@ type
     property AdaptiveBrightnessAvalible: Boolean read GetAdaptiveBrightnessAvalible;
     property ManagementMethods: TBrightnessMonitorManagementMethods read GetManagementMethods write SetManagementMethods;
     property RequireBrightnessRefreshOnPowerUp: Boolean read GetRequireBrightnessRefreshOnPowerUp write SetRequireBrightnessRefreshOnPowerUp;
+    property FriendlyName: string read GetFriendlyName write SetFriendlyName;
+    property EffectiveName: string read GetEffectiveName;
 
     property OnError: TNotifyEvent read FOnError write FOnError;
     property OnChangeLevel: TBrightnessChangeLevelEvent read GetOnChangeLevel write SetOnChangeLevel;
@@ -165,6 +193,8 @@ type
     property OnChangeEnable2: TBrightnessChangeEnableEvent read GetOnChangeEnable2 write SetOnChangeEnable2;
     property OnChangeAdaptiveBrightness: TBrightnessChangeAdaptiveBrightnessEvent read GetOnChangeAdaptiveBrightness write SetOnChangeAdaptiveBrightness;
     property OnChangeManagementMethods: TBrightnessChangeManagementMethodsEvent read GetOnChangeManagementMethods write SetOnChangeManagementMethods;
+    property OnChangeName: TBrightnessChangeNameEvent read GetOnChangeName write SetOnChangeName;
+    property OnChangeName2: TBrightnessChangeNameEvent read GetOnChangeName2 write SetOnChangeName2;
   end;
 
   TBrightnessMonitorComparer = class(TComparer<IBrightnessMonitor>)
@@ -197,6 +227,7 @@ type
     REG_Active = 'Active';
     REG_ManagementMethods = 'ManagementMethods';
     REG_RequireBrightnessRefreshOnPowerUp = 'RequireBrightnessRefreshOnPowerUp';
+    REG_FriendlyName = 'FriendlyName';
   private
     FRootRegKey: string;
     FRegKey: string;
@@ -205,25 +236,29 @@ type
     FActive: Boolean;
     FManagementMethods: TBrightnessMonitorManagementMethods;
     FRequireBrightnessRefreshOnPowerUp: Boolean;
+    FFriendlyName: string;
+
     procedure SetEnable(const Value: Boolean);
     procedure SetActive(const Value: Boolean);
     procedure SetManagementMethods(const Value: TBrightnessMonitorManagementMethods);
     procedure SetRequireBrightnessRefreshOnPowerUp(const Value: Boolean);
+    procedure SetFriendlyName(const Value: string);
 
     procedure LoadDefault(DefConfig: TBrightnessConfig);
     procedure SaveConfig;
   public
     constructor Create(RootRegKey: string; Monitor: IBrightnessMonitor); reintroduce; overload;
     constructor Create(
-      Enable: Boolean;
-      Active: Boolean;
-      ManagementMethods: TBrightnessMonitorManagementMethods;
-      RequireBrightnessRefreshOnPowerUp: Boolean); reintroduce; overload;
+      aEnable: Boolean;
+      aActive: Boolean;
+      aManagementMethods: TBrightnessMonitorManagementMethods;
+      aRequireBrightnessRefreshOnPowerUp: Boolean); reintroduce; overload;
 
     property Enable: Boolean read FEnable write SetEnable;
     property Active: Boolean read FActive write SetActive;
     property ManagementMethods: TBrightnessMonitorManagementMethods read FManagementMethods write SetManagementMethods;
     property RequireBrightnessRefreshOnPowerUp: Boolean read FRequireBrightnessRefreshOnPowerUp write SetRequireBrightnessRefreshOnPowerUp;
+    property FriendlyName: string read FFriendlyName write SetFriendlyName;
   end;
 
   function NormalizeBrightness(Levels: TBrightnessLevels; Level: Integer): Byte;
@@ -252,6 +287,7 @@ begin
   FAlwaysActive := AlwaysActive;
   FManagementMethods := [];
   FRequireBrightnessRefreshOnPowerUp := False;
+  FFriendlyName := '';
 end;
 
 procedure TBrightnessMonitorBase.LoadConfig(Config: TBrightnessConfig);
@@ -261,6 +297,23 @@ begin
   Active := FConfig.Active or FAlwaysActive;
   ManagementMethods := FConfig.ManagementMethods;
   RequireBrightnessRefreshOnPowerUp := FConfig.RequireBrightnessRefreshOnPowerUp;
+  FriendlyName := FConfig.FriendlyName;
+end;
+
+function TBrightnessMonitorBase.GetEnable: Boolean;
+begin
+  Result := FEnable;
+end;
+
+procedure TBrightnessMonitorBase.SetEnable(const Value: Boolean);
+begin
+  if FEnable = Value then Exit;
+
+  FEnable := Value;
+  if Assigned(FConfig) then FConfig.Enable := FEnable;
+
+  if Assigned(FOnChangeEnable) then FOnChangeEnable(Self, FEnable);
+  if Assigned(FOnChangeEnable2) then FOnChangeEnable2(Self, FEnable);
 end;
 
 function TBrightnessMonitorBase.GetManagementMethods: TBrightnessMonitorManagementMethods;
@@ -296,6 +349,33 @@ begin
 
   if Assigned(FConfig) then
     FConfig.RequireBrightnessRefreshOnPowerUp := FRequireBrightnessRefreshOnPowerUp;
+end;
+
+function TBrightnessMonitorBase.GetFriendlyName: string;
+begin
+  Result := FFriendlyName;
+end;
+
+procedure TBrightnessMonitorBase.SetFriendlyName(const Value: string);
+var
+  Name: string;
+begin
+  if FFriendlyName = Value then Exit;
+
+  FFriendlyName := Value;
+
+  if Assigned(FConfig) then
+    FConfig.FriendlyName := FFriendlyName;
+
+  Name := EffectiveName;
+  if Assigned(FOnChangeName) then FOnChangeName(Self, Name);
+  if Assigned(FOnChangeName2) then FOnChangeName2(Self, Name);
+end;
+
+function TBrightnessMonitorBase.GetEffectiveName: string;
+begin
+  Result := FriendlyName;
+  if string.IsNullOrEmpty(Result) then Result := Description;
 end;
 
 function TBrightnessMonitorBase.GetOnChangeLevel: TBrightnessChangeLevelEvent;
@@ -358,6 +438,26 @@ procedure TBrightnessMonitorBase.SetOnChangeManagementMethods(
   const Value: TBrightnessChangeManagementMethodsEvent);
 begin
   FOnChangeManagementMethods := Value;
+end;
+
+function TBrightnessMonitorBase.GetOnChangeName: TBrightnessChangeNameEvent;
+begin
+  Result := FOnChangeName;
+end;
+
+procedure TBrightnessMonitorBase.SetOnChangeName(const Value: TBrightnessChangeNameEvent);
+begin
+  FOnChangeName := Value;
+end;
+
+function TBrightnessMonitorBase.GetOnChangeName2: TBrightnessChangeNameEvent;
+begin
+  Result := FOnChangeName2;
+end;
+
+procedure TBrightnessMonitorBase.SetOnChangeName2(const Value: TBrightnessChangeNameEvent);
+begin
+  FOnChangeName2 := Value;
 end;
 
 { TBrightnessMonitorComparer }
@@ -429,6 +529,14 @@ var
       Result := Def;
   end;
 
+  function ReadStringDef(const Name: string; const Def: string): string;
+  begin
+    if Registry.ValueExists(Name) then
+      Result := Registry.ReadString(Name)
+    else
+      Result := Def;
+  end;
+
   function SetToInt(const aSet; const Size: Integer): Integer;
   begin
     Result := 0;
@@ -463,6 +571,7 @@ begin
         FManagementMethods,
         SizeOf(FManagementMethods));
       FRequireBrightnessRefreshOnPowerUp := ReadBoolDef(REG_RequireBrightnessRefreshOnPowerUp, DefConfig.RequireBrightnessRefreshOnPowerUp);
+      FFriendlyName := ReadStringDef(REG_FriendlyName, DefConfig.FriendlyName);
       // end read config
 
       Registry.CloseKey;
@@ -475,16 +584,17 @@ begin
 end;
 
 constructor TBrightnessConfig.Create(
-  Enable, Active: Boolean;
-  ManagementMethods: TBrightnessMonitorManagementMethods;
-  RequireBrightnessRefreshOnPowerUp: Boolean);
+  aEnable, aActive: Boolean;
+  aManagementMethods: TBrightnessMonitorManagementMethods;
+  aRequireBrightnessRefreshOnPowerUp: Boolean);
 begin
   inherited Create;
 
-  FEnable := Enable;
-  FActive := Active;
-  FManagementMethods := ManagementMethods;
-  FRequireBrightnessRefreshOnPowerUp := RequireBrightnessRefreshOnPowerUp;
+  FEnable := aEnable;
+  FActive := aActive;
+  FManagementMethods := aManagementMethods;
+  FRequireBrightnessRefreshOnPowerUp := aRequireBrightnessRefreshOnPowerUp;
+  FFriendlyName := '';
 end;
 
 procedure TBrightnessConfig.SetEnable(const Value: Boolean);
@@ -519,6 +629,14 @@ begin
   SaveConfig;
 end;
 
+procedure TBrightnessConfig.SetFriendlyName(const Value: string);
+begin
+  if FFriendlyName = Value then Exit;
+
+  FFriendlyName := Value;
+  SaveConfig;
+end;
+
 procedure TBrightnessConfig.SaveConfig;
 var
   Registry: TRegistry;
@@ -539,6 +657,7 @@ begin
       Registry.WriteBool(REG_Active, FActive);
       Registry.WriteInteger(REG_ManagementMethods, SetToInt(FManagementMethods, SizeOf(FManagementMethods)));
       Registry.WriteBool(REG_RequireBrightnessRefreshOnPowerUp, FRequireBrightnessRefreshOnPowerUp);
+      Registry.WriteString(REG_FriendlyName, FFriendlyName);
       // end write config
 
       Registry.CloseKey;
@@ -554,6 +673,7 @@ begin
   FActive := DefConfig.Active;
   FManagementMethods := DefConfig.ManagementMethods;
   FRequireBrightnessRefreshOnPowerUp := DefConfig.RequireBrightnessRefreshOnPowerUp;
+  FFriendlyName := DefConfig.FriendlyName;
 end;
 
 end.

@@ -18,6 +18,7 @@
 {$R 'EnglishHotKey.res' 'Localization\English\EnglishHotKey.rc'}
 {$R 'EnglishPowerInformation.res' 'Localization\English\EnglishPowerInformation.rc'}
 {$R 'EnglishScheduling.res' 'Localization\English\EnglishScheduling.rc'}
+{$R 'EnglishSettings.res' 'Localization\English\EnglishSettings.rc'}
 {$R 'FrenchAutorunMessage.res' 'Localization\French\FrenchAutorunMessage.rc'}
 {$R 'FrenchAutoUpdate.res' 'Localization\French\FrenchAutoUpdate.rc'}
 {$R 'FrenchBatteryModeLanguage.res' 'Localization\French\FrenchBatteryModeLanguage.rc'}
@@ -60,6 +61,7 @@
 {$R 'RussianHotKey.res' 'Localization\Russian\RussianHotKey.rc'}
 {$R 'RussianPowerInformation.res' 'Localization\Russian\RussianPowerInformation.rc'}
 {$R 'RussianScheduling.res' 'Localization\Russian\RussianScheduling.rc'}
+{$R 'RussianSettings.res' 'Localization\Russian\RussianSettings.rc'}
 {$R 'SpanishAutorunMessage.res' 'Localization\Spanish\SpanishAutorunMessage.rc'}
 {$R 'SpanishAutoUpdate.res' 'Localization\Spanish\SpanishAutoUpdate.rc'}
 {$R 'SpanishBatteryModeLanguage.res' 'Localization\Spanish\SpanishBatteryModeLanguage.rc'}
@@ -170,7 +172,8 @@ uses
   Mouse.WheelRouting in 'Mouse.WheelRouting.pas',
   PowerMonitor.Window in 'PowerMonitor.Window.pas' {PowerMonitorWindow},
   ScreenLiteUnit in 'ScreenLiteUnit.pas',
-  Settings.Window in 'Settings.Window.pas' {BatteryModeSettingsWindow},
+  RenameMonitor.Window in 'Settings\RenameMonitor.Window.pas' {RenameMonitorWindow},
+  Settings.Window in 'Settings\Settings.Window.pas' {BatteryModeSettingsWindow},
   SplashUnit in 'SplashUnit.pas',
   Tray.Helpers in 'Tray.Helpers.pas',
   Tray.Icon in 'Tray.Icon.pas',

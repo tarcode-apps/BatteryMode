@@ -197,7 +197,6 @@ type
     procedure LoadIcon; override;
     procedure Loadlocalization;
     procedure LoadAvailableLocalizations;
-    procedure UpdateTrayHint;
     procedure DoSystemUsesLightThemeChange(LightTheme: Boolean); override;
 
     function DefaultConfig: TConfig;
@@ -288,6 +287,8 @@ type
     procedure ClearConfig;
     procedure DeleteConfig;
     procedure PrepareRestart;
+
+    procedure UpdateTrayHint;
 
     property UIInfo: TUIInfo read FUIInfo write SetUIInfo;
     property UiLabel: TUiLabel read GetUiLabel write SetUiLabel;
@@ -1170,7 +1171,7 @@ begin
       begin
         Brightness := Monitor.NormalizedBrightness[Monitor.Level];
         if Brightness > 100 then Continue;
-        Hint := Hint + sLineBreak + Monitor.Description + ': ' + Brightness.ToString + '%';
+        Hint := Hint + sLineBreak + Monitor.EffectiveName + ': ' + Brightness.ToString + '%';
       end;
     finally
       Monitors.Free;

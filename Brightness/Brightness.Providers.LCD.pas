@@ -57,14 +57,11 @@ type
     FHandle: THandle;
     FDisplayPolicy: TDisplayPolicy;
     FActive: Boolean;
-    FEnable: Boolean;
     FLevels: TBrightnessLevels;
     FLevel: Integer;
   protected
     function GetMonitorType: TBrightnessMonitorType; override;
     function GetDescription: string; override;
-    function GetEnable: Boolean; override;
-    procedure SetEnable(const Value: Boolean); override;
     function GetLevels: TBrightnessLevels; override;
     function GetLevel: Integer; override;
     procedure SetLevel(const Value: Integer); override;
@@ -286,26 +283,6 @@ end;
 function TLCDMonitor.GetDescription: string;
 begin
   Result := 'LCD Display';
-end;
-
-function TLCDMonitor.GetEnable: Boolean;
-begin
-  Result := FEnable;
-end;
-
-procedure TLCDMonitor.SetEnable(const Value: Boolean);
-begin
-  if FEnable = Value then Exit;
-
-  FEnable := Value;
-  if Assigned(FConfig) then
-    FConfig.Enable := FEnable;
-
-  if Assigned(FOnChangeEnable) then
-    FOnChangeEnable(Self, FEnable);
-
-  if Assigned(FOnChangeEnable2) then
-    FOnChangeEnable2(Self, FEnable);
 end;
 
 function TLCDMonitor.GetLevels: TBrightnessLevels;

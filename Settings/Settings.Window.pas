@@ -10,8 +10,8 @@ uses
   Vcl.StdCtrls, Vcl.ComCtrls, Vcl.Menus,
   Brightness,
   Core.UI, Core.UI.Controls, Core.Startup,
-  Helpers.Reg,
-  RenameMonitor.Window;
+  RenameMonitor.Window,
+  Helpers.Reg;
 
 type
   TSettingsWindow = class(TCompatibleForm)
@@ -1143,10 +1143,7 @@ var
   RenameMonitorWindow: TRenameMonitorWindow;
 begin
   RenameMonitorWindow := TRenameMonitorWindow.Create(Self, FMonitor, WindowHandle);
-  if RenameMonitorWindow.ShowModal = mrOk then
-  begin
-    BatteryModeForm.UpdateTrayHint;
-  end;
+  if RenameMonitorWindow.ShowModal = mrOk then BatteryModeForm.UpdateTrayHint;
 end;
 
 procedure TBrightnessMonitorSettingsPanel.MonitorChangeEnable2(

@@ -68,7 +68,6 @@ type
     FWmiMonitorBrightness: IWbemClassObject;
     FServices: IWbemServices;
     FActive: Boolean;
-    FEnable: Boolean;
     FLevels: TBrightnessLevels;
     FLevel: Integer;
     FDescription: string;
@@ -80,8 +79,6 @@ type
   protected
     function GetMonitorType: TBrightnessMonitorType; override;
     function GetDescription: string; override;
-    function GetEnable: Boolean; override;
-    procedure SetEnable(const Value: Boolean); override;
     function GetLevels: TBrightnessLevels; override;
     function GetLevel: Integer; override;
     procedure SetLevel(const Value: Integer); override;
@@ -388,26 +385,6 @@ end;
 function TWMIMonitor.GetDescription: string;
 begin
   Result := FDescription;
-end;
-
-function TWMIMonitor.GetEnable: Boolean;
-begin
-  Result := FEnable;
-end;
-
-procedure TWMIMonitor.SetEnable(const Value: Boolean);
-begin
-  if FEnable = Value then Exit;
-
-  FEnable := Value;
-  if Assigned(FConfig) then
-    FConfig.Enable := FEnable;
-
-  if Assigned(FOnChangeEnable) then
-    FOnChangeEnable(Self, FEnable);
-
-  if Assigned(FOnChangeEnable2) then
-    FOnChangeEnable2(Self, FEnable);
 end;
 
 function TWMIMonitor.GetLevels: TBrightnessLevels;

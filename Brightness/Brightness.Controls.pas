@@ -84,6 +84,7 @@ type
     procedure SetShowBrightnessPercent(const Value: Boolean);
   protected
     procedure MonitorChangeEnable(Sender: IBrightnessMonitor; Enable: Boolean);
+    procedure MonitorChangeName(Sender: IBrightnessMonitor; EffectiveName: string);
     procedure ImageChangeActive(Sender: IBrightnessMonitor; Active: Boolean);
     procedure ImageChangeAdaptiveBrightness(Sender: IBrightnessMonitor; AdaptiveBrightness: Boolean);
     procedure TrackBarChangeLevel(Sender: IBrightnessMonitor; NewLevel: Integer);
@@ -371,6 +372,7 @@ begin
 
   FMonitor := Monitor;
   FMonitor.OnChangeEnable := MonitorChangeEnable;
+  FMonitor.OnChangeName := MonitorChangeName;
 
   FTrackBarPanel := TPanel.Create(Self);
   FTrackBarPanel.Align := alClient;
@@ -412,7 +414,7 @@ begin
   FMonitorNameLabel.Alignment := taCenter;
   FMonitorNameLabel.Margins.SetBounds(0, 4, 0, 0);
   FMonitorNameLabel.EllipsisPosition := epEndEllipsis;
-  FMonitorNameLabel.Caption := FMonitor.Description;
+  FMonitorNameLabel.Caption := FMonitor.EffectiveName;
   FMonitorNameLabel.Visible := False;
   if PPI <= 96 then FMonitorNameLabel.Font.Name := 'Microsoft Sans Serif';
   FMonitorNameLabel.Font.Height := MulDiv(12, PPI, 96);
@@ -502,6 +504,12 @@ begin
 
   if Assigned(FOnChangeEnable) then
     FOnChangeEnable(Sender, Enable);
+end;
+
+procedure TBrightnessPanel.MonitorChangeName(Sender: IBrightnessMonitor;
+  EffectiveName: string);
+begin
+  FMonitorNameLabel.Caption := EffectiveName;
 end;
 
 procedure TBrightnessPanel.ImageChangeActive(Sender: IBrightnessMonitor;
