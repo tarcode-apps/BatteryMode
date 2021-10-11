@@ -2,8 +2,8 @@ object SchedulingWindow: TSchedulingWindow
   Left = 0
   Top = 0
   Caption = 'SchedulingWindow'
-  ClientHeight = 353
-  ClientWidth = 574
+  ClientHeight = 461
+  ClientWidth = 684
   Color = clBtnFace
   Constraints.MinHeight = 240
   Constraints.MinWidth = 400
@@ -26,7 +26,7 @@ object SchedulingWindow: TSchedulingWindow
   object PanelConfig: TPanel
     Left = 0
     Top = 0
-    Width = 574
+    Width = 684
     Height = 37
     Align = alTop
     AutoSize = True
@@ -39,11 +39,12 @@ object SchedulingWindow: TSchedulingWindow
     ParentColor = True
     ShowCaption = False
     TabOrder = 0
+    ExplicitWidth = 574
     object CheckBoxEnabled: TCheckBox
       AlignWithMargins = True
       Left = 16
       Top = 7
-      Width = 505
+      Width = 615
       Height = 23
       Margins.Left = 0
       Margins.Right = 0
@@ -51,10 +52,11 @@ object SchedulingWindow: TSchedulingWindow
       Caption = 'Enabled'
       TabOrder = 0
       OnClick = CheckBoxEnabledClick
+      ExplicitWidth = 505
     end
     object LinkHelp: TStaticText
       AlignWithMargins = True
-      Left = 529
+      Left = 639
       Top = 10
       Width = 29
       Height = 17
@@ -67,12 +69,13 @@ object SchedulingWindow: TSchedulingWindow
       TabOrder = 1
       TabStop = True
       OnClick = LinkHelpClick
+      ExplicitLeft = 529
     end
   end
   object PanelControl: TPanel
     Left = 0
-    Top = 304
-    Width = 574
+    Top = 412
+    Width = 684
     Height = 49
     Align = alBottom
     BevelOuter = bvNone
@@ -84,9 +87,11 @@ object SchedulingWindow: TSchedulingWindow
     ParentColor = True
     ShowCaption = False
     TabOrder = 1
+    ExplicitTop = 304
+    ExplicitWidth = 574
     object ButtonCancel: TButton
       AlignWithMargins = True
-      Left = 470
+      Left = 580
       Top = 12
       Width = 88
       Height = 26
@@ -100,6 +105,7 @@ object SchedulingWindow: TSchedulingWindow
       ModalResult = 2
       TabOrder = 2
       OnClick = ButtonCancelClick
+      ExplicitLeft = 470
     end
     object ButtonAddRule: TButton
       AlignWithMargins = True
@@ -119,16 +125,17 @@ object SchedulingWindow: TSchedulingWindow
     object PanelApply: TPanel
       Left = 91
       Top = 12
-      Width = 379
+      Width = 489
       Height = 26
       Align = alClient
       BevelOuter = bvNone
       Caption = 'PanelApply'
       ShowCaption = False
       TabOrder = 1
+      ExplicitWidth = 379
       object ButtonApply: TButton
         AlignWithMargins = True
-        Left = 281
+        Left = 391
         Top = 0
         Width = 88
         Height = 26
@@ -142,6 +149,7 @@ object SchedulingWindow: TSchedulingWindow
         ModalResult = 1
         TabOrder = 0
         OnClick = ButtonApplyClick
+        ExplicitLeft = 281
       end
     end
   end
