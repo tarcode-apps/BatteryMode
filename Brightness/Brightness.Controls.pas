@@ -57,6 +57,7 @@ type
     destructor Destroy; override;
 
     procedure Click; override;
+    procedure UpdateHint;
 
     property BrightnessMonitor: IBrightnessMonitor read FMonitor;
     property OnChangeActive: TBrightnessChangeActiveEvent read FOnChangeActive write FOnChangeActive;
@@ -274,12 +275,8 @@ begin
   Margins.SetBounds(3, 4, 3, 0);
   Picture.Icon.Handle := LoadIconDpi(HInstance,
     LPCTSTR(MonitorIconName[FMonitor.Active, FMonitor.AdaptiveBrightness, FMonitor.MonitorType]));
-  if FMonitor.AdaptiveBrightnessAvalible then
-  begin
-    if FMonitor.AdaptiveBrightness then Hint := TLang[31] else Hint := TLang[30];
-  end
-  else
-    Hint := FMonitor.Description;
+
+  UpdateHint;
   ShowHint := True;
 end;
 
@@ -329,12 +326,17 @@ begin
   if Assigned(FOnChangeAdaptiveBrightness) then
     FOnChangeAdaptiveBrightness(Sender, AdaptiveBrightness);
 
+  UpdateHint;
+end;
+
+procedure TBrightnessImage.UpdateHint;
+begin
   if FMonitor.AdaptiveBrightnessAvalible then
   begin
     if FMonitor.AdaptiveBrightness then Hint := TLang[31] else Hint := TLang[30];
   end
   else
-    Hint := FMonitor.Description;
+    Hint := FMonitor.EffectiveName;
 end;
 
 function TBrightnessImage.LoadIconDpi(hInstance: HINST; lpIconName: LPCTSTR): HICON;
@@ -510,6 +512,7 @@ procedure TBrightnessPanel.MonitorChangeName(Sender: IBrightnessMonitor;
   EffectiveName: string);
 begin
   FMonitorNameLabel.Caption := EffectiveName;
+  FImageLow.UpdateHint;
 end;
 
 procedure TBrightnessPanel.ImageChangeActive(Sender: IBrightnessMonitor;
