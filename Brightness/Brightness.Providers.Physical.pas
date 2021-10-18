@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, Winapi.MultiMon,
   System.SysUtils, System.Classes,
   System.Generics.Collections, System.Generics.Defaults,
-  Brightness, Brightness.Api;
+  Brightness, Brightness.Api,
+  Versions.Helpers;
 
 type
   TPhysicalMonitor = class(TBrightnessMonitorBase)
@@ -246,6 +247,18 @@ constructor TLogicalMonitor.Create(hLogicalMonitor: HMONITOR; Index: Integer;
 var
   I: Integer;
   Monitor: IBrightnessMonitor;
+  MonitorInfo: TMonitorInfoEx;
+  iPath: UInt32;
+  iMode: UInt32;
+  aPath: array of DISPLAYCONFIG_PATH_INFO;
+  aMode: array of DISPLAYCONFIG_MODE_INFO;
+  vName: DISPLAYCONFIG_TARGET_DEVICE_NAME;
+  vAdapterName: DISPLAYCONFIG_ADAPTER_NAME;
+  Name: string;
+  Path: string;
+  Device: string;
+  DisplayDevice: TDisplayDevice;
+  DeviceID: string;
 begin
   inherited Create;
 
@@ -256,6 +269,52 @@ begin
 
   SetLength(FPhysicalMonitorArray, FPhysicalMonitorArraySize);
   if not GetPhysicalMonitorsFromHMONITOR(FHandle, FPhysicalMonitorArraySize, @FPhysicalMonitorArray[0]) then Exit;
+
+  ZeroMemory(@MonitorInfo, SizeOf(MonitorInfo));
+  MonitorInfo.cbSize := SizeOf(MonitorInfo);
+  GetMonitorInfo(hLogicalMonitor, @MonitorInfo);
+  Device := string(MonitorInfo.szDevice);
+
+  I := 0;
+  DisplayDevice.cb := SizeOf(DisplayDevice);
+  while EnumDisplayDevices(@MonitorInfo.szDevice[0], I, DisplayDevice, EDD_GET_DEVICE_INTERFACE_NAME) do
+  begin
+    DeviceID := string(DisplayDevice.DeviceID);
+    I := I + 1;
+    if DisplayDevice.StateFlags = DISPLAY_DEVICE_ACTIVE then Break;
+  end;
+
+
+
+  if IsWindows7OrGreater then
+  begin
+    if GetDisplayConfigBufferSizes(QDC_ALL_PATHS, iPath, iMode) = ERROR_SUCCESS then
+    begin
+      SetLength(aPath, iPath);
+      SetLength(aMode, iMode);
+
+      if QueryDisplayConfig(QDC_ALL_PATHS, iPath, @aPath[0], iMode, @aMode[0], nil) = ERROR_SUCCESS then
+      begin
+        for I := 0 to Integer(iMode) - 1 do
+        begin
+          if (aMode[i].infoType and DISPLAYCONFIG_MODE_INFO_TYPE_TARGET) = DISPLAYCONFIG_MODE_INFO_TYPE_TARGET then
+          begin
+            vName.header.size := SizeOf(DISPLAYCONFIG_TARGET_DEVICE_NAME);
+            vName.header.adapterId := aMode[i].adapterId;
+            vName.header.id := aMode[i].id;
+            vName.header.typ := DISPLAYCONFIG_DEVICE_INFO_TYPE.DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_NAME;
+            if (DisplayConfigGetDeviceInfo(@vName)) = ERROR_SUCCESS then
+            begin
+              if DeviceID = string(vName.monitorDevicePath) then
+              begin
+                Name := string(vName.monitorFriendlyDeviceName);
+              end;
+            end;
+          end;
+        end;
+      end;
+    end;
+  end;
 
   for I := 0 to FPhysicalMonitorArraySize - 1 do begin
     try
