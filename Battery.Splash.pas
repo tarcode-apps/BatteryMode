@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows,  Winapi.ActiveX,
   System.SysUtils, System.Classes,
-  Battery.Mode, Battery.Icons,
+  Battery.Mode,
   Power,
   Power.WinApi.PowrProf,
   Helpers.Images.Generator,
@@ -37,7 +37,7 @@ type
     class function GetRealImageSize: TSize;
     class function GeneratePicture(Width, Height: Integer; Monitor: TMonitorLite): IGPBitmap;
   public
-    class procedure ShowSplash(DisplayType: TSplashDisplayType; const State: TBatteryState; InverColor: Boolean); overload;
+    class procedure ShowSplash(DisplayType: TSplashDisplayType; const State: TBatteryState; InvertColor: Boolean); overload;
 
     class property SplashDisplayType: TSplashDisplayType read FSplashDisplayType write SetSplashDisplayType;
     class property MonitorConfig;
@@ -78,12 +78,12 @@ begin
 end;
 
 class procedure TBatterySplash.ShowSplash(DisplayType: TSplashDisplayType;
-  const State: TBatteryState; InverColor: Boolean);
+  const State: TBatteryState; InvertColor: Boolean);
 begin
   if (DisplayType <> FSplashDisplayType) or (FSplashDisplayType = sdtNone) then Exit;
 
   FBatteryState := State;
-  FInvertColor := InverColor;
+  FInvertColor := InvertColor;
   inherited ShowSplash;
 end;
 
@@ -214,9 +214,6 @@ begin
   DisablingFunc := Disabling;
   GetRealImageSizeFunc := GetRealImageSize;
   GeneratePictureFunc := GeneratePicture;
-
-  FBatteryState := TBatteryMode.State;
-  FInvertColor := (TIconHelper.IconColorType = ictSchemeInvert) or (TIconHelper.IconColorType = ictSchemeInvert);
 end;
 
 end.

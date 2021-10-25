@@ -150,7 +150,6 @@ uses
   Battery.Mode in 'Battery.Mode.pas',
   Battery.Mode.Window in 'Battery.Mode.Window.pas' {BatteryModeForm},
   Battery.Controls in 'Battery.Controls.pas',
-  Battery.Icons in 'Battery.Icons.pas',
   Battery.Splash in 'Battery.Splash.pas',
   Core.Language in 'Core.Language.pas',
   Core.Language.Controls in 'Core.Language.Controls.pas',
@@ -182,7 +181,12 @@ uses
   Tray.Notify.Window in 'Tray.Notify.Window.pas',
   Versions in 'Versions.pas',
   Versions.Helpers in 'Versions.Helpers.pas',
-  Versions.Info in 'Versions.Info.pas';
+  Versions.Info in 'Versions.Info.pas',
+  Icons.Manager in 'Icons.Manager.pas',
+  Icon.Renderers.Default in 'Icon.Renderers\Icon.Renderers.Default.pas',
+  Icon.Renderers in 'Icon.Renderers\Icon.Renderers.pas',
+  Icon.Renderers.Percent in 'Icon.Renderers\Icon.Renderers.Percent.pas',
+  Icon.Renderers.Simple in 'Icon.Renderers\Icon.Renderers.Simple.pas';
 
 {$SETPEFlAGS IMAGE_FILE_DEBUG_STRIPPED or IMAGE_FILE_LINE_NUMS_STRIPPED or IMAGE_FILE_LOCAL_SYMS_STRIPPED or IMAGE_FILE_RELOCS_STRIPPED}
 

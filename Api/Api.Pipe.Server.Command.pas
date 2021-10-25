@@ -48,6 +48,7 @@ begin
     stMaxPowerSavings :     Exit(TBatteryMode.MaxPowerSavings);
     stTypicalPowerSavings : Exit(TBatteryMode.TypicalPowerSavings);
     stMinPowerSavings :     Exit(TBatteryMode.MinPowerSavings);
+    stUltimatePowerSavings :Exit(TBatteryMode.UltimatePowerSavings);
     stCustom:
       begin
         Scheme := TBatteryMode.PowerSchemes.Schemes.Find(UniqueString);

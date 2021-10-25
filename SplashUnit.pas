@@ -98,8 +98,6 @@ begin
     EnablingFunc;
     wndAtom := RegistegSplashClass(SplashWndClassName, SplashWndClass);
     FEnable := wndAtom <> 0;
-    if FEnable then
-      UpdateAllForm;
   end else begin
     FEnable := False;
     HideAllForm;

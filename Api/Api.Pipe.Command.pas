@@ -42,12 +42,13 @@ type
   // actChangeScheme#Next|Economy|Typical|Performance|Custom[@:<GUID>]
   TApiChangeScheme = class(TApiBaseCommand)
   type
-    TSchemeType = (stNext, stMaxPowerSavings, stTypicalPowerSavings, stMinPowerSavings, stCustom);
+    TSchemeType = (stNext, stMaxPowerSavings, stTypicalPowerSavings, stMinPowerSavings, stUltimatePowerSavings, stCustom);
   protected const
     CmdNextScheme           = 'Next';
     CmdMaxPowerSavings      = 'Economy';
     CmdTypicalPowerSavings  = 'Typical';
     CmdMinPowerSavings      = 'Performance';
+    CmdUltimatePowerSavings = 'Ultimate';
     CmdCustom               = 'Custom';
     UniqueStringDelimiter = '@:';
   private
@@ -229,6 +230,12 @@ begin
     Exit(True);
   end;
 
+  if FCommandBody = CmdUltimatePowerSavings then
+  begin
+    FSchemeType := stUltimatePowerSavings;
+    Exit(True);
+  end;
+
   if FCommandBody.StartsWith(CmdCustom) then
   begin
     try
@@ -251,6 +258,7 @@ begin
     stMaxPowerSavings: Result := CmdMaxPowerSavings;
     stTypicalPowerSavings: Result := CmdTypicalPowerSavings;
     stMinPowerSavings: Result := CmdMinPowerSavings;
+    stUltimatePowerSavings: Result := CmdUltimatePowerSavings;
     stCustom: Result := CmdCustom;
   end;
 end;
