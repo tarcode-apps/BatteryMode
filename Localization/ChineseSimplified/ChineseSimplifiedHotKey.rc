@@ -1,13 +1,13 @@
 STRINGTABLE
-LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
 {
-300, "Hotkey"
-301, "Apply"
-302, "Cancel"
+300, "快捷键"
+301, "应用"
+302, "取消"
 
-310, "Custom"
+310, "自定义"
 
-320, "Enable hotkey"
+320, "启用快捷键"
 
-350, "None"
+350, "无"
 }

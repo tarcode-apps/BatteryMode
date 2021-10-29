@@ -1,31 +1,31 @@
 ﻿[CustomMessages]
 ; InstallType
-english.InstallType=Select Installation Type
+chinese_simplified.InstallType=选择安装类型
 ; InstallTypeDescription
-english.InstallTypeDescription=You can install standard or portable version of {#AppName}
+chinese_simplified.InstallTypeDescription=可以选择安装 {#AppName} 的标准版或便携版。
 
 ; AllUserRadioButton
-english.AllUserRadioButton=Install to Program Files
+chinese_simplified.AllUserRadioButton=安装至 Program Files
 ; AllUserDescLabel
-english.AllUserDescLabel=Administrator access required.%nThe program will be installed to all users
+chinese_simplified.AllUserDescLabel=需要管理员权限。%n程序将对所有用户可用。
 
 ; JustForMeRadioButton
-english.JustForMeRadioButton=Install to AppData
+chinese_simplified.JustForMeRadioButton=安装至 AppData
 ; JustForMeDescLabel
-english.JustForMeDescLabel=No Administrator access required.%nThe program will be installed to current user only
+chinese_simplified.JustForMeDescLabel=不需要管理员权限。%n程序将只对当前用户可用。
 
 ; PortableRadioButton
-english.PortableRadioButton=Portable Installation
+chinese_simplified.PortableRadioButton=便携安装
 ; PortableDescLabel
-english.PortableDescLabel=Places the program to the selected folder
+chinese_simplified.PortableDescLabel=程序将被安装到指定的文件夹
 
 ; SysIcons
-english.SysIcons=Disable System Power Icon
+chinese_simplified.SysIcons=禁用系统电源图标
 ; SysIconsDescription
-english.SysIconsDescription=You can hide system power icon to make {#AppName} the only power icon in your tray 
+chinese_simplified.SysIconsDescription=你可以隐藏系统电源图标，并只在托盘区显示 {#AppName} 作为唯一的电源图标 
 ; SysIconsDescLabel
-english.SysIconsDescLabel=Click "System Icons Settings" button and turn off "Power" to hide system power icon.%n%nYou can always access this window using {#AppName} menu.
+chinese_simplified.SysIconsDescLabel=点击 "系统图标设置" 按钮并禁用 "电源" 以隐藏系统电源图标。%n%n之后你依然可以从 {#AppName} 的菜单修改这一设置。
 ; SysIconsDescLabelWin10
-english.SysIconsDescLabelWin10=Click "System Icons Settings" button, click "Turn system icons on or off" and turn off "Power" to hide system power icon.%n%nYou can always access this window using {#AppName} menu.
+chinese_simplified.SysIconsDescLabelWin10=点击 "系统图标设置" 按钮，点击 "打开或关闭系统图标" 然后关闭 "电源" 以隐藏系统电源图标。%n%n之后你依然可以从 {#AppName} 的菜单修改这一设置。
 ; SysIconButton
-english.SysIconButton=System Icons Settings
+chinese_simplified.SysIconButton=系统图标设置

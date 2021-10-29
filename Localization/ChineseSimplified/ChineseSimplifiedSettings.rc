@@ -1,11 +1,11 @@
 STRINGTABLE
-LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
 {
-2000, "Apply"
-2001, "Cancel"
-2002, "Rename"
+2000, "应用"
+2001, "取消"
+2002, "重命名"
 
-2100, "ename monitor"
-2101, "New name for %0:s"
-2102, "Revert original name"
+2100, "重命名显示器"
+2101, "显示器 %0:s 的新名称"
+2102, "恢复原始名称"
 }
