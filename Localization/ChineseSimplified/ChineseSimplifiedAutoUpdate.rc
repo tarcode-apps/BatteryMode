@@ -1,0 +1,17 @@
+STRINGTABLE
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+{
+900, "Software Update"
+901, "A new version of %0:s is available!"
+902, "%0:s %1:s is now available (you have %2:s). Would you like to download it now?"
+903, "Release notes:"
+904, "Skip this version"
+905, "Remind me later"
+906, "Install update"
+907, "You're up to date!"
+908, "%0:s %1:s is currently the newest version available."
+909, "Close"
+910, "An error has occurred while downloading updates"
+911, "Unable to initialize the update"
+912, "Current Version"
+}

@@ -1,0 +1,165 @@
+STRINGTABLE
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+{
+1000, "Scheduler"
+1001, "Apply"
+1002, "Cancel"
+1003, "Add rule"
+
+1005, "Scheduler help"
+1006, "https://bmode.tarcode.ru/scheduler-help"
+
+1010, "You have unsaved changes. Save then now?"
+
+1020, "Enable scheduler"
+
+1030, "When %0:s"
+1031, "and %0:s"
+1032, "or %0:s"
+1033, "%0:s"
+1034, "and %0:s"
+1035, "No triggers defined yet"
+1036, "while %0:s"
+1037, "and %0:s"
+1038, "or %0:s"
+
+1040, "Enable"
+
+1045, "Modify"
+1046, "Delete"
+
+1050, "New rule"
+
+1060, "Move up"
+1061, "Move down"
+
+1070, "Properties"
+1071, "Apply"
+1072, "Cancel"
+
+1075, "Rule was modified. Save it now?"
+
+1080, "Name"
+1081, "Do not apply other rules"
+
+1085, "If"
+1086, "all the following conditions are met"
+1087, "any of the following conditions are met"
+1088, "While"
+
+1090, "Delete"
+1091, "Unknown condition"
+1092, "Clear"
+
+1095, "Add trigger"
+1096, "Perform actions"
+1097, "Add condition"
+
+1100, "show message \"%0:s\""
+1101, "Show message"
+
+1110, "set power scheme \"%0:s\""
+1111, "Set power scheme"
+
+1120, "Start a program"
+1121, "start \"%0:s\""
+1122, "start \"%0:s\" hidden"
+
+1125, "Browse"
+1126, "Launch hidden"
+
+1130, "Play sound"
+1131, "play sound \"%0:s\""
+1132, "play sound \"%0:s\" with volume %1:d%%"
+
+1135, "Browse"
+1136, "Volume"
+1137, "Audio files"
+1138, "All files"
+
+1140, "Power"
+1141, "shut down this computer"
+1142, "restart Windows"
+1143, "put this computer into sleep"
+1144, "hibernate this computer"
+1145, "turn off screen"
+1146, "turn on screen"
+
+1151, "Shut down"
+1152, "Restart"
+1153, "Sleep"
+1154, "Hibernate"
+1155, "Turn off screen"
+1156, "Turn on screen"
+
+1200, "battery charge %0:s %1:d%%"
+1201, "battery charge %0:s"
+1202, "Battery charge"
+
+1205, "falls below"
+1206, "rises above"
+1207, "changes"
+
+1220, "charger %0:s"
+1221, "Charger"
+
+1225, "gets connected"
+1226, "gets disconnected"
+1227, "changes state"
+
+1240, "laptop lid %0:s"
+1241, "Laptop lid"
+
+1245, "gets closed"
+1246, "gets opened"
+
+1250, "the computer goes to sleep/hibernation"
+1251, "Sleep/Hibernation"
+
+1255, "the computer wakes up from sleep/hibernation"
+1256, "Waking up from Sleep/Hibernation"
+
+1260, "display %0:s"
+1261, "Display"
+
+1265, "turns off"
+1266, "turns on"
+1267, "gets dimmed"
+
+1280, "power scheme \"%0:s\" becomes active"
+1281, "Power scheme is set to"
+
+1290, "Battery Mode starts"
+1291, "Battery Mode is just started"
+
+1300, "battery charge %0:s %1:d%%"
+1301, "Battery charge"
+
+1305, "is below"
+1306, "is above"
+
+1320, "charger %0:s"
+1321, "Charger"
+
+1325, "is connected"
+1326, "is disconnected"
+
+1340, "laptop lid %0:s"
+1341, "Laptop lid"
+
+1345, "is closed"
+1346, "is opened"
+
+1360, "display %0:s"
+1361, "Display"
+
+1365, "is off"
+1366, "is on"
+1367, "is dimmed"
+
+1380, "active power scheme is \"%0:s\""
+1381, "Active power scheme is"
+
+1390, "active power scheme is not \"%0:s\""
+1391, "Active power scheme is not"
+}

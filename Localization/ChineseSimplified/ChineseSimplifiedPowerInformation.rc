@@ -1,0 +1,80 @@
+STRINGTABLE
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+{
+700, "N/A"
+701, "Unknown"
+
+704, "Power system"
+705, "Battery properties"
+
+710, "Device Name"
+711, "Manufacturer"
+712, "Date of Manufacture"
+713, "Serial Number"
+714, "Battery Type"
+715, "Charge/Discharge Cycles"
+716, "Wear Level"
+717, "Power State"
+718, "Designed Capacity"
+719, "Fully Charged Capacity"
+720, "Current Capacity"
+721, "Battery Voltage"
+722, "Charge/Discharge Rate"
+723, "Charge Rate"
+724, "Discharge Rate"
+725, "Warning Battery Alert 1"
+726, "Warning Battery Alert 2"
+727, "Temperature"
+
+740, "Nonrechargeable %0:s"
+741, "Rechargeable %0:s"
+742, "Nonrechargeable"
+743, "Rechargeable"
+
+745, "AC Line"
+746, "Charging"
+747, "Fully Discharged"
+748, "Discharging"
+
+750, "&View"
+751, "&Always on top"
+
+755, "&File"
+756, "&Close"
+757, "&Save"
+758, "Save &As..."
+759, "All Files"
+760, "Text Files"
+761, "Log Files"
+
+765, "Power Management Properties"
+
+770, "Current Power Source"
+771, "Battery Status"
+772, "Full Battery Lifetime"
+773, "Remaining Battery Lifetime"
+
+775, "%0:u hr %1:.2u min"
+776, "%1:u min"
+
+780, "AC Line"
+781, "UPS"
+782, "Battery"
+
+784, "No battery"
+785, "%0:d%% (High, Charging)"
+786, "%0:d%% (Low, Charging)"
+787, "%0:d%% (Critical, Charging)"
+788, "%0:d%% (Charging)"
+789, "%0:d%% (High)"
+790, "%0:d%% (Low)"
+791, "%0:d%% (Critical)"
+792, "%0:d%%"
+793, "High, Charging"
+794, "Low, Charging"
+795, "Critical, Charging"
+796, "Charging"
+797, "High"
+798, "Low"
+799, "Critical"
+}
