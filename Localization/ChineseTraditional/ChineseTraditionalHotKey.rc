@@ -1,0 +1,13 @@
+STRINGTABLE
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
+{
+300, "快捷鍵"
+301, "應用"
+302, "取消"
+
+310, "自訂"
+
+320, "啟用快捷鍵"
+
+350, "無"
+}
