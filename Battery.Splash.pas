@@ -97,16 +97,18 @@ const
   CircleGreen = 0;
   CircleYellow = 1;
   CircleRed = 2;
-  CircleBlue = 3;
+  CirclePurple = 3;
+  CircleBlue = 4;
 
-  RingGreen = 4;
-  RingYellow = 5;
-  RingRed = 6;
-  RingBlue = 7;
+  RingGreen = 5;
+  RingYellow = 6;
+  RingRed = 7;
+  RingPurple = 8;
+  RingBlue = 9;
 
-  BatteryBody = 8;
-  PercentageOffset = 9;
-  Charge = 18;
+  BatteryBody = 10;
+  PercentageOffset = 11;
+  Charge = 20;
 var
   Graphics: IGPGraphics;
   Indexes: array of Integer;
@@ -118,16 +120,16 @@ begin
   if FInvertColor then
   begin
     case FBatteryState.PowerScheme.PowerSchemeType of
-      pstMaxPowerSavings    : Indexes := Indexes + [CircleRed];
+      pstMaxPowerSavings     : Indexes := Indexes + [CircleRed];
       pstTypicalPowerSavings:
       begin
         if IsOverlayAsScheme then
         begin
           case FBatteryState.PowerScheme.OverlaySchemeType of
-            ostOverlayMin   : Indexes := Indexes + [CircleRed];
-            ostOverlayHigh  : Indexes := Indexes + [CircleBlue];
-            ostOverlayMax   : Indexes := Indexes + [CircleGreen];
-            else              Indexes := Indexes + [CircleYellow];
+            ostOverlayMin    : Indexes := Indexes + [CircleRed];
+            ostOverlayHigh   : Indexes := Indexes + [CircleBlue];
+            ostOverlayMax    : Indexes := Indexes + [CircleGreen];
+            else               Indexes := Indexes + [CircleYellow];
           end;
         end
         else
@@ -135,8 +137,9 @@ begin
           Indexes := Indexes + [CircleYellow];
         end;
       end;
-      pstMinPowerSavings    : Indexes := Indexes + [CircleGreen];
-      else                    Indexes := Indexes + [CircleBlue];
+      pstMinPowerSavings     : Indexes := Indexes + [CircleGreen];
+      pstUltimatePowerSavings: Indexes := Indexes + [CirclePurple];
+      else                     Indexes := Indexes + [CircleBlue];
     end;
 
     case FBatteryState.PowerScheme.OverlaySchemeType of
@@ -149,16 +152,16 @@ begin
   else
   begin
     case FBatteryState.PowerScheme.PowerSchemeType of
-      pstMaxPowerSavings    : Indexes := Indexes + [CircleGreen];
+      pstMaxPowerSavings     : Indexes := Indexes + [CircleGreen];
       pstTypicalPowerSavings:
       begin
         if IsOverlayAsScheme then
         begin
           case FBatteryState.PowerScheme.OverlaySchemeType of
-            ostOverlayMin   : Indexes := Indexes + [CircleGreen];
-            ostOverlayHigh  : Indexes := Indexes + [CircleBlue];
-            ostOverlayMax   : Indexes := Indexes + [CircleRed];
-            else              Indexes := Indexes + [CircleYellow];
+            ostOverlayMin    : Indexes := Indexes + [CircleGreen];
+            ostOverlayHigh   : Indexes := Indexes + [CircleBlue];
+            ostOverlayMax    : Indexes := Indexes + [CircleRed];
+            else               Indexes := Indexes + [CircleYellow];
           end;
         end
         else
@@ -166,8 +169,9 @@ begin
           Indexes := Indexes + [CircleYellow];
         end;
       end;
-      pstMinPowerSavings    : Indexes := Indexes + [CircleRed];
-      else                    Indexes := Indexes + [CircleBlue];
+      pstMinPowerSavings     : Indexes := Indexes + [CircleRed];
+      pstUltimatePowerSavings: Indexes := Indexes + [CirclePurple];
+      else                     Indexes := Indexes + [CircleBlue];
     end;
 
     case FBatteryState.PowerScheme.OverlaySchemeType of
