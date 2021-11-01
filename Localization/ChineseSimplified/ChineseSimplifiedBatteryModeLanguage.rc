@@ -16,7 +16,7 @@ LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
 12, "https://en.bmode.tarcode.ru"
 13, "供电模块信息(&I)"
 
-15, "电源(&P)"
+15, "控制面板电源选项(&P)"
 16, "启用或禁用系统图标(&E)"
 17, "Windows 移动中心(&M)"
 
