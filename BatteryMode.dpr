@@ -83,6 +83,22 @@
 {$R 'JapaneseHotKey.res' 'Localization\Japanese\JapaneseHotKey.rc'}
 {$R 'JapanesePowerInformation.res' 'Localization\Japanese\JapanesePowerInformation.rc'}
 {$R 'JapaneseScheduling.res' 'Localization\Japanese\JapaneseScheduling.rc'}
+{$R 'ChineseSimplifiedAutorunMessage.res' 'Localization\ChineseSimplified\ChineseSimplifiedAutorunMessage.rc'}
+{$R 'ChineseSimplifiedAutoUpdate.res' 'Localization\ChineseSimplified\ChineseSimplifiedAutoUpdate.rc'}
+{$R 'ChineseSimplifiedBatteryModeLanguage.res' 'Localization\ChineseSimplified\ChineseSimplifiedBatteryModeLanguage.rc'}
+{$R 'ChineseSimplifiedBatteryStatusHint.res' 'Localization\ChineseSimplified\ChineseSimplifiedBatteryStatusHint.rc'}
+{$R 'ChineseSimplifiedHotKey.res' 'Localization\ChineseSimplified\ChineseSimplifiedHotKey.rc'}
+{$R 'ChineseSimplifiedPowerInformation.res' 'Localization\ChineseSimplified\ChineseSimplifiedPowerInformation.rc'}
+{$R 'ChineseSimplifiedScheduling.res' 'Localization\ChineseSimplified\ChineseSimplifiedScheduling.rc'}
+{$R 'ChineseSimplifiedSettings.res' 'Localization\ChineseSimplified\ChineseSimplifiedSettings.rc'}
+{$R 'ChineseTraditionalAutorunMessage.res' 'Localization\ChineseTraditional\ChineseTraditionalAutorunMessage.rc'}
+{$R 'ChineseTraditionalAutoUpdate.res' 'Localization\ChineseTraditional\ChineseTraditionalAutoUpdate.rc'}
+{$R 'ChineseTraditionalBatteryModeLanguage.res' 'Localization\ChineseTraditional\ChineseTraditionalBatteryModeLanguage.rc'}
+{$R 'ChineseTraditionalBatteryStatusHint.res' 'Localization\ChineseTraditional\ChineseTraditionalBatteryStatusHint.rc'}
+{$R 'ChineseTraditionalHotKey.res' 'Localization\ChineseTraditional\ChineseTraditionalHotKey.rc'}
+{$R 'ChineseTraditionalPowerInformation.res' 'Localization\ChineseTraditional\ChineseTraditionalPowerInformation.rc'}
+{$R 'ChineseTraditionalScheduling.res' 'Localization\ChineseTraditional\ChineseTraditionalScheduling.rc'}
+{$R 'ChineseTraditionalSettings.res' 'Localization\ChineseTraditional\ChineseTraditionalSettings.rc'}
 {$R *.dres}
 
 uses
@@ -200,9 +216,11 @@ var
   Registry: TRegistry;
 
 begin
-  TLang.Fallback.Add(MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_MODERN),  MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH));
-  TLang.Fallback.Add(MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_MEXICAN), MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH));
-  TLang.Fallback.Add(MAKELANGID(LANG_UKRAINIAN, SUBLANG_DEFAULT),       MAKELANGID(LANG_RUSSIAN, SUBLANG_DEFAULT));
+  TLang.Fallback.Add(MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_MODERN),    MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH));
+  TLang.Fallback.Add(MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_MEXICAN),   MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH));
+  TLang.Fallback.Add(MAKELANGID(LANG_UKRAINIAN, SUBLANG_DEFAULT),         MAKELANGID(LANG_RUSSIAN, SUBLANG_DEFAULT));
+  TLang.Fallback.Add(MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_HONGKONG),  MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL));
+  TLang.Fallback.Add(MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SINGAPORE), MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED));
 
   Registry := TRegistry.Create;
   try
@@ -222,22 +240,26 @@ begin
       Registry.Free;
     end;
 
-    TLang.GetStringRes(HInstance, 0, TLang.EffectiveLanguageId); 
+    TLang.GetStringRes(HInstance, 0, TLang.EffectiveLanguageId);
   except
     TLang.LanguageId := 0;
   end;
 
-  //TLang.LanguageId := MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US);       // 1033 (0x0409)
-  //TLang.LanguageId := MAKELANGID(LANG_UKRAINIAN, SUBLANG_DEFAULT);        // 1058 (0x0422)
-  //TLang.LanguageId := MAKELANGID(LANG_FRENCH, SUBLANG_DEFAULT);           // 1036 (0x040C)
-  //TLang.LanguageId := MAKELANGID(LANG_HUNGARIAN, SUBLANG_DEFAULT);        // 1038 (0x040E)
-  //TLang.LanguageId := MAKELANGID(LANG_ITALIAN, SUBLANG_ITALIAN);          // 1040 (0x0410)
-  //TLang.LanguageId := MAKELANGID(LANG_KOREAN, SUBLANG_DEFAULT);           // 1042 (0x0412)
-  //TLang.LanguageId := MAKELANGID(LANG_POLISH, SUBLANG_POLISH_POLAND);     // 1045 (0x0415)
-  //TLang.LanguageId := MAKELANGID(LANG_PORTUGUESE, SUBLANG_DEFAULT);       // 1046 (0x0416)
-  //TLang.LanguageId := MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH);          // 1034 (0x040A)
-  //TLang.LanguageId := MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_MODERN);   // 3082 (0x0C0A)
-  //TLang.LanguageId := MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_MEXICAN);  // 2058 (0x080A)
+  //TLang.LanguageId := MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US);          // 1033 (0x0409)
+  //TLang.LanguageId := MAKELANGID(LANG_UKRAINIAN, SUBLANG_DEFAULT);           // 1058 (0x0422)
+  //TLang.LanguageId := MAKELANGID(LANG_FRENCH, SUBLANG_DEFAULT);              // 1036 (0x040C)
+  //TLang.LanguageId := MAKELANGID(LANG_HUNGARIAN, SUBLANG_DEFAULT);           // 1038 (0x040E)
+  //TLang.LanguageId := MAKELANGID(LANG_ITALIAN, SUBLANG_ITALIAN);             // 1040 (0x0410)
+  //TLang.LanguageId := MAKELANGID(LANG_KOREAN, SUBLANG_DEFAULT);              // 1042 (0x0412)
+  //TLang.LanguageId := MAKELANGID(LANG_POLISH, SUBLANG_POLISH_POLAND);        // 1045 (0x0415)
+  //TLang.LanguageId := MAKELANGID(LANG_PORTUGUESE, SUBLANG_DEFAULT);          // 1046 (0x0416)
+  //TLang.LanguageId := MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH);             // 1034 (0x040A)
+  //TLang.LanguageId := MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_MODERN);      // 3082 (0x0C0A)
+  //TLang.LanguageId := MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_MEXICAN);     // 2058 (0x080A)
+  //TLang.LanguageId := MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED);  // 2052 (0x0804)
+  //TLang.LanguageId := MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL); // 1028 (0x0404)
+  //TLang.LanguageId := MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_HONGKONG);    // 3076 (0x0C04)
+  //TLang.LanguageId := MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SINGAPORE);   // 4100 (0x1004)
 
   TMemoryDirector.SetWorkingSetSize(Round(2.5*1024*1024), 5*1024*1024);
   TMemoryDirector.OuotaLimitMinEnable := True;
