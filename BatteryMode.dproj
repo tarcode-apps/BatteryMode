@@ -1173,13 +1173,13 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Icon\ImageList44Light.png" Configuration="Release" Class="ProjectFile">
+                <DeployFile LocalName="Icon\WinXpIconList32.png" Configuration="Release" Class="ProjectFile">
                     <Platform Name="Win64">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Icon\WinXpIconList32.png" Configuration="Release" Class="ProjectFile">
+                <DeployFile LocalName="Icon\ImageList44Light.png" Configuration="Release" Class="ProjectFile">
                     <Platform Name="Win64">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
