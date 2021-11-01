@@ -48,13 +48,14 @@ LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT
 60, "Akkumulátor kímélő"
 
 70, "I&kon stílus"
-71, "Windows &7"
-72, "Windows &8"
-73, "Windows &10"
-74, "Windows &8 Light"
-75, "Windows &10 Light"
-76, "Windows &XP"
-77, "Windows &Vista"
+71, "Windows 7"
+72, "Windows 8"
+73, "Windows 10"
+74, "Windows 8 Light"
+75, "Windows 10 Light"
+76, "Windows XP"
+77, "Windows Vista"
+78, "Windows 11"
 
 80, "Üt&emező"
 
