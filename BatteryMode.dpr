@@ -11,6 +11,22 @@
 {$R 'BrazilianPortugueseHotKey.res' 'Localization\BrazilianPortuguese\BrazilianPortugueseHotKey.rc'}
 {$R 'BrazilianPortuguesePowerInformation.res' 'Localization\BrazilianPortuguese\BrazilianPortuguesePowerInformation.rc'}
 {$R 'BrazilianPortugueseScheduling.res' 'Localization\BrazilianPortuguese\BrazilianPortugueseScheduling.rc'}
+{$R 'ChineseSimplifiedAutorunMessage.res' 'Localization\ChineseSimplified\ChineseSimplifiedAutorunMessage.rc'}
+{$R 'ChineseSimplifiedAutoUpdate.res' 'Localization\ChineseSimplified\ChineseSimplifiedAutoUpdate.rc'}
+{$R 'ChineseSimplifiedBatteryModeLanguage.res' 'Localization\ChineseSimplified\ChineseSimplifiedBatteryModeLanguage.rc'}
+{$R 'ChineseSimplifiedBatteryStatusHint.res' 'Localization\ChineseSimplified\ChineseSimplifiedBatteryStatusHint.rc'}
+{$R 'ChineseSimplifiedHotKey.res' 'Localization\ChineseSimplified\ChineseSimplifiedHotKey.rc'}
+{$R 'ChineseSimplifiedPowerInformation.res' 'Localization\ChineseSimplified\ChineseSimplifiedPowerInformation.rc'}
+{$R 'ChineseSimplifiedScheduling.res' 'Localization\ChineseSimplified\ChineseSimplifiedScheduling.rc'}
+{$R 'ChineseSimplifiedSettings.res' 'Localization\ChineseSimplified\ChineseSimplifiedSettings.rc'}
+{$R 'ChineseTraditionalAutorunMessage.res' 'Localization\ChineseTraditional\ChineseTraditionalAutorunMessage.rc'}
+{$R 'ChineseTraditionalAutoUpdate.res' 'Localization\ChineseTraditional\ChineseTraditionalAutoUpdate.rc'}
+{$R 'ChineseTraditionalBatteryModeLanguage.res' 'Localization\ChineseTraditional\ChineseTraditionalBatteryModeLanguage.rc'}
+{$R 'ChineseTraditionalBatteryStatusHint.res' 'Localization\ChineseTraditional\ChineseTraditionalBatteryStatusHint.rc'}
+{$R 'ChineseTraditionalHotKey.res' 'Localization\ChineseTraditional\ChineseTraditionalHotKey.rc'}
+{$R 'ChineseTraditionalPowerInformation.res' 'Localization\ChineseTraditional\ChineseTraditionalPowerInformation.rc'}
+{$R 'ChineseTraditionalScheduling.res' 'Localization\ChineseTraditional\ChineseTraditionalScheduling.rc'}
+{$R 'ChineseTraditionalSettings.res' 'Localization\ChineseTraditional\ChineseTraditionalSettings.rc'}
 {$R 'EnglishAutorunMessage.res' 'Localization\English\EnglishAutorunMessage.rc'}
 {$R 'EnglishAutoUpdate.res' 'Localization\English\EnglishAutoUpdate.rc'}
 {$R 'EnglishBatteryModeLanguage.res' 'Localization\English\EnglishBatteryModeLanguage.rc'}
@@ -83,22 +99,6 @@
 {$R 'JapaneseHotKey.res' 'Localization\Japanese\JapaneseHotKey.rc'}
 {$R 'JapanesePowerInformation.res' 'Localization\Japanese\JapanesePowerInformation.rc'}
 {$R 'JapaneseScheduling.res' 'Localization\Japanese\JapaneseScheduling.rc'}
-{$R 'ChineseSimplifiedAutorunMessage.res' 'Localization\ChineseSimplified\ChineseSimplifiedAutorunMessage.rc'}
-{$R 'ChineseSimplifiedAutoUpdate.res' 'Localization\ChineseSimplified\ChineseSimplifiedAutoUpdate.rc'}
-{$R 'ChineseSimplifiedBatteryModeLanguage.res' 'Localization\ChineseSimplified\ChineseSimplifiedBatteryModeLanguage.rc'}
-{$R 'ChineseSimplifiedBatteryStatusHint.res' 'Localization\ChineseSimplified\ChineseSimplifiedBatteryStatusHint.rc'}
-{$R 'ChineseSimplifiedHotKey.res' 'Localization\ChineseSimplified\ChineseSimplifiedHotKey.rc'}
-{$R 'ChineseSimplifiedPowerInformation.res' 'Localization\ChineseSimplified\ChineseSimplifiedPowerInformation.rc'}
-{$R 'ChineseSimplifiedScheduling.res' 'Localization\ChineseSimplified\ChineseSimplifiedScheduling.rc'}
-{$R 'ChineseSimplifiedSettings.res' 'Localization\ChineseSimplified\ChineseSimplifiedSettings.rc'}
-{$R 'ChineseTraditionalAutorunMessage.res' 'Localization\ChineseTraditional\ChineseTraditionalAutorunMessage.rc'}
-{$R 'ChineseTraditionalAutoUpdate.res' 'Localization\ChineseTraditional\ChineseTraditionalAutoUpdate.rc'}
-{$R 'ChineseTraditionalBatteryModeLanguage.res' 'Localization\ChineseTraditional\ChineseTraditionalBatteryModeLanguage.rc'}
-{$R 'ChineseTraditionalBatteryStatusHint.res' 'Localization\ChineseTraditional\ChineseTraditionalBatteryStatusHint.rc'}
-{$R 'ChineseTraditionalHotKey.res' 'Localization\ChineseTraditional\ChineseTraditionalHotKey.rc'}
-{$R 'ChineseTraditionalPowerInformation.res' 'Localization\ChineseTraditional\ChineseTraditionalPowerInformation.rc'}
-{$R 'ChineseTraditionalScheduling.res' 'Localization\ChineseTraditional\ChineseTraditionalScheduling.rc'}
-{$R 'ChineseTraditionalSettings.res' 'Localization\ChineseTraditional\ChineseTraditionalSettings.rc'}
 {$R *.dres}
 
 uses

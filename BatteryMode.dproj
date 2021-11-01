@@ -189,6 +189,54 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <RcCompile Include="Localization\BrazilianPortuguese\BrazilianPortugueseScheduling.rc">
             <Form>BrazilianPortugueseScheduling.res</Form>
         </RcCompile>
+        <RcCompile Include="Localization\ChineseSimplified\ChineseSimplifiedAutorunMessage.rc">
+            <Form>ChineseSimplifiedAutorunMessage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\ChineseSimplified\ChineseSimplifiedAutoUpdate.rc">
+            <Form>ChineseSimplifiedAutoUpdate.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\ChineseSimplified\ChineseSimplifiedBatteryModeLanguage.rc">
+            <Form>ChineseSimplifiedBatteryModeLanguage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\ChineseSimplified\ChineseSimplifiedBatteryStatusHint.rc">
+            <Form>ChineseSimplifiedBatteryStatusHint.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\ChineseSimplified\ChineseSimplifiedHotKey.rc">
+            <Form>ChineseSimplifiedHotKey.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\ChineseSimplified\ChineseSimplifiedPowerInformation.rc">
+            <Form>ChineseSimplifiedPowerInformation.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\ChineseSimplified\ChineseSimplifiedScheduling.rc">
+            <Form>ChineseSimplifiedScheduling.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\ChineseSimplified\ChineseSimplifiedSettings.rc">
+            <Form>ChineseSimplifiedSettings.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\ChineseTraditional\ChineseTraditionalAutorunMessage.rc">
+            <Form>ChineseTraditionalAutorunMessage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\ChineseTraditional\ChineseTraditionalAutoUpdate.rc">
+            <Form>ChineseTraditionalAutoUpdate.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\ChineseTraditional\ChineseTraditionalBatteryModeLanguage.rc">
+            <Form>ChineseTraditionalBatteryModeLanguage.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\ChineseTraditional\ChineseTraditionalBatteryStatusHint.rc">
+            <Form>ChineseTraditionalBatteryStatusHint.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\ChineseTraditional\ChineseTraditionalHotKey.rc">
+            <Form>ChineseTraditionalHotKey.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\ChineseTraditional\ChineseTraditionalPowerInformation.rc">
+            <Form>ChineseTraditionalPowerInformation.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\ChineseTraditional\ChineseTraditionalScheduling.rc">
+            <Form>ChineseTraditionalScheduling.res</Form>
+        </RcCompile>
+        <RcCompile Include="Localization\ChineseTraditional\ChineseTraditionalSettings.rc">
+            <Form>ChineseTraditionalSettings.res</Form>
+        </RcCompile>
         <RcCompile Include="Localization\English\EnglishAutorunMessage.rc">
             <Form>EnglishAutorunMessage.res</Form>
         </RcCompile>
@@ -404,54 +452,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         </RcCompile>
         <RcCompile Include="Localization\Japanese\JapaneseScheduling.rc">
             <Form>JapaneseScheduling.res</Form>
-        </RcCompile>
-        <RcCompile Include="Localization\ChineseSimplified\ChineseSimplifiedAutorunMessage.rc">
-            <Form>ChineseSimplifiedAutorunMessage.res</Form>
-        </RcCompile>
-        <RcCompile Include="Localization\ChineseSimplified\ChineseSimplifiedAutoUpdate.rc">
-            <Form>ChineseSimplifiedAutoUpdate.res</Form>
-        </RcCompile>
-        <RcCompile Include="Localization\ChineseSimplified\ChineseSimplifiedBatteryModeLanguage.rc">
-            <Form>ChineseSimplifiedBatteryModeLanguage.res</Form>
-        </RcCompile>
-        <RcCompile Include="Localization\ChineseSimplified\ChineseSimplifiedBatteryStatusHint.rc">
-            <Form>ChineseSimplifiedBatteryStatusHint.res</Form>
-        </RcCompile>
-        <RcCompile Include="Localization\ChineseSimplified\ChineseSimplifiedHotKey.rc">
-            <Form>ChineseSimplifiedHotKey.res</Form>
-        </RcCompile>
-        <RcCompile Include="Localization\ChineseSimplified\ChineseSimplifiedPowerInformation.rc">
-            <Form>ChineseSimplifiedPowerInformation.res</Form>
-        </RcCompile>
-        <RcCompile Include="Localization\ChineseSimplified\ChineseSimplifiedScheduling.rc">
-            <Form>ChineseSimplifiedScheduling.res</Form>
-        </RcCompile>
-        <RcCompile Include="Localization\ChineseSimplified\ChineseSimplifiedSettings.rc">
-            <Form>ChineseSimplifiedSettings.res</Form>
-        </RcCompile>
-        <RcCompile Include="Localization\ChineseTraditional\ChineseTraditionalAutorunMessage.rc">
-            <Form>ChineseTraditionalAutorunMessage.res</Form>
-        </RcCompile>
-        <RcCompile Include="Localization\ChineseTraditional\ChineseTraditionalAutoUpdate.rc">
-            <Form>ChineseTraditionalAutoUpdate.res</Form>
-        </RcCompile>
-        <RcCompile Include="Localization\ChineseTraditional\ChineseTraditionalBatteryModeLanguage.rc">
-            <Form>ChineseTraditionalBatteryModeLanguage.res</Form>
-        </RcCompile>
-        <RcCompile Include="Localization\ChineseTraditional\ChineseTraditionalBatteryStatusHint.rc">
-            <Form>ChineseTraditionalBatteryStatusHint.res</Form>
-        </RcCompile>
-        <RcCompile Include="Localization\ChineseTraditional\ChineseTraditionalHotKey.rc">
-            <Form>ChineseTraditionalHotKey.res</Form>
-        </RcCompile>
-        <RcCompile Include="Localization\ChineseTraditional\ChineseTraditionalPowerInformation.rc">
-            <Form>ChineseTraditionalPowerInformation.res</Form>
-        </RcCompile>
-        <RcCompile Include="Localization\ChineseTraditional\ChineseTraditionalScheduling.rc">
-            <Form>ChineseTraditionalScheduling.res</Form>
-        </RcCompile>
-        <RcCompile Include="Localization\ChineseTraditional\ChineseTraditionalSettings.rc">
-            <Form>ChineseTraditionalSettings.res</Form>
         </RcCompile>
         <DCCReference Include="Api\Api.Pipe.Client.pas"/>
         <DCCReference Include="Api\Api.Pipe.Command.pas"/>
@@ -2414,9 +2414,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>(If Not Exist &quot;$(PROJECTDIR)\Build&quot; (mkdir &quot;$(PROJECTDIR)\Build&quot;))
-&amp;&amp;copy &quot;$(OUTPUTDIR)$(OUTPUTNAME)$(OUTPUTEXT)&quot; &quot;$(PROJECTDIR)\Build\$(OUTPUTNAME)32$(OUTPUTEXT)&quot;
-</PostBuildEvent>
+        <PostBuildEvent>(If Not Exist &quot;$(PROJECTDIR)\Build&quot; (mkdir &quot;$(PROJECTDIR)\Build&quot;))&amp;&amp;copy &quot;$(OUTPUTDIR)$(OUTPUTNAME)$(OUTPUTEXT)&quot; &quot;$(PROJECTDIR)\Build\$(OUTPUTNAME)32$(OUTPUTEXT)&quot;</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win64'">
@@ -2424,9 +2422,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>(If Not Exist &quot;$(PROJECTDIR)\Build&quot; (mkdir &quot;$(PROJECTDIR)\Build&quot;))
-&amp;&amp;copy &quot;$(OUTPUTDIR)$(OUTPUTNAME)$(OUTPUTEXT)&quot; &quot;$(PROJECTDIR)\Build\$(OUTPUTNAME)64$(OUTPUTEXT)&quot;
-</PostBuildEvent>
+        <PostBuildEvent>(If Not Exist &quot;$(PROJECTDIR)\Build&quot; (mkdir &quot;$(PROJECTDIR)\Build&quot;))&amp;&amp;copy &quot;$(OUTPUTDIR)$(OUTPUTNAME)$(OUTPUTEXT)&quot; &quot;$(PROJECTDIR)\Build\$(OUTPUTNAME)64$(OUTPUTEXT)&quot;</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>
