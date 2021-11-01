@@ -643,7 +643,7 @@ begin
     TBatterySplash.TSplashMonitorConfig.Create(TBatterySplash.TSplashMonitorType.smtAll);
   TBatterySplash.SplashDisplayType := sdtSelf;
   UpdateIndicatorTransparency;
-  TBatterySplash.ShowSplash;
+  TBatterySplash.ShowSplash(sdtSelf, TBatteryMode.State, BatteryModeForm.IconOptions.IconColorType = ictSchemeInvert);
 end;
 
 procedure TSettingsWindow.IndicatorNotDisplayRadioButtonClick(Sender: TObject);
@@ -665,7 +665,7 @@ begin
     TBatterySplash.TSplashMonitorConfig.Create(TBatterySplash.TSplashMonitorType.smtPrimary);
   TBatterySplash.SplashDisplayType := sdtSelf;
   UpdateIndicatorTransparency;
-  TBatterySplash.ShowSplash;
+  TBatterySplash.ShowSplash(sdtSelf, TBatteryMode.State, BatteryModeForm.IconOptions.IconColorType = ictSchemeInvert);
 end;
 
 procedure TSettingsWindow.IndicatorTransparencyTrackBarChange(Sender: TObject);
@@ -676,7 +676,7 @@ begin
   IndicatorTransparencyValueLabel.Caption :=
     string.Format('%0u%%', [TTrackBar(Sender).Position * IndicatorTransparencyScale]);
 
-  TBatterySplash.ShowSplash;
+  TBatterySplash.ShowSplash(sdtSelf, TBatteryMode.State, BatteryModeForm.IconOptions.IconColorType = ictSchemeInvert);
 end;
 
 procedure TSettingsWindow.MainWindowLinkTypeComboBoxChange(Sender: TObject);

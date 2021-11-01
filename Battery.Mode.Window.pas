@@ -890,15 +890,13 @@ end;
 procedure TBatteryModeForm.BatteryModeLocalPowerSchemeChanged(Sender: TObject;
   const State: TBatteryState);
 begin
-  TBatterySplash.ShowSplash(sdtSelf, State,
-    (IconOptions.IconColorType = ictSchemeInvert) or (IconOptions.IconColorType = ictSchemeInvert));
+  TBatterySplash.ShowSplash(sdtSelf, State, IconOptions.IconColorType = ictSchemeInvert);
 end;
 
 procedure TBatteryModeForm.BatteryModeGlobalPowerSchemeChange(Sender: TObject;
   const State: TBatteryState);
 begin
-  TBatterySplash.ShowSplash(sdtAlways, State,
-    (IconOptions.IconColorType = ictSchemeInvert) or (IconOptions.IconColorType = ictSchemeInvert));
+  TBatterySplash.ShowSplash(sdtAlways, State, IconOptions.IconColorType = ictSchemeInvert);
 end;
 
 procedure TBatteryModeForm.BatteryModePowerChange(Sender: TObject;

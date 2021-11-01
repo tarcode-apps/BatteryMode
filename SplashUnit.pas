@@ -64,15 +64,15 @@ type
 
     class constructor Create;
     class destructor Destroy;
-  public
-    class procedure ShowSplash;
-    class procedure HideSplash;
   protected
     class var EnablingFunc: TSplashEnabling;
     class var DisablingFunc: TSplashDisabling;
 
     class var GetRealImageSizeFunc: TGetRealImageSize;
     class var GeneratePictureFunc: TGeneratePicture;
+
+    class procedure ShowSplash;
+    class procedure HideSplash;
 
     class property Enable: Boolean read FEnable write SetEnable;
     class property MonitorConfig: TSplashMonitorConfig read FMonitorConfig write SetMonitorConfig;
