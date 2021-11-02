@@ -102,9 +102,13 @@ end;
 
 class function TLang.ShouldAvoidBoldFonts;
 begin
-  // Japanese user asked us not to use bold fonts since it makes "kanji"
-  // difficult to read.
-  Result := EffectiveLanguageId = 1041;
+  // Japanese user asked us not to use bold fonts since it makes "kanji" difficult to read.
+  case EffectiveLanguageId of
+    1041: Result := True; // Japanese (Japan)
+    1028: Result := True; // Chinese (Traditional)
+    2052: Result := True; // Chinese (Simplified)
+    else Result := False;
+  end;
 end;
 
 class function TLang.GetStringRes(Instance: HINST; Index: DWORD; LanguageId: LANGID): string;

@@ -1,0 +1,11 @@
+STRINGTABLE
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
+{
+2000, "應用"
+2001, "取消"
+2002, "重新命名"
+
+2100, "重新命名顯示器"
+2101, "顯示器 %0:s 的新名稱"
+2102, "恢復原始名稱"
+}
