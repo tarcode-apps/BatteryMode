@@ -97,6 +97,7 @@ type
     class function MaxPowerSavings: Boolean;
     class function TypicalPowerSavings: Boolean;
     class function MinPowerSavings: Boolean;
+    class function UltimatePowerSavings: Boolean;
     class property PowerSchemes: IPowerSchemeProvider read FPowerSchemeProvider;
     class property IsBatteriesPresent: Boolean read GetIsBatteriesPresent;
     class property IsMobilePlatform: Boolean read GetIsMobilePlatform;
@@ -113,9 +114,6 @@ type
   end;
 
 implementation
-
-uses
-  Battery.Icons;
 
 { TBatteryMode }
 
@@ -374,6 +372,20 @@ begin
   Result := False;
   for PowerScheme in FPowerSchemeProvider.Schemes do
     if PowerScheme.PowerSchemeType = pstMinPowerSavings then begin
+      PowerScheme.Activate;
+      Exit(True);
+    end;
+end;
+
+class function TBatteryMode.UltimatePowerSavings: Boolean;
+var
+  PowerScheme: IPowerScheme;
+begin
+  if not Assigned(FPowerSchemeProvider) then Exit(False);
+
+  Result := False;
+  for PowerScheme in FPowerSchemeProvider.Schemes do
+    if PowerScheme.PowerSchemeType = pstUltimatePowerSavings then begin
       PowerScheme.Activate;
       Exit(True);
     end;

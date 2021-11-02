@@ -3,9 +3,10 @@
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, Winapi.ShellAPI,
+  Winapi.Windows, Winapi.Messages, Winapi.ShellAPI, Winapi.UxTheme,
   System.SysUtils, System.Classes, System.Types,
   Vcl.Controls, Vcl.Menus,
+  Core.Language,
   Mouse.Hook,
   Tray.Helpers,
   Versions.Helpers;
@@ -79,6 +80,7 @@ type
     procedure Update; overload;
     procedure Update(Timeout: UINT); overload;
     procedure ShowBalloonHint(InfoFlags: DWORD = NIIF_INFO);
+    function IsTrayIconDark: Boolean;
 
     property OnClick: TNotifyEvent read FOnClick write FOnClick;
     property OnBalloonClick: TNotifyEvent read FOnBalloonClick write FOnBalloonClick;
@@ -641,6 +643,42 @@ begin
   if not FuncIsWow64Process(Process, Wow64Process) then Exit(False);
 
   Result := not Wow64Process;
+end;
+
+function TTrayIcon.IsTrayIconDark: Boolean;
+var
+  HighContract: THighContrast;
+  HighContractEnabled: Boolean;
+  HighContractWhite: Boolean;
+  HighContractWhiteThemeLegacyName: string;
+  ThemeUiHandle: THandle;
+  UILanguage: LANGID;
+begin
+  HighContract.cbSize := SizeOf(HighContract);
+  SystemParametersInfo(SPI_GETHIGHCONTRAST, SizeOf(HighContract), @HighContract, 0);
+  HighContractEnabled := HighContract.dwFlags and HCF_HIGHCONTRASTON = HCF_HIGHCONTRASTON;
+  if HighContractEnabled then
+  begin
+    HighContractWhite := False;
+    UILanguage := TLang.WindowsLanguageId;
+    ThemeUiHandle := LoadLibrary('themeui.dll');
+    if ThemeUiHandle <> 0 then
+    begin
+      try
+        HighContractWhiteThemeLegacyName := TLang.GetStringRes(ThemeUiHandle, 853, UILanguage);
+        HighContractWhite := HighContract.lpszDefaultScheme = HighContractWhiteThemeLegacyName;
+      except
+        // ignore
+      end;
+      FreeLibrary(ThemeUiHandle);
+    end;
+
+    Exit(HighContractWhite);
+  end;
+
+  if not Assigned(IsThemeActive) then Exit(False);
+
+  Exit(not IsThemeActive);
 end;
 
 end.

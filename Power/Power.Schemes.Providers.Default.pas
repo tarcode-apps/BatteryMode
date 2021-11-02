@@ -309,6 +309,7 @@ begin
   if FGUID = GUID_MIN_POWER_SAVINGS then Exit(pstMinPowerSavings);
   if FGUID = GUID_MAX_POWER_SAVINGS then Exit(pstMaxPowerSavings);
   if FGUID = GUID_TYPICAL_POWER_SAVINGS then Exit(pstTypicalPowerSavings);
+  if FGUID = GUID_ULTIMATE_POWER_SAVINGS then Exit(pstUltimatePowerSavings);
   Result := pstCustom;
 end;
 

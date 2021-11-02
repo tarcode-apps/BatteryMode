@@ -11,7 +11,7 @@ uses
   Api.Pipe.Server,
   Autorun.Manager,
   AutoUpdate, AutoUpdate.Scheduler,
-  Battery.Mode, Battery.Controls, Battery.Splash, Battery.Icons,
+  Battery.Mode, Battery.Controls, Battery.Splash,
   Brightness, Brightness.Manager, Brightness.Manager.HookHandler, Brightness.Controls,
   Brightness.Providers.Physical, Brightness.Providers.WMI, Brightness.Providers.LCD,
   Core.Language, Core.Language.Controls, Core.Startup,
@@ -21,6 +21,7 @@ uses
   Scheduling, Scheduling.Scheduler, Scheduling.UI.Scheduler,
   Scheduling.StateConfigurator, Scheduling.Configurator,
   Tray.Notify.Window, Tray.Notify.Controls,
+  Icon.Renderers, Icons.Manager,
   Versions, Versions.Info, Versions.Helpers,
   HotKey, HotKey.Handler,
   PowerMonitor.Window,
@@ -198,6 +199,7 @@ type
     procedure Loadlocalization;
     procedure LoadAvailableLocalizations;
     procedure DoSystemUsesLightThemeChange(LightTheme: Boolean); override;
+    procedure DoSystemBorderChanged(var SystemBorder: TSystemBorder); override;
 
     function DefaultConfig: TConfig;
     function LoadConfig: TConfig;
@@ -231,6 +233,8 @@ type
     FHotKeyHandler: THotKeyHendler;
     
     FScheduler: TScheduler;
+
+    FIconsManager: TIconsManager;
 
     DisplayStateHandler: TDisplayStateHandler;
 
@@ -272,6 +276,8 @@ type
     procedure SetDisplayIndicator(const Value: TDisplayIndicator);
     function GetDisplayIndicator: TDisplayIndicator;
 
+    function GetIconOptions: TIconsOptions;
+
     procedure AutoUpdateSchedulerSaveLastCheck(Sender: TObject; Time: TDateTime);
     procedure AutoUpdateSchedulerInstalling(Sender: TObject);
     procedure AutoUpdateSchedulerSkip(Sender: TObject; Version: TVersion);
@@ -304,6 +310,8 @@ type
     property HotKeyHandler: THotKeyHendler read FHotKeyHandler;
 
     property Scheduler: TScheduler read FScheduler;
+
+    property IconOptions: TIconsOptions read GetIconOptions;
 
     property AutoUpdateScheduler: TAutoUpdateScheduler read FAutoUpdateScheduler;
   end;
@@ -378,17 +386,20 @@ begin
   // Initialize Power Monitor
   TPowerMonitorWindow.StayOnTop := Conf.PowerMonitorStayOnTop;
 
-  // Инициализация значков
-  TIconHelper.IconStyle := Conf.IconStyle;
-  TIconHelper.IconColorType := Conf.IconColorType;
-  TIconHelper.IconBehavior := Conf.IconBehavior;
+  // Icons
+  FIconsManager := TIconsManager.Create;
+  IconOptions.IconStyle := Conf.IconStyle;
+  IconOptions.IconStyle := Conf.IconStyle;
+  IconOptions.IconColorType := Conf.IconColorType;
+  IconOptions.IconBehavior := Conf.IconBehavior;
   if IsSystemUsesLightTheme then
-    TIconHelper.IconTheme := ithDark
+    IconOptions.IconTheme := ithDark
   else
-    TIconHelper.IconTheme := ithLight;
-  TIconHelper.TypicalPowerSavingsMonochrome := Conf.TypicalPowerSavingsMonochrome;
-  TIconHelper.ExplicitMissingBattery := Conf.ExplicitMissingBattery;
-  TIconHelper.OnChange := IconHelperChange;
+    IconOptions.IconTheme := ithLight;
+  IconOptions.TypicalPowerSavingsMonochrome := Conf.TypicalPowerSavingsMonochrome;
+  IconOptions.ExplicitMissingBattery := Conf.ExplicitMissingBattery;
+  IconOptions.TrayIconDark := TrayIcon.IsTrayIconDark;
+  IconOptions.OnChange2 := IconHelperChange;
 
   // Инициализация меню выключения
   TrayMenuPowerActionShutdown.Enabled    := TPowerShutdownAction.Create.IsSupported;
@@ -558,7 +569,7 @@ end;
 
 procedure TBatteryModeForm.WMThemeChanged(var Message: TMessage);
 begin
-  TIconHelper.IconTheme := TIconHelper.IconTheme;
+  IconOptions.TrayIconDark := TrayIcon.IsTrayIconDark;
 end;
 
 {$REGION 'Form Events'}
@@ -879,15 +890,13 @@ end;
 procedure TBatteryModeForm.BatteryModeLocalPowerSchemeChanged(Sender: TObject;
   const State: TBatteryState);
 begin
-  TBatterySplash.ShowSplash(sdtSelf, State,
-    (TIconHelper.IconColorType = ictSchemeInvert) or (TIconHelper.IconColorType = ictSchemeInvert));
+  TBatterySplash.ShowSplash(sdtSelf, State, IconOptions.IconColorType = ictSchemeInvert);
 end;
 
 procedure TBatteryModeForm.BatteryModeGlobalPowerSchemeChange(Sender: TObject;
   const State: TBatteryState);
 begin
-  TBatterySplash.ShowSplash(sdtAlways, State,
-    (TIconHelper.IconColorType = ictSchemeInvert) or (TIconHelper.IconColorType = ictSchemeInvert));
+  TBatterySplash.ShowSplash(sdtAlways, State, IconOptions.IconColorType = ictSchemeInvert);
 end;
 
 procedure TBatteryModeForm.BatteryModePowerChange(Sender: TObject;
@@ -1047,17 +1056,17 @@ end;
 
 procedure TBatteryModeForm.LoadIcon;
 begin
-  TrayIcon.Icon := TIconHelper.GetIcon(GetCurrentPPI);
+  TrayIcon.Icon := FIconsManager.GetIcon(GetCurrentPPI);
 
   if IsWindowsVistaOrGreater then
   begin
     DeleteObject(ImageIcon.Picture.Bitmap.Handle);
-    ImageIcon.Picture.Bitmap.Handle := TIconHelper.GetImage(GetCurrentPPI);
+    ImageIcon.Picture.Bitmap.Handle := FIconsManager.GetImage(GetCurrentPPI);
   end
   else
   begin
     DeleteObject(ImageIcon.Picture.Icon.Handle);
-    ImageIcon.Picture.Icon.Handle := TIconHelper.GetImageAsIcon(GetCurrentPPI);
+    ImageIcon.Picture.Icon.Handle := FIconsManager.GetImageAsIcon(GetCurrentPPI);
   end;
 end;
 
@@ -1186,9 +1195,20 @@ begin
   inherited;
 
   if LightTheme then
-    TIconHelper.IconTheme := ithDark
+    IconOptions.IconTheme := ithDark
   else
-    TIconHelper.IconTheme := ithLight;
+    IconOptions.IconTheme := ithLight;
+end;
+
+procedure TBatteryModeForm.DoSystemBorderChanged(var SystemBorder: TSystemBorder);
+var
+  ImageIconOffset: Integer;
+begin
+  inherited;
+
+  if SystemBorder = sbDefault then ImageIconOffset := 2 else ImageIconOffset := 3;
+
+  ImageIcon.Top := MulDiv(ImageIconOffset, CurrentPPI, 96);
 end;
 
 procedure TBatteryModeForm.SetUIInfo(const Value: TUIInfo);
@@ -1308,12 +1328,17 @@ begin
   end;
 end;
 
+function TBatteryModeForm.GetIconOptions: TIconsOptions;
+begin
+  Result := FIconsManager.Options;
+end;
+
 {$REGION 'Config'}
 function TBatteryModeForm.DefaultConfig: TConfig;
 begin
-  Result.IconStyle := TIconHelper.DefaultIconStyle;
-  Result.IconColorType := TIconHelper.DefaultIconColorType;
-  Result.IconBehavior := TIconHelper.DefaultIconBehavior;
+  Result.IconStyle := TIconsOptions.DefaultIconStyle;
+  Result.IconColorType := TIconsOptions.DefaultIconColorType;
+  Result.IconBehavior := TIconsOptions.DefaultIconBehavior;
   Result.TypicalPowerSavingsMonochrome := False;
   Result.ExplicitMissingBattery := False;
   Result.HotKeyEnable := True;
@@ -1490,11 +1515,11 @@ procedure TBatteryModeForm.SaveCurrentConfig;
 var
   Conf: TConfig;
 begin
-  Conf.IconStyle := TIconHelper.IconStyle;
-  Conf.IconColorType := TIconHelper.IconColorType;
-  Conf.IconBehavior := TIconHelper.IconBehavior;
-  Conf.TypicalPowerSavingsMonochrome := TIconHelper.TypicalPowerSavingsMonochrome;
-  Conf.ExplicitMissingBattery := TIconHelper.ExplicitMissingBattery;
+  Conf.IconStyle := IconOptions.IconStyle;
+  Conf.IconColorType := IconOptions.IconColorType;
+  Conf.IconBehavior := IconOptions.IconBehavior;
+  Conf.TypicalPowerSavingsMonochrome := IconOptions.TypicalPowerSavingsMonochrome;
+  Conf.ExplicitMissingBattery := IconOptions.ExplicitMissingBattery;
   Conf.HotKeyEnable := HotKeyHandler.Enabled;
   Conf.SystemBorder := SystemBorder;
   Conf.FixedLocalBrightness := TBatteryMode.BrightnessForAllScheme;

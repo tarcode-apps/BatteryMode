@@ -23,6 +23,7 @@ type
     CmdMaxPowerSavings      = '-Economy';
     CmdTypicalPowerSavings  = '-Typical';
     CmdMinPowerSavings      = '-Performance';
+    CmdUltimatePowerSavings = '-Ultimate';
     CmdGetBrightness        = '-GetBrightness';
     CmdSetBrightness        = '-SetBrightness';
   private const
@@ -53,7 +54,8 @@ const
       CmdNextScheme           + '] [' +
       CmdMaxPowerSavings      + '] [' +
       CmdTypicalPowerSavings  + '] [' +
-      CmdMinPowerSavings      + ']' + sLineBreak +
+      CmdMinPowerSavings      + '] [' +
+      CmdUltimatePowerSavings + ']' + sLineBreak +
     Char(VK_TAB) + '[' + CmdGetBrightness + ']' + sLineBreak +
     Char(VK_TAB) + '[' + CmdSetBrightness + ' "<UniqueString>" ' + '[' + ParamLevel +']' + ' <Value>' + ']' + sLineBreak +
     sLineBreak +
@@ -61,6 +63,7 @@ const
     CmdMaxPowerSavings      + ' -- Set "Power saver" scheme'                + sLineBreak +
     CmdTypicalPowerSavings  + ' -- Set "Balanced" power scheme'             + sLineBreak +
     CmdMinPowerSavings      + ' -- Set "High performance" power scheme'     + sLineBreak +
+    CmdUltimatePowerSavings + ' -- Set "Ultimate performance" power scheme' + sLineBreak +
     CmdGetBrightness        + ' -- Get brightness monitor list'             + sLineBreak +
     CmdSetBrightness        + ' -- Set brightness for monitor'              + sLineBreak +
       Char(VK_TAB) + '<UniqueString> -- Monitor ID. Use ' + CmdGetBrightness + ' command to find it' + sLineBreak +
@@ -248,6 +251,12 @@ begin
     begin
       ExitRequired := True;
       Result := Result or SendToApi(TApiChangeScheme.Create(stMinPowerSavings));
+      Continue;
+    end
+    else if CompareText(ParamStr(I), CmdUltimatePowerSavings) = 0 then
+    begin
+      ExitRequired := True;
+      Result := Result or SendToApi(TApiChangeScheme.Create(stUltimatePowerSavings));
       Continue;
     end
     else if CompareText(ParamStr(I), CmdSetBrightness) = 0 then
