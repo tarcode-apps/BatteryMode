@@ -299,37 +299,30 @@ object SettingsWindow: TSettingsWindow
           Caption = 'IndicatorTransparencyPanel'
           ShowCaption = False
           TabOrder = 3
-          ExplicitLeft = 2
-          ExplicitTop = 111
-          ExplicitWidth = 550
           object IndicatorTransparencyLabel: TLabel
             AlignWithMargins = True
             Left = 0
             Top = 3
-            Width = 162
+            Width = 144
             Height = 21
             Margins.Left = 0
             Align = alLeft
             Caption = 'IndicatorTransparencyLabel'
-            ExplicitLeft = 7
-            ExplicitTop = 5
-            ExplicitHeight = 26
+            ExplicitHeight = 15
           end
           object IndicatorTransparencyValueLabel: TLabel
             AlignWithMargins = True
-            Left = 356
+            Left = 338
             Top = 3
             Width = 28
             Height = 21
             Align = alLeft
             Caption = 'Value'
-            ExplicitLeft = 392
-            ExplicitTop = 12
             ExplicitHeight = 15
           end
           object IndicatorTransparencyTrackBar: TTrackBar
             AlignWithMargins = True
-            Left = 168
+            Left = 150
             Top = 0
             Width = 182
             Height = 24
@@ -340,9 +333,6 @@ object SettingsWindow: TSettingsWindow
             TabOrder = 0
             TickStyle = tsNone
             OnChange = IndicatorTransparencyTrackBarChange
-            ExplicitLeft = 165
-            ExplicitTop = 3
-            ExplicitHeight = 27
           end
         end
       end
@@ -357,7 +347,6 @@ object SettingsWindow: TSettingsWindow
         Align = alTop
         Caption = 'MainWindow'
         TabOrder = 2
-        ExplicitTop = 315
         object MainWindowGrid: TGridPanel
           Left = 2
           Top = 17
@@ -448,6 +437,10 @@ object SettingsWindow: TSettingsWindow
     object SchemesTab: TTabSheet
       Caption = 'Schemes'
       ImageIndex = 3
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object SchemeFeaturesGroup: TGroupBox
         AlignWithMargins = True
         Left = 8
@@ -477,7 +470,7 @@ object SettingsWindow: TSettingsWindow
             AlignWithMargins = True
             Left = 7
             Top = 3
-            Width = 536
+            Width = 108
             Height = 15
             Margins.Left = 7
             Margins.Right = 7
@@ -485,7 +478,6 @@ object SettingsWindow: TSettingsWindow
             Align = alTop
             Caption = 'MissingSchemeHelp'
             WordWrap = True
-            ExplicitWidth = 108
           end
           object SchemeFeatureMissingSchemeCheckPanel: TPanel
             AlignWithMargins = True
@@ -531,7 +523,7 @@ object SettingsWindow: TSettingsWindow
             AlignWithMargins = True
             Left = 7
             Top = 3
-            Width = 536
+            Width = 65
             Height = 15
             Margins.Left = 7
             Margins.Right = 7
@@ -539,7 +531,6 @@ object SettingsWindow: TSettingsWindow
             Align = alTop
             Caption = 'OverlayHelp'
             WordWrap = True
-            ExplicitWidth = 65
           end
           object SchemeFeatureOverlayCheckPanel: TPanel
             AlignWithMargins = True
@@ -583,7 +574,7 @@ object SettingsWindow: TSettingsWindow
             AlignWithMargins = True
             Left = 7
             Top = 3
-            Width = 536
+            Width = 106
             Height = 15
             Margins.Left = 7
             Margins.Right = 7
@@ -591,7 +582,6 @@ object SettingsWindow: TSettingsWindow
             Align = alTop
             Caption = 'HiddenSchemeHelp'
             WordWrap = True
-            ExplicitWidth = 106
           end
           object SchemeFeatureHiddenSchemeCheckPanel: TPanel
             AlignWithMargins = True
@@ -652,14 +642,13 @@ object SettingsWindow: TSettingsWindow
             AlignWithMargins = True
             Left = 0
             Top = 3
-            Width = 529
+            Width = 134
             Height = 15
             Margins.Left = 0
             Margins.Right = 7
             Align = alTop
             Caption = 'SchemeHotKeyHelpLabel'
             WordWrap = True
-            ExplicitWidth = 134
           end
           object SchemeHotKeyActionPanel: TPanel
             AlignWithMargins = True
@@ -679,13 +668,12 @@ object SettingsWindow: TSettingsWindow
               Left = 0
               Top = 5
               Width = 39
-              Height = 17
+              Height = 15
               Margins.Left = 0
               Margins.Top = 5
               Align = alLeft
               Caption = 'HotKey'
               Layout = tlCenter
-              ExplicitHeight = 15
             end
             object SchemeHotKeyButton: TButton
               AlignWithMargins = True
@@ -708,6 +696,10 @@ object SettingsWindow: TSettingsWindow
       Margins.Right = 5
       Caption = 'Brightness'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object BrightnessScrollBox: TScrollBox
         Left = 0
         Top = 0
@@ -846,7 +838,7 @@ object SettingsWindow: TSettingsWindow
             AlignWithMargins = True
             Left = 9
             Top = 24
-            Width = 536
+            Width = 136
             Height = 15
             Margins.Left = 7
             Margins.Top = 7
@@ -855,7 +847,6 @@ object SettingsWindow: TSettingsWindow
             Align = alTop
             Caption = 'BrightnessFixedHelpLabel'
             WordWrap = True
-            ExplicitWidth = 136
           end
           object BrightnessFixedCheckPanel: TPanel
             AlignWithMargins = True
@@ -902,7 +893,7 @@ object SettingsWindow: TSettingsWindow
             AlignWithMargins = True
             Left = 8
             Top = 24
-            Width = 537
+            Width = 146
             Height = 15
             Margins.Left = 6
             Margins.Top = 7
@@ -911,7 +902,6 @@ object SettingsWindow: TSettingsWindow
             Align = alTop
             Caption = 'BrightnessRescanDelayHelp'
             WordWrap = True
-            ExplicitWidth = 146
           end
           object BrightnessRescanDelayPanel: TPanel
             AlignWithMargins = True
@@ -931,28 +921,26 @@ object SettingsWindow: TSettingsWindow
               Left = 6
               Top = 6
               Width = 121
-              Height = 18
+              Height = 15
               Margins.Left = 6
               Margins.Top = 6
               Margins.Right = 8
               Align = alLeft
               Anchors = []
               Caption = 'BrightnessRescanDelay'
-              ExplicitHeight = 15
             end
             object BrightnessRescanDelayUnitsLabel: TLabel
               AlignWithMargins = True
               Left = 213
               Top = 6
               Width = 44
-              Height = 18
+              Height = 15
               Margins.Left = 20
               Margins.Top = 6
               Margins.Right = 8
               Align = alLeft
               Anchors = []
               Caption = 'Seconds'
-              ExplicitHeight = 15
             end
             object BrightnessRescanDelayEdit: TEdit
               AlignWithMargins = True
@@ -987,6 +975,10 @@ object SettingsWindow: TSettingsWindow
     object AutoUpdateTab: TTabSheet
       Caption = 'AutoUpdate'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object AppCurrentVersionLabel: TLabel
         Left = 8
         Top = 71
@@ -1022,6 +1014,10 @@ object SettingsWindow: TSettingsWindow
     object AboutTab: TTabSheet
       Caption = 'About'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object AboutIconPanel: TPanel
         AlignWithMargins = True
         Left = 3
@@ -1065,7 +1061,7 @@ object SettingsWindow: TSettingsWindow
         object AppNameLabel: TLabel
           Left = 0
           Top = 16
-          Width = 488
+          Width = 68
           Height = 20
           Align = alTop
           Caption = 'AppName'
@@ -1075,46 +1071,42 @@ object SettingsWindow: TSettingsWindow
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
-          ExplicitWidth = 68
         end
         object AppVersionLabel: TLabel
           AlignWithMargins = True
           Left = 0
           Top = 42
-          Width = 488
+          Width = 60
           Height = 15
           Margins.Left = 0
           Margins.Top = 6
           Margins.Right = 0
           Align = alTop
           Caption = 'AppVersion'
-          ExplicitWidth = 60
         end
         object AppAuthorLabel: TLabel
           AlignWithMargins = True
           Left = 0
           Top = 64
-          Width = 488
+          Width = 59
           Height = 15
           Margins.Left = 0
           Margins.Top = 4
           Margins.Right = 0
           Align = alTop
           Caption = 'AppAuthor'
-          ExplicitWidth = 59
         end
         object AppCopyrightLabel: TLabel
           AlignWithMargins = True
           Left = 0
           Top = 86
-          Width = 488
+          Width = 75
           Height = 15
           Margins.Left = 0
           Margins.Top = 4
           Margins.Right = 0
           Align = alTop
           Caption = 'AppCopyright'
-          ExplicitWidth = 75
         end
         object LinksGrid: TGridPanel
           AlignWithMargins = True

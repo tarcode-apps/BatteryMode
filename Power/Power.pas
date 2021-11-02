@@ -17,6 +17,7 @@ type
     pstMaxPowerSavings,
     pstTypicalPowerSavings,
     pstMinPowerSavings,
+    pstUltimatePowerSavings,
     pstCustom
   );
 
