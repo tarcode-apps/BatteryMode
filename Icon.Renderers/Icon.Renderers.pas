@@ -85,6 +85,7 @@ end;
 
 class function TIconsOptions.DefaultIconStyle: TIconStyle;
 begin
+  if IsWindows11OrGreater then Exit(isWin11);
   if IsWindows10OrGreater then Exit(isWin10);
   if IsWindows8OrGreater then Exit(isWin8);
   if IsWindows7OrGreater then Exit(isWin7);
