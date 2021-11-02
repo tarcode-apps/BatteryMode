@@ -114,29 +114,31 @@ procedure TDefaultIconRenderer.PowerStatusToIndexes(const State: TBatteryState;
   OverlayIndex: Integer);
 const
   DcOffset        = 6;
-  DcOverlayOffset = DcOffset + 10*4;
+  DcOverlayOffset = DcOffset + 10*5;
   AcOffset        = DcOverlayOffset + 10*3;
-  AcOverlayOffset = AcOffset + 10*4;
+  AcOverlayOffset = AcOffset + 10*5;
 
   DesktopOffset         = AcOverlayOffset + 10*3;
   DesktopSchemeOffset   = DesktopOffset + 1;
-  DesktopOverlayOffset  = DesktopSchemeOffset + 4;
+  DesktopOverlayOffset  = DesktopSchemeOffset + 5;
 
   IndicatorOffset = DesktopOverlayOffset + 3;
 
   GreenShift   = 0;
   YellowShift  = 10;
   RedShift     = 20;
-  WhiteShift   = 30;
+  PurpleShift  = 30;
+  WhiteShift   = 40;
 
-  OverlayMinShift  = 40;
-  OverlayMaxShift  = 50;
-  OverlayHighShift = 60;
+  OverlayMinShift  = 50;
+  OverlayMaxShift  = 60;
+  OverlayHighShift = 70;
 
   DesktopGreenShift   = 0;
   DesktopYellowShift  = 1;
   DesktopRedShift     = 2;
-  DesktopWhiteShift   = 3;
+  DesktopPurpleShift  = 3;
+  DesktopWhiteShift   = 4;
 
   DesktopOverlayMinShift  = 0;
   DesktopOverlayMaxShift  = 1;
@@ -182,8 +184,9 @@ var
                     Exit(DesktopSchemeOffset + DesktopYellowShift);
               end;
             end;
-          pstMinPowerSavings:   Exit(DesktopSchemeOffset + DesktopRedShift);
-          else                  Exit(DesktopSchemeOffset + DesktopWhiteShift);
+          pstMinPowerSavings:       Exit(DesktopSchemeOffset + DesktopRedShift);
+          pstUltimatePowerSavings:  Exit(DesktopSchemeOffset + DesktopPurpleShift);
+          else                      Exit(DesktopSchemeOffset + DesktopWhiteShift);
         end;
       ictSchemeInvert, ictLevelInvert:
         case SchemeType of
@@ -215,8 +218,9 @@ var
                     Exit(DesktopSchemeOffset + DesktopYellowShift);
               end;
             end;
-          pstMinPowerSavings:   Exit(DesktopSchemeOffset + DesktopGreenShift);
-          else                  Exit(DesktopSchemeOffset + DesktopWhiteShift);
+          pstMinPowerSavings:       Exit(DesktopSchemeOffset + DesktopGreenShift);
+          pstUltimatePowerSavings:  Exit(DesktopSchemeOffset + DesktopPurpleShift);
+          else                      Exit(DesktopSchemeOffset + DesktopWhiteShift);
         end;
       else                      Exit(DesktopSchemeOffset + DesktopWhiteShift);
     end;
@@ -309,8 +313,9 @@ begin
               end;
             end;
           end;
-          pstMinPowerSavings:   Inc(Offset, RedShift);
-          else                  Inc(Offset, WhiteShift);
+          pstMinPowerSavings:       Inc(Offset, RedShift);
+          pstUltimatePowerSavings:  Inc(Offset, PurpleShift);
+          else                      Inc(Offset, WhiteShift);
         end;
       ictSchemeInvert:
         case PowerScheme.PowerSchemeType of
@@ -344,8 +349,9 @@ begin
               end;
             end;
           end;
-          pstMinPowerSavings:   Inc(Offset, GreenShift);
-          else                  Inc(Offset, WhiteShift);
+          pstMinPowerSavings:       Inc(Offset, GreenShift);
+          pstUltimatePowerSavings:  Inc(Offset, PurpleShift);
+          else                      Inc(Offset, WhiteShift);
         end;
       ictMonochrome:
         Inc(Offset, WhiteShift);
