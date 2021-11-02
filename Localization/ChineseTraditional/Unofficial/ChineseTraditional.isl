@@ -8,20 +8,20 @@
 ; Setup adds the periods automatically (appending a period would result in
 ; two periods being displayed).
 [LangOptions]
-; The following three entries are very important. Be sure to read and 
+; The following three entries are very important. Be sure to read and
 ; understand the '[LangOptions] section' topic in the help file.
-LanguageName=<7e41><9ad4><4e2d><6587>
+LanguageName=<6B63><9AD4><4E2D><6587>
 LanguageID=$0404
 LanguageCodepage=950
 ; If the language you are translating to requires special font faces or
 ; sizes, uncomment any of the following entries and change them accordingly.
-DialogFontName=新細明體
+DialogFontName=Microsoft JhengHei
 DialogFontSize=9
-TitleFontName=Arial
-TitleFontSize=28
-WelcomeFontName=新細明體
+WelcomeFontName=Microsoft JhengHei
 WelcomeFontSize=12
-CopyrightFontName=新細明體
+TitleFontName=Microsoft JhengHei
+TitleFontSize=28
+CopyrightFontName=Microsoft JhengHei
 CopyrightFontSize=9
 
 [Messages]
