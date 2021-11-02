@@ -10,21 +10,21 @@
 ; two periods being displayed).
 
 [LangOptions]
-; The following three entries are very important. Be sure to read and 
+; The following three entries are very important. Be sure to read and
 ; understand the '[LangOptions] section' topic in the help file.
-LanguageName=<4E2D><6587><FF08><7B80><4F53><FF09>
+LanguageName=<7B80><4F53><4E2D><6587>
 LanguageID=$0804
 LanguageCodePage=936
 ; If the language you are translating to requires special font faces or
 ; sizes, uncomment any of the following entries and change them accordingly.
-DialogFontName=宋体
-;DialogFontSize=8
-;WelcomeFontName=Verdana
-;WelcomeFontSize=12
-;TitleFontName=Arial
-;TitleFontSize=29
-;CopyrightFontName=Arial
-;CopyrightFontSize=8
+DialogFontName=Microsoft YaHei
+DialogFontSize=9
+WelcomeFontName=Microsoft YaHei
+WelcomeFontSize=12
+TitleFontName=Microsoft YaHei
+TitleFontSize=28
+CopyrightFontName=Microsoft YaHei
+CopyrightFontSize=9
 
 [Messages]
 
@@ -202,10 +202,10 @@ ReadyMemoTasks=附加任务：
 ; *** "Preparing to Install" wizard page
 WizardPreparing=准备安装
 PreparingDesc=安装向导正在准备在您的电脑上安装[name]。
-PreviousInstallNotCompleted=上次程序安装/卸载未能完成。您需要重启电脑来完成上次安装。%n%n电脑重启之后，请重新运行安装向导来安装[name]。 
+PreviousInstallNotCompleted=上次程序安装/卸载未能完成。您需要重启电脑来完成上次安装。%n%n电脑重启之后，请重新运行安装向导来安装[name]。
 CannotContinue=安装无法继续。请点击“取消”退出。
 ApplicationsFound=安装向导需要更新的文件被下列应用程序占用。建议允许安装向导自动关闭这些应用程序。
-ApplicationsFound2=安装向导需要更新的文件被下列应用程序占用。建议允许安装向导自动关闭这些应用程序。安装完成后，安装向导将尝试重新启动这些应用程序。 
+ApplicationsFound2=安装向导需要更新的文件被下列应用程序占用。建议允许安装向导自动关闭这些应用程序。安装完成后，安装向导将尝试重新启动这些应用程序。
 CloseApplications=自动关闭应用程序(&A)
 DontCloseApplications=不自动关闭应用程序(&D)
 ErrorCloseApplications=安装向导无法自动关闭所有的应用程序。在进入下一步之前，建议您关闭那些占用安装向导需要更新文件的应用程序。
