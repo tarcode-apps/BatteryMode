@@ -6,7 +6,7 @@ object HotKeyQueryWindow: THotKeyQueryWindow
   BorderStyle = bsSingle
   Caption = 'HotKeyQueryWindow'
   ClientHeight = 216
-  ClientWidth = 219
+  ClientWidth = 209
   Color = clBtnFace
   Constraints.MaxWidth = 225
   Constraints.MinWidth = 225
@@ -18,7 +18,6 @@ object HotKeyQueryWindow: THotKeyQueryWindow
   Font.Style = []
   FormStyle = fsStayOnTop
   KeyPreview = True
-  OldCreateOrder = False
   Position = poScreenCenter
   OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
   OnBeforeMonitorDpiChanged = FormBeforeMonitorDpiChanged
@@ -27,7 +26,7 @@ object HotKeyQueryWindow: THotKeyQueryWindow
   object PanelControl: TPanel
     Left = 0
     Top = 167
-    Width = 219
+    Width = 209
     Height = 49
     Align = alTop
     BevelOuter = bvNone
@@ -41,7 +40,7 @@ object HotKeyQueryWindow: THotKeyQueryWindow
     TabOrder = 2
     object ButtonCancel: TButton
       AlignWithMargins = True
-      Left = 115
+      Left = 105
       Top = 12
       Width = 88
       Height = 26
@@ -59,7 +58,7 @@ object HotKeyQueryWindow: THotKeyQueryWindow
       AlignWithMargins = True
       Left = 16
       Top = 12
-      Width = 89
+      Width = 79
       Height = 26
       Margins.Left = 0
       Margins.Top = 0
@@ -75,7 +74,7 @@ object HotKeyQueryWindow: THotKeyQueryWindow
   object PanelHotKey: TPanel
     Left = 0
     Top = 44
-    Width = 219
+    Width = 209
     Height = 123
     Align = alTop
     AutoSize = True
@@ -92,7 +91,7 @@ object HotKeyQueryWindow: THotKeyQueryWindow
       AlignWithMargins = True
       Left = 16
       Top = 4
-      Width = 187
+      Width = 177
       Height = 15
       Margins.Left = 0
       Margins.Top = 0
@@ -114,7 +113,7 @@ object HotKeyQueryWindow: THotKeyQueryWindow
       AlignWithMargins = True
       Left = 20
       Top = 24
-      Width = 179
+      Width = 169
       Height = 17
       Margins.Left = 4
       Margins.Top = 4
@@ -129,7 +128,7 @@ object HotKeyQueryWindow: THotKeyQueryWindow
       AlignWithMargins = True
       Left = 20
       Top = 46
-      Width = 179
+      Width = 169
       Height = 17
       Margins.Left = 4
       Margins.Top = 4
@@ -144,7 +143,7 @@ object HotKeyQueryWindow: THotKeyQueryWindow
       AlignWithMargins = True
       Left = 20
       Top = 68
-      Width = 179
+      Width = 169
       Height = 17
       Margins.Left = 4
       Margins.Top = 4
@@ -174,7 +173,7 @@ object HotKeyQueryWindow: THotKeyQueryWindow
   object PanelEnable: TPanel
     Left = 0
     Top = 0
-    Width = 219
+    Width = 209
     Height = 44
     Align = alTop
     BevelOuter = bvNone
@@ -189,7 +188,7 @@ object HotKeyQueryWindow: THotKeyQueryWindow
       AlignWithMargins = True
       Left = 20
       Top = 11
-      Width = 179
+      Width = 169
       Height = 22
       Margins.Left = 4
       Margins.Right = 4

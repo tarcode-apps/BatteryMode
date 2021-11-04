@@ -18,7 +18,6 @@ object SettingsWindow: TSettingsWindow
   Font.Name = 'Segoe UI'
   Font.Style = []
   Menu = MainMenu
-  OldCreateOrder = False
   Position = poScreenCenter
   OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
   OnClose = FormClose
@@ -437,10 +436,6 @@ object SettingsWindow: TSettingsWindow
     object SchemesTab: TTabSheet
       Caption = 'Schemes'
       ImageIndex = 3
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object SchemeFeaturesGroup: TGroupBox
         AlignWithMargins = True
         Left = 8
@@ -696,10 +691,6 @@ object SettingsWindow: TSettingsWindow
       Margins.Right = 5
       Caption = 'Brightness'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object BrightnessScrollBox: TScrollBox
         Left = 0
         Top = 0
@@ -975,10 +966,6 @@ object SettingsWindow: TSettingsWindow
     object AutoUpdateTab: TTabSheet
       Caption = 'AutoUpdate'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object AppCurrentVersionLabel: TLabel
         Left = 8
         Top = 71
@@ -1014,10 +1001,6 @@ object SettingsWindow: TSettingsWindow
     object AboutTab: TTabSheet
       Caption = 'About'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object AboutIconPanel: TPanel
         AlignWithMargins = True
         Left = 3

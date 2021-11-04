@@ -14,7 +14,6 @@ object SchedulingWindow: TSchedulingWindow
   Font.Name = 'Segoe UI'
   Font.Style = []
   KeyPreview = True
-  OldCreateOrder = False
   Position = poScreenCenter
   OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
   OnBeforeMonitorDpiChanged = FormBeforeMonitorDpiChanged
@@ -29,7 +28,6 @@ object SchedulingWindow: TSchedulingWindow
     Width = 684
     Height = 37
     Align = alTop
-    AutoSize = True
     BevelOuter = bvNone
     Caption = 'PanelConfig'
     Padding.Left = 16
@@ -39,7 +37,6 @@ object SchedulingWindow: TSchedulingWindow
     ParentColor = True
     ShowCaption = False
     TabOrder = 0
-    ExplicitWidth = 574
     object CheckBoxEnabled: TCheckBox
       AlignWithMargins = True
       Left = 16
@@ -52,7 +49,6 @@ object SchedulingWindow: TSchedulingWindow
       Caption = 'Enabled'
       TabOrder = 0
       OnClick = CheckBoxEnabledClick
-      ExplicitWidth = 505
     end
     object LinkHelp: TStaticText
       AlignWithMargins = True
@@ -69,7 +65,6 @@ object SchedulingWindow: TSchedulingWindow
       TabOrder = 1
       TabStop = True
       OnClick = LinkHelpClick
-      ExplicitLeft = 529
     end
   end
   object PanelControl: TPanel
@@ -87,8 +82,6 @@ object SchedulingWindow: TSchedulingWindow
     ParentColor = True
     ShowCaption = False
     TabOrder = 1
-    ExplicitTop = 304
-    ExplicitWidth = 574
     object ButtonCancel: TButton
       AlignWithMargins = True
       Left = 580
@@ -105,7 +98,6 @@ object SchedulingWindow: TSchedulingWindow
       ModalResult = 2
       TabOrder = 2
       OnClick = ButtonCancelClick
-      ExplicitLeft = 470
     end
     object ButtonAddRule: TButton
       AlignWithMargins = True
@@ -132,7 +124,6 @@ object SchedulingWindow: TSchedulingWindow
       Caption = 'PanelApply'
       ShowCaption = False
       TabOrder = 1
-      ExplicitWidth = 379
       object ButtonApply: TButton
         AlignWithMargins = True
         Left = 391
@@ -149,7 +140,6 @@ object SchedulingWindow: TSchedulingWindow
         ModalResult = 1
         TabOrder = 0
         OnClick = ButtonApplyClick
-        ExplicitLeft = 281
       end
     end
   end

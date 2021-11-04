@@ -7,7 +7,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
   BorderStyle = bsSingle
   Caption = 'PowerMonitor'
   ClientHeight = 563
-  ClientWidth = 456
+  ClientWidth = 449
   Color = clBtnFace
   Constraints.MaxHeight = 630
   Constraints.MaxWidth = 465
@@ -18,7 +18,6 @@ object PowerMonitorWindow: TPowerMonitorWindow
   Font.Name = 'Segoe UI'
   Font.Style = []
   Menu = MainMenu
-  OldCreateOrder = False
   Position = poScreenCenter
   Visible = True
   OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
@@ -60,6 +59,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'Name'
         ReadOnly = True
         TabOrder = 0
+        Text = ''
       end
       object LabelManufacture: TLabeledEdit
         Left = 6
@@ -71,6 +71,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'Manufacture'
         ReadOnly = True
         TabOrder = 1
+        Text = ''
       end
       object LabelManufactureDate: TLabeledEdit
         Left = 6
@@ -82,6 +83,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'ManufactureDate'
         ReadOnly = True
         TabOrder = 2
+        Text = ''
       end
       object LabelSerialNumber: TLabeledEdit
         Left = 6
@@ -93,6 +95,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'SerialNumber'
         ReadOnly = True
         TabOrder = 3
+        Text = ''
       end
       object LabelDesignedCapacity: TLabeledEdit
         Left = 232
@@ -105,6 +108,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'DesignedCapacity'
         ReadOnly = True
         TabOrder = 8
+        Text = ''
       end
       object LabelType: TLabeledEdit
         Left = 6
@@ -116,6 +120,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'Type'
         ReadOnly = True
         TabOrder = 4
+        Text = ''
       end
       object LabelCycleCount: TLabeledEdit
         Left = 6
@@ -127,6 +132,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'CycleCount'
         ReadOnly = True
         TabOrder = 5
+        Text = ''
       end
       object LabelWearLevel: TLabeledEdit
         Left = 6
@@ -138,6 +144,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'WearLevel'
         ReadOnly = True
         TabOrder = 6
+        Text = ''
       end
       object LabelPowerState: TLabeledEdit
         Left = 6
@@ -149,6 +156,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'PowerState'
         ReadOnly = True
         TabOrder = 7
+        Text = ''
       end
       object LabelFullChargedCapacity: TLabeledEdit
         Left = 232
@@ -161,6 +169,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'FullChargedCapacity'
         ReadOnly = True
         TabOrder = 9
+        Text = ''
       end
       object LabelCapacity: TLabeledEdit
         Left = 232
@@ -173,6 +182,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'Capacity'
         ReadOnly = True
         TabOrder = 10
+        Text = ''
       end
       object LabelVoltage: TLabeledEdit
         Left = 232
@@ -185,6 +195,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'Voltage'
         ReadOnly = True
         TabOrder = 11
+        Text = ''
       end
       object LabelRate: TLabeledEdit
         Left = 232
@@ -197,6 +208,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'Rate'
         ReadOnly = True
         TabOrder = 12
+        Text = ''
       end
       object LabelDefaultAlert1: TLabeledEdit
         Left = 232
@@ -209,6 +221,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'DefaultAlert1'
         ReadOnly = True
         TabOrder = 13
+        Text = ''
       end
       object LabelDefaultAlert2: TLabeledEdit
         Left = 232
@@ -221,6 +234,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'DefaultAlert2'
         ReadOnly = True
         TabOrder = 14
+        Text = ''
       end
       object LabelTemperature: TLabeledEdit
         Left = 232
@@ -233,6 +247,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'Temperature'
         ReadOnly = True
         TabOrder = 15
+        Text = ''
       end
     end
     object GroupBoxSystem: TGroupBox
@@ -257,6 +272,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'PowerSource'
         ReadOnly = True
         TabOrder = 0
+        Text = ''
       end
       object LabelFullLifetime: TLabeledEdit
         Left = 232
@@ -269,6 +285,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'FullLifetime'
         ReadOnly = True
         TabOrder = 2
+        Text = ''
       end
       object LabelBatteryStatus: TLabeledEdit
         Left = 6
@@ -280,6 +297,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'BatteryStatus'
         ReadOnly = True
         TabOrder = 1
+        Text = ''
       end
       object LabelLifetime: TLabeledEdit
         Left = 232
@@ -292,6 +310,7 @@ object PowerMonitorWindow: TPowerMonitorWindow
         EditLabel.Caption = 'Lifetime'
         ReadOnly = True
         TabOrder = 3
+        Text = ''
       end
     end
   end

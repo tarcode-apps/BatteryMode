@@ -6,7 +6,7 @@ object RuleEditorWindow: TRuleEditorWindow
   BorderStyle = bsSingle
   Caption = 'RuleEditorWindow'
   ClientHeight = 313
-  ClientWidth = 558
+  ClientWidth = 624
   Color = clBtnFace
   Constraints.MinWidth = 564
   Font.Charset = RUSSIAN_CHARSET
@@ -15,7 +15,6 @@ object RuleEditorWindow: TRuleEditorWindow
   Font.Name = 'Segoe UI'
   Font.Style = []
   KeyPreview = True
-  OldCreateOrder = False
   Position = poOwnerFormCenter
   OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
   OnBeforeMonitorDpiChanged = FormBeforeMonitorDpiChanged
@@ -27,7 +26,7 @@ object RuleEditorWindow: TRuleEditorWindow
   object PanelConfig: TPanel
     Left = 0
     Top = 0
-    Width = 558
+    Width = 624
     Height = 37
     Align = alTop
     BevelOuter = bvNone
@@ -67,7 +66,7 @@ object RuleEditorWindow: TRuleEditorWindow
       AlignWithMargins = True
       Left = 218
       Top = 7
-      Width = 321
+      Width = 387
       Height = 23
       Margins.Left = 16
       Align = alClient
@@ -79,7 +78,7 @@ object RuleEditorWindow: TRuleEditorWindow
   object PanelControl: TPanel
     Left = 0
     Top = 264
-    Width = 558
+    Width = 624
     Height = 49
     Align = alTop
     BevelOuter = bvNone
@@ -93,7 +92,7 @@ object RuleEditorWindow: TRuleEditorWindow
     TabOrder = 5
     object ButtonCancel: TButton
       AlignWithMargins = True
-      Left = 454
+      Left = 520
       Top = 12
       Width = 88
       Height = 26
@@ -124,7 +123,7 @@ object RuleEditorWindow: TRuleEditorWindow
     object PanelApply: TPanel
       Left = 48
       Top = 12
-      Width = 406
+      Width = 472
       Height = 26
       Align = alClient
       BevelOuter = bvNone
@@ -133,7 +132,7 @@ object RuleEditorWindow: TRuleEditorWindow
       TabOrder = 1
       object ButtonApply: TButton
         AlignWithMargins = True
-        Left = 308
+        Left = 374
         Top = 0
         Width = 88
         Height = 26
@@ -153,7 +152,7 @@ object RuleEditorWindow: TRuleEditorWindow
   object PanelActions: TPanel
     Left = 0
     Top = 144
-    Width = 558
+    Width = 624
     Height = 120
     Align = alTop
     BevelOuter = bvNone
@@ -164,7 +163,7 @@ object RuleEditorWindow: TRuleEditorWindow
   object PanelTriggerInfo: TPanel
     Left = 0
     Top = 37
-    Width = 558
+    Width = 624
     Height = 35
     Align = alTop
     BevelOuter = bvNone
@@ -190,7 +189,7 @@ object RuleEditorWindow: TRuleEditorWindow
     end
     object ButtonTriggerAdd: TButton
       AlignWithMargins = True
-      Left = 407
+      Left = 473
       Top = 6
       Width = 135
       Height = 25
@@ -206,7 +205,7 @@ object RuleEditorWindow: TRuleEditorWindow
   object PanelConditionInfo: TPanel
     Left = 0
     Top = 72
-    Width = 558
+    Width = 624
     Height = 35
     Align = alTop
     BevelOuter = bvNone
@@ -234,7 +233,7 @@ object RuleEditorWindow: TRuleEditorWindow
       AlignWithMargins = True
       Left = 53
       Top = 7
-      Width = 319
+      Width = 385
       Height = 23
       Margins.Right = 32
       Margins.Bottom = 1
@@ -248,7 +247,7 @@ object RuleEditorWindow: TRuleEditorWindow
     end
     object ButtonConditionAdd: TButton
       AlignWithMargins = True
-      Left = 407
+      Left = 473
       Top = 6
       Width = 135
       Height = 25
@@ -264,7 +263,7 @@ object RuleEditorWindow: TRuleEditorWindow
   object PanelActionInfo: TPanel
     Left = 0
     Top = 107
-    Width = 558
+    Width = 624
     Height = 37
     Align = alTop
     BevelOuter = bvNone

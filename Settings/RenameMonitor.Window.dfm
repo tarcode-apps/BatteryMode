@@ -13,7 +13,6 @@ object RenameMonitorWindow: TRenameMonitorWindow
   Font.Name = 'Segoe UI'
   Font.Style = []
   KeyPreview = True
-  OldCreateOrder = False
   Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 15
@@ -32,8 +31,6 @@ object RenameMonitorWindow: TRenameMonitorWindow
     ParentColor = True
     ShowCaption = False
     TabOrder = 1
-    ExplicitTop = 167
-    ExplicitWidth = 219
     object ButtonCancel: TButton
       AlignWithMargins = True
       Left = 229
@@ -49,7 +46,6 @@ object RenameMonitorWindow: TRenameMonitorWindow
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 1
-      ExplicitLeft = 115
     end
     object ButtonApply: TButton
       AlignWithMargins = True
@@ -67,7 +63,6 @@ object RenameMonitorWindow: TRenameMonitorWindow
       ModalResult = 1
       TabOrder = 0
       OnClick = ButtonApplyClick
-      ExplicitLeft = 312
     end
   end
   object MonitorPanel: TPanel
@@ -83,8 +78,6 @@ object RenameMonitorWindow: TRenameMonitorWindow
     Padding.Right = 16
     ShowCaption = False
     TabOrder = 0
-    ExplicitWidth = 343
-    ExplicitHeight = 90
     object FriendlyNameLabel: TLabel
       AlignWithMargins = True
       Left = 20
@@ -113,8 +106,6 @@ object RenameMonitorWindow: TRenameMonitorWindow
       Margins.Right = 4
       Align = alTop
       TabOrder = 0
-      ExplicitLeft = 82
-      ExplicitWidth = 201
     end
     object RevertPanel: TPanel
       Left = 16
@@ -126,8 +117,6 @@ object RenameMonitorWindow: TRenameMonitorWindow
       Caption = 'RevertPanel'
       ShowCaption = False
       TabOrder = 1
-      ExplicitLeft = 20
-      ExplicitWidth = 263
       object RevertLink: TStaticText
         AlignWithMargins = True
         Left = 2
@@ -143,9 +132,6 @@ object RenameMonitorWindow: TRenameMonitorWindow
         TabOrder = 0
         TabStop = True
         OnClick = RevertLinkClick
-        ExplicitLeft = 16
-        ExplicitTop = 22
-        ExplicitHeight = 19
       end
     end
   end
