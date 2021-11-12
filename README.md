@@ -26,7 +26,7 @@ It provides backlight control, easy power scheme selection, detailed battery inf
 
 ## Building
 
-Embarcadero RAD Studio 10 is required to build the product.
+Embarcadero RAD Studio 11 is required to build the product.
 
 1. Open a solution BatteryModeSolution.groupproj
 2. Right-Click Battery Mode project
