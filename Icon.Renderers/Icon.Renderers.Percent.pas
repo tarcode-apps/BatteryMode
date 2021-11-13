@@ -32,14 +32,8 @@ type
   public
     constructor Create(Options: TIconsOptions); reintroduce;
 
-    function GenerateIcon(
-      PowerStatus: TSystemPowerStatus;
-      State: TBatteryState;
-      Dpi: Integer): HICON;
-    function GenerateImage(
-      PowerStatus: TSystemPowerStatus;
-      State: TBatteryState;
-      Dpi: Integer): HBITMAP;
+    function GenerateIcon(IconParams: TIconParams; Dpi: Integer): HICON;
+    function GenerateImage(IconParams: TIconParams; Dpi: Integer): HBITMAP;
   end;
 
 implementation
@@ -59,8 +53,7 @@ begin
   AssignColors;
 end;
 
-function TPercentIconRenderer.GenerateIcon(PowerStatus: TSystemPowerStatus;
-  State: TBatteryState; Dpi: Integer): HICON;
+function TPercentIconRenderer.GenerateIcon(IconParams: TIconParams; Dpi: Integer): HICON;
 var
   Icon: IGPBitmap;
   Graphic: IGPGraphics;
@@ -81,7 +74,7 @@ begin
   Icon.SetResolution(Dpi, Dpi);
 
   FontSize := 12;
-  if State.Percentage >= 100 then FontSize := 10;
+  if IconParams.State.Percentage >= 100 then FontSize := 10;
   FontSize := FontSize * Dpi/96;
 
   Font := TGPFont.Create('Microsoft Sans Serif', FontSize, [], UnitPixel);
@@ -93,7 +86,7 @@ begin
 
   if IsOverlayAsScheme then
   begin
-    case State.PowerScheme.OverlaySchemeType of
+    case IconParams.State.PowerScheme.OverlaySchemeType of
       ostOverlayMin: Color := FMaxPowerSavingsColor;
       ostOverlayMax: Color := FMinPowerSavingsColor;
       ostOverlayHigh: Color := FCustomPowerSavingsColor;
@@ -102,7 +95,7 @@ begin
   end
   else
   begin
-    case State.PowerScheme.PowerSchemeType of
+    case IconParams.State.PowerScheme.PowerSchemeType of
       pstMaxPowerSavings: Color := FMaxPowerSavingsColor;
       pstTypicalPowerSavings: Color := FTypicalPowerSavingsColor;
       pstMinPowerSavings: Color := FMinPowerSavingsColor;
@@ -112,13 +105,12 @@ begin
 
   Graphic := TGPGraphics.Create(Icon);
   Graphic.TextRenderingHint := TextRenderingHintSingleBitPerPixelGridFit;
-  Graphic.DrawString(State.Percentage.ToString, Font, Rect, Format, TGPSolidBrush.Create(Color));
+  Graphic.DrawString(IconParams.State.Percentage.ToString, Font, Rect, Format, TGPSolidBrush.Create(Color));
 
   Result := Icon.GetHIcon;
 end;
 
-function TPercentIconRenderer.GenerateImage(PowerStatus: TSystemPowerStatus;
-  State: TBatteryState; Dpi: Integer): HBITMAP;
+function TPercentIconRenderer.GenerateImage(IconParams: TIconParams; Dpi: Integer): HBITMAP;
 begin
   raise Exception.Create('Not implemented image generation');
 end;

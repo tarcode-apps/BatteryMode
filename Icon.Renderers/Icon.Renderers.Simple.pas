@@ -30,14 +30,8 @@ type
   public
     constructor Create(Options: TIconsOptions); reintroduce;
 
-    function GenerateIcon(
-      PowerStatus: TSystemPowerStatus;
-      State: TBatteryState;
-      Dpi: Integer): HICON;
-    function GenerateImage(
-      PowerStatus: TSystemPowerStatus;
-      State: TBatteryState;
-      Dpi: Integer): HBITMAP;
+    function GenerateIcon(IconParams: TIconParams; Dpi: Integer): HICON;
+    function GenerateImage(IconParams: TIconParams; Dpi: Integer): HBITMAP;
   end;
 
 implementation
@@ -51,15 +45,12 @@ begin
   FOptions := Options;
 end;
 
-function TSimpleIconRenderer.GenerateIcon(
-  PowerStatus: TSystemPowerStatus;
-  State: TBatteryState;
-  Dpi: Integer): HICON;
+function TSimpleIconRenderer.GenerateIcon(IconParams: TIconParams; Dpi: Integer): HICON;
 var
   Index: Integer;
   Line, LineOffset: Byte;
 begin
-  PowerStatusToIndexes(State, PowerStatus, -1, Line, Index);
+  PowerStatusToIndexes(IconParams.State, IconParams.PowerStatus, -1, Line, Index);
 
   if (FOptions.IconTheme = ithDark) or FOptions.TrayIconDark then
     LineOffset := 9
@@ -71,15 +62,12 @@ begin
     TPoint.Create(Dpi, Dpi)).GetHIcon;
 end;
 
-function TSimpleIconRenderer.GenerateImage(
-  PowerStatus: TSystemPowerStatus;
-  State: TBatteryState;
-  Dpi: Integer): HBITMAP;
+function TSimpleIconRenderer.GenerateImage(IconParams: TIconParams; Dpi: Integer): HBITMAP;
 var
   Index: Integer;
   Line: Byte;
 begin
-  PowerStatusToIndexes(TBatteryMode.State, PowerStatus, -1, Line, Index);
+  PowerStatusToIndexes(IconParams.State, IconParams.PowerStatus, -1, Line, Index);
 
   Result := GenerateGPBitmapFromRes(GetImageListName(Dpi),
     [Index], 9, Line,

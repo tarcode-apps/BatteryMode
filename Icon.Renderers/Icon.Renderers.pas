@@ -14,6 +14,12 @@ type
   TIconColorType = (ictScheme, ictMonochrome, ictLevel, ictSchemeInvert, ictLevelInvert);
   TIconTheme = (ithLight, ithDark);
 
+  TIconParams = record
+    PowerStatus: TSystemPowerStatus;
+    State: TBatteryState;
+    constructor Create(aPowerStatus: TSystemPowerStatus; aState: TBatteryState);
+  end;
+
   TIconsOptions = class
   private
     FIconStyle: TIconStyle;
@@ -56,14 +62,8 @@ type
   end;
 
   IIconRenderer = interface
-    function GenerateIcon(
-      PowerStatus: TSystemPowerStatus;
-      State: TBatteryState;
-      Dpi: Integer): HICON;
-    function GenerateImage(
-      PowerStatus: TSystemPowerStatus;
-      State: TBatteryState;
-      Dpi: Integer): HBITMAP;
+    function GenerateIcon(IconParams: TIconParams; Dpi: Integer): HICON;
+    function GenerateImage(IconParams: TIconParams; Dpi: Integer): HBITMAP;
   end;
 
 implementation
@@ -180,6 +180,14 @@ procedure TIconsOptions.DoChange;
 begin
   if Assigned(FOnChange) then FOnChange(Self);
   if Assigned(FOnChange2) then FOnChange2(Self);
+end;
+
+{ TIconParams }
+
+constructor TIconParams.Create(aPowerStatus: TSystemPowerStatus; aState: TBatteryState);
+begin
+  PowerStatus := aPowerStatus;
+  State := aState;
 end;
 
 end.

@@ -87,7 +87,7 @@ begin
   else
     EffectiveRenderer := Renderer;
 
-  Result := EffectiveRenderer.GenerateIcon(PowerStatus, State, Dpi);
+  Result := EffectiveRenderer.GenerateIcon(TIconParams.Create(PowerStatus, State), Dpi);
 end;
 
 function TIconsManager.GetImage(Dpi: Integer): HBITMAP;
@@ -97,7 +97,7 @@ begin
   if not GetSystemPowerStatus(PowerStatus) then
     ZeroMemory(@PowerStatus, SizeOf(PowerStatus));
 
-  Result := Renderer.GenerateImage(PowerStatus, TBatteryMode.State, Dpi);
+  Result := Renderer.GenerateImage(TIconParams.Create(PowerStatus, TBatteryMode.State), Dpi);
 end;
 
 function TIconsManager.GetImageAsIcon(Dpi: Integer): HICON;
