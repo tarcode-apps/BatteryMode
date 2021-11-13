@@ -1,6 +1,6 @@
 ﻿End-User License Agreement ("EULA") for Battery Mode
 
-Last revised 06.10.2021
+Last revised 14.11.2021
 
 Please read the conditions of this EULA carefully before start to use the Software Product which it's applied to.
 
@@ -21,7 +21,7 @@ Battery Mode (Software Product) is Freeware software and provided "AS IS".
 
 2. Installation and Use
 
-2.1. You may to install and use Battery Mode both your home PC and organizations of any form of ownership, including government and municipal offices..
+2.1. You may to install and use Battery Mode both your home PC and organizations of any form of ownership, including government and municipal offices.
 2.2. You may to distribute this software in the form of the original installation distribution file(s) or in form of original files, obtained from installation directory as a result of original distribution installation and only for free.
 2.3. You may use software source code to understand how it works, modify it to suit your personal needs or to develop new features.
 
