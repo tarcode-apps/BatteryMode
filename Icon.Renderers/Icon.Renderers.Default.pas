@@ -49,7 +49,7 @@ begin
   PowerStatusToIndexes(IconParams.State, IconParams.PowerStatus, -1, Index1, Index2, OverlayIndex);
 
   Line := 0;
-  case FOptions.IconStyle of
+  case FOptions.EffectiveIconStyle of
     isWin10, isWin10Light:
       if (FOptions.IconTheme = ithDark) or FOptions.TrayIconDark then Line := 1;
     else
@@ -383,7 +383,7 @@ end;
 
 function TDefaultIconRenderer.GetIconListName(Dpi: Integer): string;
 begin
-  case FOptions.IconStyle of
+  case FOptions.EffectiveIconStyle of
     isWin10:
     begin
       if Dpi <= 96  then Exit('Win10IconList16');
@@ -437,7 +437,7 @@ end;
 
 function TDefaultIconRenderer.GetImageListName(Dpi: Integer): string;
 begin
-  case FOptions.IconStyle of
+  case FOptions.EffectiveIconStyle of
     isWin10:
     begin
       if Dpi <= 96  then Exit('Win10ImageList32');

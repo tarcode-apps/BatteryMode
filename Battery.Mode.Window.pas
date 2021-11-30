@@ -1336,7 +1336,7 @@ end;
 {$REGION 'Config'}
 function TBatteryModeForm.DefaultConfig: TConfig;
 begin
-  Result.IconStyle := TIconsOptions.DefaultIconStyle;
+  Result.IconStyle := isAuto;
   Result.IconColorType := TIconsOptions.DefaultIconColorType;
   Result.IconBehavior := TIconsOptions.DefaultIconBehavior;
   Result.TypicalPowerSavingsMonochrome := False;

@@ -385,7 +385,7 @@ end;
 
 function TSimpleIconRenderer.GetIconListName(Dpi: Integer): string;
 begin
-  case FOptions.IconStyle of
+  case FOptions.EffectiveIconStyle of
     isWin11:
     begin
       if Dpi <= 96  then Exit('Win11Icons16');
@@ -406,7 +406,7 @@ end;
 
 function TSimpleIconRenderer.GetImageListName(Dpi: Integer): string;
 begin
-  case FOptions.IconStyle of
+  case FOptions.EffectiveIconStyle of
     isWin11:
     begin
       if Dpi <= 96  then Exit('Win11Images32');

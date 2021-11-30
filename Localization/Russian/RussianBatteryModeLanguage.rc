@@ -52,6 +52,7 @@ LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
 
 60, "Экономия заряда"
 
+69, "Системный стиль"
 70, "&Стиль значков"
 71, "Windows 7"
 72, "Windows 8"

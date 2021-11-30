@@ -277,6 +277,7 @@ begin
   IconColorComboBox.AddItem(DropAccel(TLang[123]), TObject(ictMonochrome));     // Всегда белый
   IconColorComboBox.ItemIndex := IconColorComboBox.Items.IndexOfObject(TObject(BatteryModeForm.IconOptions.IconColorType));
 
+  IconStyleComboBox.AddItem(DropAccel(TLang[69]), TObject(isAuto));       // System style
   IconStyleComboBox.AddItem(DropAccel(TLang[76]), TObject(isWinXp));      // Windows XP
   IconStyleComboBox.AddItem(DropAccel(TLang[77]), TObject(isWinVista));   // Windows Vista
   IconStyleComboBox.AddItem(DropAccel(TLang[71]), TObject(isWin7));       // Windows 7

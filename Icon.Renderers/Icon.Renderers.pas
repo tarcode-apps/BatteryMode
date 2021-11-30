@@ -9,7 +9,17 @@ uses
   Versions.Helpers;
 
 type
-  TIconStyle = (isWin8, isWin10, isWin7, isWin8Light, isWin10Light, isWinXp, isWinVista, isWin11, isWin11Light);
+  TIconStyle = (
+    isAuto = -1,
+    isWin8 = 0,
+    isWin10 = 1,
+    isWin7 = 2,
+    isWin8Light = 3,
+    isWin10Light = 4,
+    isWinXp = 5,
+    isWinVista = 6,
+    isWin11 = 7,
+    isWin11Light = 8);
   TIconBehavior = (ibIcon, ibPercent);
   TIconColorType = (ictScheme, ictMonochrome, ictLevel, ictSchemeInvert, ictLevelInvert);
   TIconTheme = (ithLight, ithDark);
@@ -23,6 +33,7 @@ type
   TIconsOptions = class
   private
     FIconStyle: TIconStyle;
+    FEffectiveIconStyle: TIconStyle;
     FIconColorType: TIconColorType;
     FExplicitMissingBattery: Boolean;
     FTypicalPowerSavingsMonochrome: Boolean;
@@ -50,6 +61,7 @@ type
     class function DefaultIconTheme: TIconTheme;
 
     property IconStyle: TIconStyle read FIconStyle write SetIconStyle;
+    property EffectiveIconStyle: TIconStyle read FEffectiveIconStyle;
     property IconColorType: TIconColorType read FIconColorType write SetIconColorType;
     property ExplicitMissingBattery: Boolean read FExplicitMissingBattery write SetExplicitMissingBattery;
     property TypicalPowerSavingsMonochrome: Boolean read FTypicalPowerSavingsMonochrome write SetTypicalPowerSavingsMonochrome;
@@ -136,10 +148,16 @@ end;
 
 procedure TIconsOptions.SetIconStyle(const Value: TIconStyle);
 begin
-  if Value in [Low(TIconStyle) .. High(TIconStyle)] then
-    FIconStyle := Value
+  if (Value > isAuto) and (Value <= High(TIconStyle)) then
+  begin
+    FIconStyle := Value;
+    FEffectiveIconStyle := Value;
+  end
   else
-    FIconStyle := DefaultIconStyle;
+  begin
+    FIconStyle := isAuto;
+    FEffectiveIconStyle := DefaultIconStyle;
+  end;
 
   DoChange;
 end;

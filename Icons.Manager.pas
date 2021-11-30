@@ -54,7 +54,7 @@ begin
   FOptions := TIconsOptions.Create;
   with FOptions do
   begin
-    IconStyle := DefaultIconStyle;
+    IconStyle := isAuto;
     IconColorType := DefaultIconColorType;
     IconBehavior := DefaultIconBehavior;
     IconTheme := DefaultIconTheme;
@@ -113,7 +113,7 @@ function TIconsManager.GetRenderer: IIconRenderer;
 begin
   if FRenderer <> nil then Exit(FRenderer);
 
-  case FOptions.IconStyle of
+  case FOptions.EffectiveIconStyle of
     isWin8..isWinVista: FRenderer := TDefaultIconRenderer.Create(FOptions);
     isWin11..isWin11Light: FRenderer := TSimpleIconRenderer.Create(FOptions);
     else raise Exception.Create('Not supported icon style');
