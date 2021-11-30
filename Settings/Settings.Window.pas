@@ -166,6 +166,7 @@ type
     procedure ClearBrightnessMonitors;
     procedure UpdateHotKey;
     procedure UpdateIndicatorTransparency;
+    procedure UpdateIconSettingsAvailability;
     procedure FixGrids;
     procedure FixWindowHeight;
     function DropAccel(Text: string): string;
@@ -266,15 +267,17 @@ begin
   IconColorComboBox.Enabled := IsWindowsVistaOrGreater or TBatteryMode.State.Mobile or TBatteryMode.State.BatteryPresent;
   if IsWindowsVistaOrGreater then
   begin
-    IconColorComboBox.AddItem(DropAccel(TLang[121]), TObject(ictScheme));       // Показывает схему электропитания
-    IconColorComboBox.AddItem(DropAccel(TLang[124]), TObject(ictSchemeInvert)); // Показывает схему электропитания (инвертировано)
+    IconColorComboBox.AddItem(DropAccel(TLang[121]), TObject(ictScheme));           // Based on power scheme
+    IconColorComboBox.AddItem(DropAccel(TLang[124]), TObject(ictSchemeInvert));     // Based on power scheme (inverted)
   end;
   if TBatteryMode.State.Mobile or TBatteryMode.State.BatteryPresent then
   begin
-    IconColorComboBox.AddItem(DropAccel(TLang[122]), TObject(ictLevel));        // Показывает заряд батареи
-    IconColorComboBox.AddItem(DropAccel(TLang[125]), TObject(ictLevelInvert));  // Показывает заряд батареи (инвертировано)
+    IconColorComboBox.AddItem(DropAccel(TLang[122]), TObject(ictLevel));            // Based on battery charge
+    IconColorComboBox.AddItem(DropAccel(TLang[125]), TObject(ictLevelInvert));      // Based on battery charge (inverted)
+    IconColorComboBox.AddItem(DropAccel(TLang[126]), TObject(ictCharger));          // Based on charger
+    IconColorComboBox.AddItem(DropAccel(TLang[127]), TObject(ictChargerAndLevel));  // Based on charger or battery charge
   end;
-  IconColorComboBox.AddItem(DropAccel(TLang[123]), TObject(ictMonochrome));     // Всегда белый
+  IconColorComboBox.AddItem(DropAccel(TLang[123]), TObject(ictMonochrome));         // White
   IconColorComboBox.ItemIndex := IconColorComboBox.Items.IndexOfObject(TObject(BatteryModeForm.IconOptions.IconColorType));
 
   IconStyleComboBox.AddItem(DropAccel(TLang[69]), TObject(isAuto));       // System style
@@ -291,15 +294,12 @@ begin
 
   TypicalPowerSavingsMonochromeCheckBox.AutoSize := True;
   TypicalPowerSavingsMonochromeCheckBox.Checked := BatteryModeForm.IconOptions.TypicalPowerSavingsMonochrome;
-  TypicalPowerSavingsMonochromeCheckBox.Enabled := IsWindowsVistaOrGreater;
   IconStyleExplicitMissingBatteryCheckBox.AutoSize := True;
   IconStyleExplicitMissingBatteryCheckBox.Checked := BatteryModeForm.IconOptions.ExplicitMissingBattery;
-  IconStyleExplicitMissingBatteryCheckBox.Enabled :=
-    (TBatteryMode.State.Mobile or TBatteryMode.State.BatteryPresent) and
-    (BatteryModeForm.IconOptions.IconStyle <> isWin11);
   IconBehaviorPercentCheckBox.AutoSize := True;
   IconBehaviorPercentCheckBox.Checked := BatteryModeForm.IconOptions.IconBehavior = ibPercent;
-  IconBehaviorPercentCheckBox.Enabled := TBatteryMode.State.Mobile or TBatteryMode.State.BatteryPresent;
+
+  UpdateIconSettingsAvailability;
 
   LockerIndicator.Lock;
   IndicatorGroup.AutoSize := True;
@@ -602,6 +602,7 @@ var
 begin
   CB := Sender as TComboBox;
   BatteryModeForm.IconOptions.IconColorType := TIconColorType(CB.Items.Objects[CB.ItemIndex]);
+  UpdateIconSettingsAvailability;
 end;
 
 procedure TSettingsWindow.IconStyleComboBoxChange(Sender: TObject);
@@ -610,9 +611,7 @@ var
 begin
   CB := Sender as TComboBox;
   BatteryModeForm.IconOptions.IconStyle := TIconStyle(CB.Items.Objects[CB.ItemIndex]);
-  IconStyleExplicitMissingBatteryCheckBox.Enabled :=
-    (TBatteryMode.State.Mobile or TBatteryMode.State.BatteryPresent) and
-    (BatteryModeForm.IconOptions.IconStyle <> isWin11);
+  UpdateIconSettingsAvailability;
 end;
 
 procedure TSettingsWindow.TypicalPowerSavingsMonochromeCheckBoxClick(
@@ -896,6 +895,23 @@ begin
   IndicatorTransparencyLabel.Enabled := IsIndicatorTransparencyAvailable;
   IndicatorTransparencyTrackBar.Enabled := IsIndicatorTransparencyAvailable;
   IndicatorTransparencyValueLabel.Enabled := IsIndicatorTransparencyAvailable;
+end;
+
+procedure TSettingsWindow.UpdateIconSettingsAvailability;
+var
+  Mobile: Boolean;
+begin
+  Mobile := TBatteryMode.State.Mobile or TBatteryMode.State.BatteryPresent;
+
+  TypicalPowerSavingsMonochromeCheckBox.Enabled :=
+    IsWindowsVistaOrGreater and
+    (BatteryModeForm.IconOptions.IconColorType in [ictScheme, ictSchemeInvert, ictCharger]);
+
+  IconStyleExplicitMissingBatteryCheckBox.Enabled :=
+    Mobile and
+    not (BatteryModeForm.IconOptions.EffectiveIconStyle in [isWin11..isWin11Light]);
+
+  IconBehaviorPercentCheckBox.Enabled := Mobile;
 end;
 
 procedure TSettingsWindow.LoadIcon;

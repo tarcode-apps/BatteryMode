@@ -359,6 +359,30 @@ begin
           51..100:  Index := RedOffset;
           else Index := WhiteOffset;
         end;
+      ictCharger:
+        case PowerCondition of
+          PoAc: Index := GreenOffset;
+          else
+            case Percentage of
+              0..15:    Index := RedOffset;
+              else
+                if FOptions.TypicalPowerSavingsMonochrome then
+                  Index := WhiteOffset
+                else
+                  Index := YellowOffset;
+            end;
+        end;
+      ictChargerAndLevel:
+        case PowerCondition of
+          PoAc: Index := WhiteOffset;
+          else
+            case Percentage of
+              0..25:    Index := RedOffset;
+              26..50:   Index := YellowOffset;
+              51..100:  Index := GreenOffset;
+              else Index := WhiteOffset;
+            end;
+        end;
       else Index := WhiteOffset;
     end;
 

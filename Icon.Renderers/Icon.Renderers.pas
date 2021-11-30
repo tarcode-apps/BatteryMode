@@ -20,8 +20,17 @@ type
     isWinVista = 6,
     isWin11 = 7,
     isWin11Light = 8);
-  TIconBehavior = (ibIcon, ibPercent);
-  TIconColorType = (ictScheme, ictMonochrome, ictLevel, ictSchemeInvert, ictLevelInvert);
+  TIconBehavior = (
+    ibIcon = 0,
+    ibPercent = 1);
+  TIconColorType = (
+    ictScheme = 0,
+    ictMonochrome = 1,
+    ictLevel = 2,
+    ictSchemeInvert = 3,
+    ictLevelInvert = 4,
+    ictCharger = 5,
+    ictChargerAndLevel = 6);
   TIconTheme = (ithLight, ithDark);
 
   TIconParams = record

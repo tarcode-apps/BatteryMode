@@ -84,22 +84,48 @@ begin
   Format.LineAlignment := TGPStringAlignment.StringAlignmentCenter;
   Format.Trimming := TGPStringTrimming.StringTrimmingNone;
 
-  if IsOverlayAsScheme then
-  begin
-    case IconParams.State.PowerScheme.OverlaySchemeType of
-      ostOverlayMin: Color := FMaxPowerSavingsColor;
-      ostOverlayMax: Color := FMinPowerSavingsColor;
-      ostOverlayHigh: Color := FCustomPowerSavingsColor;
-      else Color := FTypicalPowerSavingsColor;
-    end;
-  end
-  else
-  begin
-    case IconParams.State.PowerScheme.PowerSchemeType of
-      pstMaxPowerSavings: Color := FMaxPowerSavingsColor;
-      pstTypicalPowerSavings: Color := FTypicalPowerSavingsColor;
-      pstMinPowerSavings: Color := FMinPowerSavingsColor;
-      else Color := FCustomPowerSavingsColor;
+  case FOptions.IconColorType of
+    ictCharger:
+      case IconParams.State.PowerCondition of
+        PoAc: Color := FMaxPowerSavingsColor;
+        else
+          case IconParams.State.Percentage of
+            0..15: Color := FMinPowerSavingsColor;
+            else
+              Color := FTypicalPowerSavingsColor;
+          end;
+      end;
+    ictChargerAndLevel:
+      case IconParams.State.PowerCondition of
+        PoAc: Color := FCustomPowerSavingsColor;
+        else
+          case IconParams.State.Percentage of
+            0..25:    Color := FMinPowerSavingsColor;
+            26..50:   Color := FTypicalPowerSavingsColor;
+            51..100:  Color := FMaxPowerSavingsColor;
+            else Color := FCustomPowerSavingsColor;
+          end;
+      end;
+    else
+    begin
+      if IsOverlayAsScheme then
+      begin
+        case IconParams.State.PowerScheme.OverlaySchemeType of
+          ostOverlayMin: Color := FMaxPowerSavingsColor;
+          ostOverlayMax: Color := FMinPowerSavingsColor;
+          ostOverlayHigh: Color := FCustomPowerSavingsColor;
+          else Color := FTypicalPowerSavingsColor;
+        end;
+      end
+      else
+      begin
+        case IconParams.State.PowerScheme.PowerSchemeType of
+          pstMaxPowerSavings: Color := FMaxPowerSavingsColor;
+          pstTypicalPowerSavings: Color := FTypicalPowerSavingsColor;
+          pstMinPowerSavings: Color := FMinPowerSavingsColor;
+          else Color := FCustomPowerSavingsColor;
+        end;
+      end;
     end;
   end;
 
@@ -153,7 +179,7 @@ begin
   end;
 
   case FOptions.IconColorType of
-    ictScheme, ictLevel:
+    ictScheme, ictLevel, ictCharger, ictChargerAndLevel:
     begin
       FMaxPowerSavingsColor := GreenColor;
       FMinPowerSavingsColor := RedColor;

@@ -86,11 +86,13 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 112, "All Files"
 
 120, "Icons &color"
-121, "Based on power &scheme"
-122, "Based on &battery charge"
-123, "&White"
-124, "Based on &power scheme (inverted)"
-125, "Based on battery &charge (inverted)"
+121, "Based on power scheme"
+122, "Based on battery charge"
+123, "White"
+124, "Based on power scheme (inverted)"
+125, "Based on battery charge (inverted)"
+126, "Based on charger"
+127, "Based on charger or battery charge"
 
 130, "Disable popup window's bo&rder"
 131, "Use &crossed icon when the battery is missing"

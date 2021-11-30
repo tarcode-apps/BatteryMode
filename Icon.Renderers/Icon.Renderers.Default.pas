@@ -357,6 +357,30 @@ begin
           51..100:  Inc(Offset, RedShift);
           else Inc(Offset, WhiteShift);
         end;
+      ictCharger:
+        case PowerCondition of
+          PoAc: Inc(Offset, GreenShift);
+          else
+            case Percentage of
+              0..25: Inc(Offset, RedShift);
+              else
+                if FOptions.TypicalPowerSavingsMonochrome then
+                  Inc(Offset, WhiteShift)
+                else
+                  Inc(Offset, YellowShift);
+            end;
+        end;
+      ictChargerAndLevel:
+        case PowerCondition of
+          PoAc: Inc(Offset, WhiteShift);
+          else
+            case Percentage of
+              0..25:    Inc(Offset, RedShift);
+              26..50:   Inc(Offset, YellowShift);
+              51..100:  Inc(Offset, GreenShift);
+              else Inc(Offset, WhiteShift);
+            end;
+        end;
       else Inc(Offset, WhiteShift);
     end;
 
