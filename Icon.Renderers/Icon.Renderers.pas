@@ -9,7 +9,7 @@ uses
   Versions.Helpers;
 
 type
-  TIconStyle = (isWin8, isWin10, isWin7, isWin8Light, isWin10Light, isWinXp, isWinVista, isWin11);
+  TIconStyle = (isWin8, isWin10, isWin7, isWin8Light, isWin10Light, isWinXp, isWinVista, isWin11, isWin11Light);
   TIconBehavior = (ibIcon, ibPercent);
   TIconColorType = (ictScheme, ictMonochrome, ictLevel, ictSchemeInvert, ictLevelInvert);
   TIconTheme = (ithLight, ithDark);

@@ -393,6 +393,13 @@ begin
       if Dpi <= 144 then Exit('Win11Icons24');
       Exit('Win11Icons32');
     end;
+    isWin11Light:
+    begin
+      if Dpi <= 96  then Exit('Win11Icons16Light');
+      if Dpi <= 120 then Exit('Win11Icons20Light');
+      if Dpi <= 144 then Exit('Win11Icons24Light');
+      Exit('Win11Icons32Light');
+    end;
     else raise Exception.Create('Not supported style');
   end;
 end;
@@ -406,6 +413,13 @@ begin
       if Dpi <= 120 then Exit('Win11Images44');
       if Dpi <= 144 then Exit('Win11Images44');
       Exit('Win11Images64');
+    end;
+    isWin11Light:
+    begin
+      if Dpi <= 96  then Exit('Win11Images32Light');
+      if Dpi <= 120 then Exit('Win11Images44Light');
+      if Dpi <= 144 then Exit('Win11Images44Light');
+      Exit('Win11Images64Light');
     end;
     else raise Exception.Create('Not supported style');
   end;

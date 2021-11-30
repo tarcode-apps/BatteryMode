@@ -60,6 +60,7 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 76, "Windows XP"
 77, "Windows Vista"
 78, "Windows 11"
+79, "Windows 11 라이트"
 
 80, "스케줄러(&H)"
 81, "인터페이스"

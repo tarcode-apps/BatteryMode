@@ -61,6 +61,7 @@ LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
 76, "Windows XP"
 77, "Windows Vista"
 78, "Windows 11"
+79, "Windows 11 淺色"
 
 80, "定時任務"
 81, "介面"

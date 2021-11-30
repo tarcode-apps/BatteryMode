@@ -56,6 +56,7 @@ LANGUAGE LANG_FRENCH, SUBLANG_DEFAULT
 76, "Windows XP"
 77, "Windows Vista"
 78, "Windows 11"
+79, "Windows 11 Light"
 
 80, "&Planificateur"
 

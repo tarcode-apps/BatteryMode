@@ -115,7 +115,7 @@ begin
 
   case FOptions.IconStyle of
     isWin8..isWinVista: FRenderer := TDefaultIconRenderer.Create(FOptions);
-    isWin11: FRenderer := TSimpleIconRenderer.Create(FOptions);
+    isWin11..isWin11Light: FRenderer := TSimpleIconRenderer.Create(FOptions);
     else raise Exception.Create('Not supported icon style');
   end;
   Result := FRenderer;
