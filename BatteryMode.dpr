@@ -184,6 +184,7 @@ uses
   Helpers.Privileges in 'Helpers.Privileges.pas',
   Helpers.Reg in 'Helpers.Reg.pas',
   Helpers.Services in 'Helpers.Services.pas',
+  Helpers.Wmi in 'Helpers.Wmi.pas',
   Helpers.Wts in 'Helpers.Wts.pas',
   Media.Player.Helpers in 'Media.Player.Helpers.pas',
   Media.Player in 'Media.Player.pas',

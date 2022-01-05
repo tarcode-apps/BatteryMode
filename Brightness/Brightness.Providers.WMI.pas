@@ -9,25 +9,11 @@ uses
   Core.Language,
   Brightness,
   Power.WinApi.PowrProf,
+  Helpers.Wmi,
   JwaWbemCli;
 
 type
   TInstanceName = string;
-
-  TSinkIndicateEvent = procedure(Sender: TObject; objWbemObject: IWbemClassObject) of object;
-
-  TWmiEventListener = class(TThread)
-  strict private
-    FEventObject: IWbemClassObject;
-    FOnIndicate: TSinkIndicateEvent;
-  protected
-    procedure Execute; override;
-    procedure CallOnIndicate;
-  public
-    constructor Create; overload;
-
-    property OnIndicate: TSinkIndicateEvent read FOnIndicate write FOnIndicate;
-  end;
 
   TWmiSetBrightnessThread = class
   private type
@@ -151,22 +137,11 @@ type
 implementation
 
 const
-  strServer     = WideString('.');
   strNamespace  = WideString('root\WMI');
-  strUser       = WideString('');
-  strPassword   = WideString('');
 
   WQLBrightness         = WideString('SELECT * FROM WmiMonitorBrightness WHERE Active = TRUE');
   WQLBrightnessMethods  = WideString('SELECT * FROM WmiMonitorBrightnessMethods');
   WQLBrightnessEvent    = WideString('SELECT * FROM WmiMonitorBrightnessEvent');
-
-const
-  RPC_C_AUTHN_LEVEL_DEFAULT = 0;
-  RPC_C_IMP_LEVEL_IMPERSONATE = 3;
-  RPC_C_AUTHN_WINNT = 10;
-  RPC_C_AUTHZ_NONE = 0;
-  RPC_C_AUTHN_LEVEL_CALL = 3;
-  EOAC_NONE = 0;
 
 { TWMIMonitor }
 
@@ -505,7 +480,7 @@ begin
   hr := CoCreateInstance(CLSID_WbemLocator, nil, CLSCTX_INPROC_SERVER, IID_IWbemLocator, FLocator);
   if Failed(hr) then Exit;
 
-  hr := FLocator.ConnectServer(strNamespace, strUser, strPassword, '',
+  hr := FLocator.ConnectServer(strNamespace, WmiLocalUser, WmiLocalPassword, '',
     WBEM_FLAG_CONNECT_USE_MAX_WAIT, '', nil, FServices);
   if Failed(hr) then Exit;
 
@@ -546,7 +521,7 @@ end;
 
 function TWMIBrightnessProvider.RegisterBrightnessEvent: Boolean;
 begin
-  FWmiEventListener := TWmiEventListener.Create;
+  FWmiEventListener := TWmiEventListener.Create(WQLBrightnessEvent, strNamespace);
   FWmiEventListener.OnIndicate := BrightnessEvent;
   FWmiEventListener.Start;
   Result := True;
@@ -738,71 +713,6 @@ begin
     TWMIMonitor.ApplyAdaptiveBrightness(FAdaptiveDisplayBrightness);
 end;
 
-{ TWmiEventListener }
-
-constructor TWmiEventListener.Create;
-begin
-  inherited Create(True);
-  FreeOnTerminate := True;
-end;
-
-procedure TWmiEventListener.CallOnIndicate;
-var
-  IndicateEvent: TSinkIndicateEvent;
-begin
-  IndicateEvent := FOnIndicate;
-  if Assigned(IndicateEvent) then IndicateEvent(Self, FEventObject);
-end;
-
-procedure TWmiEventListener.Execute;
-const
-  EnumTimeout: Longint = 1000 * 60 * 60; // 1 Hour
-  DelayOnError = 10 * 1000;
-var
-  hr: HRESULT;
-  Locator: IWbemLocator;
-  Services: IWbemServices;
-  ppEnum: IEnumWbemClassObject;
-  WmiEvent: IWbemClassObject;
-  Returned: ULONG;
-begin
-  hr := CoInitializeEx(nil, COINIT_APARTMENTTHREADED);
-  if Failed(hr) then Exit;
-
-  try
-    hr := CoCreateInstance(CLSID_WbemLocator, nil, CLSCTX_INPROC_SERVER, IID_IWbemLocator, Locator);
-    if Failed(hr) then Exit;
-
-    hr := Locator.ConnectServer(strNamespace, strUser, strPassword, '',
-      WBEM_FLAG_CONNECT_USE_MAX_WAIT, '', nil, Services);
-    if Failed(hr) then Exit;
-
-    hr := Services.ExecNotificationQuery('WQL', WQLBrightnessEvent, WBEM_FLAG_FORWARD_ONLY or WBEM_FLAG_RETURN_IMMEDIATELY, nil, ppEnum);
-    if not Succeeded(hr) then Exit;
-
-    while not Terminated do
-    begin
-      case ppEnum.Next(EnumTimeout, 1, WmiEvent, Returned) of
-        WBEM_S_NO_ERROR:
-        begin
-          FEventObject := WmiEvent;
-          if not Terminated then Synchronize(CallOnIndicate);
-          FEventObject := nil;
-          WmiEvent := nil;
-        end;
-        WBEM_S_TIMEDOUT:
-          Continue;
-        else
-          Sleep(DelayOnError);
-      end;
-    end;
-  finally
-    Services := nil;
-    Locator  := nil;
-    CoUninitialize;
-  end;
-end;
-
 { TWmiSetBrightnessThread }
 
 constructor TWmiSetBrightnessThread.Create(InstanceName: TInstanceName);
@@ -880,7 +790,7 @@ begin
     hr := CoCreateInstance(CLSID_WbemLocator, nil, CLSCTX_INPROC_SERVER, IID_IWbemLocator, Locator);
     if Failed(hr) then Exit;
 
-    hr := Locator.ConnectServer(strNamespace, strUser, strPassword, '',
+    hr := Locator.ConnectServer(strNamespace, WmiLocalUser, WmiLocalPassword, '',
       WBEM_FLAG_CONNECT_USE_MAX_WAIT, '', nil, Services);
     if Failed(hr) then Exit;
 

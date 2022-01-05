@@ -543,6 +543,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <DCCReference Include="Helpers.Privileges.pas"/>
         <DCCReference Include="Helpers.Reg.pas"/>
         <DCCReference Include="Helpers.Services.pas"/>
+        <DCCReference Include="Helpers.Wmi.pas"/>
         <DCCReference Include="Helpers.Wts.pas"/>
         <DCCReference Include="Media.Player.Helpers.pas"/>
         <DCCReference Include="Media.Player.pas"/>
