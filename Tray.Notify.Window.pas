@@ -484,7 +484,7 @@ begin
   finally
     EnableAlign;
     AutoSize := True;
-    LoadIcon;
+    if WindowCreated then LoadIcon;
     SetTimer(Handle, TimerLoadIcon, 1500, nil); // Workaround for Windows 10 Shell_NotifyIcon bug
   end;
 end;
