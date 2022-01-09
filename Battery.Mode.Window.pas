@@ -34,6 +34,9 @@ const
   REG_IconStyle = 'Icon Style';
   REG_IconBehavior = 'Icon Behavior';
   REG_IconColorType = 'White Icon'; // Legacy
+  REG_IconColorLevelLow = 'Icon Color Level Low';
+  REG_IconColorLevelMid = 'Icon Color Level Mid';
+  REG_IconColorChargerLevelCritical = 'Icon Color Charger Level Critical';
   REG_TypicalPowerSavingsMonochrome = 'Typical Power Savings Monochrome';
   REG_ExplicitMissingBattery = 'Explicit Missing Battery';
   REG_HotKeyEnable = 'HotKey Enable';
@@ -86,6 +89,9 @@ type
   TConfig = record
     IconStyle: TIconStyle;
     IconColorType: TIconColorType;
+    IconColorLevelLow: Byte;
+    IconColorLevelMid: Byte;
+    IconColorChargerLevelCritical: Byte;
     IconBehavior: TIconBehavior;
     TypicalPowerSavingsMonochrome: Boolean;
     ExplicitMissingBattery: Boolean;
@@ -391,6 +397,9 @@ begin
   IconOptions.IconStyle := Conf.IconStyle;
   IconOptions.IconStyle := Conf.IconStyle;
   IconOptions.IconColorType := Conf.IconColorType;
+  IconOptions.IconColorLevelLow := Conf.IconColorLevelLow;
+  IconOptions.IconColorLevelMid := Conf.IconColorLevelMid;
+  IconOptions.IconColorChargerLevelCritical := Conf.IconColorChargerLevelCritical;
   IconOptions.IconBehavior := Conf.IconBehavior;
   if IsSystemUsesLightTheme then
     IconOptions.IconTheme := ithDark
@@ -1338,6 +1347,9 @@ function TBatteryModeForm.DefaultConfig: TConfig;
 begin
   Result.IconStyle := isAuto;
   Result.IconColorType := TIconsOptions.DefaultIconColorType;
+  Result.IconColorLevelLow := TIconsOptions.DefaultIconColorLevelLow;
+  Result.IconColorLevelMid := TIconsOptions.DefaultIconColorLevelMid;
+  Result.IconColorChargerLevelCritical := TIconsOptions.DefaultIconColorChargerLevelCritical;
   Result.IconBehavior := TIconsOptions.DefaultIconBehavior;
   Result.TypicalPowerSavingsMonochrome := False;
   Result.ExplicitMissingBattery := False;
@@ -1406,6 +1418,9 @@ begin
     // Read config
     Result.IconStyle := TIconStyle(ReadIntegerDef(REG_IconStyle, Integer(Default.IconStyle)));
     Result.IconColorType := TIconColorType(ReadIntegerDef(REG_IconColorType, Integer(Default.IconColorType)));
+    Result.IconColorLevelLow := Byte(ReadIntegerDef(REG_IconColorLevelLow, Default.IconColorLevelLow));
+    Result.IconColorLevelMid := Byte(ReadIntegerDef(REG_IconColorLevelMid, Default.IconColorLevelMid));
+    Result.IconColorChargerLevelCritical := Byte(ReadIntegerDef(REG_IconColorChargerLevelCritical, Default.IconColorChargerLevelCritical));
     Result.IconBehavior := TIconBehavior(ReadIntegerDef(REG_IconBehavior, Integer(Default.IconBehavior)));
     Result.TypicalPowerSavingsMonochrome := ReadBoolDef(REG_TypicalPowerSavingsMonochrome, Default.TypicalPowerSavingsMonochrome);
     Result.ExplicitMissingBattery := ReadBoolDef(REG_ExplicitMissingBattery, Default.ExplicitMissingBattery);
@@ -1452,6 +1467,9 @@ begin
 
       Registry.WriteInteger(REG_IconStyle, Integer(Conf.IconStyle));
       Registry.WriteInteger(REG_IconColorType, Integer(Conf.IconColorType));
+      Registry.WriteInteger(REG_IconColorLevelLow, Conf.IconColorLevelLow);
+      Registry.WriteInteger(REG_IconColorLevelMid, Conf.IconColorLevelMid);
+      Registry.WriteInteger(REG_IconColorChargerLevelCritical, Conf.IconColorChargerLevelCritical);
       Registry.WriteInteger(REG_IconBehavior, Integer(Conf.IconBehavior));
       Registry.WriteBool(REG_TypicalPowerSavingsMonochrome, Conf.TypicalPowerSavingsMonochrome);
       Registry.WriteBool(REG_ExplicitMissingBattery, Conf.ExplicitMissingBattery);
@@ -1517,6 +1535,9 @@ var
 begin
   Conf.IconStyle := IconOptions.IconStyle;
   Conf.IconColorType := IconOptions.IconColorType;
+  Conf.IconColorLevelLow := IconOptions.IconColorLevelLow;
+  Conf.IconColorLevelMid := IconOptions.IconColorLevelMid;
+  Conf.IconColorChargerLevelCritical := IconOptions.IconColorChargerLevelCritical;
   Conf.IconBehavior := IconOptions.IconBehavior;
   Conf.TypicalPowerSavingsMonochrome := IconOptions.TypicalPowerSavingsMonochrome;
   Conf.ExplicitMissingBattery := IconOptions.ExplicitMissingBattery;

@@ -44,6 +44,9 @@ type
     FIconStyle: TIconStyle;
     FEffectiveIconStyle: TIconStyle;
     FIconColorType: TIconColorType;
+    FIconColorLevelLow: Byte;
+    FIconColorLevelMid: Byte;
+    FIconColorChargerLevelCritical: Byte;
     FExplicitMissingBattery: Boolean;
     FTypicalPowerSavingsMonochrome: Boolean;
     FIconBehavior: TIconBehavior;
@@ -55,6 +58,9 @@ type
     procedure SetExplicitMissingBattery(const Value: Boolean);
     procedure SetIconBehavior(const Value: TIconBehavior);
     procedure SetIconColorType(const Value: TIconColorType);
+    procedure SetIconColorLevelLow(const Value: Byte);
+    procedure SetIconColorLevelMid(const Value: Byte);
+    procedure SetIconColorChargerLevelCritical(const Value: Byte);
     procedure SetIconStyle(const Value: TIconStyle);
     procedure SetIconTheme(const Value: TIconTheme);
     procedure SetTrayIconDark(const Value: Boolean);
@@ -68,10 +74,16 @@ type
     class function DefaultIconBehavior: TIconBehavior;
     class function DefaultIconColorType: TIconColorType;
     class function DefaultIconTheme: TIconTheme;
+    class function DefaultIconColorLevelLow: Byte;
+    class function DefaultIconColorLevelMid: Byte;
+    class function DefaultIconColorChargerLevelCritical: Byte;
 
     property IconStyle: TIconStyle read FIconStyle write SetIconStyle;
     property EffectiveIconStyle: TIconStyle read FEffectiveIconStyle;
     property IconColorType: TIconColorType read FIconColorType write SetIconColorType;
+    property IconColorLevelLow: Byte read FIconColorLevelLow write SetIconColorLevelLow;
+    property IconColorLevelMid: Byte read FIconColorLevelMid write SetIconColorLevelMid;
+    property IconColorChargerLevelCritical: Byte read FIconColorChargerLevelCritical write SetIconColorChargerLevelCritical;
     property ExplicitMissingBattery: Boolean read FExplicitMissingBattery write SetExplicitMissingBattery;
     property TypicalPowerSavingsMonochrome: Boolean read FTypicalPowerSavingsMonochrome write SetTypicalPowerSavingsMonochrome;
     property IconBehavior: TIconBehavior read FIconBehavior write SetIconBehavior;
@@ -85,6 +97,23 @@ type
   IIconRenderer = interface
     function GenerateIcon(IconParams: TIconParams; Dpi: Integer): HICON;
     function GenerateImage(IconParams: TIconParams; Dpi: Integer): HBITMAP;
+  end;
+
+  TBaseIconRenderer = class(TInterfacedObject, IIconRenderer)
+  protected type
+    TColorLevel = (clLow, clMid, clHigh, clUnknown);
+  protected
+    class function IsFlag(b: Byte; Flag: Byte): Boolean; inline; static;
+  protected
+    FOptions: TIconsOptions;
+
+    function PercentageToLevel(Percentage: DWORD): TColorLevel;
+    function IsPercentageCritical(Percentage: DWORD): Boolean;
+  public
+    constructor Create(Options: TIconsOptions); reintroduce;
+
+    function GenerateIcon(IconParams: TIconParams; Dpi: Integer): HICON; virtual; abstract;
+    function GenerateImage(IconParams: TIconParams; Dpi: Integer): HBITMAP; virtual; abstract;
   end;
 
 implementation
@@ -121,6 +150,21 @@ begin
   Result := ithLight;
 end;
 
+class function TIconsOptions.DefaultIconColorLevelLow: Byte;
+begin
+  Result := 25;
+end;
+
+class function TIconsOptions.DefaultIconColorLevelMid: Byte;
+begin
+  Result := 50;
+end;
+
+class function TIconsOptions.DefaultIconColorChargerLevelCritical: Byte;
+begin
+  Result := 15;
+end;
+
 procedure TIconsOptions.SetExplicitMissingBattery(const Value: Boolean);
 begin
   FExplicitMissingBattery := Value;
@@ -133,6 +177,36 @@ begin
     FIconBehavior := Value
   else
     FIconBehavior := DefaultIconBehavior;
+
+  DoChange;
+end;
+
+procedure TIconsOptions.SetIconColorLevelLow(const Value: Byte);
+begin
+  if Value in [0 .. 100] then
+    FIconColorLevelLow := Value
+  else
+    FIconColorLevelLow := DefaultIconColorLevelLow;
+
+  DoChange;
+end;
+
+procedure TIconsOptions.SetIconColorLevelMid(const Value: Byte);
+begin
+  if Value in [0 .. 100] then
+    FIconColorLevelMid := Value
+  else
+    FIconColorLevelMid := DefaultIconColorLevelMid;
+
+  DoChange;
+end;
+
+procedure TIconsOptions.SetIconColorChargerLevelCritical(const Value: Byte);
+begin
+  if Value in [0 .. 100] then
+    FIconColorChargerLevelCritical := Value
+  else
+    FIconColorChargerLevelCritical := DefaultIconColorChargerLevelCritical;
 
   DoChange;
 end;
@@ -215,6 +289,32 @@ constructor TIconParams.Create(aPowerStatus: TSystemPowerStatus; aState: TBatter
 begin
   PowerStatus := aPowerStatus;
   State := aState;
+end;
+
+{ TBaseIconRenderer }
+
+class function TBaseIconRenderer.IsFlag(b, Flag: Byte): Boolean;
+begin
+  Result := b and Flag = Flag;
+end;
+
+constructor TBaseIconRenderer.Create(Options: TIconsOptions);
+begin
+  inherited Create;
+  FOptions := Options;
+end;
+
+function TBaseIconRenderer.PercentageToLevel(Percentage: DWORD): TColorLevel;
+begin
+  if Percentage > 100 then Exit(clUnknown);
+  if Percentage > FOptions.IconColorLevelMid then Exit(clHigh);
+  if Percentage > FOptions.IconColorLevelLow then Exit(clMid);
+  Exit(clLow);
+end;
+
+function TBaseIconRenderer.IsPercentageCritical(Percentage: DWORD): Boolean;
+begin
+  Result := Percentage <= FOptions.IconColorChargerLevelCritical;
 end;
 
 end.

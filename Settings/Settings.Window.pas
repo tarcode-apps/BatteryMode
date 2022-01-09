@@ -11,6 +11,7 @@ uses
   Brightness,
   Core.UI, Core.UI.Controls, Core.Startup,
   RenameMonitor.Window,
+  IconColorLevels.Window,
   Helpers.Reg;
 
 type
@@ -31,6 +32,7 @@ type
     IconsGrid: TGridPanel;
     IconStyleComboBox: TComboBox;
     IconColorLabel: TLabel;
+    IconColorLevelsButton: TButton;
     TypicalPowerSavingsMonochromeCheckBox: TCheckBox;
     IconStyleExplicitMissingBatteryCheckBox: TCheckBox;
     IconBehaviorPercentCheckBox: TCheckBox;
@@ -119,6 +121,7 @@ type
     procedure MainMenuCloseClick(Sender: TObject);
     procedure IconColorComboBoxChange(Sender: TObject);
     procedure IconStyleComboBoxChange(Sender: TObject);
+    procedure IconColorLevelsButtonClick(Sender: TObject);
     procedure TypicalPowerSavingsMonochromeCheckBoxClick(Sender: TObject);
     procedure IconStyleExplicitMissingBatteryCheckBoxClick(Sender: TObject);
     procedure IconBehaviorPercentCheckBoxClick(Sender: TObject);
@@ -136,6 +139,7 @@ type
     procedure ShowBrightnessInTrayHintCheckBoxClick(Sender: TObject);
     procedure BrightnessFixedCheckBoxClick(Sender: TObject);
     procedure BrightnessRescanDelayEditChange(Sender: TObject);
+    procedure BrightnessRescanDelayEditExit(Sender: TObject);
     procedure SchemeHotKeyButtonClick(Sender: TObject);
     procedure AutoUpdateEnabledCheckBoxClick(Sender: TObject);
     procedure AutoUpdateCheckButtonClick(Sender: TObject);
@@ -614,6 +618,11 @@ begin
   UpdateIconSettingsAvailability;
 end;
 
+procedure TSettingsWindow.IconColorLevelsButtonClick(Sender: TObject);
+begin
+  TIconColorLevelsWindow.Create(Self, BatteryModeForm.IconOptions, WindowHandle).ShowModal;
+end;
+
 procedure TSettingsWindow.TypicalPowerSavingsMonochromeCheckBoxClick(
   Sender: TObject);
 begin
@@ -777,6 +786,11 @@ begin
   BatteryModeForm.BrightnessManager.RescanDelayMillisecond := Cardinal(Seconds) * 1000;
 end;
 
+procedure TSettingsWindow.BrightnessRescanDelayEditExit(Sender: TObject);
+begin
+  TEdit(Sender).Text := (BatteryModeForm.BrightnessManager.RescanDelayMillisecond div 1000).ToString;
+end;
+
 procedure TSettingsWindow.SchemeHotKeyButtonClick(Sender: TObject);
 var
   HotKeyQueryWindow: THotKeyQueryWindow;
@@ -912,6 +926,9 @@ begin
     not (BatteryModeForm.IconOptions.EffectiveIconStyle in [isWin11..isWin11Light]);
 
   IconBehaviorPercentCheckBox.Enabled := Mobile;
+
+  IconColorLevelsButton.Visible :=
+    BatteryModeForm.IconOptions.IconColorType in [ictLevel, ictLevelInvert, ictCharger, ictChargerAndLevel];
 end;
 
 procedure TSettingsWindow.LoadIcon;
@@ -959,6 +976,8 @@ begin
 
   IconStyleLabel.Caption     := DropAccel(TLang[70]);  // Стиль значков
   IconColorLabel.Caption     := DropAccel(TLang[120]); // Цвет значков
+
+  IconColorLevelsButton.Caption := DropAccel(TLang[2150]); // Levels
 
   TypicalPowerSavingsMonochromeCheckBox.Caption   := DropAccel(TLang[133]); // Белый значок для сбалансированной ...
   TypicalPowerSavingsMonochromeCheckBox.Hint      := DropAccel(TLang[190]); // Использовать белый значок для сбалансированной ...

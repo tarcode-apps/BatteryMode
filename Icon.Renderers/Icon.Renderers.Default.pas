@@ -11,12 +11,8 @@ uses
   Power, Power.WinApi.PowrProf;
 
 type
-  TDefaultIconRenderer = class(TInterfacedObject, IIconRenderer)
+  TDefaultIconRenderer = class(TBaseIconRenderer)
   strict private
-    class function IsFlag(b: Byte; Flag: Byte): Boolean; inline; static;
-  strict private
-    FOptions: TIconsOptions;
-
     procedure PowerStatusToIndexes(const State: TBatteryState;
       const Status: TSystemPowerStatus; AnimateIndex: Int64;
       out Index1: Integer; out Index2: Integer; out OverlayIndex: Integer);
@@ -24,22 +20,13 @@ type
     function GetIconListName(Dpi: Integer): string;
     function GetImageListName(Dpi: Integer): string;
   public
-    constructor Create(Options: TIconsOptions); reintroduce;
-
-    function GenerateIcon(IconParams: TIconParams; Dpi: Integer): HICON;
-    function GenerateImage(IconParams: TIconParams; Dpi: Integer): HBITMAP;
+    function GenerateIcon(IconParams: TIconParams; Dpi: Integer): HICON; override;
+    function GenerateImage(IconParams: TIconParams; Dpi: Integer): HBITMAP; override;
   end;
 
 implementation
 
 { TDefaultIconRenderer }
-
-constructor TDefaultIconRenderer.Create(Options: TIconsOptions);
-begin
-  inherited Create;
-
-  FOptions := Options;
-end;
 
 function TDefaultIconRenderer.GenerateIcon(IconParams: TIconParams; Dpi: Integer): HICON;
 var
@@ -73,11 +60,6 @@ begin
     [Index1, Index2, OverlayIndex],
     1, 0,
     TPoint.Create(Dpi, Dpi)).GetHBitmap(TGPColor.Transparent);
-end;
-
-class function TDefaultIconRenderer.IsFlag(b, Flag: Byte): Boolean;
-begin
-  Result:= b and Flag = Flag;
 end;
 
 function TDefaultIconRenderer.PercentageToIndex(Percentage: DWORD): Integer;
@@ -344,40 +326,39 @@ begin
       ictMonochrome:
         Inc(Offset, WhiteShift);
       ictLevel:
-        case Percentage of
-          0..25:    Inc(Offset, RedShift);
-          26..50:   Inc(Offset, YellowShift);
-          51..100:  Inc(Offset, GreenShift);
+        case PercentageToLevel(Percentage) of
+          clLow:  Inc(Offset, RedShift);
+          clMid:  Inc(Offset, YellowShift);
+          clHigh: Inc(Offset, GreenShift);
           else Inc(Offset, WhiteShift);
         end;
       ictLevelInvert:
-        case Percentage of
-          0..25:    Inc(Offset, GreenShift);
-          26..50:   Inc(Offset, YellowShift);
-          51..100:  Inc(Offset, RedShift);
+        case PercentageToLevel(Percentage) of
+          clLow:  Inc(Offset, GreenShift);
+          clMid:  Inc(Offset, YellowShift);
+          clHigh: Inc(Offset, RedShift);
           else Inc(Offset, WhiteShift);
         end;
       ictCharger:
         case PowerCondition of
           PoAc: Inc(Offset, GreenShift);
           else
-            case Percentage of
-              0..25: Inc(Offset, RedShift);
+            if IsPercentageCritical(Percentage) then
+              Inc(Offset, RedShift)
+            else
+              if FOptions.TypicalPowerSavingsMonochrome then
+                Inc(Offset, WhiteShift)
               else
-                if FOptions.TypicalPowerSavingsMonochrome then
-                  Inc(Offset, WhiteShift)
-                else
-                  Inc(Offset, YellowShift);
-            end;
+                Inc(Offset, YellowShift);
         end;
       ictChargerAndLevel:
         case PowerCondition of
           PoAc: Inc(Offset, WhiteShift);
           else
-            case Percentage of
-              0..25:    Inc(Offset, RedShift);
-              26..50:   Inc(Offset, YellowShift);
-              51..100:  Inc(Offset, GreenShift);
+            case PercentageToLevel(Percentage) of
+              clLow:  Inc(Offset, RedShift);
+              clMid:  Inc(Offset, YellowShift);
+              clHigh: Inc(Offset, GreenShift);
               else Inc(Offset, WhiteShift);
             end;
         end;

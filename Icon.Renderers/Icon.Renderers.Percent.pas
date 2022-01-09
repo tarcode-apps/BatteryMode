@@ -13,10 +13,8 @@ uses
   Versions.Helpers;
 
 type
-  TPercentIconRenderer = class(TInterfacedObject, IIconRenderer)
+  TPercentIconRenderer = class(TBaseIconRenderer)
   strict private
-    FOptions: TIconsOptions;
-
     FOriginRedColor: TGPColor;
     FOriginGreenColor: TGPColor;
     FOriginYellowColor: TGPColor;
@@ -30,10 +28,10 @@ type
 
     procedure AssignColors;
   public
-    constructor Create(Options: TIconsOptions); reintroduce;
+    constructor Create(Options: TIconsOptions);
 
-    function GenerateIcon(IconParams: TIconParams; Dpi: Integer): HICON;
-    function GenerateImage(IconParams: TIconParams; Dpi: Integer): HBITMAP;
+    function GenerateIcon(IconParams: TIconParams; Dpi: Integer): HICON; override;
+    function GenerateImage(IconParams: TIconParams; Dpi: Integer): HBITMAP; override;
   end;
 
 implementation
@@ -42,7 +40,7 @@ implementation
 
 constructor TPercentIconRenderer.Create(Options: TIconsOptions);
 begin
-  FOptions := Options;
+  inherited Create(Options);
 
   FOriginRedColor := TGPColor.Create(255, 0, 51);
   FOriginGreenColor := TGPColor.Create(102, 204, 0);
@@ -89,20 +87,19 @@ begin
       case IconParams.State.PowerCondition of
         PoAc: Color := FMaxPowerSavingsColor;
         else
-          case IconParams.State.Percentage of
-            0..15: Color := FMinPowerSavingsColor;
-            else
-              Color := FTypicalPowerSavingsColor;
-          end;
+          if IsPercentageCritical(IconParams.State.Percentage) then
+            Color := FMinPowerSavingsColor
+          else
+            Color := FTypicalPowerSavingsColor;
       end;
     ictChargerAndLevel:
       case IconParams.State.PowerCondition of
         PoAc: Color := FCustomPowerSavingsColor;
         else
-          case IconParams.State.Percentage of
-            0..25:    Color := FMinPowerSavingsColor;
-            26..50:   Color := FTypicalPowerSavingsColor;
-            51..100:  Color := FMaxPowerSavingsColor;
+          case PercentageToLevel(IconParams.State.Percentage) of
+            clLow:  Color := FMinPowerSavingsColor;
+            clMid:  Color := FTypicalPowerSavingsColor;
+            clHigh: Color := FMaxPowerSavingsColor;
             else Color := FCustomPowerSavingsColor;
           end;
       end;

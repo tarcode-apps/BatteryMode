@@ -8,4 +8,12 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 2100, "ename monitor"
 2101, "New name for %0:s"
 2102, "Revert original name"
+
+2150, "Levels"
+2151, "Use defaults"
+
+2155, "Critical level from %0:d%% to"
+2156, "Low level from %0:d%% to"
+2157, "Medium level from %0:d%% to"
+2158, "High level from %0:d%% to %1:d%%"
 }

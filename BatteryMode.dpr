@@ -193,6 +193,7 @@ uses
   Mouse.WheelRouting in 'Mouse.WheelRouting.pas',
   PowerMonitor.Window in 'PowerMonitor.Window.pas' {PowerMonitorWindow},
   ScreenLiteUnit in 'ScreenLiteUnit.pas',
+  IconColorLevels.Window in 'Settings\IconColorLevels.Window.pas' {IconColorLevelsWindow},
   RenameMonitor.Window in 'Settings\RenameMonitor.Window.pas' {RenameMonitorWindow},
   Settings.Window in 'Settings\Settings.Window.pas' {BatteryModeSettingsWindow},
   SplashUnit in 'SplashUnit.pas',

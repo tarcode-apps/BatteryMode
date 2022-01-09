@@ -554,6 +554,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <Form>PowerMonitorWindow</Form>
         </DCCReference>
         <DCCReference Include="ScreenLiteUnit.pas"/>
+        <DCCReference Include="Settings\IconColorLevels.Window.pas">
+            <Form>IconColorLevelsWindow</Form>
+        </DCCReference>
         <DCCReference Include="Settings\RenameMonitor.Window.pas">
             <Form>RenameMonitorWindow</Form>
         </DCCReference>

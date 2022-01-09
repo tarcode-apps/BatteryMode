@@ -12,12 +12,8 @@ uses
   Power, Power.WinApi.PowrProf;
 
 type
-  TSimpleIconRenderer = class(TInterfacedObject, IIconRenderer)
+  TSimpleIconRenderer = class(TBaseIconRenderer)
   strict private
-    class function IsFlag(b: Byte; Flag: Byte): Boolean; inline; static;
-  strict private
-    FOptions: TIconsOptions;
-
     procedure PowerStatusToIndexes(
       const State: TBatteryState;
       const Status: TSystemPowerStatus;
@@ -28,22 +24,13 @@ type
     function GetIconListName(Dpi: Integer): string;
     function GetImageListName(Dpi: Integer): string;
   public
-    constructor Create(Options: TIconsOptions); reintroduce;
-
-    function GenerateIcon(IconParams: TIconParams; Dpi: Integer): HICON;
-    function GenerateImage(IconParams: TIconParams; Dpi: Integer): HBITMAP;
+    function GenerateIcon(IconParams: TIconParams; Dpi: Integer): HICON; override;
+    function GenerateImage(IconParams: TIconParams; Dpi: Integer): HBITMAP; override;
   end;
 
 implementation
 
 { TSimpleIconRenderer }
-
-constructor TSimpleIconRenderer.Create(Options: TIconsOptions);
-begin
-  inherited Create;
-
-  FOptions := Options;
-end;
 
 function TSimpleIconRenderer.GenerateIcon(IconParams: TIconParams; Dpi: Integer): HICON;
 var
@@ -72,11 +59,6 @@ begin
   Result := GenerateGPBitmapFromRes(GetImageListName(Dpi),
     [Index], 9, Line,
     TPoint.Create(Dpi, Dpi)).GetHBitmap(TGPColor.Transparent);
-end;
-
-class function TSimpleIconRenderer.IsFlag(b, Flag: Byte): Boolean;
-begin
-  Result:= b and Flag = Flag;
 end;
 
 function TSimpleIconRenderer.PercentageToIndex(Percentage: DWORD): Integer;
@@ -346,40 +328,39 @@ begin
       ictMonochrome:
         Index := WhiteOffset;
       ictLevel:
-        case Percentage of
-          0..25:    Index := RedOffset;
-          26..50:   Index := YellowOffset;
-          51..100:  Index := GreenOffset;
+        case PercentageToLevel(Percentage) of
+          clLow:    Index := RedOffset;
+          clMid:   Index := YellowOffset;
+          clHigh:  Index := GreenOffset;
           else Index := WhiteOffset;
         end;
       ictLevelInvert:
-        case Percentage of
-          0..25:    Index := GreenOffset;
-          26..50:   Index := YellowOffset;
-          51..100:  Index := RedOffset;
+        case PercentageToLevel(Percentage) of
+          clLow:    Index := GreenOffset;
+          clMid:   Index := YellowOffset;
+          clHigh:  Index := RedOffset;
           else Index := WhiteOffset;
         end;
       ictCharger:
         case PowerCondition of
           PoAc: Index := GreenOffset;
           else
-            case Percentage of
-              0..15:    Index := RedOffset;
+            if IsPercentageCritical(Percentage) then
+              Index := RedOffset
+            else
+              if FOptions.TypicalPowerSavingsMonochrome then
+                Index := WhiteOffset
               else
-                if FOptions.TypicalPowerSavingsMonochrome then
-                  Index := WhiteOffset
-                else
-                  Index := YellowOffset;
-            end;
+                Index := YellowOffset;
         end;
       ictChargerAndLevel:
         case PowerCondition of
           PoAc: Index := WhiteOffset;
           else
-            case Percentage of
-              0..25:    Index := RedOffset;
-              26..50:   Index := YellowOffset;
-              51..100:  Index := GreenOffset;
+            case PercentageToLevel(Percentage) of
+              clLow:  Index := RedOffset;
+              clMid:  Index := YellowOffset;
+              clHigh: Index := GreenOffset;
               else Index := WhiteOffset;
             end;
         end;
