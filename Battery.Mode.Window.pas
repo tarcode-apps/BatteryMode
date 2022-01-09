@@ -266,7 +266,7 @@ type
     procedure BatteryModeGlobalPowerSchemeChange(Sender: TObject; const State: TBatteryState);
     procedure BatteryModePowerChange(Sender: TObject; Sleep: Boolean);
 
-    procedure IconHelperChange(Sender: TObject);
+    procedure IconOptionsChange(Sender: TObject);
 
     procedure HotKeyHandlerHotKey(Sender: TObject; Index: THotKeyIndex);
 
@@ -408,7 +408,7 @@ begin
   IconOptions.TypicalPowerSavingsMonochrome := Conf.TypicalPowerSavingsMonochrome;
   IconOptions.ExplicitMissingBattery := Conf.ExplicitMissingBattery;
   IconOptions.TrayIconDark := TrayIcon.IsTrayIconDark;
-  IconOptions.OnChange2 := IconHelperChange;
+  IconOptions.OnChange2 := IconOptionsChange;
 
   // Инициализация меню выключения
   TrayMenuPowerActionShutdown.Enabled    := TPowerShutdownAction.Create.IsSupported;
@@ -1058,7 +1058,7 @@ begin
   DisplayStateHandler.SetDisplayStateWithTimeout(dsOff, 200);
 end;
 
-procedure TBatteryModeForm.IconHelperChange(Sender: TObject);
+procedure TBatteryModeForm.IconOptionsChange(Sender: TObject);
 begin
   LoadIcon;
 end;
