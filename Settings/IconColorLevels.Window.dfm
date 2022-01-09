@@ -5,7 +5,7 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'IconColorLevels'
-  ClientHeight = 211
+  ClientHeight = 218
   ClientWidth = 310
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,11 +15,13 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
   Font.Style = []
   KeyPreview = True
   Position = poScreenCenter
+  OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
+  OnBeforeMonitorDpiChanged = FormBeforeMonitorDpiChanged
   PixelsPerInch = 96
   TextHeight = 15
   object PanelControl: TPanel
     Left = 0
-    Top = 162
+    Top = 169
     Width = 310
     Height = 49
     Align = alTop
@@ -32,8 +34,7 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
     ParentColor = True
     ShowCaption = False
     TabOrder = 1
-    ExplicitTop = 86
-    ExplicitWidth = 333
+    ExplicitTop = 162
     object ButtonCancel: TButton
       AlignWithMargins = True
       Left = 206
@@ -49,7 +50,6 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 1
-      ExplicitLeft = 229
     end
     object ButtonApply: TButton
       AlignWithMargins = True
@@ -67,15 +67,15 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
       ModalResult = 1
       TabOrder = 0
       OnClick = ButtonApplyClick
-      ExplicitLeft = 131
     end
   end
   object LevelsPanel: TPanel
     Left = 0
     Top = 0
     Width = 310
-    Height = 162
+    Height = 169
     Align = alTop
+    AutoSize = True
     BevelOuter = bvNone
     Padding.Left = 14
     Padding.Top = 16
@@ -83,7 +83,6 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
     Padding.Bottom = 8
     ShowCaption = False
     TabOrder = 0
-    ExplicitWidth = 348
     object LowLevelPanel: TPanel
       AlignWithMargins = True
       Left = 16
@@ -97,8 +96,6 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
       BevelOuter = bvNone
       ShowCaption = False
       TabOrder = 0
-      ExplicitTop = 16
-      ExplicitWidth = 358
       object LowLevelLabel: TLabel
         AlignWithMargins = True
         Left = 0
@@ -114,7 +111,7 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
       end
       object LowLevelPercentLabel: TLabel
         AlignWithMargins = True
-        Left = 84
+        Left = 100
         Top = 4
         Width = 10
         Height = 18
@@ -122,8 +119,7 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
         Margins.Right = 0
         Align = alLeft
         Caption = '%'
-        ExplicitLeft = 152
-        ExplicitTop = 8
+        ExplicitLeft = 84
         ExplicitHeight = 15
       end
       object LowLevelEdit: TEdit
@@ -142,10 +138,9 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
         Text = '0'
         OnChange = LowLevelEditChange
         OnExit = LowLevelEditExit
-        ExplicitLeft = 82
       end
       object LowLevelUpDown: TUpDown
-        Left = 109
+        Left = 81
         Top = 1
         Width = 16
         Height = 22
@@ -166,8 +161,6 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
       BevelOuter = bvNone
       ShowCaption = False
       TabOrder = 1
-      ExplicitTop = 64
-      ExplicitWidth = 358
       object MidLevelLabel: TLabel
         AlignWithMargins = True
         Left = 0
@@ -183,7 +176,7 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
       end
       object MidLevelPercentLabel: TLabel
         AlignWithMargins = True
-        Left = 83
+        Left = 99
         Top = 4
         Width = 10
         Height = 18
@@ -191,7 +184,7 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
         Margins.Right = 0
         Align = alLeft
         Caption = '%'
-        ExplicitLeft = 112
+        ExplicitLeft = 83
         ExplicitHeight = 15
       end
       object MidLevelEdit: TEdit
@@ -210,10 +203,9 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
         Text = '0'
         OnChange = MidLevelEditChange
         OnExit = MidLevelEditExit
-        ExplicitLeft = 82
       end
       object MidLevelUpDown: TUpDown
-        Left = 109
+        Left = 80
         Top = 1
         Width = 16
         Height = 22
@@ -234,8 +226,6 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
       BevelOuter = bvNone
       ShowCaption = False
       TabOrder = 2
-      ExplicitTop = 93
-      ExplicitWidth = 358
       object HighLevelLabel: TLabel
         AlignWithMargins = True
         Left = 0
@@ -263,7 +253,6 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
       BevelOuter = bvNone
       ShowCaption = False
       TabOrder = 3
-      ExplicitWidth = 358
       object ChargerCriticalLevelLabel: TLabel
         AlignWithMargins = True
         Left = 0
@@ -279,7 +268,7 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
       end
       object ChargerCriticalLevelPercentLabel: TLabel
         AlignWithMargins = True
-        Left = 126
+        Left = 142
         Top = 4
         Width = 10
         Height = 18
@@ -287,7 +276,7 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
         Margins.Right = 0
         Align = alLeft
         Caption = '%'
-        ExplicitLeft = 112
+        ExplicitLeft = 126
         ExplicitHeight = 15
       end
       object ChargerCriticalLevelEdit: TEdit
@@ -306,11 +295,10 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
         Text = '0'
         OnChange = ChargerCriticalLevelEditChange
         OnExit = ChargerCriticalLevelEditExit
-        ExplicitLeft = 82
       end
       object ChargerCriticalLevelUpDown: TUpDown
-        Left = 155
-        Top = 0
+        Left = 123
+        Top = 1
         Width = 16
         Height = 22
         Associate = ChargerCriticalLevelEdit
@@ -331,9 +319,6 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
       Caption = 'ResetPanel'
       ShowCaption = False
       TabOrder = 4
-      ExplicitLeft = 16
-      ExplicitTop = 144
-      ExplicitWidth = 316
       object ResetLink: TStaticText
         AlignWithMargins = True
         Left = 0
@@ -349,8 +334,6 @@ object IconColorLevelsWindow: TIconColorLevelsWindow
         TabOrder = 0
         TabStop = True
         OnClick = ResetLinkClick
-        ExplicitLeft = 2
-        ExplicitHeight = 19
       end
     end
   end

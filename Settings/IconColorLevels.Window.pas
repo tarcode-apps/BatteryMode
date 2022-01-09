@@ -13,7 +13,7 @@ uses
   Versions.Helpers, Vcl.ComCtrls;
 
 type
-  TIconColorLevelsWindow = class(TForm)
+  TIconColorLevelsWindow = class(TCompatibleForm)
     PanelControl: TPanel;
     ButtonCancel: TButton;
     ButtonApply: TButton;
@@ -37,6 +37,10 @@ type
     ChargerCriticalLevelUpDown: TUpDown;
     ResetPanel: TPanel;
     ResetLink: TStaticText;
+    procedure FormBeforeMonitorDpiChanged(Sender: TObject; OldDPI,
+      NewDPI: Integer);
+    procedure FormAfterMonitorDpiChanged(Sender: TObject; OldDPI,
+      NewDPI: Integer);
     procedure ChargerCriticalLevelEditExit(Sender: TObject);
     procedure ChargerCriticalLevelEditChange(Sender: TObject);
     procedure LowLevelEditExit(Sender: TObject);
@@ -75,8 +79,6 @@ implementation
 
 constructor TIconColorLevelsWindow.Create(AOwner: TComponent;
   IconOptions: TIconsOptions; ParentHandle: THandle);
-var
-  Accumulator: ISizeAccumulator;
 begin
   FParentHandle := ParentHandle;
   FIconOptions := IconOptions;
@@ -91,30 +93,18 @@ begin
   PanelControl.Shape := psTopLine;
   ResetLink.LinkMode := True;
 
-  Accumulator := THeightAccumulator.Create;
-  Accumulator.AddPadding(LevelsPanel);
-  Accumulator.AddControl(ResetPanel);
-
   FLocker := TLocker.Create(True);
 
   if FIconOptions.IconColorType = ictCharger then begin
     LowLevelPanel.Visible := False;
     MidLevelPanel.Visible := False;
     HighLevelPanel.Visible := False;
-    Accumulator.AddControl(ChargerCriticalLevelPanel);
-
     ChargerCriticalLevelUpDown.Position := FIconOptions.IconColorChargerLevelCritical;
   end else begin
     ChargerCriticalLevelPanel.Visible := False;
-    Accumulator.AddControl(LowLevelPanel);
-    Accumulator.AddControl(MidLevelPanel);
-    Accumulator.AddControl(HighLevelPanel);
-
     MidLevelUpDown.Position := FIconOptions.IconColorLevelMid;
     LowLevelUpDown.Position := FIconOptions.IconColorLevelLow;
   end;
-
-  LevelsPanel.Height := Accumulator.Size;
 
   Loadlocalization;
   UpdateLabels;
@@ -129,6 +119,22 @@ begin
   Params.WndParent := FParentHandle;
   if FParentHandle = 0 then
     Params.ExStyle := Params.ExStyle or WS_EX_APPWINDOW;
+end;
+
+procedure TIconColorLevelsWindow.FormBeforeMonitorDpiChanged(Sender: TObject;
+  OldDPI, NewDPI: Integer);
+begin
+  AutoSize := False;
+end;
+
+procedure TIconColorLevelsWindow.FormAfterMonitorDpiChanged(Sender: TObject;
+  OldDPI, NewDPI: Integer);
+begin
+  AutoSize := True;
+  LowLevelUpDown.Associate := nil;
+  LowLevelUpDown.Associate := LowLevelEdit;
+  MidLevelUpDown.Associate := nil;
+  MidLevelUpDown.Associate := MidLevelEdit;
 end;
 
 procedure TIconColorLevelsWindow.KeyPress(var Key: Char);
