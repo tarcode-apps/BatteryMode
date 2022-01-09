@@ -375,7 +375,6 @@ begin
 
   // Инициализация трея
   TrayIcon.PopupMenu := PopupMenuTray;
-  TrayIcon.Icon := Application.Icon.Handle;
   TrayIcon.OnPopupMenu := TrayIconPopupMenu;
 
   // Инициализация Notification
