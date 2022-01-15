@@ -15,15 +15,10 @@ uses
 type
   TPercentIconRenderer = class(TBaseIconRenderer)
   strict private
-    FOriginRedColor: TGPColor;
-    FOriginGreenColor: TGPColor;
-    FOriginYellowColor: TGPColor;
-    FOriginWhiteColor: TGPColor;
-    FOriginBlackColor: TGPColor;
-
     FMaxPowerSavingsColor: TGPColor;
     FTypicalPowerSavingsColor: TGPColor;
     FMinPowerSavingsColor: TGPColor;
+    FUltimatePowerSavingsColor: TGPColor;
     FCustomPowerSavingsColor: TGPColor;
 
     procedure AssignColors;
@@ -42,12 +37,6 @@ constructor TPercentIconRenderer.Create(Options: TIconsOptions);
 begin
   inherited Create(Options);
 
-  FOriginRedColor := TGPColor.Create(255, 0, 51);
-  FOriginGreenColor := TGPColor.Create(102, 204, 0);
-  FOriginYellowColor := TGPColor.Create(255, 204, 51);
-  FOriginWhiteColor := TGPColor.White;
-  FOriginBlackColor := TGPColor.Black;
-
   AssignColors;
 end;
 
@@ -55,13 +44,27 @@ function TPercentIconRenderer.GenerateIcon(IconParams: TIconParams; Dpi: Integer
 var
   Icon: IGPBitmap;
   Graphic: IGPGraphics;
+  FontFamily: string;
   Font: IGPFont;
   FontSize: Single;
   Rect: TGPRectF;
   Format: IGPStringFormat;
   Color: TGPColor;
   IsOverlayAsScheme: Boolean;
+  IsHiDpi: Boolean;
+
+  function GetSystemFontName: string;
+  var
+    NonClientMetric: NONCLIENTMETRICS;
+  begin
+    NonClientMetric.cbSize := NONCLIENTMETRICS.SizeOf;
+    if not SystemParametersInfo(SPI_GETNONCLIENTMETRICS, NonClientMetric.cbSize, @NonClientMetric, 0) then
+      Exit('Segoe UI');
+
+    Result := NonClientMetric.lfMessageFont.lfFaceName;
+  end;
 begin
+  IsHiDpi := (Dpi > 96) and IsWindowsVistaOrGreater;
   IsOverlayAsScheme := not (psfMissingScheme in TBatteryMode.PowerSchemes.SchemeFeatures);
 
   if IsWindows10Update1607OrGreater then
@@ -71,12 +74,36 @@ begin
 
   Icon.SetResolution(Dpi, Dpi);
 
+  Graphic := TGPGraphics.Create(Icon);
+
+  if IsHiDpi then
+  begin
+    FontFamily := GetSystemFontName;
+    Rect := TGPRectF.Create(0, 0, Icon.Width, Icon.Height);
+
+    if (FOptions.IconTheme = ithDark) or FOptions.TrayIconDark then
+    begin
+      Graphic.TextRenderingHint := TextRenderingHintAntiAliasGridFit;
+      Graphic.PixelOffsetMode := PixelOffsetModeHighQuality;
+    end
+    else
+    begin
+      Graphic.TextRenderingHint := TextRenderingHintClearTypeGridFit;
+    end;
+  end
+  else
+  begin
+    FontFamily := 'Microsoft Sans Serif';
+    Rect := TGPRectF.Create(0, 0, Icon.Width, Icon.Height - 1);
+
+    Graphic.TextRenderingHint := TextRenderingHintSingleBitPerPixelGridFit;
+  end;
+
   FontSize := 12;
   if IconParams.State.Percentage >= 100 then FontSize := 10;
   FontSize := FontSize * Dpi/96;
 
-  Font := TGPFont.Create('Microsoft Sans Serif', FontSize, [], UnitPixel);
-  Rect := TGPRectF.Create(0, 0, Icon.Width, Icon.Height - 1);
+  Font := TGPFont.Create(FontFamily, FontSize, [], UnitPixel);
   Format := TGPStringFormat.Create([StringFormatFlagsNoWrap]);
   Format.Alignment := TGPStringAlignment.StringAlignmentCenter;
   Format.LineAlignment := TGPStringAlignment.StringAlignmentCenter;
@@ -120,14 +147,13 @@ begin
           pstMaxPowerSavings: Color := FMaxPowerSavingsColor;
           pstTypicalPowerSavings: Color := FTypicalPowerSavingsColor;
           pstMinPowerSavings: Color := FMinPowerSavingsColor;
+          pstUltimatePowerSavings: Color := FUltimatePowerSavingsColor;
           else Color := FCustomPowerSavingsColor;
         end;
       end;
     end;
   end;
 
-  Graphic := TGPGraphics.Create(Icon);
-  Graphic.TextRenderingHint := TextRenderingHintSingleBitPerPixelGridFit;
   Graphic.DrawString(IconParams.State.Percentage.ToString, Font, Rect, Format, TGPSolidBrush.Create(Color));
 
   Result := Icon.GetHIcon;
@@ -162,17 +188,35 @@ var
 begin
   if (FOptions.IconTheme = ithDark) or FOptions.TrayIconDark then
   begin
-    FCustomPowerSavingsColor := FOriginBlackColor;
-    GreenColor  := ChangeBrightness(FOriginGreenColor,  -0.3);
-    YellowColor := ChangeBrightness(FOriginYellowColor, -0.5);
-    RedColor    := ChangeBrightness(FOriginRedColor,    -0.3);
+    FCustomPowerSavingsColor := TGPColor.Black;
+    GreenColor  := TGPColor.Create(56, 158, 13);  // #389e0d
+    YellowColor := TGPColor.Create(135, 104, 0);  // #876800
+    RedColor    := TGPColor.Create(213, 0, 0);    // #D50000
+    FUltimatePowerSavingsColor := TGPColor.Create(114, 46, 209); // #722ed1
+
+    if FOptions.IsIconStyleLight then
+    begin
+      GreenColor  := ChangeBrightness(GreenColor,   -0.1);
+      YellowColor := ChangeBrightness(YellowColor,  -0.05);
+      RedColor    := ChangeBrightness(RedColor,     -0.3);
+      FUltimatePowerSavingsColor := ChangeBrightness(FUltimatePowerSavingsColor, -0.2);
+    end;
   end
   else
   begin
-    FCustomPowerSavingsColor := FOriginWhiteColor;
-    GreenColor  := ChangeSaturation(FOriginGreenColor,  -0.5);
-    YellowColor := ChangeSaturation(FOriginYellowColor, -0.5);
-    RedColor    := ChangeSaturation(FOriginRedColor,    -0.5);
+    FCustomPowerSavingsColor := TGPColor.White;
+    GreenColor  := TGPColor.Create(115, 209, 61);   // #73d13d
+    YellowColor := TGPColor.Create(250, 219, 20);   // #fadb14
+    RedColor    := TGPColor.Create(255, 77, 79);    // #ff4d4f
+    FUltimatePowerSavingsColor := TGPColor.Create(179, 127, 235);  // #b37feb
+
+    if FOptions.IsIconStyleLight then
+    begin
+      GreenColor  := ChangeSaturation(GreenColor,   -0.5);
+      YellowColor := ChangeSaturation(YellowColor,  -0.5);
+      RedColor    := ChangeSaturation(RedColor,     -0.5);
+      FUltimatePowerSavingsColor := ChangeSaturation(FUltimatePowerSavingsColor, -0.3);
+    end;
   end;
 
   case FOptions.IconColorType of

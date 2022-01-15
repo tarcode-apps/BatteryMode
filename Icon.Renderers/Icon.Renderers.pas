@@ -43,6 +43,7 @@ type
   private
     FIconStyle: TIconStyle;
     FEffectiveIconStyle: TIconStyle;
+    FIsIconStyleLight: Boolean;
     FIconColorType: TIconColorType;
     FIconColorLevelLow: Byte;
     FIconColorLevelMid: Byte;
@@ -80,6 +81,7 @@ type
 
     property IconStyle: TIconStyle read FIconStyle write SetIconStyle;
     property EffectiveIconStyle: TIconStyle read FEffectiveIconStyle;
+    property IsIconStyleLight: Boolean read FIsIconStyleLight;
     property IconColorType: TIconColorType read FIconColorType write SetIconColorType;
     property IconColorLevelLow: Byte read FIconColorLevelLow write SetIconColorLevelLow;
     property IconColorLevelMid: Byte read FIconColorLevelMid write SetIconColorLevelMid;
@@ -241,6 +243,8 @@ begin
     FIconStyle := isAuto;
     FEffectiveIconStyle := DefaultIconStyle;
   end;
+
+  FIsIconStyleLight := FEffectiveIconStyle in [isWin8Light, isWin10Light, isWin11Light];
 
   DoChange;
 end;
