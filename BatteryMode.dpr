@@ -99,6 +99,7 @@
 {$R 'JapaneseHotKey.res' 'Localization\Japanese\JapaneseHotKey.rc'}
 {$R 'JapanesePowerInformation.res' 'Localization\Japanese\JapanesePowerInformation.rc'}
 {$R 'JapaneseScheduling.res' 'Localization\Japanese\JapaneseScheduling.rc'}
+{$R 'JapaneseSettings.res' 'Localization\Japanese\JapaneseSettings.rc'}
 {$R *.dres}
 
 uses
