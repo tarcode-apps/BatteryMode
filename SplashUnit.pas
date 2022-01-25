@@ -96,14 +96,15 @@ begin
 
   if Value then begin
     EnablingFunc;
-    wndAtom := RegistegSplashClass(SplashWndClassName, SplashWndClass);
+    if wndAtom = 0 then
+      wndAtom := RegistegSplashClass(SplashWndClassName, SplashWndClass);
+
     FEnable := wndAtom <> 0;
   end else begin
     FEnable := False;
     HideAllForm;
     ReleaseAllForm;
     DisablingFunc;
-    UnregistegSplashClass(SplashWndClass);
   end;
 end;
 
@@ -142,7 +143,6 @@ begin
   end;
 end;
 
-{$REGION 'UpdateAllForm'}
 class procedure TSplash.UpdateAllForm;
 var
   SplashCount: Integer;
@@ -194,9 +194,7 @@ begin
       end;
   end;
 end;
-{$ENDREGION}
 
-{$REGION 'ShowAllForm'}
 class procedure TSplash.ShowAllForm;
 var
   i: Integer;
@@ -210,9 +208,7 @@ begin
   FShowing := True;
   uIDEvent := SetTimer(0, nIDEvent, FInterval, @TimerProc);
 end;
-{$ENDREGION}
 
-{$REGION 'HideAllForm'}
 class procedure TSplash.HideAllForm;
 var
   i: Integer;
@@ -224,9 +220,7 @@ begin
 
   FShowing := False;
 end;
-{$ENDREGION}
 
-{$REGION 'ReleaseAllForm'}
 class procedure TSplash.ReleaseAllForm;
 var
   i: Integer;
@@ -236,7 +230,6 @@ begin
 
   SetLength(SplashWndArray, 0);
 end;
-{$ENDREGION}
 
 class function TSplash.BuildSplashWnd(const Name: string; MonitorNum: Integer;
   WindowClass: TWndClassEx): HWND;
@@ -246,8 +239,8 @@ begin
     WS_POPUP or WS_DISABLED,
     0, 0, 0, 0, 0, 0, HInstance, nil);
 
-    if Result <> 0 then
-      SetWindowLong(Result, GWL_STYLE, NativeInt(WS_POPUP or WS_DISABLED));
+  if Result <> 0 then
+    SetWindowLong(Result, GWL_STYLE, NativeInt(WS_POPUP or WS_DISABLED));
 end;
 
 class procedure TSplash.ReleaseSplashWnd(wnd: HWND);
@@ -315,7 +308,6 @@ begin
   HideAllForm;
 end;
 
-{$REGION 'PaintPicture'}
 class procedure TSplash.PaintPicture(wnd: HWND; MonitorNum: Integer);
 var
   Bitmap: IGPBitmap;
@@ -376,7 +368,6 @@ begin
   DeleteDC(BackDC);
   DeleteObject(hBmp);
 end;
-{$ENDREGION}
 
 class constructor TSplash.Create;
 begin
@@ -394,6 +385,7 @@ class destructor TSplash.Destroy;
 begin
   Screen.Free;
   Enable := False;
+  UnregistegSplashClass(SplashWndClass);
 end;
 
 { TSplash.TSplashMonitorConfig }
