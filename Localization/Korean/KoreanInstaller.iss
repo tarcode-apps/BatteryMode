@@ -24,6 +24,8 @@ korean.SysIcons=시스템 전원 아이콘 사용 안 함
 ; SysIconsDescription
 korean.SysIconsDescription=시스템 전원 아이콘을 숨겨서 {#AppName}를 트레이의 유일한 전원 아이콘으로 만들 수 있습니다.
 ; SysIconsDescLabel
-korean.SysIconsDescLabel="시스템 아이콘 설정" 버튼을 클릭하고 "전원"을 끄면 시스템 전원 아이콘이 숨겨집니다.%n%n그리고 언제든지 {#AppName} 메뉴를 사용하여 이 창에 접근할 수 있습니다.
+korean.SysIconsDescLabel="시스템 아이콘 설정" 버튼을 클릭하고 "전원"을 끄면 시스템 전원 아이콘이 숨겨집니다.%n%n{#AppName} 메뉴를 사용하여 이 창에 언제든지 접근할 수 있습니다.
+; SysIconsDescLabelWin10
+korean.SysIconsDescLabelWin10="시스템 아이콘 설정" 버튼을 클릭하고 "시스템 아이콘 켜기/끄기"를 클릭한 다음 시스템 전원 아이콘을 숨기려면 "전원"을 끕니다.%n%n{#AppName} 메뉴를 사용하여 이 창에 언제든지 접근할 수 있습니다.
 ; SysIconButton
 korean.SysIconButton=시스템 아이콘 설정
