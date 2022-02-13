@@ -63,6 +63,7 @@
 {$R 'KoreanHotKey.res' 'Localization\Korean\KoreanHotKey.rc'}
 {$R 'KoreanPowerInformation.res' 'Localization\Korean\KoreanPowerInformation.rc'}
 {$R 'KoreanScheduling.res' 'Localization\Korean\KoreanScheduling.rc'}
+{$R 'KoreanSettings.res' 'Localization\Korean\KoreanSettings.rc'}
 {$R 'PolishAutorunMessage.res' 'Localization\Polish\PolishAutorunMessage.rc'}
 {$R 'PolishAutoUpdate.res' 'Localization\Polish\PolishAutoUpdate.rc'}
 {$R 'PolishBatteryModeLanguage.res' 'Localization\Polish\PolishBatteryModeLanguage.rc'}
