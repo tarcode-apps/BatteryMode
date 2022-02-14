@@ -56,6 +56,7 @@
 {$R 'ItalianHotKey.res' 'Localization\Italian\ItalianHotKey.rc'}
 {$R 'ItalianPowerInformation.res' 'Localization\Italian\ItalianPowerInformation.rc'}
 {$R 'ItalianScheduling.res' 'Localization\Italian\ItalianScheduling.rc'}
+{$R 'ItalianSettings.res' 'Localization\Italian\ItalianSettings.rc'}
 {$R 'KoreanAutorunMessage.res' 'Localization\Korean\KoreanAutorunMessage.rc'}
 {$R 'KoreanAutoUpdate.res' 'Localization\Korean\KoreanAutoUpdate.rc'}
 {$R 'KoreanBatteryModeLanguage.res' 'Localization\Korean\KoreanBatteryModeLanguage.rc'}

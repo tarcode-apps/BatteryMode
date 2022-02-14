@@ -1,18 +1,18 @@
 STRINGTABLE
 LANGUAGE LANG_ITALIAN, SUBLANG_DEFAULT
 {
-700, "N/A"
+700, "N/D"
 701, "Sconosciuto"
 
-704, "Sistema di alimentazione"
+704, "Sistema alimentazione"
 705, "Proprietà batteria"
 
 710, "Nome dispositivo"
 711, "Produttore"
 712, "Data produzione"
 713, "Numero di serie"
-714, "Tipo di batteria"
-715, "Cicli di carica/scarica"
+714, "Tipo batteria"
+715, "Cicli carica/scarica"
 716, "Livello di usura"
 717, "Stato alimentazione"
 718, "Capacità originale"
@@ -20,8 +20,8 @@ LANGUAGE LANG_ITALIAN, SUBLANG_DEFAULT
 720, "Capacità attuale"
 721, "Voltaggio batteria"
 722, "Tasso carica/scarica"
-723, "Tasso di carica"
-724, "Tasso di scarico"
+723, "Tasso carica"
+724, "Tasso scarica"
 725, "Notifica avviso batteria 1"
 726, "Notifica avviso batteria 2"
 727, "Temperatura"
@@ -44,15 +44,15 @@ LANGUAGE LANG_ITALIAN, SUBLANG_DEFAULT
 757, "&Salva"
 758, "Salva con nome ..."
 759, "Tutti i file"
-760, "File di testo"
-761, "File di registro"
+760, "File testo"
+761, "File registro"
 
 765, "Proprietà risparmio energetico"
 
-770, "Fonte di alimentazione attuale"
+770, "Fonte alimentazione attuale"
 771, "Stato batteria"
-772, "Durata completa della batteria"
-773, "Durata residua della batteria"
+772, "Durata completa batteria"
+773, "Durata residua batteria"
 
 775, "%0:u ore %1:.2u min"
 776, "%1:u min"
