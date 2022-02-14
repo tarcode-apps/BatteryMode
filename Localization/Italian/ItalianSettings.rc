@@ -1,0 +1,19 @@
+STRINGTABLE
+LANGUAGE LANG_ITALIAN, SUBLANG_DEFAULT
+{
+2000, "Applica"
+2001, "Annulla"
+2002, "Rinomina"
+
+2100, "Rinomina monitor"
+2101, "Nuovo nome per %0:s"
+2102, "Ripristina nome originale"
+
+2150, "Livelli"
+2151, "Usa predefiniti"
+
+2155, "Livello critico da %0:d%% a"
+2156, "Livello basso da %0:d%% a"
+2157, "Livello medio da %0:d%% a"
+2158, "Livello alto da %0:d%% a %1:d%%"
+}

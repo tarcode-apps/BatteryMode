@@ -108,10 +108,16 @@ LANGUAGE LANG_ITALIAN, SUBLANG_DEFAULT
 1227, "cambia stato"
 
 1240, "coperchio del laptop %0:s"
-1241, "Coperchio per laptop"
+1241, "Coperchio del laptop"
 
 1245, "viene chiuso"
 1246, "viene aperto"
+
+1250, "il computer andrà in sospensione/ibernazione"
+1251, "Sospensione/ibernazione"
+
+1255, "il computer si riattiverà dalla sospensione/ibernazione"
+1256, "Riattivazione da sospensione/ibernazione"
 
 1260, "display %0:s"
 1261, "Display"
@@ -122,6 +128,9 @@ LANGUAGE LANG_ITALIAN, SUBLANG_DEFAULT
 
 1280, "schema alimentazione impostato a \"%0:s\""
 1281, "Schema alimentazione impostato a"
+
+1290, "Avvio Battery Mode"
+1291, "Battery Mode si è appena avviato"
 
 1300, "carica batteria %0:s %1:d%%"
 1301, "Carica batteria"
@@ -135,8 +144,8 @@ LANGUAGE LANG_ITALIAN, SUBLANG_DEFAULT
 1325, "è connesso"
 1326, "non è connesso"
 
-1340, "coperchio del laptop %0:s"
-1341, "Coperchio del laptop"
+1340, "coperchio notebook %0:s"
+1341, "Coperchio notebook"
 
 1345, "è chiuso"
 1346, "è aperto"
@@ -153,5 +162,4 @@ LANGUAGE LANG_ITALIAN, SUBLANG_DEFAULT
 
 1390, "Lo schema alimentazione attivo non è \"%0:s\""
 1391, "Schema alimentazione attivo non è"
-
 }
