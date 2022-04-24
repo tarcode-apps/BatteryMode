@@ -19,7 +19,8 @@ type
     isWinXp = 5,
     isWinVista = 6,
     isWin11 = 7,
-    isWin11Light = 8);
+    isWin11Light = 8,
+    isWinLonghorn = 9);
   TIconBehavior = (
     ibIcon = 0,
     ibPercent = 1);

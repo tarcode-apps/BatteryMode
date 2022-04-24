@@ -284,16 +284,17 @@ begin
   IconColorComboBox.AddItem(DropAccel(TLang[123]), TObject(ictMonochrome));         // White
   IconColorComboBox.ItemIndex := IconColorComboBox.Items.IndexOfObject(TObject(BatteryModeForm.IconOptions.IconColorType));
 
-  IconStyleComboBox.AddItem(DropAccel(TLang[69]), TObject(isAuto));       // System style
-  IconStyleComboBox.AddItem(DropAccel(TLang[76]), TObject(isWinXp));      // Windows XP
-  IconStyleComboBox.AddItem(DropAccel(TLang[77]), TObject(isWinVista));   // Windows Vista
-  IconStyleComboBox.AddItem(DropAccel(TLang[71]), TObject(isWin7));       // Windows 7
-  IconStyleComboBox.AddItem(DropAccel(TLang[72]), TObject(isWin8));       // Windows 8
-  IconStyleComboBox.AddItem(DropAccel(TLang[74]), TObject(isWin8Light));  // Windows 8 Light
-  IconStyleComboBox.AddItem(DropAccel(TLang[73]), TObject(isWin10));      // Windows 10
-  IconStyleComboBox.AddItem(DropAccel(TLang[75]), TObject(isWin10Light)); // Windows 10 Light
-  IconStyleComboBox.AddItem(DropAccel(TLang[78]), TObject(isWin11));      // Windows 11
-  IconStyleComboBox.AddItem(DropAccel(TLang[79]), TObject(isWin11Light)); // Windows 11 Light
+  IconStyleComboBox.AddItem(DropAccel(TLang[249]), TObject(isAuto));       // System style
+  IconStyleComboBox.AddItem(DropAccel(TLang[256]), TObject(isWinXp));      // Windows XP
+  IconStyleComboBox.AddItem(DropAccel(TLang[257]), TObject(isWinVista));   // Windows Vista
+  IconStyleComboBox.AddItem(DropAccel(TLang[260]), TObject(isWinLonghorn));// Windows Longhorn
+  IconStyleComboBox.AddItem(DropAccel(TLang[251]), TObject(isWin7));       // Windows 7
+  IconStyleComboBox.AddItem(DropAccel(TLang[252]), TObject(isWin8));       // Windows 8
+  IconStyleComboBox.AddItem(DropAccel(TLang[254]), TObject(isWin8Light));  // Windows 8 Light
+  IconStyleComboBox.AddItem(DropAccel(TLang[253]), TObject(isWin10));      // Windows 10
+  IconStyleComboBox.AddItem(DropAccel(TLang[255]), TObject(isWin10Light)); // Windows 10 Light
+  IconStyleComboBox.AddItem(DropAccel(TLang[258]), TObject(isWin11));      // Windows 11
+  IconStyleComboBox.AddItem(DropAccel(TLang[259]), TObject(isWin11Light)); // Windows 11 Light
   IconStyleComboBox.ItemIndex := IconStyleComboBox.Items.IndexOfObject(TObject(BatteryModeForm.IconOptions.IconStyle));
 
   TypicalPowerSavingsMonochromeCheckBox.AutoSize := True;
@@ -974,7 +975,7 @@ begin
 
   IconsGroup.Caption := DropAccel(TLang[83]); // Значки
 
-  IconStyleLabel.Caption     := DropAccel(TLang[70]);  // Стиль значков
+  IconStyleLabel.Caption     := DropAccel(TLang[250]); // Стиль значков
   IconColorLabel.Caption     := DropAccel(TLang[120]); // Цвет значков
 
   IconColorLevelsButton.Caption := DropAccel(TLang[2150]); // Levels

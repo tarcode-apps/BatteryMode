@@ -52,17 +52,6 @@ LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
 
 60, "省电模式"
 
-70, "图标风格"
-71, "Windows 7"
-72, "Windows 8"
-73, "Windows 10"
-74, "Windows 8 Light"
-75, "Windows 10 Light"
-76, "Windows XP"
-77, "Windows Vista"
-78, "Windows 11"
-79, "Windows 11 Light"
-
 80, "定时任务"
 81, "接口"
 82, "主窗口"
@@ -156,6 +145,18 @@ LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
 233, "秒"
 
 235, "在托盘弹窗显示亮度百分比"
+
+250, "图标风格"
+251, "Windows 7"
+252, "Windows 8"
+253, "Windows 10"
+254, "Windows 8 Light"
+255, "Windows 10 Light"
+256, "Windows XP"
+257, "Windows Vista"
+258, "Windows 11"
+259, "Windows 11 Light"
+260, "Windows Longhorn"
 
 10000, "打开 debug 日志文件夹"
 }

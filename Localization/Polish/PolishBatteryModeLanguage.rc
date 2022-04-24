@@ -49,17 +49,6 @@ LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
 
 60, "Oszczędzanie baterii"
 
-70, "&Styl ikon"
-71, "Windows 7"
-72, "Windows 8"
-73, "Windows 10"
-74, "Windows 8 Light"
-75, "Windows 10 Light"
-76, "Windows XP"
-77, "Windows Vista"
-78, "Windows 11"
-79, "Windows 11 Light"
-
 80, "&Harmonogram"
 81, "Interfejs"
 82, "Główne okno"
@@ -145,6 +134,18 @@ LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
 224, "Licencja"
 225, "GitHub"
 226, "https://github.com/tarcode-apps/BatteryMode"
+
+250, "&Styl ikon"
+251, "Windows 7"
+252, "Windows 8"
+253, "Windows 10"
+254, "Windows 8 Light"
+255, "Windows 10 Light"
+256, "Windows XP"
+257, "Windows Vista"
+258, "Windows 11"
+259, "Windows 11 Light"
+260, "Windows Longhorn"
 
 10000, "Otwórz folder dziennika debugowania"
 }

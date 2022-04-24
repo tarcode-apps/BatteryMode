@@ -52,18 +52,6 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 60, "Battery saver"
 
-69, "System style"
-70, "Icons &style"
-71, "Windows 7"
-72, "Windows 8"
-73, "Windows 10"
-74, "Windows 8 Light"
-75, "Windows 10 Light"
-76, "Windows XP"
-77, "Windows Vista"
-78, "Windows 11"
-79, "Windows 11 Light"
-
 80, "Sc&heduler"
 81, "Interface"
 82, "Main window"
@@ -159,6 +147,19 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 233, "seconds"
 
 235, "Show brightness level in tray icon popup"
+
+249, "System style"
+250, "Icons &style"
+251, "Windows 7"
+252, "Windows 8"
+253, "Windows 10"
+254, "Windows 8 Light"
+255, "Windows 10 Light"
+256, "Windows XP"
+257, "Windows Vista"
+258, "Windows 11"
+259, "Windows 11 Light"
+260, "Windows Longhorn"
 
 10000, "Open debug log folder"
 }

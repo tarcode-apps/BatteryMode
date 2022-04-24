@@ -47,17 +47,6 @@ LANGUAGE LANG_SPANISH, SUBLANG_SPANISH
 
 60, "Ahorro de batería"
 
-70, "Estilo de los iconos"
-71, "Windows 7"
-72, "Windows 8"
-73, "Windows 10"
-74, "Windows 8 Ligero"
-75, "Windows 10 Ligero"
-76, "Windows XP"
-77, "Windows Vista"
-78, "Windows 11"
-79, "Windows 11 Ligero"
-
 80, "Planificador"
 
 90, "Combinación de teclas para cambiar el plan de energía"
@@ -98,6 +87,18 @@ LANGUAGE LANG_SPANISH, SUBLANG_SPANISH
 
 150, "Lenguaje"
 151, "Por defecto"
+
+250, "Estilo de los iconos"
+251, "Windows 7"
+252, "Windows 8"
+253, "Windows 10"
+254, "Windows 8 Ligero"
+255, "Windows 10 Ligero"
+256, "Windows XP"
+257, "Windows Vista"
+258, "Windows 11"
+259, "Windows 11 Ligero"
+260, "Windows Longhorn"
 
 10000, "Abrir carpeta de registro de depuración"
 }

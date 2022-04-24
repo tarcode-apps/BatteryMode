@@ -51,17 +51,6 @@ LANGUAGE LANG_UKRAINIAN, SUBLANG_DEFAULT
 
 60, "Економія енергії"
 
-70, "Стиль &піктограм"
-71, "Windows 7"
-72, "Windows 8"
-73, "Windows 10"
-74, "Windows 8 (світлий)"
-75, "Windows 10 (світлий)"
-76, "Windows XP"
-77, "Windows Vista"
-78, "Windows 11"
-79, "Windows 11 (світлий)"
-
 80, "П&ланувальник"
 81, "Інтерфейс"
 82, "Головне вікно"
@@ -156,6 +145,18 @@ LANGUAGE LANG_UKRAINIAN, SUBLANG_DEFAULT
 233, "секунд"
 
 235, "Відображати рівень яскравості у спливаючій підказці піктограми в системному треї"
+
+250, "Стиль &піктограм"
+251, "Windows 7"
+252, "Windows 8"
+253, "Windows 10"
+254, "Windows 8 (світлий)"
+255, "Windows 10 (світлий)"
+256, "Windows XP"
+257, "Windows Vista"
+258, "Windows 11"
+259, "Windows 11 (світлий)"
+260, "Windows Longhorn"
 
 10000, "Відкрити папку журналів налагодження"
 }

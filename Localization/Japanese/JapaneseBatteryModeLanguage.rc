@@ -52,18 +52,6 @@ LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
 
 60, "バッテリーセーバー"
 
-69, "システムスタイル"
-70, "アイコンとスタイル"
-71, "Windows 7"
-72, "Windows 8"
-73, "Windows 10"
-74, "Windows 8 Light"
-75, "Windows 10 Light"
-76, "Windows XP"
-77, "Windows Vista"
-78, "Windows 11"
-79, "Windows 11 Light"
-
 80, "スケジューラ(&H)"
 81, "インターフェイス"
 82, "メインウィンドウ"
@@ -159,6 +147,19 @@ LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
 233, "秒"
 
 235, "トレイアイコンのポップアップに明るさを表示する"
+
+249, "システムスタイル"
+250, "アイコンとスタイル"
+251, "Windows 7"
+252, "Windows 8"
+253, "Windows 10"
+254, "Windows 8 Light"
+255, "Windows 10 Light"
+256, "Windows XP"
+257, "Windows Vista"
+258, "Windows 11"
+259, "Windows 11 Light"
+260, "Windows Longhorn"
 
 10000, "Debugログフォルダを開く"
 }

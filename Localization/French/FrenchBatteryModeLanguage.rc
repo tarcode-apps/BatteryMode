@@ -47,17 +47,6 @@ LANGUAGE LANG_FRENCH, SUBLANG_DEFAULT
 
 60, "Economiseur de batterie"
 
-70, "Style d'i&cônes"
-71, "Windows 7"
-72, "Windows 8"
-73, "Windows 10"
-74, "Windows 8 Light"
-75, "Windows 10 Light"
-76, "Windows XP"
-77, "Windows Vista"
-78, "Windows 11"
-79, "Windows 11 Light"
-
 80, "&Planificateur"
 
 90, "La combinaison des raccourcis clavier pour changer de mode"
@@ -75,6 +64,18 @@ LANGUAGE LANG_FRENCH, SUBLANG_DEFAULT
 112, "Tous les fichiers"
 
 150, "&Langue",
+
+250, "Style d'i&cônes"
+251, "Windows 7"
+252, "Windows 8"
+253, "Windows 10"
+254, "Windows 8 Light"
+255, "Windows 10 Light"
+256, "Windows XP"
+257, "Windows Vista"
+258, "Windows 11"
+259, "Windows 11 Light"
+260, "Windows Longhorn"
 
 10000, "Ouvrir le dossier du log de débogage"
 }

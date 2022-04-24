@@ -114,7 +114,7 @@ begin
   if FRenderer <> nil then Exit(FRenderer);
 
   case FOptions.EffectiveIconStyle of
-    isWin8..isWinVista: FRenderer := TDefaultIconRenderer.Create(FOptions);
+    isWin8..isWinVista, isWinLonghorn: FRenderer := TDefaultIconRenderer.Create(FOptions);
     isWin11..isWin11Light: FRenderer := TSimpleIconRenderer.Create(FOptions);
     else raise Exception.Create('Not supported icon style');
   end;

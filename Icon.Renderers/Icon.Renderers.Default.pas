@@ -410,6 +410,13 @@ begin
       if Dpi <= 144 then Exit('WinVistaIconList24');
       Exit('WinVistaIconList32');
     end;
+    isWinLonghorn:
+    begin
+      if Dpi <= 96  then Exit('WinLonghornIconList16');
+      if Dpi <= 120 then Exit('WinLonghornIconList20');
+      if Dpi <= 144 then Exit('WinLonghornIconList24');
+      Exit('WinLonghornIconList32');
+    end;
     isWin7:
     begin
       if Dpi <= 96  then Exit('Win7IconList16');
@@ -463,6 +470,11 @@ begin
       if Dpi <= 120 then Exit('Win7ImageList40');
       if Dpi <= 144 then Exit('Win7ImageList40');
       Exit('Win7ImageList40');
+    end;
+    isWinLonghorn:
+    begin
+      if Dpi <= 96  then Exit('WinLonghornImageList32');
+      Exit('WinLonghornImageList40');
     end;
     isWin8Light:
     begin

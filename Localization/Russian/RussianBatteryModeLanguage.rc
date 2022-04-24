@@ -52,18 +52,6 @@ LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
 
 60, "Экономия заряда"
 
-69, "Системный стиль"
-70, "&Стиль значков"
-71, "Windows 7"
-72, "Windows 8"
-73, "Windows 10"
-74, "Windows 8 светлый"
-75, "Windows 10 светлый"
-76, "Windows XP"
-77, "Windows Vista"
-78, "Windows 11"
-79, "Windows 11 светлый"
-
 80, "П&ланировщик"
 81, "Интерфейс"
 82, "Главное окно"
@@ -159,6 +147,19 @@ LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
 233, "секунд"
 
 235, "Отображать уровень яркости во всплывающей подсказке значка в трее"
+
+249, "Системный стиль"
+250, "&Стиль значков"
+251, "Windows 7"
+252, "Windows 8"
+253, "Windows 10"
+254, "Windows 8 светлый"
+255, "Windows 10 светлый"
+256, "Windows XP"
+257, "Windows Vista"
+258, "Windows 11"
+259, "Windows 11 светлый"
+260, "Windows Longhorn"
 
 10000, "Открыть папку с логами"
 }

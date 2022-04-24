@@ -839,6 +839,30 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>Win11Images64Light</ResourceId>
         </RcItem>
+        <RcItem Include="Icon\WinLonghornIconList16.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>WinLonghornIconList16</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\WinLonghornIconList20.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>WinLonghornIconList20</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\WinLonghornIconList24.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>WinLonghornIconList24</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\WinLonghornIconList32.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>WinLonghornIconList32</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\WinLonghornImageList32.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>WinLonghornImageList32</ResourceId>
+        </RcItem>
+        <RcItem Include="Icon\WinLonghornImageList40.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>WinLonghornImageList40</ResourceId>
+        </RcItem>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -1473,6 +1497,42 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="Icon\Win7ImageList40.png" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Icon\WinLonghornIconList16.png" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Icon\WinLonghornIconList20.png" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Icon\WinLonghornIconList24.png" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Icon\WinLonghornIconList32.png" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Icon\WinLonghornImageList32.png" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Icon\WinLonghornImageList40.png" Configuration="Release" Class="ProjectFile">
                     <Platform Name="Win64">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>

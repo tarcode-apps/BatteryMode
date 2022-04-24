@@ -52,18 +52,6 @@ LANGUAGE LANG_ITALIAN, SUBLANG_DEFAULT
 
 60, "Risparmio energetico"
 
-69, "Stile sistema"
-70, "Stile icone"
-71, "Windows 7"
-72, "Windows 8"
-73, "Windows 10"
-74, "Windows 8 chiaro"
-75, "Windows 10 chiaro"
-76, "Windows XP"
-77, "Windows Vista"
-78, "Windows 11"
-79, "Windows 11 chiaro"
-
 80, "Pianifica&zione"
 81, "Interfaccia"
 82, "Finestra principale"
@@ -159,6 +147,19 @@ LANGUAGE LANG_ITALIAN, SUBLANG_DEFAULT
 233, "secondi"
 
 235, "Visualizza livello di luminosità nel popup nell'icona di sistema"
+
+249, "Stile sistema"
+250, "Stile icone"
+251, "Windows 7"
+252, "Windows 8"
+253, "Windows 10"
+254, "Windows 8 chiaro"
+255, "Windows 10 chiaro"
+256, "Windows XP"
+257, "Windows Vista"
+258, "Windows 11"
+259, "Windows 11 chiaro"
+260, "Windows Longhorn"
 
 10000, "Apri cartella registro debug"
 }
