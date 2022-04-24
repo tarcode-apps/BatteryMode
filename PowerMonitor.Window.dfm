@@ -25,7 +25,6 @@ object PowerMonitorWindow: TPowerMonitorWindow
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  PixelsPerInch = 96
   TextHeight = 15
   object TabControl: TTabControl
     AlignWithMargins = True

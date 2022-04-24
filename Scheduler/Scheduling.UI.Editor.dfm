@@ -21,7 +21,6 @@ object RuleEditorWindow: TRuleEditorWindow
   OnClose = FormClose
   OnDestroy = FormDestroy
   OnKeyPress = FormKeyPress
-  PixelsPerInch = 96
   TextHeight = 15
   object PanelConfig: TPanel
     Left = 0

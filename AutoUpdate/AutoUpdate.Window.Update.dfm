@@ -13,11 +13,9 @@ object AutoUpdateWnd: TAutoUpdateWnd
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  OldCreateOrder = False
   Position = poScreenCenter
   OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
   OnBeforeMonitorDpiChanged = FormBeforeMonitorDpiChanged
-  PixelsPerInch = 96
   TextHeight = 15
   object PanelImage: TPanel
     Left = 0

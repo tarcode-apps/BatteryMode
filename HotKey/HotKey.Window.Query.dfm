@@ -21,7 +21,6 @@ object HotKeyQueryWindow: THotKeyQueryWindow
   Position = poScreenCenter
   OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
   OnBeforeMonitorDpiChanged = FormBeforeMonitorDpiChanged
-  PixelsPerInch = 96
   TextHeight = 15
   object PanelControl: TPanel
     Left = 0

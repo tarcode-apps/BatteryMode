@@ -12,11 +12,9 @@ object NotFoundWindow: TNotFoundWindow
   Font.Name = 'Segoe UI'
   Font.Style = []
   KeyPreview = True
-  OldCreateOrder = False
   Position = poScreenCenter
   OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
   OnBeforeMonitorDpiChanged = FormBeforeMonitorDpiChanged
-  PixelsPerInch = 96
   TextHeight = 15
   object PanelBottom: TPanel
     Left = 0
