@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows,
-  System.SysUtils, System.Classes,
+  System.SysUtils, System.Classes, System.StrUtils,
   Vcl.Menus,
   Core.Language;
 
@@ -12,6 +12,9 @@ type
   THotKeyIndex = Integer;
 
   THotKeyValue = record
+  private
+    function GetDisplayName: string;
+  public
     fuModifiers: Word;
     uVirtKey: Word;
     constructor Create(Modifiers, VirtKey: Word); overload;
@@ -21,6 +24,8 @@ type
     function IsEmpty: Boolean;
     function ToShortCut: TShortCut;
     function ToString: string;
+
+    property DisplayName: string read GetDisplayName;
 
     class function Empty: THotKeyValue; static;
 
@@ -108,13 +113,13 @@ function THotKeyValue.ToString: string;
 var
   Parts: TArray<string>;
 begin
-  if IsEmpty then Exit(TLang[350]); // Нет
+  if IsEmpty then Exit('');
   if (fuModifiers = MOD_ALT) and (uVirtKey = VK_PAUSE) then Exit('Alt+Pause');
 
   if (fuModifiers and MOD_WIN) = MOD_WIN then
   begin
     Parts := ShortCutToText(ToShortCut).Split(['+']);
-    if Length(Parts) = 0 then Exit(TLang[350]); // Нет
+    if Length(Parts) = 0 then Exit('');
 
     Result := '';
     if fuModifiers and MOD_SHIFT = MOD_SHIFT then Result := Result + 'Shift+';
@@ -126,6 +131,36 @@ begin
   end;
 
   Result := ShortCutToText(ToShortCut);
+end;
+
+function THotKeyValue.GetDisplayName: string;
+begin
+  Result := ToString();
+  if Result.IsEmpty then Exit(TLang[350]); // None
+
+  Result := Result
+    .Replace('Ctrl', TLang[360])
+    .Replace('Shift', TLang[361])
+    .Replace('Alt', TLang[362])
+    .Replace('Win', TLang[363])
+    .Replace('Esc', TLang[364])
+    .Replace('Tab', TLang[365])
+    .Replace('Backspace', TLang[366])
+    .Replace('Enter', TLang[367])
+    .Replace('Print Screen', TLang[368])
+    .Replace('Caps Lock', TLang[369])
+    .Replace('Scroll Lock', TLang[370])
+    .Replace('Pause', TLang[371])
+    .Replace('Home', TLang[372])
+    .Replace('End', TLang[373])
+    .Replace('Del', TLang[374])
+    .Replace('Insert', TLang[375])
+    .Replace('Page Up', TLang[376])
+    .Replace('Page Down', TLang[377])
+    .Replace('+Up', TLang[378])
+    .Replace('+Right', TLang[379])
+    .Replace('+Down', TLang[380])
+    .Replace('+Left', TLang[381]);
 end;
 
 end.
