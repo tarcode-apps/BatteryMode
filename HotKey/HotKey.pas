@@ -155,12 +155,12 @@ begin
     .Replace('End', TLang[373])
     .Replace('Del', TLang[374])
     .Replace('Insert', TLang[375])
-    .Replace('Page Up', TLang[376])
-    .Replace('Page Down', TLang[377])
-    .Replace('+Up', TLang[378])
-    .Replace('+Right', TLang[379])
-    .Replace('+Down', TLang[380])
-    .Replace('+Left', TLang[381]);
+    .Replace('PgUp', TLang[376])
+    .Replace('PgDn', TLang[377])
+    .Replace('+Up', '+' + TLang[378])
+    .Replace('+Down', '+' + TLang[380])
+    .Replace('+Right', '+' + TLang[379])
+    .Replace('+Left', '+' + TLang[381]);
 end;
 
 end.
