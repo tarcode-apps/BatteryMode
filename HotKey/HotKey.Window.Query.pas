@@ -153,6 +153,8 @@ begin
   ButtonApply.Caption   := TLang[301]; // Применить
   ButtonCancel.Caption  := TLang[302]; // Отмена
 
+  RadioButtonAltPause.Caption := THotKeyValue.Create(MOD_ALT, VK_PAUSE).DisplayName;
+  RadioButtonCtrlDelete.Caption := THotKeyValue.Create(MOD_CONTROL, VK_DELETE).DisplayName;
   RadioButtonCustom.Caption := TLang[310]; // Выбрать
 end;
 

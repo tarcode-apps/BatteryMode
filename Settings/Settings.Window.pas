@@ -894,7 +894,7 @@ var
   HotKeyText: string;
 begin
   if BatteryModeForm.HotKeyHandler.Enabled then
-    HotKeyText := BatteryModeForm.HotKeyHandler.HotKey[HotKeyNextScheme].ToString
+    HotKeyText := BatteryModeForm.HotKeyHandler.HotKey[HotKeyNextScheme].DisplayName
   else
     HotKeyText := TLang[91]; // Отключено
 
