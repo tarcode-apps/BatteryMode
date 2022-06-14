@@ -16,6 +16,7 @@ type
     ERROR_DelAutorun = $0002;
     ERROR_Mutex = $0004;
     ERROR_Pipe = $0008;
+    ERROR_PowerService = $10000;
 
     CmdAutorun              = '-Autorun';
     CmdDelAutorun           = '-DelAutorun';

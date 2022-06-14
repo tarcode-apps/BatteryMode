@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages,
   System.Classes, System.SysUtils,
   System.Generics.Collections, System.Generics.Defaults,
-  Core.Language,
+  Core.Language, Core.Startup.Tasks,
   Power,
   Power.Schemes.Providers.Default, Power.Schemes.Providers.Legacy,
   Power.WinApi.PowrProf,
@@ -612,7 +612,15 @@ var
   SystemPowerStatus: TSystemPowerStatus;
 begin
   if IsWindowsVistaOrGreater then
-    FPowerSchemeProvider := TPowerSchemeProvider.Create
+  begin
+    if not IsServiceRunning(nil, 'Power') then
+    begin
+      MessageBox(0, LPCTSTR(TLang[3000]), LPCTSTR(TLang[1]), MB_OK or MB_ICONERROR);
+      ExitProcess(TStartupTasks.ERROR_PowerService);
+    end;
+
+    FPowerSchemeProvider := TPowerSchemeProvider.Create;
+  end
   else
     FPowerSchemeProvider := TPowerSchemeProviderLegacy.Create;
 

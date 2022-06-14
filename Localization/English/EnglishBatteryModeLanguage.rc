@@ -160,5 +160,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 235, "Show brightness level in tray icon popup"
 
+3000, "Battery Mode requires the \"Power\" service to be running"
+
 10000, "Open debug log folder"
 }
