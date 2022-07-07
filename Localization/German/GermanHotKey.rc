@@ -1,0 +1,36 @@
+STRINGTABLE
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN_DE
+{
+300, "Hotkey"
+301, "Übernehmen"
+302, "Abbrechen"
+
+310, "Benutzerdefiniert"
+
+320, "Hotkey aktivieren"
+
+350, "Keine"
+
+360, "Ctrl"
+361, "Shift"
+362, "Alt"
+363, "Win"
+364, "Esc"
+365, "Tab"
+366, "Backspace"
+367, "Enter"
+368, "Drucken"
+369, "Feststelltaste"
+370, "Rollen"
+371, "Pause"
+372, "Pos1"
+373, "Ende"
+374, "Entf"
+375, "Einfügen"
+376, "Bild auf"
+377, "Bild ab"
+378, "Hoch"
+379, "Rechts"
+380, "Runter"
+381, "Links"
+}

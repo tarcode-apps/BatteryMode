@@ -1,0 +1,19 @@
+STRINGTABLE
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN_DE
+{
+2000, "Übernehmen"
+2001, "Abbrechen"
+2002, "Umbenennen"
+
+2100, "Monitor umbenennen"
+2101, "Neuer Name für %0:s"
+2102, "Original Name wiederherstellen"
+
+2150, "Stufen"
+2151, "Standard benutzen"
+
+2155, "Kritische Stufe von %0:d%% bis"
+2156, "Niedriege Stufe von %0:d%% bis"
+2157, "Mittlere Stufe von %0:d%% bis"
+2158, "Hohe Stufe von %0:d%% bis %1:d%%"
+}

@@ -1,0 +1,17 @@
+STRINGTABLE
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN_DE
+{
+900, "Softwareaktualisierung"
+901, "Eine neue Version von %0:s ist verfügbar!"
+902, "%0:s %1:s ist jetzt verfügbar (Sie haben %2:s). Möchten Sie diese jetzt herunterladen?"
+903, "Versionshinweise:"
+904, "Diese Version überspringen"
+905, "Erinnere mich später"
+906, "Update installieren"
+907, "Du bist auf dem Laufenden!"
+908, "%0:s %1:s ist derzeit die neueste verfügbare Version."
+909, "Schließen"
+910, "Beim Herunterladen von Updates ist ein Fehler aufgetreten"
+911, "Das Update konnte nicht initialisiert werden"
+912, "Aktuelle Version"
+}

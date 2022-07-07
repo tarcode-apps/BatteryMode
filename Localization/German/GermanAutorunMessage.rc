@@ -1,0 +1,9 @@
+STRINGTABLE
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN_DE
+{
+500, "Das Programm wurde ohne Administratorrechte zum Autostart hinzugefügt."
+501, "Das Programm wurde zum Autostart hinzugefügt."
+502, "Das Programm wurde aus dem Autostart entfernt."
+503, "Beim Hinzufügen des Programms zum Autostart ist ein Fehler aufgetreten."
+504, "Beim Entfernen des Programms aus dem Autostart ist ein Fehler aufgetreten."
+}
