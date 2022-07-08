@@ -1,0 +1,165 @@
+STRINGTABLE
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+{
+1000, "Planer"
+1001, "Übernehmen"
+1002, "Abbrechen"
+1003, "Regel hinzufügen"
+
+1005, "Hilfe zum Planer"
+1006, "https://bmode.tarcode.ru/scheduler-help"
+
+1010, "Es gibt nicht gespeicherte Änderungen. Jetzt Speichern?"
+
+1020, "Planer aktivieren"
+
+1030, "Wenn %0:s"
+1031, "und %0:s"
+1032, "oder %0:s"
+1033, "%0:s"
+1034, "und %0:s"
+1035, "No triggers defined yet"
+1036, "während %0:s"
+1037, "und %0:s"
+1038, "oder %0:s"
+
+1040, "Aktivieren"
+
+1045, "Bearbeiten"
+1046, "Löschen"
+
+1050, "Neue Regel"
+
+1060, "Nach oben"
+1061, "Nach unten"
+
+1070, "Eigenschaften"
+1071, "Übernehmen"
+1072, "Abbrechen"
+
+1075, "Regel wurde geändert. Jetzt speichern?"
+
+1080, "Name"
+1081, "Keine anderen Regeln anwenden"
+
+1085, "Wenn"
+1086, "alle folgenden Bedingungen erfüllt sind"
+1087, "eine der folgenden Bedingungen erfüllt ist"
+1088, "Während"
+
+1090, "Löschen"
+1091, "Unbekannte Bedingung"
+1092, "Leeren"
+
+1095, "Auslöser hinzufügen"
+1096, "Aktionen ausführen"
+1097, "Bedingung hinzufügen"
+
+1100, "Nachricht anzeigen \"%0:s\""
+1101, "Nachricht anzeigen"
+
+1110, "Energieschema einstellen \"%0:s\""
+1111, "Energieschema einstellen"
+
+1120, "Programm starten"
+1121, "Starte \"%0:s\""
+1122, "Starte \"%0:s\" versteckt"
+
+1125, "Durchsuchen"
+1126, "Versteckt starten"
+
+1130, "Ton abspielen"
+1131, "Ton abspielen \"%0:s\""
+1132, "Ton abspielen \"%0:s\" mit Lautstärke %1:d%%"
+
+1135, "Durchsuchen"
+1136, "Lautstärke"
+1137, "Audio Dateien"
+1138, "Alle Dateien"
+
+1140, "Power"
+1141, "diesen Computer herunterfahren"
+1142, "Windows neustarten"
+1143, "diesen Computer in Standby versetzen"
+1144, "diesen Computer in den Ruhezustand versetzen"
+1145, "Monitor ausschalten"
+1146, "Monitor einschalten"
+
+1151, "Herunterfahren"
+1152, "Neu starten"
+1153, "Standby"
+1154, "Ruhezustand"
+1155, "Monitor ausschalten"
+1156, "Monitor einschalten"
+
+1200, "Batterieladung %0:s %1:d%%"
+1201, "Batterieladung %0:s"
+1202, "Batterieladung"
+
+1205, "fällt unter"
+1206, "steigt über"
+1207, "ändert sich"
+
+1220, "Ladegerät %0:s"
+1221, "Ladegerät"
+
+1225, "wird verbunden"
+1226, "wird getrennt"
+1227, "ändert Status"
+
+1240, "Laptop-Deckel %0:s"
+1241, "Laptop-Deckel"
+
+1245, "wird geschlossen"
+1246, "wird geöffnet"
+
+1250, "Der Computer geht in den Standby/Ruhezustand"
+1251, "Standby/Ruhezustand"
+
+1255, "Der Computer erwacht aus dem Standby/Ruhezustand"
+1256, "Aufwachen aus dem Standby/Ruhezustand"
+
+1260, "Monitor %0:s"
+1261, "Monitor"
+
+1265, "schaltet sich aus"
+1266, "schaltet sich ein"
+1267, "wird gedimmt"
+
+1280, "Energieschema \"%0:s\" wird aktiv"
+1281, "Das Energieschema ist eingestellt auf"
+
+1290, "Batteriemodus startet"
+1291, "Der Batteriemodus wird gerade gestartet"
+
+1300, "Batterieladung%0:s %1:d%%"
+1301, "Batterieladung"
+
+1305, "ist unter"
+1306, "ist über"
+
+1320, "Ladegerät %0:s"
+1321, "Ladegerät"
+
+1325, "ist verbunden"
+1326, "ist getrennt"
+
+1340, "Laptop-Deckel %0:s"
+1341, "Laptop-Deckel"
+
+1345, "ist geschlossen"
+1346, "ist geöffnet"
+
+1360, "Monitor %0:s"
+1361, "Monitor"
+
+1365, "ist aus"
+1366, "ist an"
+1367, "ist gedimmet"
+
+1380, "Aktives Energieschema ist \"%0:s\""
+1381, "Aktives Energieschema ist"
+
+1390, "Aktives Energieschema ist nicht \"%0:s\""
+1391, "Aktives Energieschema ist nicht"
+}

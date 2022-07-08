@@ -1,0 +1,28 @@
+STRINGTABLE
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+{
+600, "Desktop-Computer"
+
+621, "Eingesteckt und wird geladen"
+622, "%0:u Std. %%1:.2u Min. bis zur vollen Aufladung"
+623, "%1:u Min. bis zur vollen Aufladung"
+624, "%2:u%% verfügbar (eingesteckt, wird geladen)"
+625, "%2:u%% verfügbar (eingesteckt, lädt nicht)"
+626, "Voll geladen (100%%)"
+627, "Keine Batterie erkannt"
+628, "Eingesteckt und lädt nicht"
+
+650, "%0:u Std. %1:.2u Min. (%2:u%%) verbleiben"
+651, "%1:u Min. (%2:u%%) verbleiben"
+654, "%2:u%% verbleiben"
+655, "Unbekannt verbleiben"
+
+670, "%2:u%% verbleiben\nDenken Sie daran, die Batterie auszutauschen."
+671, "Unbekannt verbleiben\nDenken Sie daran, die Batterie auszutauschen."
+672, "Eingesteckt und wird geladen\nDenken Sie daran, den Batterie auszutauschen."
+673, "%2:u%% verfügbar (eingesteckt, wird geladen)\nDenken Sie daran, den Batterie auszutauschen."
+674, "%2:u%% verfügbar (eingesteckt, lädt nicht)\nDenken Sie daran, den Batterie auszutauschen."
+675, "Voll aufgeladen (100 % %)\nDenken Sie daran, den Batterie auszutauschen."
+
+680, "Batteriesparmodus aktiviert"
+}

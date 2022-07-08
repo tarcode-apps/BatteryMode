@@ -6,6 +6,7 @@
 ;
 
 #include "..\Localization\English\EnglishInstaller.iss"
+#include "..\Localization\German\GermanInstaller.iss"
 #include "..\Localization\Hungarian\HungarianInstaller.iss"
 #include "..\Localization\Italian\ItalianInstaller.iss"
 #include "..\Localization\Korean\KoreanInstaller.iss"
@@ -20,6 +21,7 @@
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"; LicenseFile: "..\LICENSE.txt"
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"; LicenseFile: "..\LICENSE.txt"
+Name: "german"; MessagesFile: "compiler:Languages\German.isl"; LicenseFile: "..\LICENSE.txt"
 Name: "hungarian"; MessagesFile: "compiler:Languages\Hungarian.isl"; LicenseFile: "..\LICENSE.txt"
 Name: "italian"; MessagesFile: "compiler:Languages\Italian.isl"; LicenseFile: "..\LICENSE.txt"
 Name: "korean"; MessagesFile: "..\Localization\Korean\Unofficial\Korean.isl"; LicenseFile: "..\LICENSE.txt"

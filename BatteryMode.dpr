@@ -42,6 +42,14 @@
 {$R 'FrenchHotKey.res' 'Localization\French\FrenchHotKey.rc'}
 {$R 'FrenchPowerInformation.res' 'Localization\French\FrenchPowerInformation.rc'}
 {$R 'FrenchScheduling.res' 'Localization\French\FrenchScheduling.rc'}
+{$R 'GermanAutorunMessage.res' 'Localization\German\GermanAutorunMessage.rc'}
+{$R 'GermanAutoUpdate.res' 'Localization\German\GermanAutoUpdate.rc'}
+{$R 'GermanBatteryModeLanguage.res' 'Localization\German\GermanBatteryModeLanguage.rc'}
+{$R 'GermanBatteryStatusHint.res' 'Localization\German\GermanBatteryStatusHint.rc'}
+{$R 'GermanHotKey.res' 'Localization\German\GermanHotKey.rc'}
+{$R 'GermanPowerInformation.res' 'Localization\German\GermanPowerInformation.rc'}
+{$R 'GermanScheduling.res' 'Localization\German\GermanScheduling.rc'}
+{$R 'GermanSettings.res' 'Localization\German\GermanSettings.rc'}
 {$R 'HungarianAutorunMessage.res' 'Localization\Hungarian\HungarianAutorunMessage.rc'}
 {$R 'HungarianAutoUpdate.res' 'Localization\Hungarian\HungarianAutoUpdate.rc'}
 {$R 'HungarianBatteryModeLanguage.res' 'Localization\Hungarian\HungarianBatteryModeLanguage.rc'}
@@ -226,6 +234,10 @@ begin
   TLang.Fallback.Add(MAKELANGID(LANG_UKRAINIAN, SUBLANG_DEFAULT),         MAKELANGID(LANG_RUSSIAN, SUBLANG_DEFAULT));
   TLang.Fallback.Add(MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_HONGKONG),  MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL));
   TLang.Fallback.Add(MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SINGAPORE), MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED));
+  TLang.Fallback.Add(MAKELANGID(LANG_GERMAN, SUBLANG_GERMAN_SWISS),         MAKELANGID(LANG_GERMAN, SUBLANG_GERMAN));
+  TLang.Fallback.Add(MAKELANGID(LANG_GERMAN, SUBLANG_GERMAN_AUSTRIAN),      MAKELANGID(LANG_GERMAN, SUBLANG_GERMAN));
+  TLang.Fallback.Add(MAKELANGID(LANG_GERMAN, SUBLANG_GERMAN_LUXEMBOURG),    MAKELANGID(LANG_GERMAN, SUBLANG_GERMAN));
+  TLang.Fallback.Add(MAKELANGID(LANG_GERMAN, SUBLANG_GERMAN_LIECHTENSTEIN), MAKELANGID(LANG_GERMAN, SUBLANG_GERMAN));
 
   Registry := TRegistry.Create;
   try
@@ -253,6 +265,7 @@ begin
   //TLang.LanguageId := MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US);          // 1033 (0x0409)
   //TLang.LanguageId := MAKELANGID(LANG_UKRAINIAN, SUBLANG_DEFAULT);           // 1058 (0x0422)
   //TLang.LanguageId := MAKELANGID(LANG_FRENCH, SUBLANG_DEFAULT);              // 1036 (0x040C)
+  //TLang.LanguageId := MAKELANGID(LANG_GERMAN, SUBLANG_GERMAN);               // 1031 (0x0407)
   //TLang.LanguageId := MAKELANGID(LANG_HUNGARIAN, SUBLANG_DEFAULT);           // 1038 (0x040E)
   //TLang.LanguageId := MAKELANGID(LANG_ITALIAN, SUBLANG_ITALIAN);             // 1040 (0x0410)
   //TLang.LanguageId := MAKELANGID(LANG_KOREAN, SUBLANG_DEFAULT);              // 1042 (0x0412)

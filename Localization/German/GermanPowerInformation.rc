@@ -1,0 +1,80 @@
+STRINGTABLE
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+{
+700, "Nicht verfügbar"
+701, "Unbekannt"
+
+704, "Energiesystem"
+705, "Batterieeigenschaften"
+
+710, "Gerätename"
+711, "Hersteller"
+712, "Herstellungsdatum"
+713, "Seriennummer"
+714, "Batterietyp"
+715, "Lade-/Entladezyklen"
+716, "Verschleißzustand"
+717, "Leistungszustand"
+718, "Ausgelegte Kapazität"
+719, "Voll aufgeladene Kapazität"
+720, "Aktuelle Kapazität"
+721, "Batteriespannung"
+722, "Lade-/Entladerate"
+723, "Laderate"
+724, "Entladungsrate"
+725, "Warnung Batteriealarm 1"
+726, "Warnung Batteriealarm 2"
+727, "Temperatur"
+
+740, "Nicht wiederaufladbar %0:s"
+741, "Wiederaufladbar %0:s"
+742, "Nicht wiederaufladbar"
+743, "Wiederaufladbar"
+
+745, "Wechselstromleitung"
+746, "Laden"
+747, "Vollständig entladen"
+748, "Entladen"
+
+750, "&Anzeigen"
+751, "&Immer oben"
+
+755, "&Datei"
+756, "S&chließen"
+757, "&Speichern"
+758, "Speichern &unter..."
+759, "Alle Dateien"
+760, "Textdateien"
+761, "Protokolldateien"
+
+765, "Eigenschaften der Energieverwaltung"
+
+770, "Stromquelle"
+771, "Batteriestatus"
+772, "Volle Batterielebensdauer"
+773, "Verbleibende Batterielebensdauer"
+
+775, "%0:u Std. %1:.2u Min."
+776, "%1:u Min"
+
+780, "Wechselstromleitung"
+781, "USV"
+782, "Batterie"
+
+784, "Keine Batterie"
+785, "%0:d%% (Hoch, lädt)"
+786, "%0:d%% (Niedrig, lädt)"
+787, "%0:d%% (Kritisch, lädt)"
+788, "%0:d%% (Laden)"
+789, "%0:d%% (Hoch)"
+790, "%0:d%% (Niedrig)"
+791, "%0:d%% (Kritisch)"
+792, "%0:d%%"
+793, "Hoch, lädt"
+794, "Niedrig, lädt"
+795, "Kritisch, lädt"
+796, "Laden"
+797, "Hoch"
+798, "Niedrig"
+799, "Kritisch"
+}
