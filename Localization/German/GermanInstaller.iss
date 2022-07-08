@@ -28,4 +28,4 @@ german.SysIconsDescLabel=Klicken Sie auf die Schaltfläche "Einstellungen für S
 ; SysIconsDescLabelWin10
 german.SysIconsDescLabelWin10=Klicken Sie auf die Schaltfläche "Einstellungen für Systemsymbole", klicken Sie auf "Systemsymbole aktivieren oder deaktivieren" und schalten Sie "Stromversorgung" aus, um das Windows-Powersymbol auszublenden.%n%nSie können dieses Fenster jederzeit über das {#AppName}-Menü aufrufen.
 ; SysIconButton
-german.SysIconButton=System Icons Settings
+german.SysIconButton=Einstellungen für Systemsymbole
