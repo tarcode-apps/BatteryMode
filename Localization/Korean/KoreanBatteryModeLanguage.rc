@@ -2,7 +2,7 @@ STRINGTABLE
 LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 {
 0, "한국어"
-1, "배터리 모드"
+1, "Battery Mode"
 2, "전원 관리 옵션 선택:"
 3, "설정(&S)"
 4, "단색 아이콘 사용(&M)"
@@ -12,7 +12,7 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 
 9, "종료(&X)"
 10, "버전"
-11, "배터리 모드 웹사이트(&W)"
+11, "Battery Mode 웹사이트(&W)"
 12, "https://en.bmode.tarcode.ru"
 13, "전원 공급 시스템에 대한 정보(&I)"
 
@@ -160,7 +160,7 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 
 235, "트레이 아이콘 팝업에 밝기 수준 표시"
 
-3000, "배터리 모드를 사용하려면 \"전원\" 서비스가 실행 중이어야 합니다"
+3000, "Battery Mode를 사용하려면 \"전원\" 서비스가 실행 중이어야 합니다"
 
 10000, "디버그 로그 폴더 열기"
 }
