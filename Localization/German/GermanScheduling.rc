@@ -18,7 +18,7 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN_DE
 1032, "oder %0:s"
 1033, "%0:s"
 1034, "und %0:s"
-1035, "No triggers defined yet"
+1035, "Noch keine Auslöser definiert"
 1036, "während %0:s"
 1037, "und %0:s"
 1038, "oder %0:s"
@@ -77,7 +77,7 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN_DE
 1137, "Audio Dateien"
 1138, "Alle Dateien"
 
-1140, "Power"
+1140, "Ein/Aus"
 1141, "diesen Computer herunterfahren"
 1142, "Windows neustarten"
 1143, "diesen Computer in Standby versetzen"
@@ -117,7 +117,7 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN_DE
 1251, "Standby/Ruhezustand"
 
 1255, "Der Computer erwacht aus dem Standby/Ruhezustand"
-1256, "Aufwachen aus dem Standby/Ruhezustand"
+1256, "Aufwachen aus Standby/Ruhezustand"
 
 1260, "Monitor %0:s"
 1261, "Monitor"
@@ -127,10 +127,10 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN_DE
 1267, "wird gedimmt"
 
 1280, "Energieschema \"%0:s\" wird aktiv"
-1281, "Das Energieschema ist eingestellt auf"
+1281, "Energieschema ist eingestellt auf"
 
 1290, "Batteriemodus startet"
-1291, "Der Batteriemodus wird gerade gestartet"
+1291, "Batteriemodus gestartet wird"
 
 1300, "Batterieladung%0:s %1:d%%"
 1301, "Batterieladung"
