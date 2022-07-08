@@ -2,7 +2,7 @@ STRINGTABLE
 LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 {
 0, "한국어"
-1, "Battery Mode"
+1, "배터리 모드"
 2, "전원 관리 옵션 선택:"
 3, "설정(&S)"
 4, "단색 아이콘 사용(&M)"
@@ -12,7 +12,7 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 
 9, "종료(&X)"
 10, "버전"
-11, "Battery Mode 웹사이트(&W)"
+11, "배터리 모드 웹사이트(&W)"
 12, "https://en.bmode.tarcode.ru"
 13, "전원 공급 시스템에 대한 정보(&I)"
 
@@ -21,7 +21,7 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 17, "Windows 모바일 센터"
 
 20, "전원 관리 옵션 및 표시기(&I)"
-21, "표시 안함(&D)"
+21, "표시 안 함(&D)"
 22, "기본 모니터에 표시(&P)"
 23, "모든 모니터에 표시(&A)"
 24, "투명도"
@@ -50,7 +50,7 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 57, "트레이 아이콘 위로 스크롤하여 이 모니터 밝기 조정"
 58, "모니터가 대기 모드에서 깨어난 후 밝기를 다시 적용"
 
-60, "배터리 세이버"
+60, "배터리 절약"
 
 69, "시스템 스타일"
 70, "아이콘 스타일(&S)"
@@ -63,7 +63,6 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 77, "Windows Vista"
 78, "Windows 11"
 79, "Windows 11 라이트"
-
 
 80, "스케줄러(&H)"
 81, "인터페이스"
@@ -150,7 +149,7 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 221, "https://en.bmode.tarcode.ru/scheduler-help"
 222, "릴리즈 노트"
 223, "https://en.bmode.tarcode.ru/releasenotes"
-224, "라이센스"
+224, "라이선스"
 225, "소스 코드"
 226, "https://github.com/tarcode-apps/BatteryMode"
 
@@ -160,6 +159,8 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 233, "초"
 
 235, "트레이 아이콘 팝업에 밝기 수준 표시"
-	
+
+3000, "배터리 모드를 사용하려면 \"전원\" 서비스가 실행 중이어야 합니다"
+
 10000, "디버그 로그 폴더 열기"
 }
