@@ -102,6 +102,7 @@
 {$R 'UkrainianHotKey.res' 'Localization\Ukrainian\UkrainianHotKey.rc'}
 {$R 'UkrainianPowerInformation.res' 'Localization\Ukrainian\UkrainianPowerInformation.rc'}
 {$R 'UkrainianScheduling.res' 'Localization\Ukrainian\UkrainianScheduling.rc'}
+{$R 'UkrainianSettings.res' 'Localization\Ukrainian\UkrainianSettings.rc'}
 {$R 'JapaneseAutorunMessage.res' 'Localization\Japanese\JapaneseAutorunMessage.rc'}
 {$R 'JapaneseAutoUpdate.res' 'Localization\Japanese\JapaneseAutoUpdate.rc'}
 {$R 'JapaneseBatteryModeLanguage.res' 'Localization\Japanese\JapaneseBatteryModeLanguage.rc'}

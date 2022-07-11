@@ -464,6 +464,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <RcCompile Include="Localization\Ukrainian\UkrainianScheduling.rc">
             <Form>UkrainianScheduling.res</Form>
         </RcCompile>
+        <RcCompile Include="Localization\Ukrainian\UkrainianSettings.rc">
+            <Form>UkrainianSettings.res</Form>
+        </RcCompile>
         <RcCompile Include="Localization\Japanese\JapaneseAutorunMessage.rc">
             <Form>JapaneseAutorunMessage.res</Form>
         </RcCompile>
