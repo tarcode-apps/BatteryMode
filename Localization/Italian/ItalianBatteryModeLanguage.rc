@@ -160,5 +160,7 @@ LANGUAGE LANG_ITALIAN, SUBLANG_DEFAULT
 
 235, "Visualizza livello di luminosità nel popup nell'icona di sistema"
 
+3000, "Battery Mode richiede che il servizio \"Power\" sia in esecuzione."
+
 10000, "Apri cartella registro debug"
 }
