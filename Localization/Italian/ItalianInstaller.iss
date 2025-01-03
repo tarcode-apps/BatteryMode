@@ -26,6 +26,6 @@ italian.SysIconsDescription=Puoi nascondere l'icona alimentazione di sistema per
 ; SysIconsDescLabel
 italian.SysIconsDescLabel=Seleziona 'Impostazioni icone di sistema' e disabilita 'Alimentazione' per nascondere l'icona alimentazione di sistema.%n%nPuoi sempre accedere a questa finestra usando il menu di {#AppName}.
 ; SysIconsDescLabelWin10
-english.SysIconsDescLabelWin10=Selezion "Impostazioni icone di sistema", e "Abilita/disabilita icone sistema" e disabilita "Alimentazione" per nascondere l'icona alimentazione di sistema.%n%nper nascondere l'icona di alimentazione del sistema.
+italian.SysIconsDescLabelWin10=Selezion "Impostazioni icone di sistema", e "Abilita/disabilita icone sistema" e disabilita "Alimentazione" per nascondere l'icona alimentazione di sistema.%n%nper nascondere l'icona di alimentazione del sistema.
 ; SysIconButton
 italian.SysIconButton=Impostazioni icone di sistema
