@@ -13,7 +13,7 @@ LANGUAGE LANG_FRENCH, SUBLANG_DEFAULT
 9, "&Quitter"
 10, "Version"
 11, "Site &web de Battery Mode"
-12, "https://bmode.tarcode.ru"
+12, "https://bmode.tarasovlabs.com"
 13, "&Informations sur le système d'alimentation"
 
 15, "&Marche"
@@ -30,7 +30,7 @@ LANGUAGE LANG_FRENCH, SUBLANG_DEFAULT
 30, "Activer la luminescence adaptive"
 31, "Désactiver la luminescence adaptive"
 
-40, "https://bmode.tarcode.ru/update.uurl"
+40, "https://bmode.tarasovlabs.com/update.uurl"
 41, "Mises à jour &automatiques"
 42, "Activer les &mises à jour automatiques"
 43, "Re&chercher des mises à jour"

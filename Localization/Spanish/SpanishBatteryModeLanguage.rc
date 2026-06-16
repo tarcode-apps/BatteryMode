@@ -13,7 +13,7 @@ LANGUAGE LANG_SPANISH, SUBLANG_SPANISH
 9, "Salir"
 10, "Versión"
 11, "Sitio web de Battery Mode"
-12, "https://bmode.tarcode.ru"
+12, "https://bmode.tarasovlabs.com"
 13, "Información sobre el sistema de alimentación"
 
 15, "Opciones de energía de Windows"
@@ -30,7 +30,7 @@ LANGUAGE LANG_SPANISH, SUBLANG_SPANISH
 30, "Activar brillo adaptivo"
 31, "Desactivar brillo adaptivo"
 
-40, "https://bmode.tarcode.ru/update.uurl"
+40, "https://bmode.tarasovlabs.com/update.uurl"
 41, "Actualizaciones automáticas"
 42, "Activar actualizaciones automáticas"
 43, "Comprobar actualizaciones"

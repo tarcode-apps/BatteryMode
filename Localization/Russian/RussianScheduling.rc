@@ -7,7 +7,7 @@ LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
 1003, "Добавить правило"
 
 1005, "Справка по планировщику"
-1006, "https://bmode.tarcode.ru/scheduler-help"
+1006, "https://bmode.tarasovlabs.com/scheduler-help"
 
 1010, "Настройки изменены. Сохранить?"
 

@@ -6,9 +6,9 @@
 #define MainFileHead "BatteryMode"
 #define MainWindowClass "TBatteryModeForm"
 #define AppMutex "BatteryModMutex"
-#define AppPublisherURL "https://bmode.tarcode.ru"
-#define AppSupportURL "https://bmode.tarcode.ru"
-#define AppUpdatesURL "https://bmode.tarcode.ru/releasenotes"
+#define AppPublisherURL "https://bmode.tarasovlabs.com"
+#define AppSupportURL "https://bmode.tarasovlabs.com"
+#define AppUpdatesURL "https://bmode.tarasovlabs.com/releasenotes"
 #define SetupPostfix "Installer"
 
 #define MainFileName MainFileHead + BitsInstall + ".exe"

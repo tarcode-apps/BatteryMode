@@ -78,6 +78,19 @@ const
 const
   GdiPlusDll = 'gdiplus.dll';
 
+// FPiette Jan 19, 2016
+// GdiplusStartup and GdiPlusShutdown cannot be called from DllMain. Because
+// of possible deadlock.
+// I have modified initailization and finalization section to avoid calling
+// the two offending routines.
+// Instead, the DLL must call InitializeForDll right after if has been loaded
+// and call FinalizeForDll before just before unloading it.
+// This means the DLL must export functions to be called by the host
+// application before calling LoadLibrary and FreeLibrary, and those functions
+// will call InitializeForDll and FinalizeForDll.
+  procedure InitializeForDll;        // FPiette Jan 19, 2016
+  procedure FinalizeForDll;          // FPiette Jan 19, 2016
+
 type
   PUInt16 = ^UInt16;
   PLangID = ^LangID;
@@ -11891,7 +11904,7 @@ begin
   else
     begin
       ValueSize := 1;
-      Assert(False);
+      // Assert(False);   // F.Piette
     end;
   end;
   ValueSize := ValueSize * NumberOfValues;
@@ -17029,16 +17042,28 @@ begin
   GdiplusStartup(GdiplusToken, @StartupInput, nil);
 end;
 
+procedure InitializeForDll;     // FPiette Jan 19, 2016
+begin                           // FPiette Jan 19, 2016
+    Initialize;                 // FPiette Jan 19, 2016
+end;                            // FPiette Jan 19, 2016
+
 procedure Finalize;
 begin
   GdiplusShutdown(GdiplusToken);
 end;
 
+procedure FinalizeForDll;       // FPiette Jan 19, 2016
+begin                           // FPiette Jan 19, 2016
+    Finalize;                   // FPiette Jan 19, 2016
+end;                            // FPiette Jan 19, 2016
+
 initialization
-  Initialize;
+  if not IsLibrary then
+     Initialize;
 
 finalization
-  Finalize;
+  if not IsLibrary then           // FPiette Jan 19, 2016
+    Finalize;
 {$ENDREGION 'Initialization and Finalization'}
 
 end.

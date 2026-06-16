@@ -13,7 +13,7 @@ LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT
 9, "&Bezár"
 10, "Verzió"
 11, "Battery Mode &weboldal"
-12, "https://bmode.tarcode.ru"
+12, "https://bmode.tarasovlabs.com"
 13, "&Információ a tápellátási rendszerről"
 
 15, "&Energiagazdálkodás"
@@ -30,7 +30,7 @@ LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT
 30, "Adaptív fényerő engedélyezése"
 31, "Adaptív fényerő letiltása"
 
-40, "https://bmode.tarcode.ru/update.uurl"
+40, "https://bmode.tarasovlabs.com/update.uurl"
 41, "Automatikus &frissítés"
 42, "Automatikus frissítés &bekapcsolása"
 43, "Frissítések k&eresése"

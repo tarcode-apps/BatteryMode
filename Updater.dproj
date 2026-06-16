@@ -1,7 +1,7 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{47628EE3-8D2D-4EC4-9B3A-B655A56D4D63}</ProjectGuid>
-        <ProjectVersion>19.4</ProjectVersion>
+        <ProjectVersion>20.4</ProjectVersion>
         <FrameworkType>None</FrameworkType>
         <MainSource>Updater.dpr</MainSource>
         <Base>True</Base>
@@ -9,6 +9,7 @@
         <Platform Condition="'$(Platform)'==''">Win64</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Console</AppType>
+        <ProjectName Condition="'$(ProjectName)'==''">Updater</ProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -78,7 +79,6 @@
         <DCC_UsePackage>IndyIPClient;FireDACASADriver;FireDACSqliteDriver;bindcompfmx;FireDACDSDriver;DBXSqliteDriver;OverbyteIcsDXE5Run;FireDACPgDriver;FireDACODBCDriver;RESTBackendComponents;fmx;emsclientfiredac;rtl;dbrtl;DbxClientDriver;IndySystem;FireDACCommon;bindcomp;inetdb;tethering;vclib;DBXInterBaseDriver;DataSnapClient;DataSnapServer;DataSnapCommon;DBXOdbcDriver;vclFireDAC;DataSnapProviderClient;xmlrtl;DBXSybaseASEDriver;DataSnapNativeClient;DbxCommonDriver;svnui;vclimg;ibxpress;IndyProtocols;DBXMySQLDriver;dbxcds;DatasnapConnectorsFreePascal;FireDACCommonDriver;MetropolisUILiveTile;soaprtl;vclactnband;bindengine;vcldb;bindcompdbx;vcldsnap;bindcompvcl;vclie;fmxFireDAC;FireDACADSDriver;DBXDb2Driver;vcltouch;DBXOracleDriver;CustomIPTransport;emsclient;vclribbon;VclSmp;dsnap;DBXInformixDriver;VCLRESTComponents;FireDAC;IndyCore;vcl;DataSnapConnectors;fmxase;DataSnapServerMidas;DBXMSSQLDriver;IndyIPCommon;IndyIPServer;DBXFirebirdDriver;FireDACIBDriver;dsnapcon;inet;CloudService;fmxobj;FireDACMSSQLDriver;FireDACDBXDriver;acntDelphiXE7_R;FireDACMySQLDriver;soapmidas;vclx;soapserver;inetdbxpress;svn;DBXSybaseASADriver;dsnapxml;fmxdae;FireDACInfxDriver;RESTComponents;FireDACDb2Driver;FireDACOracleDriver;FireDACMSAccDriver;dbexpress;DataSnapIndy10ServerTransport;adortl;$(DCC_UsePackage)</DCC_UsePackage>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
@@ -87,12 +87,11 @@
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_UsePackage>IndyIPClient;FireDACASADriver;FireDACSqliteDriver;bindcompfmx;FireDACDSDriver;DBXSqliteDriver;OverbyteIcsDXE5Run;FireDACPgDriver;FireDACODBCDriver;RESTBackendComponents;fmx;emsclientfiredac;rtl;dbrtl;DbxClientDriver;IndySystem;FireDACCommon;bindcomp;inetdb;tethering;vclib;DBXInterBaseDriver;DataSnapClient;DataSnapServer;DataSnapCommon;DBXOdbcDriver;vclFireDAC;DataSnapProviderClient;xmlrtl;DBXSybaseASEDriver;DataSnapNativeClient;DbxCommonDriver;vclimg;ibxpress;IndyProtocols;DBXMySQLDriver;dbxcds;DatasnapConnectorsFreePascal;FireDACCommonDriver;MetropolisUILiveTile;soaprtl;vclactnband;bindengine;vcldb;bindcompdbx;vcldsnap;bindcompvcl;vclie;fmxFireDAC;FireDACADSDriver;DBXDb2Driver;vcltouch;DBXOracleDriver;CustomIPTransport;emsclient;vclribbon;VclSmp;dsnap;DBXInformixDriver;VCLRESTComponents;FireDAC;IndyCore;vcl;DataSnapConnectors;fmxase;DataSnapServerMidas;DBXMSSQLDriver;IndyIPCommon;IndyIPServer;DBXFirebirdDriver;FireDACIBDriver;dsnapcon;inet;CloudService;fmxobj;FireDACMSSQLDriver;FireDACDBXDriver;acntDelphiXE7_R;FireDACMySQLDriver;soapmidas;vclx;soapserver;inetdbxpress;DBXSybaseASADriver;dsnapxml;fmxdae;FireDACInfxDriver;RESTComponents;FireDACDb2Driver;FireDACOracleDriver;FireDACMSAccDriver;dbexpress;DataSnapIndy10ServerTransport;adortl;$(DCC_UsePackage)</DCC_UsePackage>
-        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <Manifest_File>None</Manifest_File>
-        <VerInfo_Keys>CompanyName=Tarasov Artyom;FileDescription=Updater;FileVersion=1.0.0.0;InternalName=Updater;LegalCopyright=@ Tarasov Artyom, 2015;LegalTrademarks=;OriginalFilename=;ProductName=Battery Mode 64-bit;ProductVersion=1.0.0.0;Comments=Debug</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Artem Tarasov;FileDescription=Updater;FileVersion=1.0.0.0;InternalName=Updater;LegalCopyright=@ Artem Tarasov, 2026;LegalTrademarks=;OriginalFilename=;ProductName=Battery Mode 64-bit;ProductVersion=1.0.0.0;Comments=Debug</VerInfo_Keys>
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
         <DCC_DebugDCUs>true</DCC_DebugDCUs>
         <DCC_Optimize>false</DCC_Optimize>
@@ -102,22 +101,20 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <BRCC_CodePage>65001</BRCC_CodePage>
-        <VerInfo_Keys>CompanyName=Tarasov Artyom;FileDescription=Updater;FileVersion=1.0.0.0;InternalName=Updater;LegalCopyright=© Tarasov Artyom, 2015 - 2022;LegalTrademarks=;OriginalFilename=;ProductName=Battery Mode 64-bit;ProductVersion=1.0.0.0;Comments=Debug;ProgramID=ru.tarcode.BatteryMode.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Artem Tarasov;FileDescription=Updater;FileVersion=1.0.0.0;InternalName=Updater;LegalCopyright=© Artem Tarasov, 2015 - 2026;LegalTrademarks=;OriginalFilename=;ProductName=Battery Mode 64-bit;ProductVersion=1.0.0.0;Comments=Debug;ProgramID=ru.tarcode.BatteryMode.$(MSBuildProjectName)</VerInfo_Keys>
         <BRCC_OutputDir>Win32\Debug\res\</BRCC_OutputDir>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
-        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <BRCC_CodePage>65001</BRCC_CodePage>
-        <VerInfo_Keys>CompanyName=Tarasov Artyom;FileDescription=Updater;FileVersion=1.0.0.0;InternalName=Updater;LegalCopyright=© Tarasov Artyom, 2015 - 2022;LegalTrademarks=;OriginalFilename=;ProductName=Battery Mode 64-bit;ProductVersion=1.0.0.0;Comments=Debug;ProgramID=ru.tarcode.BatteryMode.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Artem Tarasov;FileDescription=Updater;FileVersion=1.0.0.0;InternalName=Updater;LegalCopyright=© Artem Tarasov, 2015 - 2026;LegalTrademarks=;OriginalFilename=;ProductName=Battery Mode 64-bit;ProductVersion=1.0.0.0;Comments=Debug;ProgramID=ru.tarcode.BatteryMode.$(MSBuildProjectName)</VerInfo_Keys>
         <BRCC_OutputDir>Win64\Debug\res\</BRCC_OutputDir>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
@@ -130,32 +127,30 @@
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <BRCC_CodePage>65001</BRCC_CodePage>
         <BRCC_OutputDir>Win32\Release\res\</BRCC_OutputDir>
-        <VerInfo_Build>204</VerInfo_Build>
+        <VerInfo_Build>206</VerInfo_Build>
         <VerInfo_MajorVer>4</VerInfo_MajorVer>
         <PostBuildEvent><![CDATA[(If Not Exist "$(PROJECTDIR)\Build" (mkdir "$(PROJECTDIR)\Build"))
 copy "$(OUTPUTDIR)$(OUTPUTNAME)$(OUTPUTEXT)" "$(PROJECTDIR)\Build\BatteryMode$(OUTPUTNAME)32$(OUTPUTEXT)"
 $(PostBuildEvent)]]></PostBuildEvent>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Keys>CompanyName=Tarasov Artyom;FileDescription=Updater;FileVersion=4.3.2.204;InternalName=Updater;LegalCopyright=© Tarasov Artyom, 2015 - 2022;LegalTrademarks=;OriginalFilename=Updater32.exe;ProductName=Battery Mode 32-bit;ProductVersion=4.0.0.0;Comments=;ProgramID=ru.tarcode.BatteryMode.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Artem Tarasov;FileDescription=Updater;FileVersion=4.3.3.206;InternalName=Updater;LegalCopyright=© Artem Tarasov, 2015 - 2026;LegalTrademarks=;OriginalFilename=Updater32.exe;ProductName=Battery Mode 32-bit;ProductVersion=4.0.0.0;Comments=;ProgramID=ru.tarcode.BatteryMode.$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <VerInfo_MinorVer>3</VerInfo_MinorVer>
-        <VerInfo_Release>2</VerInfo_Release>
+        <VerInfo_Release>3</VerInfo_Release>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <BRCC_CodePage>65001</BRCC_CodePage>
         <BRCC_OutputDir>Win64\Release\res\</BRCC_OutputDir>
-        <VerInfo_Build>204</VerInfo_Build>
+        <VerInfo_Build>206</VerInfo_Build>
         <VerInfo_MajorVer>4</VerInfo_MajorVer>
         <PostBuildEvent><![CDATA[(If Not Exist "$(PROJECTDIR)\Build" (mkdir "$(PROJECTDIR)\Build"))
 copy "$(OUTPUTDIR)$(OUTPUTNAME)$(OUTPUTEXT)" "$(PROJECTDIR)\Build\BatteryMode$(OUTPUTNAME)64$(OUTPUTEXT)"
 $(PostBuildEvent)]]></PostBuildEvent>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Keys>CompanyName=Tarasov Artyom;FileDescription=Updater;FileVersion=4.3.2.204;InternalName=Updater;LegalCopyright=© Tarasov Artyom, 2015 - 2022;LegalTrademarks=;OriginalFilename=Updater64.exe;ProductName=Battery Mode 64-bit;ProductVersion=4.0.0.0;Comments=;ProgramID=ru.tarcode.BatteryMode.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Artem Tarasov;FileDescription=Updater;FileVersion=4.3.3.206;InternalName=Updater;LegalCopyright=© Artem Tarasov, 2015 - 2026;LegalTrademarks=;OriginalFilename=Updater64.exe;ProductName=Battery Mode 64-bit;ProductVersion=4.0.0.0;Comments=;ProgramID=ru.tarcode.BatteryMode.$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <VerInfo_MinorVer>3</VerInfo_MinorVer>
-        <VerInfo_Release>2</VerInfo_Release>
+        <VerInfo_Release>3</VerInfo_Release>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
@@ -189,8 +184,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <Source Name="MainSource">Updater.dpr</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k280.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp280.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k370.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp370.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>

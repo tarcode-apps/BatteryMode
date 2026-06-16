@@ -32,18 +32,20 @@ object BatteryModeForm: TBatteryModeForm
     BevelOuter = bvNone
     ParentColor = True
     TabOrder = 0
+    ExplicitWidth = 624
     DesignSize = (
       247
       45)
     object LabelAppName: TLabel
       Left = 51
       Top = 5
-      Width = 167
+      Width = 196
       Height = 20
       Anchors = [akLeft, akTop, akRight]
       AutoSize = False
       Caption = 'LabelAppName'
       OnClick = LabelAppInfoClick
+      ExplicitWidth = 573
     end
     object ImageIcon: TImage
       Left = 10
@@ -57,7 +59,7 @@ object BatteryModeForm: TBatteryModeForm
     object LabelAppInfo: TLabel
       Left = 51
       Top = 22
-      Width = 167
+      Width = 196
       Height = 20
       Anchors = [akLeft, akTop, akRight]
       AutoSize = False
@@ -70,16 +72,18 @@ object BatteryModeForm: TBatteryModeForm
       ParentFont = False
       Visible = False
       OnClick = LabelAppInfoClick
+      ExplicitWidth = 573
     end
     object LabelStatus: TLabel
       Left = 51
       Top = 5
-      Width = 185
+      Width = 196
       Height = 36
       Anchors = [akLeft, akTop, akRight]
       AutoSize = False
       Caption = 'LabelStatus'
       WordWrap = True
+      ExplicitWidth = 573
     end
   end
   object PanelBottom: TPanel
@@ -94,6 +98,7 @@ object BatteryModeForm: TBatteryModeForm
     Constraints.MinHeight = 43
     ParentBackground = False
     TabOrder = 3
+    ExplicitWidth = 624
     object LinkGridPanel: TGridPanel
       Left = 0
       Top = 0
@@ -119,6 +124,7 @@ object BatteryModeForm: TBatteryModeForm
         end>
       ShowCaption = False
       TabOrder = 0
+      ExplicitWidth = 624
       DesignSize = (
         247
         43)
@@ -138,6 +144,7 @@ object BatteryModeForm: TBatteryModeForm
         TabOrder = 0
         TabStop = True
         OnClick = LinkClick
+        ExplicitLeft = 299
       end
     end
   end
@@ -157,6 +164,7 @@ object BatteryModeForm: TBatteryModeForm
     ParentColor = True
     ShowCaption = False
     TabOrder = 1
+    ExplicitWidth = 624
     object LabelConfig: TLabel
       AlignWithMargins = True
       Left = 4
@@ -200,6 +208,7 @@ object BatteryModeForm: TBatteryModeForm
     ShowCaption = False
     TabOrder = 2
     Visible = False
+    ExplicitWidth = 624
     object CheckBoxBatterySaver: TCheckBox
       AlignWithMargins = True
       Left = 20
@@ -214,10 +223,11 @@ object BatteryModeForm: TBatteryModeForm
       Caption = 'BatterySaver'
       TabOrder = 0
       OnClick = CheckBoxBatterySaverClick
+      ExplicitWidth = 584
     end
   end
   object PopupMenuTray: TPopupMenu
-    Left = 192
+    Left = 176
     Top = 48
     object TrayMenuPower: TMenuItem
       Caption = 'Power'

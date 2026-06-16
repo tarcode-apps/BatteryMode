@@ -4,7 +4,7 @@ Replaces Windows default battery indicator to a more powerful and useful one.
 
 It provides backlight control, easy power scheme selection, detailed battery information and a lot of handy features for customization.
 
-![](https://en.bmode.tarcode.ru/img/sc2.png)
+![](https://en.bmode.tarasovlabs.com/img/sc2.png)
 
 ## Features
 
@@ -22,11 +22,11 @@ It provides backlight control, easy power scheme selection, detailed battery inf
 * Hotkey to change active Power Scheme
 * CLI or Pipe-based API for external integrations
 
-![](https://en.bmode.tarcode.ru/img/sc6.png)
+![](https://en.bmode.tarasovlabs.com/img/sc6.png)
 
 ## Building
 
-Embarcadero RAD Studio 11 is required to build the product.
+Embarcadero RAD Studio 13 is required to build the product.
 
 1. Open a solution BatteryModeSolution.groupproj
 2. Right-Click Battery Mode project
